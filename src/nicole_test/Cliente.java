@@ -6,6 +6,9 @@ public class Cliente {
 	private int telefono,id_cliente;
 	private static int count_cliente=0;
 	
+        public Cliente(){
+            
+        }
 	
 	public Cliente(String nombre_cliente, String apellidos_cliente, String direccion_cliente, int telefono) {
 		this.setNombre_cliente(nombre_cliente);
