@@ -3,21 +3,17 @@ package nicole_test;
 public class Cliente {
 	
 	private String nombre_cliente,apellidos_cliente,direccion_cliente;
-	private int telefono,id_cliente;
-	private static int count_cliente=0;
-	
+	private int telefono;
+        
         public Cliente(){
             
         }
-	
+        
 	public Cliente(String nombre_cliente, String apellidos_cliente, String direccion_cliente, int telefono) {
 		this.setNombre_cliente(nombre_cliente);
 		this.setApellidos_cliente(apellidos_cliente);
 		this.setDireccion_cliente(direccion_cliente);
 		this.setTelefono(telefono);
-		this.setCount_cliente();
-		this.setId_cliente();
-		
 		
 	}
 
@@ -53,37 +49,26 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 	
-	private void setId_cliente() {
-		this.id_cliente=Cliente.count_cliente;
-	}
-	
-	public int getId_cliente() {
-		return this.id_cliente;
-	}
-	
-	public void setCount_cliente() {
-		Cliente.count_cliente++;
-	}
-	
-	public int getCount_cliente() {
-		return Cliente.count_cliente;
-	}
-
-	@Override
+        @Override
 	public String toString() {
-		return "cliente ID " + this.getId_cliente() +
-				" || " + this.getNombre_cliente() + " " + this.getApellidos_cliente() +
-				" || " + this.getDireccion_cliente() +
-				" || " + this.getTelefono();
+		return "cliente " + this.getNombre_cliente() + " " +
+                        this.getApellidos_cliente() + " || " + 
+                        this.getDireccion_cliente() +" || " +
+                        this.getTelefono();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Cliente) {
-			return this.telefono == (((Cliente) obj) .telefono);
-		} else {
-			return false;
-		}
+                    if (this.nombre_cliente.equals(((Cliente) obj) .nombre_cliente)) {
+                        if (this.apellidos_cliente.equals(((Cliente) obj) .apellidos_cliente)) {
+                            if (this.direccion_cliente.equals(((Cliente) obj) .direccion_cliente)) {
+                                return this.telefono == (((Cliente) obj) .telefono);
+                            } else return false;
+                        } else return false;    
+                    } else return false;
+                } else return false;
+            }
 	}
 
-}
+

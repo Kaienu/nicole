@@ -5,10 +5,10 @@ import java.util.*;
 
 public class AccesoSQL /*implements AccInterface*/{
     
-    private String sURL = "jdbc:mysql://192.168.126.128/nicole";
-    private String usu = "Pedro";
-    private String pass = "oxgnub";
-   private Connection con;
+    private String sURL = "jdbc:mysql://sql2.freemysqlhosting.net/sql2255331";
+    private String usu = "sql2255331";
+    private String pass = "sI5!cN7!";
+    private Connection con;
     
     PreparedStatement preparedStatement;
     ResultSet rs;
@@ -21,9 +21,9 @@ public class AccesoSQL /*implements AccInterface*/{
 			Connection con = DriverManager.getConnection(sURL, usu, pass);
 			
 			if (con.isClosed())
-				System.out.println("Error en la conexi�n");
+				System.out.println("Error en la conexión");
 			else
-				System.out.println("Conexi�n exitosa");
+				System.out.println("Conexión exitosa");
 			con.close();
 			
 		} catch (SQLException e) {
@@ -44,26 +44,33 @@ public class AccesoSQL /*implements AccInterface*/{
         
     }
     
-    public void listado() {
+  /*  public void listado() {       EN CONSTRUCCION
         
+        String insetSql = "select * from Cliente";
         
+        try {
+            
+            preparedStatement = con.prepareStatement(insetSql);
+            rs = preparedStatement.executeQuery();
+            Cliente clilist = new Cliente
+            
+        }
         
-    }
+    }  */
     
     public void nuevo(Cliente cliente) {
         
         String insertSql =
-        "insert into cliente(idCliente,nombre,apellidos,direccion,telefono) "
-                + "values(?,?,?,?,?)";
+        "insert into Cliente(nombre,apellidos,direccion,telefono) values(?,?,?,?)";
         
         try {
             
             preparedStatement = con.prepareStatement(insertSql);
-            preparedStatement.setString(1, "0001");
-            preparedStatement.setString(2, "pepe");
-            preparedStatement.setString(3, "Diaz");
-            preparedStatement.setString(4, "Calle sardina 26");
-            preparedStatement.setString(5, "954634833");
+            preparedStatement.setString(1, cliente.getNombre_cliente());
+            preparedStatement.setString(2, cliente.getApellidos_cliente());
+            preparedStatement.setString(3, cliente.getDireccion_cliente());
+            preparedStatement.setInt(4, cliente.getTelefono());
+            
             if (preparedStatement.executeUpdate()==1) {
                 System.out.println("Se introdujo el cliente");
             } else {
