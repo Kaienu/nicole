@@ -84,7 +84,7 @@ public class AccesoSQL /*implements AccInterface*/{
             preparedStatement = con.prepareStatement(insertSql);
             preparedStatement.setString(1, cliente.getNombre_cliente());
             preparedStatement.setString(2, cliente.getApellidos_cliente());
-            preparedStatement.setString(3, cliente.getDireccion_cliente());
+            preparedStatement.setString(3, cliente.getCorreo_cliente());
             preparedStatement.setInt(4, cliente.getTelefono());
             
             if (preparedStatement.executeUpdate()==1) {

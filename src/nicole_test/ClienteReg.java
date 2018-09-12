@@ -10,7 +10,7 @@ public class ClienteReg extends Cliente{
     
     public ClienteReg(Cliente cliente,int idCliente){
         this.setNombre_cliente(cliente.getNombre_cliente());
-        this.setDireccion_cliente(cliente.getDireccion_cliente());
+        this.setCorreo_cliente(cliente.getCorreo_cliente());
     }
     
     public ClienteReg(String nombre_cliente, String apellidos_cliente, String direccion_cliente, int telefono, int idCliente) {
@@ -31,7 +31,7 @@ public class ClienteReg extends Cliente{
 		return "ID cliente " + this.getIdCliente() + " || " +
                         this.getNombre_cliente() + " " +
                         this.getApellidos_cliente() + " || " + 
-                        this.getDireccion_cliente() +" || " +
+                        this.getCorreo_cliente() +" || " +
                         this.getTelefono();
         }
     
