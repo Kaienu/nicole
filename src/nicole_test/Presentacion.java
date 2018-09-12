@@ -10,7 +10,7 @@ public class Presentacion {
         
         //acceso.pruebaConexion();
         
-        Persona cli2 = new Persona("Alba", "MaPi", "Avda de la caraja-gorda, 2", 54682465);
+        Persona cli2 = new Persona("Alba", "MaPi", "Albita@micasa.org", 54682465);
         acceso.nuevo(cli2);
         
         acceso.cerrar();
