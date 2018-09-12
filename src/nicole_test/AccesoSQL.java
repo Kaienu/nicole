@@ -13,7 +13,7 @@ public class AccesoSQL /*implements AccInterface*/{
     PreparedStatement preparedStatement;
     ResultSet rs;
     
-    ArrayList<Cliente> lista = new ArrayList<Cliente>();
+    ArrayList<ClienteReg> lista = new ArrayList<ClienteReg>();
     
     public void pruebaConexion() {
 		
@@ -45,34 +45,30 @@ public class AccesoSQL /*implements AccInterface*/{
         
     }
     
-   /* public void listado(){
+    public void listado(){
+        
         String insertsql = "select * from cliente";
         
         try {   
             
             preparedStatement = con.prepareStatement(insertsql);
             rs=preparedStatement.executeQuery();
-            Cliente clilist = new Cliente() ;
+            ClienteReg clilist = new ClienteReg() ;
             
-    } catch (SQLException e){
-        e.printStackTrace();
-    }
-    
-    /*public void listado(){
-        
-        String insetSql = "select * from Cliente";
-        
-        
+                while (rs.next()) {
+                    clilist.setIdCliente(rs.getInt(1));
+                    clilist.setNombre_cliente(rs.getString(2));
+                    clilist.setApellidos_cliente(rs.getString(3));
+                    clilist.setCorreo_cliente(rs.getString(4));
+                    clilist.setTelefono(rs.getInt(5));
+                    System.out.println(clilist);
+                    lista.add(clilist);
+                }
             
-            preparedStatement = con.prepareStatement(insetSql);
-            rs = preparedStatement.executeQuery();
-            Cliente clilist = new Cliente
-            
-        
-           
+            } catch (SQLException e){
+            System.out.println(e.getMessage());
         }
-        
-    }*/
+    }
     
     public void nuevo(Cliente cliente) {
         
@@ -96,7 +92,7 @@ public class AccesoSQL /*implements AccInterface*/{
             
             
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         
     }
@@ -106,7 +102,7 @@ public class AccesoSQL /*implements AccInterface*/{
 		try {
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
     
