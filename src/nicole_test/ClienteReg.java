@@ -27,13 +27,12 @@ public class ClienteReg extends Cliente{
     }
     
     @Override
-	public String toString() {
-		return "ID cliente " + this.getIdCliente() + " || " +
-                        this.getNombre_cliente() + " " +
-                        this.getApellidos_cliente() + " || " + 
-                        this.getCorreo_cliente() +" || " +
-                        this.getTelefono();
-        }
-    
+    public String toString() {
+	return "ID cliente " + this.getIdCliente() + " || " +
+                this.getNombre_cliente() + " " +
+                this.getApellidos_cliente() + " || " + 
+                this.getCorreo_cliente() +" || " +
+                this.getTelefono();
+    }
     
 }
