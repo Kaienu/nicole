@@ -17,21 +17,22 @@ public class AccesoSQL /*implements AccInterface*/{
     
     public void pruebaConexion() {
 		
-		try {
-			Connection con = DriverManager.getConnection(sURL, usu, pass);
+	try {
+            
+            Connection con = DriverManager.getConnection(sURL, usu, pass);
 			
-			if (con.isClosed())
-				System.out.println("Error en la conexión");
-			else
-				System.out.println("Conexión exitosa");
-			con.close();
+            if (con.isClosed())
+		System.out.println("Error en la conexión");
+            else
+		System.out.println("Conexión exitosa");
+            con.close();
 			
-		} catch (SQLException e) {
-			//System.out.println("Error!");
-                        System.out.println(e.getMessage());
-		}
-		
+	} catch (SQLException e) {
+            //System.out.println("Error!");
+            System.out.println(e.getMessage());
 	}
+		
+    }
     
     public AccesoSQL(){
         
@@ -89,8 +90,7 @@ public class AccesoSQL /*implements AccInterface*/{
                 System.out.println("No se pudo introducir el cliente");
             }
             preparedStatement.close();
-            
-            
+              
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
@@ -99,11 +99,11 @@ public class AccesoSQL /*implements AccInterface*/{
     
     public void cerrar() {
 		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
+	try {
+            con.close();
+	} catch (SQLException e) {
+            System.out.println(e.getMessage());
 	}
+    }
     
 }
