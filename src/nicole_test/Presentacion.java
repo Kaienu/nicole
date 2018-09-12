@@ -7,8 +7,14 @@ public class Presentacion {
         AccesoSQL acceso = new AccesoSQL();
         
         //acceso.pruebaConexion();
-        Cliente cli2 = new Cliente();
-        acceso.nuevo(cli2);
+        //Cliente cli2 = new Cliente("manolete", "cantinflas", "Calle serrano, 2", 954458965);
+        //Cliente cli3 = new Cliente("Juanito", "juanolas", "Avnda de la polla-santa, 197", 968458235);
+        //acceso.nuevo(cli2);
+        //acceso.nuevo(cli3);
+        
+        Cliente cli1 = new Cliente("Jesus","Ufano","Calle del perrito caliente 21", 954856932);
+        acceso.nuevo(cli1);
+        acceso.cerrar();
         
     }
     

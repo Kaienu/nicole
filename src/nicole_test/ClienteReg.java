@@ -8,6 +8,11 @@ public class ClienteReg extends Cliente{
         
     }
     
+    public ClienteReg(Cliente cliente,int idCliente){
+        this.setNombre_cliente(cliente.getNombre_cliente());
+        this.setDireccion_cliente(cliente.getDireccion_cliente());
+    }
+    
     public ClienteReg(String nombre_cliente, String apellidos_cliente, String direccion_cliente, int telefono, int idCliente) {
         super(nombre_cliente, apellidos_cliente, direccion_cliente, telefono);
         this.idCliente = idCliente;

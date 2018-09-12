@@ -5,9 +5,9 @@ import java.util.*;
 
 public class AccesoSQL /*implements AccInterface*/{
     
-    private String sURL = "jdbc:mysql://sql2.freemysqlhosting.net/sql2255331";
-    private String usu = "sql2255331";
-    private String pass = "sI5!cN7!";
+    private String sURL = "jdbc:mysql://192.168.126.134/nicole";
+    private String usu = "Pedro";
+    private String pass = "oxgnub";
     private Connection con;
     
     PreparedStatement preparedStatement;
@@ -27,7 +27,8 @@ public class AccesoSQL /*implements AccInterface*/{
 			con.close();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//System.out.println("Error!");
+                        e.printStackTrace();
 		}
 		
 	}
@@ -44,24 +45,39 @@ public class AccesoSQL /*implements AccInterface*/{
         
     }
     
-  /*  public void listado() {       EN CONSTRUCCION
+   /* public void listado(){
+        String insertsql = "select * from cliente";
+        
+        try {   
+            
+            preparedStatement = con.prepareStatement(insertsql);
+            rs=preparedStatement.executeQuery();
+            Cliente clilist = new Cliente() ;
+            
+    } catch (SQLException e){
+        e.printStackTrace();
+    }
+    
+    /*public void listado(){
         
         String insetSql = "select * from Cliente";
         
-        try {
+        
             
             preparedStatement = con.prepareStatement(insetSql);
             rs = preparedStatement.executeQuery();
             Cliente clilist = new Cliente
             
+        
+           
         }
         
-    }  */
+    }*/
     
     public void nuevo(Cliente cliente) {
         
         String insertSql =
-        "insert into Cliente(nombre,apellidos,direccion,telefono) values(?,?,?,?)";
+        "insert into cliente(nombre,apellidos,direccion,telefono) values(?,?,?,?)";
         
         try {
             
