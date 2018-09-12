@@ -13,7 +13,7 @@ public class AccesoSQL /*implements AccInterface*/{
     PreparedStatement preparedStatement;
     ResultSet rs;
     
-    ArrayList<ClienteReg> lista = new ArrayList<>();
+    ArrayList<Cliente> lista = new ArrayList<>();
     
     public void pruebaConexion() {
 		
@@ -54,13 +54,13 @@ public class AccesoSQL /*implements AccInterface*/{
             
             preparedStatement = con.prepareStatement(insertsql);
             rs=preparedStatement.executeQuery();
-            ClienteReg clilist = new ClienteReg() ;
+            Cliente clilist = new Cliente() ;
             
                 while (rs.next()) {
                     clilist.setIdCliente(rs.getInt(1));
-                    clilist.setNombre_cliente(rs.getString(2));
-                    clilist.setApellidos_cliente(rs.getString(3));
-                    clilist.setCorreo_cliente(rs.getString(4));
+                    clilist.setNombre(rs.getString(2));
+                    clilist.setApellidos(rs.getString(3));
+                    clilist.setCorreo(rs.getString(4));
                     clilist.setTelefono(rs.getInt(5));
                     System.out.println(clilist);
                     lista.add(clilist);
@@ -71,17 +71,17 @@ public class AccesoSQL /*implements AccInterface*/{
         }
     }
     
-    public void nuevo(Cliente cliente) {
+    public void nuevo(Persona cliente) {
         
         String insertSql =
-        "insert into cliente(nombre,apellidos,direccion,telefono) values(?,?,?,?)";
+        "insert into cliente(nombre,apellidos,correo,telefono) values(?,?,?,?)";
         
         try {
             
             preparedStatement = con.prepareStatement(insertSql);
-            preparedStatement.setString(1, cliente.getNombre_cliente());
-            preparedStatement.setString(2, cliente.getApellidos_cliente());
-            preparedStatement.setString(3, cliente.getCorreo_cliente());
+            preparedStatement.setString(1, cliente.getNombre());
+            preparedStatement.setString(2, cliente.getApellidos());
+            preparedStatement.setString(3, cliente.getCorreo());
             preparedStatement.setInt(4, cliente.getTelefono());
             
             if (preparedStatement.executeUpdate()==1) {
