@@ -9,7 +9,7 @@ package interfaz;
  *
  * @author Antonio
  */
-public class NICOLE {
+public class Inter_NICOLE {
 
     /**
      * @param args the command line arguments
