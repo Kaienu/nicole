@@ -45,7 +45,7 @@ public class Inter_Login extends javax.swing.JFrame {
         jPanelLogin.setName("Nicole"); // NOI18N
         jPanelLogin.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        logoNicole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/IMAGENES/posibleLogo.jpg"))); // NOI18N
+        logoNicole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/posibleLogo.jpg"))); // NOI18N
         logoNicole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         etqUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N

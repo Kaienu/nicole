@@ -29,10 +29,10 @@ public class Inter_Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         etqMenu = new javax.swing.JLabel();
-        botonCliente = new javax.swing.JButton();
-        botonEmpleado = new javax.swing.JButton();
-        botonProducto = new javax.swing.JButton();
+        botonBusquedas = new javax.swing.JButton();
+        botonTicket = new javax.swing.JButton();
         botonFacturacion = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 241, 242));
@@ -48,25 +48,15 @@ public class Inter_Menu extends javax.swing.JFrame {
         etqMenu.setForeground(new java.awt.Color(219, 126, 138));
         etqMenu.setText("Menú");
 
-        botonCliente.setBackground(new java.awt.Color(219, 126, 138));
-        botonCliente.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonCliente.setForeground(new java.awt.Color(219, 126, 138));
-        botonCliente.setText("Cliente");
+        botonBusquedas.setBackground(new java.awt.Color(219, 126, 138));
+        botonBusquedas.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonBusquedas.setForeground(new java.awt.Color(219, 126, 138));
+        botonBusquedas.setText("Búsquedas");
 
-        botonEmpleado.setBackground(new java.awt.Color(219, 126, 138));
-        botonEmpleado.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonEmpleado.setForeground(new java.awt.Color(219, 126, 138));
-        botonEmpleado.setText("Empleado");
-
-        botonProducto.setBackground(new java.awt.Color(219, 126, 138));
-        botonProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonProducto.setForeground(new java.awt.Color(219, 126, 138));
-        botonProducto.setText("Producto");
-        botonProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonProductoActionPerformed(evt);
-            }
-        });
+        botonTicket.setBackground(new java.awt.Color(219, 126, 138));
+        botonTicket.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonTicket.setForeground(new java.awt.Color(219, 126, 138));
+        botonTicket.setText("Ticket");
 
         botonFacturacion.setBackground(new java.awt.Color(219, 126, 138));
         botonFacturacion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -75,6 +65,16 @@ public class Inter_Menu extends javax.swing.JFrame {
         botonFacturacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonFacturacionActionPerformed(evt);
+            }
+        });
+
+        botonSalir.setBackground(new java.awt.Color(219, 126, 138));
+        botonSalir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonSalir.setForeground(new java.awt.Color(219, 126, 138));
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
             }
         });
 
@@ -89,11 +89,14 @@ public class Inter_Menu extends javax.swing.JFrame {
                         .addComponent(etqMenu))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonFacturacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonTicket, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonBusquedas, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,14 +104,14 @@ public class Inter_Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(etqMenu)
-                .addGap(40, 40, 40)
-                .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,13 +135,13 @@ public class Inter_Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonProductoActionPerformed
-
     private void botonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFacturacionActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,10 +186,10 @@ public class Inter_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonCliente;
-    private javax.swing.JButton botonEmpleado;
+    private javax.swing.JButton botonBusquedas;
     private javax.swing.JButton botonFacturacion;
-    private javax.swing.JButton botonProducto;
+    private javax.swing.JButton botonSalir;
+    private javax.swing.JButton botonTicket;
     private javax.swing.JLabel etqMenu;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
