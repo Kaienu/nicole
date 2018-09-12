@@ -13,7 +13,7 @@ public class AccesoSQL /*implements AccInterface*/{
     PreparedStatement preparedStatement;
     ResultSet rs;
     
-    ArrayList<ClienteReg> lista = new ArrayList<ClienteReg>();
+    ArrayList<ClienteReg> lista = new ArrayList<>();
     
     public void pruebaConexion() {
 		
@@ -28,7 +28,7 @@ public class AccesoSQL /*implements AccInterface*/{
 			
 		} catch (SQLException e) {
 			//System.out.println("Error!");
-                        e.printStackTrace();
+                        System.out.println(e.getMessage());
 		}
 		
 	}
@@ -40,7 +40,7 @@ public class AccesoSQL /*implements AccInterface*/{
             con = DriverManager.getConnection(sURL, usu, pass);
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         
     }
