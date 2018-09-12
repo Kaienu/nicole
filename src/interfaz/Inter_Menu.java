@@ -72,6 +72,7 @@ public class Inter_Menu extends javax.swing.JFrame {
         botonSalir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(219, 126, 138));
         botonSalir.setText("Salir");
+        botonSalir.setPreferredSize(new java.awt.Dimension(60, 60));
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
@@ -90,7 +91,7 @@ public class Inter_Menu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonFacturacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
