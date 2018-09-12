@@ -1,4 +1,4 @@
-package nicole_test;
+package clases;
 
 import java.sql.*;
 import java.util.*;
@@ -13,6 +13,7 @@ public class AccesoSQL /*implements AccInterface*/{
     PreparedStatement preparedStatement;
     ResultSet rs;
     
+        
     ArrayList<Cliente> lista = new ArrayList<>();
     
     public void pruebaConexion() {

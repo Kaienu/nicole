@@ -1,4 +1,4 @@
-package nicole_test;
+package clases;
 
 public class Linea {
     
