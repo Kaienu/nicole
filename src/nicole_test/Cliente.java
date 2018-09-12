@@ -2,17 +2,17 @@ package nicole_test;
 
 public class Cliente {
 	
-	private String nombre_cliente,apellidos_cliente,direccion_cliente;
+	private String nombre_cliente,apellidos_cliente,correo_cliente;
 	private int telefono;
         
         public Cliente(){
             
         }
         
-	public Cliente(String nombre_cliente, String apellidos_cliente, String direccion_cliente, int telefono) {
+	public Cliente(String nombre_cliente, String apellidos_cliente, String correo_cliente, int telefono) {
 		this.setNombre_cliente(nombre_cliente);
 		this.setApellidos_cliente(apellidos_cliente);
-		this.setDireccion_cliente(direccion_cliente);
+		this.setCorreo_cliente(correo_cliente);
 		this.setTelefono(telefono);
 		
 	}
@@ -33,12 +33,12 @@ public class Cliente {
 		this.apellidos_cliente = apellidos_cliente;
 	}
 
-	public String getDireccion_cliente() {
-		return direccion_cliente;
+	public String getCorreo_cliente() {
+		return correo_cliente;
 	}
 
-	public void setDireccion_cliente(String direccion_cliente) {
-		this.direccion_cliente = direccion_cliente;
+	public void setCorreo_cliente(String direccion_cliente) {
+		this.correo_cliente = direccion_cliente;
 	}
 
 	public int getTelefono() {
@@ -53,7 +53,7 @@ public class Cliente {
 	public String toString() {
 		return "cliente " + this.getNombre_cliente() + " " +
                         this.getApellidos_cliente() + " || " + 
-                        this.getDireccion_cliente() +" || " +
+                        this.getCorreo_cliente() +" || " +
                         this.getTelefono();
 	}
 	
@@ -62,7 +62,7 @@ public class Cliente {
 		if (obj instanceof Cliente) {
                     if (this.nombre_cliente.equals(((Cliente) obj) .nombre_cliente)) {
                         if (this.apellidos_cliente.equals(((Cliente) obj) .apellidos_cliente)) {
-                            if (this.direccion_cliente.equals(((Cliente) obj) .direccion_cliente)) {
+                            if (this.correo_cliente.equals(((Cliente) obj) .correo_cliente)) {
                                 return this.telefono == (((Cliente) obj) .telefono);
                             } else return false;
                         } else return false;    
