@@ -1,0 +1,6 @@
+CREATE TABLE Promocion
+(
+idPromocion MEDIUMINT ZEROFILL PRIMARY KEY AUTO_INCREMENT,
+porcenProm TINYINT NOT NULL CHECK (porcenProm<=100 AND porcenProm>=0),
+denominacion VARCHAR (100) NOT NULL
+);

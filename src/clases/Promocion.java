@@ -39,22 +39,17 @@ public class Promocion {
     @Override
     public boolean equals(Object obj) {
 	if (obj instanceof Promocion) {
-            if (((Promocion) obj).getIdFactura() == this.getIdFactura()) {
-                return ((Promocion) obj).getIdLinea() == this.getIdLinea();
-            } else return false;
+                return ((Promocion) obj).getIdPromocion()== this.getIdPromocion();
         } else return false;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 43 * hash + this.idLinea;
-        hash = 43 * hash + this.idFactura;
-        hash = 43 * hash + this.idProducto;
-        hash = 43 * hash + this.idPromocion;
-        hash = 43 * hash + this.cantidad;
-        hash = 43 * hash + this.importeLinea;
+        hash = 29 * hash + this.idPromocion;
+        hash = 29 * hash + this.porcenProm;
+        hash = 29 * hash + this.denominacion;
         return hash;
     }
-    
+
 }
