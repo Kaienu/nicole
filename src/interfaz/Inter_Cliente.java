@@ -12,7 +12,7 @@ package interfaz;
 public class Inter_Cliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form Cliente
+     * Creates new form Inter_Cliente
      */
     public Inter_Cliente() {
         initComponents();
@@ -28,100 +28,80 @@ public class Inter_Cliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        botonBuscarCliene = new javax.swing.JButton();
-        botonAtras = new javax.swing.JButton();
-        etqBuscarPor = new javax.swing.JLabel();
-        comboBoxBusqueda = new javax.swing.JComboBox<>();
-        campoCodigo = new javax.swing.JTextField();
+        etqCliente = new javax.swing.JLabel();
         etqCodigo = new javax.swing.JLabel();
-        etqNombre = new javax.swing.JLabel();
+        campoCodigo = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
-        etqApellidos = new javax.swing.JLabel();
+        etqNombre = new javax.swing.JLabel();
         campoApellidos = new javax.swing.JTextField();
-        etqTlf = new javax.swing.JLabel();
+        etqApellidos = new javax.swing.JLabel();
+        etqTelefono = new javax.swing.JLabel();
+        campoTelefono = new javax.swing.JTextField();
         etqCorreo = new javax.swing.JLabel();
-        campoApellidos1 = new javax.swing.JTextField();
-        campoTlf = new javax.swing.JTextField();
+        campoCorreo = new javax.swing.JTextField();
+        etqObservaciones = new javax.swing.JLabel();
+        campoObservaciones = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setForeground(new java.awt.Color(219, 126, 138));
         jPanel1.setMaximumSize(new java.awt.Dimension(1680, 1080));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
-        jPanel1.setRequestFocusEnabled(false);
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(219, 126, 138));
-        jLabel1.setText("Cliente");
+        etqCliente.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        etqCliente.setForeground(new java.awt.Color(219, 126, 138));
+        etqCliente.setText("Cliente");
 
-        botonBuscarCliene.setBackground(new java.awt.Color(219, 126, 138));
-        botonBuscarCliene.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonBuscarCliene.setForeground(new java.awt.Color(219, 126, 138));
-        botonBuscarCliene.setText("Buscar cliente");
-
-        botonAtras.setBackground(new java.awt.Color(219, 126, 138));
-        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonAtras.setForeground(new java.awt.Color(219, 126, 138));
-        botonAtras.setText("Atrás");
-        botonAtras.setPreferredSize(new java.awt.Dimension(70, 50));
-
-        etqBuscarPor.setBackground(new java.awt.Color(219, 126, 138));
-        etqBuscarPor.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqBuscarPor.setForeground(new java.awt.Color(219, 126, 138));
-        etqBuscarPor.setText("Buscar por:");
-
-        comboBoxBusqueda.setBackground(new java.awt.Color(248, 241, 242));
-        comboBoxBusqueda.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        comboBoxBusqueda.setForeground(new java.awt.Color(219, 126, 138));
-        comboBoxBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código de cliente", "Nombre", "Apellidos" }));
-        comboBoxBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        etqCodigo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqCodigo.setForeground(new java.awt.Color(219, 126, 138));
+        etqCodigo.setText("Código:");
 
         campoCodigo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         campoCodigo.setForeground(new java.awt.Color(219, 126, 138));
         campoCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        etqCodigo.setBackground(new java.awt.Color(219, 126, 138));
-        etqCodigo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqCodigo.setForeground(new java.awt.Color(219, 126, 138));
-        etqCodigo.setText("Código:");
-
-        etqNombre.setBackground(new java.awt.Color(219, 126, 138));
-        etqNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqNombre.setForeground(new java.awt.Color(219, 126, 138));
-        etqNombre.setText("Nombre:");
-
         campoNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(219, 126, 138));
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        etqApellidos.setBackground(new java.awt.Color(219, 126, 138));
-        etqApellidos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqApellidos.setForeground(new java.awt.Color(219, 126, 138));
-        etqApellidos.setText("Apellidos:");
+        etqNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqNombre.setForeground(new java.awt.Color(219, 126, 138));
+        etqNombre.setText("Nombre:");
 
         campoApellidos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         campoApellidos.setForeground(new java.awt.Color(219, 126, 138));
         campoApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        etqTlf.setBackground(new java.awt.Color(219, 126, 138));
-        etqTlf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqTlf.setForeground(new java.awt.Color(219, 126, 138));
-        etqTlf.setText("Teléfono:");
+        etqApellidos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqApellidos.setForeground(new java.awt.Color(219, 126, 138));
+        etqApellidos.setText("Apellidos:");
 
-        etqCorreo.setBackground(new java.awt.Color(219, 126, 138));
+        etqTelefono.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqTelefono.setForeground(new java.awt.Color(219, 126, 138));
+        etqTelefono.setText("Teléfono:");
+
+        campoTelefono.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoTelefono.setForeground(new java.awt.Color(219, 126, 138));
+        campoTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+
         etqCorreo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         etqCorreo.setForeground(new java.awt.Color(219, 126, 138));
         etqCorreo.setText("Correo:");
 
-        campoApellidos1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoApellidos1.setForeground(new java.awt.Color(219, 126, 138));
-        campoApellidos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        campoCorreo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoCorreo.setForeground(new java.awt.Color(219, 126, 138));
+        campoCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        campoTlf.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoTlf.setForeground(new java.awt.Color(219, 126, 138));
-        campoTlf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        etqObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqObservaciones.setForeground(new java.awt.Color(219, 126, 138));
+        etqObservaciones.setText("Observaciones:");
+
+        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoObservaciones.setForeground(new java.awt.Color(219, 126, 138));
+        campoObservaciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,64 +112,65 @@ public class Inter_Cliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(etqCodigo)
+                            .addComponent(etqNombre)
+                            .addComponent(etqApellidos)
+                            .addComponent(etqTelefono)
+                            .addComponent(etqCorreo)
+                            .addComponent(etqObservaciones))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(campoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(100, 100, 100)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etqBuscarPor)
-                                    .addComponent(etqCodigo)
-                                    .addComponent(etqNombre)
-                                    .addComponent(etqApellidos)
-                                    .addComponent(etqTlf)
-                                    .addComponent(etqCorreo))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboBoxBusqueda, 0, 275, Short.MAX_VALUE)
-                                    .addComponent(campoNombre)
-                                    .addComponent(campoApellidos)
-                                    .addComponent(campoApellidos1)
-                                    .addComponent(campoTlf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(campoObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(campoCorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(botonBuscarCliene, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(etqCliente)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(etqBuscarPor)
-                    .addComponent(comboBoxBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addComponent(etqCliente)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqCodigo)
                     .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqNombre)
                     .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqApellidos)
                     .addComponent(campoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(etqTlf)
-                    .addComponent(campoTlf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(etqCorreo)
-                    .addComponent(campoApellidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscarCliene, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addComponent(etqTelefono)
+                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqCorreo)
+                    .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etqObservaciones)
+                    .addComponent(campoObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,14 +179,14 @@ public class Inter_Cliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -238,9 +219,6 @@ public class Inter_Cliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Inter_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -251,21 +229,19 @@ public class Inter_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAtras;
-    private javax.swing.JButton botonBuscarCliene;
     private javax.swing.JTextField campoApellidos;
-    private javax.swing.JTextField campoApellidos1;
     private javax.swing.JTextField campoCodigo;
+    private javax.swing.JTextField campoCorreo;
     private javax.swing.JTextField campoNombre;
-    private javax.swing.JTextField campoTlf;
-    private javax.swing.JComboBox<String> comboBoxBusqueda;
+    private javax.swing.JTextField campoObservaciones;
+    private javax.swing.JTextField campoTelefono;
     private javax.swing.JLabel etqApellidos;
-    private javax.swing.JLabel etqBuscarPor;
+    private javax.swing.JLabel etqCliente;
     private javax.swing.JLabel etqCodigo;
     private javax.swing.JLabel etqCorreo;
     private javax.swing.JLabel etqNombre;
-    private javax.swing.JLabel etqTlf;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel etqObservaciones;
+    private javax.swing.JLabel etqTelefono;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

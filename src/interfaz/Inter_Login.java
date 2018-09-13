@@ -30,10 +30,10 @@ public class Inter_Login extends javax.swing.JFrame {
         etqUsuario = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
         etqContrasena = new javax.swing.JLabel();
-        campoContraseña = new javax.swing.JTextField();
         etqInicioSesion = new javax.swing.JLabel();
         botonIniciar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 241, 242));
@@ -58,9 +58,6 @@ public class Inter_Login extends javax.swing.JFrame {
         etqContrasena.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         etqContrasena.setForeground(new java.awt.Color(219, 126, 138));
         etqContrasena.setText("Contraseña:");
-
-        campoContraseña.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        campoContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         etqInicioSesion.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         etqInicioSesion.setForeground(new java.awt.Color(219, 126, 138));
@@ -89,6 +86,10 @@ public class Inter_Login extends javax.swing.JFrame {
             }
         });
 
+        jPasswordField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(219, 126, 138));
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
         jPanelLoginLayout.setHorizontalGroup(
@@ -105,17 +106,20 @@ public class Inter_Login extends javax.swing.JFrame {
                         .addGap(115, 115, 115)
                         .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(campoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etqUsuario)
-                            .addComponent(etqContrasena)
                             .addGroup(jPanelLoginLayout.createSequentialGroup()
                                 .addComponent(botonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etqUsuario)
+                                    .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                        .addComponent(etqContrasena)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLoginLayout.setVerticalGroup(
@@ -126,13 +130,13 @@ public class Inter_Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(etqInicioSesion)
                 .addGap(33, 33, 33)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqUsuario)
-                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etqUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqContrasena)
-                    .addComponent(campoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etqContrasena, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonIniciar)
@@ -209,12 +213,12 @@ public class Inter_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JTextField campoContraseña;
     private javax.swing.JTextField campoUsuario;
     private javax.swing.JLabel etqContrasena;
     private javax.swing.JLabel etqInicioSesion;
     private javax.swing.JLabel etqUsuario;
     private javax.swing.JPanel jPanelLogin;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel logoNicole;
     // End of variables declaration//GEN-END:variables
 }

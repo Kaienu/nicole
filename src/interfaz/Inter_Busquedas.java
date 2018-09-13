@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Antonio
@@ -16,6 +18,10 @@ public class Inter_Busquedas extends javax.swing.JFrame {
      */
     public Inter_Busquedas() {
         initComponents();
+    }
+    
+    private void buscarCliente(){
+        JOptionPane.showInputDialog("Introduzca los apellidos del cliente que desea buscar");
     }
 
     /**
@@ -43,7 +49,7 @@ public class Inter_Busquedas extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        etqBusquedas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        etqBusquedas.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         etqBusquedas.setForeground(new java.awt.Color(219, 126, 138));
         etqBusquedas.setText("Búsquedas");
 
@@ -51,6 +57,11 @@ public class Inter_Busquedas extends javax.swing.JFrame {
         botonBuscarCliene.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBuscarCliene.setForeground(new java.awt.Color(219, 126, 138));
         botonBuscarCliene.setText("Buscar cliente");
+        botonBuscarCliene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarClieneActionPerformed(evt);
+            }
+        });
 
         botonBuscarEmpleado.setBackground(new java.awt.Color(219, 126, 138));
         botonBuscarEmpleado.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -82,6 +93,11 @@ public class Inter_Busquedas extends javax.swing.JFrame {
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setText("Atrás");
         botonAtras.setPreferredSize(new java.awt.Dimension(70, 60));
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,15 +145,15 @@ public class Inter_Busquedas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,6 +166,14 @@ public class Inter_Busquedas extends javax.swing.JFrame {
     private void botonBuscarPromocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarPromocionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBuscarPromocionActionPerformed
+
+    private void botonBuscarClieneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarClieneActionPerformed
+       buscarCliente();
+    }//GEN-LAST:event_botonBuscarClieneActionPerformed
+        
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
      * @param args the command line arguments
