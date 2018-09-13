@@ -5,10 +5,10 @@ import java.util.*;
 
 public class AccesoSQL /*implements AccInterface*/{
     
-    private String sURL = "jdbc:mysql://192.168.126.133/nicole";
-    private String usu = "Pedro";
-    private String pass = "oxgnub";
-    public Connection con;
+    private String sURL = "jdbc:mysql://sql2.freemysqlhosting.net/sql2255331";
+    private String usu = "sql2255331";
+    private String pass = "sI5!cN7!";
+    private Connection con;
     
     PreparedStatement preparedStatement;
     ResultSet rs;

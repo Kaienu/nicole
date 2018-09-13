@@ -1,19 +1,19 @@
 package clases;
 
-import java.awt.BorderLayout;
+/*import java.awt.BorderLayout;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableModel;*/
 
 public class Presentacion {
     
     public static void main(String[] args){
         
-        Frame f = new Frame();
+        /*Frame f = new Frame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
+        f.setVisible(true);*/
         
-    }
-      /*  AccesoSQL acceso = new AccesoSQL();
+    
+         AccesoSQL acceso = new AccesoSQL();
         
         //acceso.listado();
         
@@ -24,9 +24,9 @@ public class Presentacion {
         
         acceso.cerrar();
         
-    }*/
+    }
 }
-    
+/*    
 class Frame extends JFrame {
     public Frame(){
         setLayout(new BorderLayout());
@@ -71,5 +71,5 @@ class Panel extends JPanel{
         }
     
     }
-}
+}*/
     
