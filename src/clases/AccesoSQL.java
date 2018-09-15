@@ -2,6 +2,7 @@ package clases;
 
 import java.sql.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class AccesoSQL /*implements AccInterface*/{
     
@@ -14,7 +15,7 @@ public class AccesoSQL /*implements AccInterface*/{
     ResultSet rs;
     
         
-    ArrayList<Cliente> lista = new ArrayList<>();
+    
     
     public void pruebaConexion() {
 		
@@ -47,35 +48,57 @@ public class AccesoSQL /*implements AccInterface*/{
         
     }
     
-    public void listado(){
+    public void EjecutaSql(String query, String mensaje){
         
-        String insertsql = "select * from cliente";
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1){
+                JOptionPane.showMessageDialog(null,"El registro ha sido "+mensaje+" correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(null,"El registro no ha podido ser "+mensaje+" correctamente.");
+            }
+                        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+   
+    }
+    
+    public ArrayList<Cliente> listado(){
+        
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String insertsql = "select * from Cliente";
         
         try {   
             
             preparedStatement = con.prepareStatement(insertsql);
             rs=preparedStatement.executeQuery();
-            Cliente clilist = new Cliente() ;
+            Cliente cliente;
             
                 while (rs.next()) {
-                    clilist.setIdCliente(rs.getInt(1));
-                    clilist.setNombre(rs.getString(2));
-                    clilist.setApellidos(rs.getString(3));
-                    clilist.setCorreo(rs.getString(4));
-                    clilist.setTelefono(rs.getInt(5));
-                    System.out.println(clilist);
-                    lista.add(clilist);
+                    cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setNombre(rs.getString(2));
+                    cliente.setApellidos(rs.getString(3));
+                    cliente.setCorreo(rs.getString(4));
+                    cliente.setTelefono(rs.getInt(5));
+                    System.out.println(cliente);
+                    lista.add(cliente);
                 }
             
             } catch (SQLException e){
             System.out.println(e.getMessage());
         }
+        
+    return lista;
+        
     }
     
     public void nuevo(Persona cliente) {
         
         String insertSql =
-        "insert into cliente(nombre,apellidos,correo,telefono) values(?,?,?,?)";
+        "insert into Cliente(nombre,apellidos,correo,telefono) values(?,?,?,?)";
         
         try {
             

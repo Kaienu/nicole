@@ -13,14 +13,14 @@ public class Presentacion {
         f.setVisible(true);*/
         
     
-         AccesoSQL acceso = new AccesoSQL();
+        AccesoSQL acceso = new AccesoSQL();
         
-        //acceso.listado();
+        acceso.listado();
         
         //acceso.pruebaConexion();
         
-        Persona cli1 = new Persona("José", "Piñones Amargos", "josepi@petete.com", 956853214);
-        acceso.nuevo(cli1);
+        //Persona cli1 = new Persona("José", "Piñones Amargos", "josepi@petete.com", 956853214);
+        //acceso.nuevo(cli1);
         
         acceso.cerrar();
         
