@@ -15,7 +15,7 @@ public class Presentacion {
     
         AccesoSQL acceso = new AccesoSQL();
         
-        acceso.listado();
+        acceso.listado("select * from Cliente");
         
         //acceso.pruebaConexion();
         

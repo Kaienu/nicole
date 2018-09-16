@@ -14,12 +14,12 @@ public class Inter_Cliente extends javax.swing.JFrame {
     
     public Inter_Cliente() {
         initComponents();
-        Mostrar_usuarios();
+        Mostrar_usuarios("select * from Cliente");
     }
     
-    public void Mostrar_usuarios(){
+    public void Mostrar_usuarios(String query){
         acceso = new AccesoSQL();
-        ArrayList<Cliente> lista = acceso.listado();
+        ArrayList<Cliente> lista = acceso.listado(query);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Object[] row = new Object[5];
         for(int i = 0; i < lista.size();i++){
@@ -48,10 +48,10 @@ public class Inter_Cliente extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        botonFacturacion = new javax.swing.JButton();
-        botonBusquedas2 = new javax.swing.JButton();
-        botonBusquedas3 = new javax.swing.JButton();
+        jTextField_Busqueda = new javax.swing.JTextField();
+        botonBusqueda = new javax.swing.JButton();
+        botonAtras = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
 
         jTable_Display_User.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,35 +103,35 @@ public class Inter_Cliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Búsqueda");
 
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        botonFacturacion.setBackground(new java.awt.Color(248, 241, 242));
-        botonFacturacion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonFacturacion.setForeground(new java.awt.Color(219, 126, 138));
-        botonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscartiny.png"))); // NOI18N
-        botonFacturacion.addActionListener(new java.awt.event.ActionListener() {
+        botonBusqueda.setBackground(new java.awt.Color(248, 241, 242));
+        botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
+        botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscartiny.png"))); // NOI18N
+        botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFacturacionActionPerformed(evt);
+                botonBusquedaActionPerformed(evt);
             }
         });
 
-        botonBusquedas2.setBackground(new java.awt.Color(248, 241, 242));
-        botonBusquedas2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonBusquedas2.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas2.setText("Atras");
-        botonBusquedas2.addActionListener(new java.awt.event.ActionListener() {
+        botonAtras.setBackground(new java.awt.Color(248, 241, 242));
+        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAtras.setForeground(new java.awt.Color(219, 126, 138));
+        botonAtras.setText("Atras");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBusquedas2ActionPerformed(evt);
+                botonAtrasActionPerformed(evt);
             }
         });
 
-        botonBusquedas3.setBackground(new java.awt.Color(248, 241, 242));
-        botonBusquedas3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonBusquedas3.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas3.setText("Limpiar");
-        botonBusquedas3.addActionListener(new java.awt.event.ActionListener() {
+        botonLimpiar.setBackground(new java.awt.Color(248, 241, 242));
+        botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
+        botonLimpiar.setText("Limpiar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBusquedas3ActionPerformed(evt);
+                botonLimpiarActionPerformed(evt);
             }
         });
 
@@ -146,13 +146,13 @@ public class Inter_Cliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(8, 8, 8)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(botonBusquedas3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botonBusquedas2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -162,13 +162,13 @@ public class Inter_Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botonBusquedas2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(botonBusquedas3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(botonFacturacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(botonBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -204,18 +204,27 @@ public class Inter_Cliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable_Display_UserMouseClicked
 
-    private void botonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFacturacionActionPerformed
+    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Mostrar_usuarios("select * from Cliente where nombre LIKE '%"+
+                jTextField_Busqueda.getText()+"%' OR apellidos LIKE '%"+
+                jTextField_Busqueda.getText()+"%' OR correo LIKE '%"+
+                jTextField_Busqueda.getText()+"%' OR telefono LIKE '%"+
+                jTextField_Busqueda.getText()+"%'");
+    }//GEN-LAST:event_botonBusquedaActionPerformed
 
-    private void botonBusquedas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas2ActionPerformed
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.dispose();
         new Inter_Menu().setVisible(true);
-    }//GEN-LAST:event_botonBusquedas2ActionPerformed
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
-    private void botonBusquedas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBusquedas3ActionPerformed
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        jTextField_Busqueda.setText("");
+        Mostrar_usuarios("select * from Cliente");
+    }//GEN-LAST:event_botonLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,15 +263,15 @@ public class Inter_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBusquedas2;
-    private javax.swing.JButton botonBusquedas3;
-    private javax.swing.JButton botonFacturacion;
+    private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonBusqueda;
+    private javax.swing.JButton botonLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable_Display_User;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField_Busqueda;
     // End of variables declaration//GEN-END:variables
 }

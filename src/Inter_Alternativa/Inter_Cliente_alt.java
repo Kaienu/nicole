@@ -52,7 +52,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
     
     public void Mostrar_usuarios(){
         acceso = new AccesoSQL();
-        ArrayList<Cliente> lista = acceso.listado();
+        ArrayList<Cliente> lista = acceso.listado("select * from Cliente");
         DefaultTableModel model = (DefaultTableModel) jTable_Display_User.getModel();
         Object[] row = new Object[5];
         for(int i = 0; i < lista.size();i++){

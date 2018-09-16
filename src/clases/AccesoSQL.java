@@ -65,10 +65,10 @@ public class AccesoSQL /*implements AccInterface*/{
    
     }
     
-    public ArrayList<Cliente> listado(){
+    public ArrayList<Cliente> listado(String query){
         
         ArrayList<Cliente> lista = new ArrayList<>();
-        String insertsql = "select * from Cliente";
+        String insertsql = query;
         
         try {   
             
@@ -83,7 +83,7 @@ public class AccesoSQL /*implements AccInterface*/{
                     cliente.setApellidos(rs.getString(3));
                     cliente.setCorreo(rs.getString(4));
                     cliente.setTelefono(rs.getInt(5));
-                    System.out.println(cliente);
+                    //System.out.println(cliente); // Comando de prueba en consola
                     lista.add(cliente);
                 }
             
