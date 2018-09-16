@@ -1,8 +1,6 @@
 package clases;
 
-/*import java.awt.BorderLayout;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;*/
+import Inter_Alternativa.*;
 
 public class Presentacion {
     
@@ -12,17 +10,18 @@ public class Presentacion {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);*/
         
+        new Inter_Menu().setVisible(true);
     
-        AccesoSQL acceso = new AccesoSQL();
+        //AccesoSQL acceso = new AccesoSQL();
         
-        acceso.listado("select * from Cliente");
+        //acceso.listado("select * from Cliente");
         
         //acceso.pruebaConexion();
         
         //Persona cli1 = new Persona("José", "Piñones Amargos", "josepi@petete.com", 956853214);
         //acceso.nuevo(cli1);
         
-        acceso.cerrar();
+        //acceso.cerrar();
         
     }
 }

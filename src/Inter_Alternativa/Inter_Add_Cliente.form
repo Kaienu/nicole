@@ -167,7 +167,7 @@
         <Component class="javax.swing.JButton" name="botonAdd">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f1" red="f8" type="rgb"/>
+              <Color blue="e1" green="e1" red="e1" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="14" style="1"/>
@@ -266,6 +266,9 @@
               <Font name="Century Gothic" size="12" style="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TextoFormateado()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_observ">
           <Properties>
@@ -277,7 +280,7 @@
         <Component class="javax.swing.JButton" name="botonAdd2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f1" red="f8" type="rgb"/>
+              <Color blue="e1" green="e1" red="e1" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="14" style="1"/>
@@ -308,7 +311,7 @@
         <Component class="javax.swing.JButton" name="botonAdd3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f1" red="f8" type="rgb"/>
+              <Color blue="e1" green="e1" red="e1" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="14" style="1"/>

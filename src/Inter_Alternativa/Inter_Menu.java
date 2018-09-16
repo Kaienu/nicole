@@ -33,7 +33,7 @@ public class Inter_Menu extends javax.swing.JFrame {
         etqMenu.setForeground(new java.awt.Color(219, 126, 138));
         etqMenu.setText("Menú");
 
-        botonBusquedas.setBackground(new java.awt.Color(248, 241, 242));
+        botonBusquedas.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusquedas.setForeground(new java.awt.Color(219, 126, 138));
         botonBusquedas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Clientes.png"))); // NOI18N
@@ -44,13 +44,13 @@ public class Inter_Menu extends javax.swing.JFrame {
             }
         });
 
-        botonTicket.setBackground(new java.awt.Color(248, 241, 242));
+        botonTicket.setBackground(new java.awt.Color(225, 225, 225));
         botonTicket.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonTicket.setForeground(new java.awt.Color(219, 126, 138));
         botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/entradas.png"))); // NOI18N
         botonTicket.setText("Ticket");
 
-        botonFacturacion.setBackground(new java.awt.Color(248, 241, 242));
+        botonFacturacion.setBackground(new java.awt.Color(225, 225, 225));
         botonFacturacion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonFacturacion.setForeground(new java.awt.Color(219, 126, 138));
         botonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
@@ -61,7 +61,7 @@ public class Inter_Menu extends javax.swing.JFrame {
             }
         });
 
-        botonBusquedas1.setBackground(new java.awt.Color(248, 241, 242));
+        botonBusquedas1.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusquedas1.setForeground(new java.awt.Color(219, 126, 138));
         botonBusquedas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gestion.png"))); // NOI18N
@@ -72,7 +72,7 @@ public class Inter_Menu extends javax.swing.JFrame {
             }
         });
 
-        botonBusquedas2.setBackground(new java.awt.Color(248, 241, 242));
+        botonBusquedas2.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusquedas2.setForeground(new java.awt.Color(219, 126, 138));
         botonBusquedas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N

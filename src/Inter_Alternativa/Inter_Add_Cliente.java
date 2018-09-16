@@ -51,7 +51,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
         jTextField_nombre = new javax.swing.JTextField();
         jTextField_apellidos = new javax.swing.JTextField();
         jTextField_correo = new javax.swing.JTextField();
-        jTextField_telefono = new javax.swing.JTextField();
+        jTextField_telefono = new TextoFormateado();
         jTextField_observ = new javax.swing.JTextField();
         botonAdd2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -85,7 +85,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
 
-        botonAdd.setBackground(new java.awt.Color(248, 241, 242));
+        botonAdd.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAdd.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anadir.png"))); // NOI18N
@@ -126,7 +126,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
 
         jTextField_observ.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        botonAdd2.setBackground(new java.awt.Color(248, 241, 242));
+        botonAdd2.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAdd2.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
@@ -141,7 +141,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(219, 126, 138));
         jLabel8.setText("Añadir nuevo cliente");
 
-        botonAdd3.setBackground(new java.awt.Color(248, 241, 242));
+        botonAdd3.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAdd3.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
@@ -259,10 +259,13 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
                 + "'"+ jTextField_correo.getText()+"',"
                 + ""+ jTextField_telefono.getText()+")";
         acceso = new AccesoSQL();
-        acceso.EjecutaSql(query, "insertado");
+        if (acceso.EjecutaSql(query, "insertado")){
+            new Inter_Cliente().setVisible(true);
+            this.dispose();
+        }
         acceso.cerrar();
-        new Inter_Cliente().setVisible(true);
-        this.dispose();
+        //new Inter_Cliente().setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_botonAddActionPerformed
 
     private void botonAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd2ActionPerformed

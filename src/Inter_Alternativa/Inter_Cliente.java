@@ -106,7 +106,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
 
         jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        botonBusqueda.setBackground(new java.awt.Color(248, 241, 242));
+        botonBusqueda.setBackground(new java.awt.Color(225, 225, 225));
         botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
         botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscartiny.png"))); // NOI18N
@@ -116,7 +116,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
             }
         });
 
-        botonAtras.setBackground(new java.awt.Color(248, 241, 242));
+        botonAtras.setBackground(new java.awt.Color(225, 225, 225));
         botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setText("Atras");
@@ -126,7 +126,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
             }
         });
 
-        botonLimpiar.setBackground(new java.awt.Color(248, 241, 242));
+        botonLimpiar.setBackground(new java.awt.Color(225, 225, 225));
         botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
         botonLimpiar.setText("Limpiar");
@@ -136,7 +136,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
             }
         });
 
-        botonAdd.setBackground(new java.awt.Color(248, 241, 242));
+        botonAdd.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAdd.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anadir.png"))); // NOI18N

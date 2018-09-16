@@ -1,5 +1,7 @@
 package clases;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLDataException;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 import java.sql.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -48,22 +50,30 @@ public class AccesoSQL /*implements AccInterface*/{
         
     }
     
-    public void EjecutaSql(String query, String mensaje){
+    public boolean EjecutaSql(String query, String mensaje){
         
         Statement st;
         try {
             st = con.createStatement();
             if ((st.executeUpdate(query)) == 1){
                 JOptionPane.showMessageDialog(null,"El registro ha sido "+mensaje+" correctamente.");
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null,"El registro no ha podido ser "+mensaje+" correctamente.");
+                return false;
             }
                         
+        } catch (MySQLSyntaxErrorException e){
+            JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!");
+            return false;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Ha habido un error!");
+            return false;
         }
-   
+        
     }
+   
+    
     
     public ArrayList<Cliente> listado(String query){
         
