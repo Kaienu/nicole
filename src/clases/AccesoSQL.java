@@ -105,6 +105,36 @@ public class AccesoSQL /*implements AccInterface*/{
         
     }
     
+    public ArrayList<Cliente> listadoIndividual(String id){
+        
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String insertsql = "Select * from Cliente where idCliente = "+id;
+        
+        try {   
+            
+            preparedStatement = con.prepareStatement(insertsql);
+            rs=preparedStatement.executeQuery();
+            Cliente cliente;
+            
+                while (rs.next()) {
+                    cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setNombre(rs.getString(2));
+                    cliente.setApellidos(rs.getString(3));
+                    cliente.setCorreo(rs.getString(4));
+                    cliente.setTelefono(rs.getInt(5));
+                    System.out.println(cliente); // Comando de prueba en consola
+                    lista.add(cliente);
+                }
+            
+            } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+    return lista;
+        
+    }
+    
     public void nuevo(Persona cliente) {
         
         String insertSql =

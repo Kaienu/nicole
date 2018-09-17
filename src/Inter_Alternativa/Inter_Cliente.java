@@ -3,6 +3,7 @@ package Inter_Alternativa;
 import clases.*;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -97,6 +98,14 @@ public class Inter_Cliente extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTable1MouseEntered(evt);
             }
         });
         jScrollPane3.setViewportView(jTable1);
@@ -244,6 +253,18 @@ public class Inter_Cliente extends javax.swing.JFrame {
         this.dispose();
         new Inter_Add_Cliente().setVisible(true);
     }//GEN-LAST:event_botonAddActionPerformed
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+        
+    }//GEN-LAST:event_jTable1MouseEntered
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String id = model.getValueAt(i,0).toString();
+        new Inter_Cliente_edit(id).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
