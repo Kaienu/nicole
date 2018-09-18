@@ -169,7 +169,7 @@ public class Inter_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
