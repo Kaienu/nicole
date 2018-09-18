@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Antonio
@@ -165,7 +167,21 @@ public class Inter_Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-        // TODO add your handling code here:
+        String usuario = "select usuario from Empleado where usuario = " + this.campoUsuario;        
+        //como jPasswordField es de tipo char lo comvierto en un array para luego pasarlo a String
+        char[] arrayC = jPasswordField1.getPassword(); 
+        String pass = new String(arrayC);         
+        String contrasena = "select contrasena from Empleado where contrasena = " + this.jPasswordField1;
+        
+        if(this.campoUsuario.getText() == usuario && pass == contrasena){
+            
+        }
+        else if(this.campoUsuario.getText() != usuario){
+            JOptionPane.showMessageDialog(null, "El usuario proporcionado no existe", "Atención", JOptionPane.WARNING_MESSAGE);  
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "La contraseña proporcionada es incorrecta", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
