@@ -118,11 +118,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="botonAdd4" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="botonModificar" min="-2" pref="170" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="botonAdd3" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="botonTicket" min="-2" pref="170" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                  <Component id="botonAdd2" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="botonCancelar" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -161,9 +161,9 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="botonAdd3" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="botonAdd2" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="botonAdd4" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="botonTicket" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="botonCancelar" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="botonModificar" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -280,7 +280,7 @@
             <Property name="text" type="java.lang.String" value="&#xda;ltima visita: &quot;Fecha&quot;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="botonAdd3">
+        <Component class="javax.swing.JButton" name="botonTicket">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e1" green="e1" red="e1" type="rgb"/>
@@ -297,10 +297,10 @@
             <Property name="text" type="java.lang.String" value="Ticket"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAdd3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTicketActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonAdd2">
+        <Component class="javax.swing.JButton" name="botonCancelar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e1" green="e1" red="e1" type="rgb"/>
@@ -317,10 +317,10 @@
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAdd2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonAdd4">
+        <Component class="javax.swing.JButton" name="botonModificar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e1" green="e1" red="e1" type="rgb"/>
@@ -337,7 +337,7 @@
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAdd4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonModificarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

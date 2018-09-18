@@ -324,7 +324,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
                 + "'"+ jTextField_Correo.getText()+"',"
                 + ""+ jTextField_Telefono.getText()+")";
         acceso = new AccesoSQL();
-        acceso.EjecutaSql(query, "insertado");
+        acceso.UpdateSql(query, "insertado");
         Refrescar();
         acceso.cerrar();
     }//GEN-LAST:event_jButton_InsertActionPerformed
@@ -336,7 +336,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
                 "',`telefono`="+jTextField_Telefono.getText()+
                 " WHERE `idCliente` = "+jTextField_ID.getText()+"";
         acceso = new AccesoSQL();
-        acceso.EjecutaSql(query, "actualizado");
+        acceso.UpdateSql(query, "actualizado");
         Refrescar();
         acceso.cerrar();
     }//GEN-LAST:event_jButton_UpdateActionPerformed
@@ -344,7 +344,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
     private void jButton_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DeleteActionPerformed
         String query = "DELETE FROM `Cliente` WHERE `idCliente` = "+jTextField_ID.getText()+"";
         acceso = new AccesoSQL();
-        acceso.EjecutaSql(query, "eliminado");
+        acceso.UpdateSql(query, "eliminado");
         Refrescar();
         acceso.cerrar();
     }//GEN-LAST:event_jButton_DeleteActionPerformed

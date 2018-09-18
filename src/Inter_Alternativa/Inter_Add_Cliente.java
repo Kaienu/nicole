@@ -259,7 +259,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
                 + "'"+ jTextField_correo.getText()+"',"
                 + ""+ jTextField_telefono.getText()+")";
         acceso = new AccesoSQL();
-        if (acceso.EjecutaSql(query, "insertado")){
+        if (acceso.UpdateSql(query, "insertado")){
             new Inter_Cliente().setVisible(true);
             this.dispose();
         }

@@ -24,7 +24,8 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         initComponents();
         this.id = id;
         acceso = new AccesoSQL();
-        Cliente cliente = acceso.listadoIndividual(id).get(0);
+        //Cliente cliente = acceso.listadoIndividual(id).get(0);
+        Cliente cliente = acceso.listadoIndividual(id);
         jTextField_nombre.setText(cliente.getNombre());
         jTextField_apellidos.setText(cliente.getApellidos());
         jTextField_correo.setText(cliente.getCorreo());
@@ -61,9 +62,9 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        botonAdd3 = new javax.swing.JButton();
-        botonAdd2 = new javax.swing.JButton();
-        botonAdd4 = new javax.swing.JButton();
+        botonTicket = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
 
         jTextField_Busqueda1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
@@ -139,36 +140,36 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Última visita: \"Fecha\"");
 
-        botonAdd3.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonAdd3.setForeground(new java.awt.Color(219, 126, 138));
-        botonAdd3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
-        botonAdd3.setText("Ticket");
-        botonAdd3.addActionListener(new java.awt.event.ActionListener() {
+        botonTicket.setBackground(new java.awt.Color(225, 225, 225));
+        botonTicket.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonTicket.setForeground(new java.awt.Color(219, 126, 138));
+        botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
+        botonTicket.setText("Ticket");
+        botonTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAdd3ActionPerformed(evt);
+                botonTicketActionPerformed(evt);
             }
         });
 
-        botonAdd2.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonAdd2.setForeground(new java.awt.Color(219, 126, 138));
-        botonAdd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
-        botonAdd2.setText("Cancelar");
-        botonAdd2.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
+        botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
+        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAdd2ActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
 
-        botonAdd4.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonAdd4.setForeground(new java.awt.Color(219, 126, 138));
-        botonAdd4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
-        botonAdd4.setText("Modificar");
-        botonAdd4.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setBackground(new java.awt.Color(225, 225, 225));
+        botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonModificar.setForeground(new java.awt.Color(219, 126, 138));
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAdd4ActionPerformed(evt);
+                botonModificarActionPerformed(evt);
             }
         });
 
@@ -195,11 +196,11 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonAdd4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
-                                .addComponent(botonAdd3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
-                                .addComponent(botonAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -229,9 +230,9 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAdd3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAdd4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -268,18 +269,25 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAdd1ActionPerformed
 
-    private void botonAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd3ActionPerformed
+    private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonAdd3ActionPerformed
+    }//GEN-LAST:event_botonTicketActionPerformed
 
-    private void botonAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd2ActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         new Inter_Cliente().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_botonAdd2ActionPerformed
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void botonAdd4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAdd4ActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        String query = "UPDATE `Cliente` SET `nombre`='"+jTextField_nombre.getText()+
+                "',`apellidos`='"+jTextField_apellidos.getText()+
+                "',`correo`='"+jTextField_correo.getText()+
+                "',`telefono`="+jTextField_telefono.getText()+
+                " WHERE `idCliente` = "+this.id;
+        acceso = new AccesoSQL();
+        acceso.UpdateSql(query, "actualizado");
+        acceso.cerrar();
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,9 +326,9 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAdd1;
-    private javax.swing.JButton botonAdd2;
-    private javax.swing.JButton botonAdd3;
-    private javax.swing.JButton botonAdd4;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonTicket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
