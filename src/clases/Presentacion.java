@@ -6,7 +6,8 @@ public class Presentacion {
     
     public static void main(String[] args){
         
-        new Inter_Menu().setVisible(true);
+        new Inter_Login().setVisible(true);
+        //new Inter_Menu().setVisible(true);
     
         //AccesoSQL acceso = new AccesoSQL();
         //acceso.UpdateSql("INSERT INTO `Producto`(`marca`, `modelo`, `precioUnitario`) VALUES ('Rowenta','Secador 3000W','50'","insertar");

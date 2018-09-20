@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+package Inter_Alternativa;
 
 import javax.swing.JOptionPane;
 
@@ -103,25 +103,20 @@ public class Inter_Login extends javax.swing.JFrame {
                     .addComponent(logoNicole, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanelLoginLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addComponent(botonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etqUsuario)
-                                    .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                        .addComponent(etqContrasena)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(etqContrasena)
+                            .addComponent(etqUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLoginLayout.setVerticalGroup(
@@ -164,24 +159,23 @@ public class Inter_Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-        String usuario = "select usuario from Empleado where usuario = " + this.campoUsuario;        
-        //como jPasswordField es de tipo char lo comvierto en un array para luego pasarlo a String
-        char[] arrayC = jPasswordField1.getPassword(); 
-        String pass = new String(arrayC);         
-        String contrasena = "select contrasena from Empleado where contrasena = " + this.jPasswordField1;
         
-        if(this.campoUsuario.getText() == usuario && pass == contrasena){
-            
-        }
-        else if(this.campoUsuario.getText() != usuario){
-            JOptionPane.showMessageDialog(null, "El usuario proporcionado no existe", "Atención", JOptionPane.WARNING_MESSAGE);  
+        String usuario = "admin";
+        String contraseña = "secreta";
+        String pass = new String(jPasswordField1.getPassword());
+                      
+        if(this.campoUsuario.getText().equals(usuario) && pass.equals(contraseña)){
+            JOptionPane.showMessageDialog(null, "Bienvendio");
+            new Inter_Menu().setVisible(true);
         }
         else{
-            JOptionPane.showMessageDialog(null, "La contraseña proporcionada es incorrecta", "Atención", JOptionPane.WARNING_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "El usuario o la contraseña introducita es incorrecta", "¡Atención!", JOptionPane.WARNING_MESSAGE);
+            this.jPasswordField1.setText("");
+        }        
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
