@@ -49,6 +49,11 @@ public class Inter_Menu extends javax.swing.JFrame {
         botonTicket.setForeground(new java.awt.Color(219, 126, 138));
         botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/entradas.png"))); // NOI18N
         botonTicket.setText("Ticket");
+        botonTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTicketActionPerformed(evt);
+            }
+        });
 
         botonFacturacion.setBackground(new java.awt.Color(225, 225, 225));
         botonFacturacion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -153,6 +158,10 @@ public class Inter_Menu extends javax.swing.JFrame {
     private void botonBusquedas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
+
+    private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
+        new Inter_Ticket().setVisible(true);
+    }//GEN-LAST:event_botonTicketActionPerformed
 
     /**
      * @param args the command line arguments
