@@ -156,6 +156,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Ticket"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTicketActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonFacturacion">
           <Properties>
