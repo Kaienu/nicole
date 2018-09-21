@@ -5,6 +5,8 @@
  */
 package Inter_Alternativa;
 
+import clases.AccesoSQL;
+import clases.Cliente;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +41,7 @@ public class Inter_Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 241, 242));
+        setUndecorated(true);
 
         jPanelLogin.setBackground(new java.awt.Color(248, 241, 242));
         jPanelLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
@@ -163,18 +166,19 @@ public class Inter_Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-        
         String usuario = "admin";
-        String contraseña = "secreta";
-        String pass = new String(jPasswordField1.getPassword());
-                      
-        if(this.campoUsuario.getText().equals(usuario) && pass.equals(contraseña)){
-            JOptionPane.showMessageDialog(null, "Bienvendio");
-            new Inter_Menu().setVisible(true);
+        String contraseña = "1234";        
+        
+        char pass[]=jPasswordField1.getPassword();
+        String passUser = new String (pass);        
+        
+        if(campoUsuario.getText().equals(usuario) && passUser.equals(contraseña)){
+            JOptionPane.showMessageDialog(null, "Bienvenido");
+            new Inter_Alternativa.Inter_Menu().setVisible(true);
+            this.dispose();
         }
         else{
-            JOptionPane.showMessageDialog(null, "El usuario o la contraseña introducita es incorrecta", "¡Atención!", JOptionPane.WARNING_MESSAGE);
-            this.jPasswordField1.setText("");
+            JOptionPane.showMessageDialog(null, "El usuario o la contraseña no es correcta", "¡Atención!", JOptionPane.WARNING_MESSAGE);
         }        
     }//GEN-LAST:event_botonIniciarActionPerformed
 
