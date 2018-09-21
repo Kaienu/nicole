@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-public class AccesoSQL /*implements AccInterface*/{
+public class AccesoSQL {
     
     private String sURL = "jdbc:mysql://sql2.freemysqlhosting.net/sql2255331";
     private String usu = "sql2255331";
@@ -18,7 +18,7 @@ public class AccesoSQL /*implements AccInterface*/{
         
     
     
-    public void pruebaConexion() {
+   /* public void pruebaConexion() {
 		
 	try {
             
@@ -35,18 +35,21 @@ public class AccesoSQL /*implements AccInterface*/{
             System.out.println(e.getMessage());
 	}
 		
-    }
+    }*/
     
     public AccesoSQL(){
         
         try {
             
             con = DriverManager.getConnection(sURL, usu, pass);
-            
-        } catch (SQLException e) {
+            if (con.isClosed()) System.out.println("Error en la conexión");
+            else System.out.println("Conexión exitosa");
+            		
+	} catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-        
+            JOptionPane.showMessageDialog(null,"Error 01");
+	}
+		
     }
     
     public boolean UpdateSql(String query, String mensaje){
