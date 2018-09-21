@@ -11,6 +11,10 @@ public class Empleado extends Persona{
         this.dni = dni;
     }
     
+    public Empleado(){
+        
+    }
+    
     public void setDni(String dni) {
         this.dni = dni;
     }

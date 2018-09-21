@@ -15,28 +15,6 @@ public class AccesoSQL {
     PreparedStatement preparedStatement;
     ResultSet rs;
     
-        
-    
-    
-   /* public void pruebaConexion() {
-		
-	try {
-            
-            Connection con = DriverManager.getConnection(sURL, usu, pass);
-			
-            if (con.isClosed())
-		System.out.println("Error en la conexión");
-            else
-		System.out.println("Conexión exitosa");
-            con.close();
-			
-	} catch (SQLException e) {
-            //System.out.println("Error!");
-            System.out.println(e.getMessage());
-	}
-		
-    }*/
-    
     public AccesoSQL(){
         
         try {
@@ -75,7 +53,56 @@ public class AccesoSQL {
         
     }
     
-    public ArrayList<Cliente> listado(String query){
+    public ArrayList<Object> listado(String tabla,String filtro) throws SQLException{
+        
+        ArrayList<Object> lista = new ArrayList<>();
+        
+        switch (tabla){
+        
+            case "Cliente":
+            preparedStatement = con.prepareStatement("select * from "+tabla+
+            " where nombre LIKE '%"+filtro+"%' OR apellidos LIKE '%"+
+            filtro+"%' OR correo LIKE '%"+filtro+"%' OR telefono LIKE '%"+
+            filtro+"%'");
+            rs=preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Cliente cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setNombre(rs.getString(2));
+                    cliente.setApellidos(rs.getString(3));
+                    cliente.setCorreo(rs.getString(4));
+                    cliente.setTelefono(rs.getInt(5));
+                    //System.out.println(cliente); // Comando de prueba en consola
+                    lista.add(cliente);
+                }
+                return lista;
+            case "Empleado":
+                preparedStatement = con.prepareStatement("select * from "+tabla+
+                " where nombre LIKE '%"+filtro+"%' OR apellidos LIKE '%"+
+                filtro+"%' OR correo LIKE '%"+filtro+"%' OR telefono LIKE '%"+
+                filtro+"%'");
+                rs=preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Empleado emp = new Empleado();
+                    emp.setDni(rs.getString(1));
+                    emp.setNombre(rs.getString(2));
+                    emp.setApellidos(rs.getString(3));
+                    emp.setCorreo(rs.getString(4));
+                    emp.setTelefono(rs.getInt(5));
+                    //System.out.println(cliente); // Comando de prueba en consola
+                    lista.add(emp);
+                }
+            case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Producto": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
+                
+        }
+        
+        return lista;
+        
+    }
+    
+   /* public ArrayList<Cliente> listadobak(String query){
         
         ArrayList<Cliente> lista = new ArrayList<>();
         String insertsql = query;
@@ -103,7 +130,7 @@ public class AccesoSQL {
         
     return lista;
         
-    }
+    }*/
     
     public Cliente listadoIndividual(String id){
         

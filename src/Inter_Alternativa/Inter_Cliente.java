@@ -1,7 +1,9 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -15,20 +17,29 @@ public class Inter_Cliente extends javax.swing.JFrame {
     
     public Inter_Cliente() {
         initComponents();
-        Mostrar_usuarios("select * from Cliente");
+        try{
+            
+            MostrarSQL("Cliente","");
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error 02");
+        }
+        
     }
     
-    public void Mostrar_usuarios(String query){
+    public void MostrarSQL(String tabla,String filtro) throws SQLException{
         acceso = new AccesoSQL();
-        ArrayList<Cliente> lista = acceso.listado(query);
+        ArrayList<Object> lista = acceso.listado(tabla,filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Object[] row = new Object[5];
         for(int i = 0; i < lista.size();i++){
-            row[0] = lista.get(i).getIdCliente();
-            row[1] = lista.get(i).getNombre();
-            row[2] = lista.get(i).getApellidos();
-            row[3] = lista.get(i).getCorreo();
-            row[4] = lista.get(i).getTelefono();
+            Cliente cli = (Cliente) lista.get(i);
+            row[0] = cli.getIdCliente();
+            row[1] = cli.getNombre();
+            row[2] = cli.getApellidos();
+            row[3] = cli.getCorreo();
+            row[4] = cli.getTelefono();
             model.addRow(row);
         }
         acceso.cerrar();
@@ -230,11 +241,12 @@ public class Inter_Cliente extends javax.swing.JFrame {
     private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        Mostrar_usuarios("select * from Cliente where nombre LIKE '%"+
-                jTextField_Busqueda.getText()+"%' OR apellidos LIKE '%"+
-                jTextField_Busqueda.getText()+"%' OR correo LIKE '%"+
-                jTextField_Busqueda.getText()+"%' OR telefono LIKE '%"+
-                jTextField_Busqueda.getText()+"%'");
+        try{
+            MostrarSQL("Cliente",jTextField_Busqueda.getText());
+        }catch (SQLException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error 03");
+        }
     }//GEN-LAST:event_botonBusquedaActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
@@ -246,7 +258,12 @@ public class Inter_Cliente extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         jTextField_Busqueda.setText("");
-        Mostrar_usuarios("select * from Cliente");
+        try {
+            MostrarSQL("Cliente","");
+        }catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error 04");
+        }
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed

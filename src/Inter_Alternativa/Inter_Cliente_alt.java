@@ -1,7 +1,10 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 /**
@@ -14,7 +17,12 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
     
     public Inter_Cliente_alt() {
         initComponents();
-        Mostrar_usuarios();
+        try{
+            Mostrar_usuarios();
+        } catch (SQLException e){
+            
+        }
+        
     }
 
     /*public Connection getConnection(){
@@ -50,17 +58,19 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         return listaUsuarios;
     }*/
     
-    public void Mostrar_usuarios(){
+    public void Mostrar_usuarios() throws SQLException{
         acceso = new AccesoSQL();
-        ArrayList<Cliente> lista = acceso.listado("select * from Cliente");
+        
+        ArrayList<Object> lista = acceso.listado("Cliente","");
         DefaultTableModel model = (DefaultTableModel) jTable_Display_User.getModel();
         Object[] row = new Object[5];
         for(int i = 0; i < lista.size();i++){
-            row[0] = lista.get(i).getIdCliente();
-            row[1] = lista.get(i).getNombre();
-            row[2] = lista.get(i).getApellidos();
-            row[3] = lista.get(i).getCorreo();
-            row[4] = lista.get(i).getTelefono();
+            Cliente cliente = new Cliente();
+            row[0] = cliente.getIdCliente();
+            row[1] = cliente.getNombre();
+            row[2] = cliente.getApellidos();
+            row[3] = cliente.getCorreo();
+            row[4] = cliente.getTelefono();
             model.addRow(row);
         }
         acceso.cerrar();
@@ -69,7 +79,12 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
     public void Refrescar(){
         DefaultTableModel model = (DefaultTableModel) jTable_Display_User.getModel();
         model.setRowCount(0);
-        Mostrar_usuarios();
+        
+        try {
+            Mostrar_usuarios();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inter_Cliente_alt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
