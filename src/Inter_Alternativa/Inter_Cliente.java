@@ -19,7 +19,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
         initComponents();
         try{
             
-            MostrarSQL("Cliente","");
+            MostrarSQL("Cliente","",false);
             
         } catch (SQLException e){
             e.printStackTrace();
@@ -28,18 +28,32 @@ public class Inter_Cliente extends javax.swing.JFrame {
         
     }
     
-    public void MostrarSQL(String tabla,String filtro) throws SQLException{
+    public void MostrarSQL(String tabla,String filtro,Boolean ID) throws SQLException{
         acceso = new AccesoSQL();
-        ArrayList<Object> lista = acceso.listado(tabla,filtro);
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object[] row = new Object[5];
-        for(int i = 0; i < lista.size();i++){
-            Cliente cli = (Cliente) lista.get(i);
-            row[0] = cli.getIdCliente();
-            row[1] = cli.getNombre();
-            row[2] = cli.getApellidos();
-            row[3] = cli.getCorreo();
-            row[4] = cli.getTelefono();
+        if (ID==false){ //Si indicamos "false", no buscará por ID,
+                        //solo filtro normal de campos.
+            ArrayList<Object> lista = acceso.listado(tabla,filtro);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            Object[] row = new Object[5];
+            for(int i = 0; i < lista.size();i++){
+                Cliente cli = (Cliente) lista.get(i);
+                row[0] = cli.getIdCliente();
+                row[1] = cli.getNombre();
+                row[2] = cli.getApellidos();
+                row[3] = cli.getCorreo();
+                row[4] = cli.getTelefono();
+                model.addRow(row);
+            }
+        } else {    //Si indicamos "true", buscará por ID (Un solo resultado).
+            Cliente cliente = (Cliente) acceso.listadoID("Cliente",filtro);
+            //Es necesario hacer el casteo ya que devuelve un Objeto.
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            Object[] row = new Object[5];
+            row[0] = cliente.getIdCliente();
+            row[1] = cliente.getNombre();
+            row[2] = cliente.getApellidos();
+            row[3] = cliente.getCorreo();
+            row[4] = cliente.getTelefono();
             model.addRow(row);
         }
         acceso.cerrar();
@@ -242,7 +256,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         try{
-            MostrarSQL("Cliente",jTextField_Busqueda.getText());
+            MostrarSQL("Cliente",jTextField_Busqueda.getText(),false);
         }catch (SQLException e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error 03");
@@ -259,7 +273,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
         model.setRowCount(0);
         jTextField_Busqueda.setText("");
         try {
-            MostrarSQL("Cliente","");
+            MostrarSQL("Cliente","",false);
         }catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error 04");

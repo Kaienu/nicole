@@ -53,11 +53,26 @@ public class AccesoSQL {
         
     }
     
+    /**
+    * Devuelve un ArrayList de "Objects" referente a la consulta lanzada. 
+    * El primer argumento indica la tabla en la que está haciendo la consulta,
+    * y el segundo la palabra filtrada dentro de los campos (exceptuando el
+    * campo ID de turno)
+    * <p>
+    * Este método devuelve un ArrayList lleno de "objects" u objetos, con lo
+    * que para mostrar el contenido en una lista hay que convertirlos a la
+    * clase que pertenezca a la tabla elegida.
+    *
+    * @param  tabla  Tabla de la BBDD en la que se quiere buscar
+    * @param  filtro Texto que sirve como filtro dentro de los campos a buscar
+    * @return      ArrayList de Objects
+    */
+    
     public ArrayList<Object> listado(String tabla,String filtro) throws SQLException{
         
         ArrayList<Object> lista = new ArrayList<>();
         
-        switch (tabla){
+        switch (tabla){ //Selecciona por el campo introducido como parámetro
         
             case "Cliente":
             preparedStatement = con.prepareStatement("select * from "+tabla+
@@ -102,35 +117,62 @@ public class AccesoSQL {
         
     }
     
-   /* public ArrayList<Cliente> listadobak(String query){
+   /**
+    * Devuelve un Objects que contiene la consulta lanzada. 
+    * El primer argumento indica la tabla en la que está haciendo la consulta,
+    * y el segundo el ID a filtrar dentro del campo ID correspondiente
+    * <p>
+    * Este método devuelve un "Object" u objeto, con lo que será necesario
+    * hacer el casteo a la clase deseada, correspondiente a la tabla elegida
+    *
+    * @param  tabla  Tabla de la BBDD en la que se quiere buscar
+    * @param  id     ID del registro a filtrar (En formato String)
+    * @return      Object casteado a clase de tabla
+    */
+    
+    public Object listadoID(String tabla,String id) throws SQLException{
+        Object nulo = null;
+        switch (tabla){ //Selecciona por el campo introducido como parámetro
         
-        ArrayList<Cliente> lista = new ArrayList<>();
-        String insertsql = query;
-        
-        try {   
-            
-            preparedStatement = con.prepareStatement(insertsql);
-            rs=preparedStatement.executeQuery();
-            Cliente cliente;
-            
+            case "Cliente":
+                preparedStatement = con.prepareStatement("select * from "+
+                        tabla+" where id = "+id);
+                rs=preparedStatement.executeQuery();
+                Cliente cliente = new Cliente();
                 while (rs.next()) {
-                    cliente = new Cliente();
                     cliente.setIdCliente(rs.getInt(1));
                     cliente.setNombre(rs.getString(2));
                     cliente.setApellidos(rs.getString(3));
                     cliente.setCorreo(rs.getString(4));
                     cliente.setTelefono(rs.getInt(5));
                     //System.out.println(cliente); // Comando de prueba en consola
-                    lista.add(cliente);
                 }
-            
-            } catch (SQLException e){
-            System.out.println(e.getMessage());
+                return (Object) cliente;
+                
+            case "Empleado":
+                preparedStatement = con.prepareStatement("select * from "+
+                        tabla+" where id = "+id);
+                rs=preparedStatement.executeQuery();
+                Empleado emp = new Empleado();
+                while (rs.next()) {
+                    emp.setDni(rs.getString(1));
+                    emp.setNombre(rs.getString(2));
+                    emp.setApellidos(rs.getString(3));
+                    emp.setCorreo(rs.getString(4));
+                    emp.setTelefono(rs.getInt(5));
+                    //System.out.println(cliente); // Comando de prueba en consola
+                }
+                return (Object) emp;
+                
+            case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Producto": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
+                
         }
         
-    return lista;
+        return nulo;
         
-    }*/
+    }
     
     public Cliente listadoIndividual(String id){
         
