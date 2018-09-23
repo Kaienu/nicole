@@ -5,23 +5,28 @@
  */
 package Inter_Alternativa;
 
+import clases.AccesoSQL;
+import clases.Cliente;
 import java.util.Calendar;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Antonio
  */
-public  class Inter_Ticket extends javax.swing.JFrame {
+public class Inter_Ticket extends javax.swing.JFrame {
 
     /**
      * Creates new form Inter_Ticket
      */
     Inter_Login login = new Inter_Login();
+    AccesoSQL acceso = new AccesoSQL();
     
     public void camposNoEditables(){
         this.campoFecha.setEditable(false);
         this.campoEmpleado.setEditable(false);
+        this.campoPrecio.setEditable(false);
+        this.campoTicket.setEditable(false);
     }
     
     public String fechaActual(){
@@ -29,7 +34,10 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         int año = fecha.get(Calendar.YEAR);
         int mes = fecha.get(Calendar.MONTH);
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        String fec = dia + "/" + (mes+1) + "/" + año;
+        int hora = fecha.get(Calendar.HOUR);
+        int minuto = fecha.get(Calendar.MINUTE);
+        
+        String fec = dia + "/" + (mes+1) + "/" + año + " " + hora + ":" + minuto;
         return fec;
     }
     
@@ -38,11 +46,14 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         return empleado;
     }
     
+    public void limpiar(){
+        this.campoCliente.setText("");
+    }
+    
     public Inter_Ticket() {
         initComponents();
         camposNoEditables();
         campoFecha.setText(fechaActual());
-        campoEmpleado.setText(empleado());
     }
 
     /**
@@ -65,7 +76,6 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         etqEmpleado1 = new javax.swing.JLabel();
         campoCliente = new javax.swing.JTextField();
         botonAtras1 = new javax.swing.JButton();
-        botonImprimir1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         etqProducto = new javax.swing.JLabel();
         botonAgregarProducto = new javax.swing.JButton();
@@ -76,6 +86,8 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         tablero = new javax.swing.JTable();
         botonAgregarProducto1 = new javax.swing.JButton();
         botonBuscarCliente = new javax.swing.JButton();
+        campoTicket = new javax.swing.JTextField();
+        etqTicket = new javax.swing.JLabel();
 
         jTable_Display_User3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,7 +118,7 @@ public  class Inter_Ticket extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(248, 241, 242));
 
-        botonGuardar.setBackground(new java.awt.Color(248, 241, 242));
+        botonGuardar.setBackground(new java.awt.Color(243, 206, 211));
         botonGuardar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(219, 126, 138));
         botonGuardar.setText("Guardar");
@@ -116,7 +128,8 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        etqFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etqFecha.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        etqFecha.setForeground(new java.awt.Color(219, 126, 138));
         etqFecha.setText("Fecha:");
 
         campoFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -126,7 +139,8 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        etqEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etqEmpleado.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        etqEmpleado.setForeground(new java.awt.Color(219, 126, 138));
         etqEmpleado.setText("Empleado:");
 
         campoEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -136,7 +150,8 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        etqEmpleado1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etqEmpleado1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        etqEmpleado1.setForeground(new java.awt.Color(219, 126, 138));
         etqEmpleado1.setText("Cliente:");
 
         campoCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -146,7 +161,7 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        botonAtras1.setBackground(new java.awt.Color(248, 241, 242));
+        botonAtras1.setBackground(new java.awt.Color(243, 206, 211));
         botonAtras1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAtras1.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras1.setText("Atras");
@@ -156,24 +171,16 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        botonImprimir1.setBackground(new java.awt.Color(248, 241, 242));
-        botonImprimir1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonImprimir1.setForeground(new java.awt.Color(219, 126, 138));
-        botonImprimir1.setText("Imprimir");
-        botonImprimir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonImprimir1ActionPerformed(evt);
-            }
-        });
-
+        jComboBox1.setBackground(new java.awt.Color(243, 206, 211));
         jComboBox1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(219, 126, 138));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
 
-        etqProducto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etqProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        etqProducto.setForeground(new java.awt.Color(219, 126, 138));
         etqProducto.setText("Producto:");
 
-        botonAgregarProducto.setBackground(new java.awt.Color(248, 241, 242));
+        botonAgregarProducto.setBackground(new java.awt.Color(243, 206, 211));
         botonAgregarProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAgregarProducto.setForeground(new java.awt.Color(219, 126, 138));
         botonAgregarProducto.setText("Agregar Producto");
@@ -183,7 +190,8 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        etqPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        etqPrecio.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        etqPrecio.setForeground(new java.awt.Color(219, 126, 138));
         etqPrecio.setText("Precio total:");
 
         campoPrecio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -193,7 +201,7 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             }
         });
 
-        botonLimpiar.setBackground(new java.awt.Color(248, 241, 242));
+        botonLimpiar.setBackground(new java.awt.Color(243, 206, 211));
         botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
         botonLimpiar.setText("Limpiar");
@@ -218,14 +226,26 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         botonAgregarProducto1.setForeground(new java.awt.Color(219, 126, 138));
         botonAgregarProducto1.setText("Agregar Producto");
 
+        botonBuscarCliente.setBackground(new java.awt.Color(243, 206, 211));
         botonBuscarCliente.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBuscarCliente.setForeground(new java.awt.Color(219, 126, 138));
-        botonBuscarCliente.setText("Buscar");
+        botonBuscarCliente.setText("Buscar Cliente");
         botonBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarClienteActionPerformed(evt);
             }
         });
+
+        campoTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTicketActionPerformed(evt);
+            }
+        });
+
+        etqTicket.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        etqTicket.setForeground(new java.awt.Color(219, 126, 138));
+        etqTicket.setText("Ticket:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -234,41 +254,45 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etqFecha)
-                            .addComponent(etqEmpleado)
-                            .addComponent(etqEmpleado1)
-                            .addComponent(etqProducto))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etqProducto)
+                                    .addComponent(etqEmpleado1)
+                                    .addComponent(etqEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(etqFecha)
+                                    .addComponent(etqTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoCliente)
+                                    .addComponent(botonBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(campoEmpleado)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonAgregarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoEmpleado)
-                            .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 14, Short.MAX_VALUE)
+                                .addComponent(botonAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tableroProductos)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonAgregarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(botonImprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(botonAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(etqPrecio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tableroProductos))
+                        .addGap(14, 14, 14)
+                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
@@ -278,50 +302,50 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etqFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoFecha))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(etqTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoTicket, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(etqEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(campoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE))
+                            .addComponent(etqFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoFecha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etqEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(etqProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(botonAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(botonBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98))
-                    .addComponent(tableroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etqEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etqEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etqProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addComponent(botonAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tableroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(etqPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPrecio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonAtras1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonImprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(campoPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAtras1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 251, Short.MAX_VALUE)
                     .addComponent(botonAgregarProducto1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 252, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,8 +361,8 @@ public  class Inter_Ticket extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -372,12 +396,9 @@ public  class Inter_Ticket extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_botonAtras1ActionPerformed
 
-    private void botonImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonImprimir1ActionPerformed
-
     private void botonAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarProductoActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_botonAgregarProductoActionPerformed
 
     private void campoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecioActionPerformed
@@ -385,12 +406,24 @@ public  class Inter_Ticket extends javax.swing.JFrame {
     }//GEN-LAST:event_campoPrecioActionPerformed
 
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
-        this.campoCliente.setText("");
+        limpiar();
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarClienteActionPerformed
         String tlf = this.campoCliente.getText();
+        Cliente cliente = acceso.consulta("select * from Cliente where Telefono = " + tlf);
+        if(cliente.getNombre()== null && cliente.getApellidos() == null){
+            JOptionPane.showMessageDialog(null, "El nº de teléfono introducido no pertenece a ningún usuario registrado.", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            this.campoCliente.setText(cliente.getNombre() + " " + cliente.getApellidos());
+        }
+        
     }//GEN-LAST:event_botonBuscarClienteActionPerformed
+
+    private void campoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTicketActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,17 +466,18 @@ public  class Inter_Ticket extends javax.swing.JFrame {
     private javax.swing.JButton botonAtras1;
     private javax.swing.JButton botonBuscarCliente;
     private javax.swing.JButton botonGuardar;
-    private javax.swing.JButton botonImprimir1;
     private javax.swing.JButton botonLimpiar;
     private javax.swing.JTextField campoCliente;
     private javax.swing.JTextField campoEmpleado;
     private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoPrecio;
+    private javax.swing.JTextField campoTicket;
     private javax.swing.JLabel etqEmpleado;
     private javax.swing.JLabel etqEmpleado1;
     private javax.swing.JLabel etqFecha;
     private javax.swing.JLabel etqPrecio;
     private javax.swing.JLabel etqProducto;
+    private javax.swing.JLabel etqTicket;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane4;

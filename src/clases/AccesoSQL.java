@@ -203,6 +203,33 @@ public class AccesoSQL {
         
     }
     
+    public Cliente consulta(String consulta){
+        
+        Cliente cliente = new Cliente();        
+        try {   
+            
+            preparedStatement = con.prepareStatement(consulta);
+            rs=preparedStatement.executeQuery();
+            
+                while (rs.next()) {
+                    
+                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setNombre(rs.getString(2));
+                    cliente.setApellidos(rs.getString(3));
+                    cliente.setCorreo(rs.getString(4));
+                    cliente.setTelefono(rs.getInt(5));
+                    System.out.println(cliente); // Comando de prueba en consola
+                    
+                }
+            
+            } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+    return cliente;
+        
+    }
+    
     public void insertSql(Object obj) {
         
         if (obj instanceof Cliente){
