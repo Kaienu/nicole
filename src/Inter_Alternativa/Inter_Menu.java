@@ -161,6 +161,7 @@ public class Inter_Menu extends javax.swing.JFrame {
 
     private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
         new Inter_Ticket().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonTicketActionPerformed
 
     /**

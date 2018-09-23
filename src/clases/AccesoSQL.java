@@ -3,7 +3,6 @@ package clases;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 import java.sql.*;
 import java.util.*;
-import error.CampoVacio;
 import javax.swing.JOptionPane;
 
 public class AccesoSQL {

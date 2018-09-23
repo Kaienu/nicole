@@ -5,16 +5,13 @@
  */
 package Inter_Alternativa;
 
-import clases.AccesoSQL;
-import clases.Cliente;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Antonio
  */
-public class Inter_Login extends javax.swing.JFrame {
-
+public class Inter_Login extends javax.swing.JFrame { 
         
     public Inter_Login() {
         initComponents();
@@ -173,13 +170,12 @@ public class Inter_Login extends javax.swing.JFrame {
         String passUser = new String (pass);        
         
         if(campoUsuario.getText().equals(usuario) && passUser.equals(contraseña)){
-            JOptionPane.showMessageDialog(null, "Bienvenido");
             new Inter_Alternativa.Inter_Menu().setVisible(true);
             this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "El usuario o la contraseña no es correcta", "¡Atención!", JOptionPane.WARNING_MESSAGE);
-        }        
+        }
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
@@ -223,6 +219,14 @@ public class Inter_Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    public String obtenerUsuarioLogado(){
+        String usuario = this.campoUsuario.getText();
+        return usuario;
+    }   
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciar;
