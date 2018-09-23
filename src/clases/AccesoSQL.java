@@ -3,6 +3,7 @@ package clases;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 import java.sql.*;
 import java.util.*;
+import error.CampoVacio;
 import javax.swing.JOptionPane;
 
 public class AccesoSQL {
@@ -28,29 +29,6 @@ public class AccesoSQL {
             JOptionPane.showMessageDialog(null,"Error 01");
 	}
 		
-    }
-    
-    public boolean UpdateSql(String query, String mensaje){
-        
-        Statement st;
-        try {
-            st = con.createStatement();
-            if ((st.executeUpdate(query)) == 1){
-                JOptionPane.showMessageDialog(null,"El registro ha sido "+mensaje+" correctamente.");
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null,"El registro no ha podido ser "+mensaje+" correctamente.");
-                return false;
-            }
-                        
-        } catch (MySQLSyntaxErrorException e){
-            JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!");
-            return false;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Ha habido un error!");
-            return false;
-        }
-        
     }
     
     /**
@@ -136,7 +114,7 @@ public class AccesoSQL {
         
             case "Cliente":
                 preparedStatement = con.prepareStatement("select * from "+
-                        tabla+" where id = "+id);
+                        tabla+" where idCliente = "+id);
                 rs=preparedStatement.executeQuery();
                 Cliente cliente = new Cliente();
                 while (rs.next()) {
@@ -174,62 +152,91 @@ public class AccesoSQL {
         
     }
     
-    public Cliente listadoIndividual(String id){
-        
-        Cliente cliente = new Cliente();
-        String insertsql = "Select * from Cliente where idCliente = "+id;
-        
-        try {   
-            
-            preparedStatement = con.prepareStatement(insertsql);
-            rs=preparedStatement.executeQuery();
-            
-                while (rs.next()) {
-                    
-                    cliente.setIdCliente(rs.getInt(1));
-                    cliente.setNombre(rs.getString(2));
-                    cliente.setApellidos(rs.getString(3));
-                    cliente.setCorreo(rs.getString(4));
-                    cliente.setTelefono(rs.getInt(5));
-                    System.out.println(cliente); // Comando de prueba en consola
-                    
-                }
-            
-            } catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-        
-    return cliente;
-        
-    }
+    /**
+    * Inserta un objeto específico en la BBDD. 
+    * Insertando el objeto como parámetro, detecta que tipo de registro es
+    * y lo inserta en la BBDD.
+    * <p>
+    * Este método tiene que ser englobado en un bloque try.
+    *
+    * @param obj    Objeto de una de las clases correspondiente a los registros.
+    * @return       True o False, dependiendo de si ha sido exitoso o no.
+    */
     
-    public void insertSql(Object obj) {
+    public boolean insertSql(Object obj){
         
-        if (obj instanceof Cliente){
-            String insertSql =
-            "insert into Cliente(nombre,apellidos,correo,telefono) values(?,?,?,?)";
-            
+        String query=null;
+        if (obj instanceof Cliente && ComprobacionObjeto.Comprobacion((Cliente) obj)){
             Cliente cliente = (Cliente) obj;
-        
-            try {
+            query =
+            "insert into Cliente(nombre,apellidos,correo,telefono) values('"+
+                    cliente.getNombre()+"','"+cliente.getApellidos()+"','"+
+                    cliente.getCorreo()+"',"+cliente.getTelefono()+")";
+        }else if (obj instanceof Empleado && ComprobacionObjeto.Comprobacion((Empleado) obj)){
+            Empleado empleado = (Empleado) obj;
+            query =
+            "insert into Empleado(dni,nombre,apellidos,telefono,correo) values('"+
+                    empleado.getDni()+"','"+empleado.getNombre()+"','"+
+                    empleado.getApellidos()+"',"+empleado.getTelefono()+",'"+
+                    empleado.getCorreo()+"')";
+        }else if (obj instanceof Factura){
+            Factura factura = (Factura) obj;
+            query = "";
+        }else if (obj instanceof Producto){
+            Producto prod = (Producto) obj;
+            query = "";
+        }else if (obj instanceof Promocion){
+            Promocion prom = (Promocion) obj;
+            query ="";
+        }else{
             
-                preparedStatement = con.prepareStatement(insertSql);
-                preparedStatement.setString(1, cliente.getNombre());
-                preparedStatement.setString(2, cliente.getApellidos());
-                preparedStatement.setString(3, cliente.getCorreo());
-                preparedStatement.setInt(4, cliente.getTelefono());
-            
-                if (preparedStatement.executeUpdate()==1) {
-                    System.out.println("Se introdujo el cliente");
-                } else {
-                    System.out.println("No se pudo introducir el cliente");
-                }
-                preparedStatement.close();
-              
-            } catch (SQLException e){
-                System.out.println(e.getMessage());
-            }
         }
+            
+        Statement st;
+        
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1){
+                JOptionPane.showMessageDialog(null,
+                        "El registro ha sido insertado correctamente.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "El registro no ha podido ser insertado correctamente.");
+                return false;
+            }
+        }catch (MySQLSyntaxErrorException e){
+            JOptionPane.showMessageDialog(null,
+                    "Uno de los campos presenta un error!");
+            return false;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Ha habido un error!");
+            return false;
+        }
+    }
+               
+    public boolean UpdateSql(String query, String mensaje){
+        
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1){
+                JOptionPane.showMessageDialog(null,"El registro ha sido "+mensaje+" correctamente.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null,"El registro no ha podido ser "+mensaje+" correctamente.");
+                return false;
+            }
+                        
+        } catch (MySQLSyntaxErrorException e){
+            JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!");
+            return false;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Ha habido un error!");
+            return false;
+        }
+        
     }
     
     public void cerrar() {

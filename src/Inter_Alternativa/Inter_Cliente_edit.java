@@ -6,6 +6,7 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,12 +21,12 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
      * Creates new form Inter_Cliente_edit
      * @param id
      */
-    public Inter_Cliente_edit(String id) {
+    public Inter_Cliente_edit(String id) throws SQLException {
         initComponents();
         this.id = id;
         acceso = new AccesoSQL();
         //Cliente cliente = acceso.listadoIndividual(id).get(0);
-        Cliente cliente = acceso.listadoIndividual(id);
+        Cliente cliente = (Cliente) acceso.listadoID("Cliente",id);
         jTextField_nombre.setText(cliente.getNombre());
         jTextField_apellidos.setText(cliente.getApellidos());
         jTextField_correo.setText(cliente.getCorreo());

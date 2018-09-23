@@ -1,21 +1,27 @@
 package clases;
 
-public class Cliente extends Persona{
+public class Cliente{
     
-    private int idCliente;
+    private String nombre,apellidos,correo;
+    private int telefono,idCliente;
     
     public Cliente(){
         
     }
     
-    public Cliente(Persona cliente,int idCliente){
-        this.setNombre(cliente.getNombre());
-        this.setCorreo(cliente.getCorreo());
+    public Cliente(String nombre, String apellidos, String correo, int telefono, int idCliente) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
     }
     
-    public Cliente(String nombre, String apellidos, String correo, int telefono, int idCliente) {
-        super(nombre, apellidos, correo, telefono);
-        this.idCliente = idCliente;
+     public Cliente(String nombre, String apellidos, String correo, int telefono) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
     }
     
     public void setIdCliente(int idCliente) {
@@ -24,6 +30,38 @@ public class Cliente extends Persona{
     
     public int getIdCliente(){
         return this.idCliente;
+    }
+    
+    public String getNombre() {
+	return nombre;
+    }
+
+    public void setNombre(String nombre) {
+	this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+	return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+	this.apellidos = apellidos;
+    }
+
+    public String getCorreo() {
+	return correo;
+    }
+
+    public void setCorreo(String correo) {
+	this.correo = correo;
+    }
+
+    public int getTelefono() {
+	return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+	this.telefono = telefono;
     }
     
     @Override
@@ -40,13 +78,6 @@ public class Cliente extends Persona{
 	if (obj instanceof Cliente) {
             return (((Cliente) obj) .idCliente) == this.idCliente;
         } else return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.idCliente;
-        return hash;
     }
     
 }

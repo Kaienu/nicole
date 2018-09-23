@@ -3,6 +3,8 @@ package Inter_Alternativa;
 import clases.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -290,11 +292,15 @@ public class Inter_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseEntered
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int i = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String id = model.getValueAt(i,0).toString();
-        new Inter_Cliente_edit(id).setVisible(true);
-        this.dispose();
+        try {
+            int i = jTable1.getSelectedRow();
+            TableModel model = jTable1.getModel();
+            String id = model.getValueAt(i,0).toString();
+            new Inter_Cliente_edit(id).setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inter_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**

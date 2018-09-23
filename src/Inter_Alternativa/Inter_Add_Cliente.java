@@ -1,6 +1,7 @@
 package Inter_Alternativa;
 
 import clases.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -253,7 +254,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_Display_UserMouseClicked
 
     private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
-        String query = "INSERT INTO `Cliente`(`nombre`, `apellidos`, `correo`, `telefono`)"
+        /*String query = "INSERT INTO `Cliente`(`nombre`, `apellidos`, `correo`, `telefono`)"
                 + " VALUES ('"+ jTextField_nombre.getText()+"',"
                 + "'"+ jTextField_apellidos.getText()+"',"
                 + "'"+ jTextField_correo.getText()+"',"
@@ -263,9 +264,19 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
             new Inter_Cliente().setVisible(true);
             this.dispose();
         }
-        acceso.cerrar();
-        //new Inter_Cliente().setVisible(true);
-        //this.dispose();
+        acceso.cerrar();*/
+        try{
+        Cliente cliente = new Cliente(jTextField_nombre.getText(),
+                jTextField_apellidos.getText(),
+                jTextField_correo.getText(),
+                Integer.parseInt(jTextField_telefono.getText()));
+        acceso = new AccesoSQL();
+        acceso.insertSql(cliente);
+        }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null,
+                    "El campo 'telefono' no puede estar vacío");
+        }
+        
     }//GEN-LAST:event_botonAddActionPerformed
 
     private void botonAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd2ActionPerformed
