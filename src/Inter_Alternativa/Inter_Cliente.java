@@ -127,6 +127,10 @@ public class Inter_Cliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setSelectionBackground(new java.awt.Color(255, 204, 204));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -141,6 +145,11 @@ public class Inter_Cliente extends javax.swing.JFrame {
         jLabel1.setText("Búsqueda");
 
         jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField_BusquedaKeyPressed(evt);
+            }
+        });
 
         botonBusqueda.setBackground(new java.awt.Color(225, 225, 225));
         botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -302,6 +311,10 @@ public class Inter_Cliente extends javax.swing.JFrame {
             Logger.getLogger(Inter_Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_BusquedaKeyPressed
 
     /**
      * @param args the command line arguments

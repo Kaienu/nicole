@@ -64,8 +64,8 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         ArrayList<Object> lista = acceso.listado("Cliente","");
         DefaultTableModel model = (DefaultTableModel) jTable_Display_User.getModel();
         Object[] row = new Object[5];
-        for(int i = 0; i < lista.size();i++){
-            Cliente cliente = new Cliente();
+        for (Object lista1 : lista) {
+            Cliente cliente = (Cliente) lista1;
             row[0] = cliente.getIdCliente();
             row[1] = cliente.getNombre();
             row[2] = cliente.getApellidos();
@@ -120,7 +120,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("ID:");
+        jLabel1.setText("DNI:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre:");
