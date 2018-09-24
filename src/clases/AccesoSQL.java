@@ -93,7 +93,7 @@ public class AccesoSQL {
         return lista;
         
     }
-    
+           
    /**
     * Devuelve un Objects que contiene la consulta lanzada. 
     * El primer argumento indica la tabla en la que está haciendo la consulta,
@@ -105,6 +105,7 @@ public class AccesoSQL {
     * @param  tabla  Tabla de la BBDD en la que se quiere buscar
     * @param  id     ID del registro a filtrar (En formato String)
     * @return      Object casteado a clase de tabla
+     * @throws java.sql.SQLException
     */
     
     public Object listadoID(String tabla,String id) throws SQLException{

@@ -7,6 +7,8 @@ package Inter_Alternativa;
 
 import clases.AccesoSQL;
 import clases.Cliente;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -411,7 +413,17 @@ public class Inter_Ticket extends javax.swing.JFrame {
 
     private void botonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarClienteActionPerformed
         String tlf = this.campoCliente.getText();
-        Cliente cliente = acceso.consulta("select * from Cliente where Telefono = " + tlf);
+        Cliente cliente = new Cliente();
+        try {
+            
+            ArrayList<Object> lista = acceso.listado("Cliente", tlf);
+            cliente = (Cliente) lista.get(0);
+            
+        } catch (SQLException e){
+            
+        }
+        
+        
         if(cliente.getNombre()== null && cliente.getApellidos() == null){
             JOptionPane.showMessageDialog(null, "El nº de teléfono introducido no pertenece a ningún usuario registrado.", "Atención", JOptionPane.WARNING_MESSAGE);
         }
