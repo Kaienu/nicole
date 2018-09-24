@@ -85,7 +85,20 @@ public class AccesoSQL {
                     lista.add(emp);
                 }
             case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
-            case "Producto": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Producto":
+                preparedStatement = con.prepareStatement("select * from "+tabla+
+                " where idProducto LIKE '%"+filtro+"%' OR precioUnitario LIKE '%"+
+                filtro+"%' OR marca LIKE '%"+filtro+"%' OR modelo LIKE '%"+
+                filtro+"%'");
+                rs=preparedStatement.executeQuery();
+                while (rs.next()){
+                    Producto producto = new Producto();
+                    producto.setIdProducto(rs.getInt(1));
+                    producto.setMarca(rs.getString(2));
+                    producto.setModelo(rs.getString(3));
+                    producto.setPrecioUnitario(rs.getInt(4));
+                    lista.add(producto);
+                }
             case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
                 
         }
@@ -93,6 +106,72 @@ public class AccesoSQL {
         return lista;
         
     }
+    /**
+    * Devuelve un ArrayList de "Objects" referente a la consulta lanzada. 
+    * El argumento indica la tabla en la que está haciendo la consulta
+    * <p>
+    * Este método devuelve un ArrayList lleno de "objects" u objetos, con lo
+    * que para mostrar el contenido en una lista hay que convertirlos a la
+    * clase que pertenezca a la tabla elegida.
+    *
+    * @param  tabla  Tabla de la BBDD en la que se quiere buscar
+    * @return      ArrayList de Objects
+    */
+    
+    public ArrayList<Object> listadoCompleto(String tabla) throws SQLException{
+        
+        ArrayList<Object> lista = new ArrayList<>();
+        
+        switch (tabla){ //Selecciona por el campo introducido como parámetro
+        
+            case "Cliente":
+            preparedStatement = con.prepareStatement("select * from "+tabla);
+            rs=preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Cliente cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setNombre(rs.getString(2));
+                    cliente.setApellidos(rs.getString(3));
+                    cliente.setCorreo(rs.getString(4));
+                    cliente.setTelefono(rs.getInt(5));
+                    //System.out.println(cliente); // Comando de prueba en consola
+                    lista.add(cliente);
+                }
+                return lista;
+                
+            case "Empleado":
+                preparedStatement = con.prepareStatement("select * from "+tabla);
+                rs=preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Empleado emp = new Empleado();
+                    emp.setDni(rs.getString(1));
+                    emp.setNombre(rs.getString(2));
+                    emp.setApellidos(rs.getString(3));
+                    emp.setCorreo(rs.getString(4));
+                    emp.setTelefono(rs.getInt(5));
+                    //System.out.println(cliente); // Comando de prueba en consola
+                    lista.add(emp);
+                }
+                return lista;
+            case "Producto":
+                preparedStatement = con.prepareStatement("select * from "+tabla);
+                rs=preparedStatement.executeQuery();
+                while (rs.next()){
+                    Producto producto = new Producto();
+                    producto.setIdProducto(rs.getInt(1));
+                    producto.setMarca(rs.getString(2));
+                    producto.setModelo(rs.getString(3));
+                    producto.setPrecioUnitario(rs.getInt(4));
+                    lista.add(producto);
+                }
+                return lista;
+            case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");   
+        }       
+        return lista;        
+    }
+    
+    
            
    /**
     * Devuelve un Objects que contiene la consulta lanzada. 
