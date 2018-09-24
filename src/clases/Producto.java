@@ -13,6 +13,10 @@ public class Producto {
         this.marca = marca;
         this.modelo = modelo;
     }
+    
+    public Producto(){
+        
+    }
 
     public int getIdProducto() {
         return idProducto;

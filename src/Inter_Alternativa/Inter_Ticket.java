@@ -7,9 +7,12 @@ package Inter_Alternativa;
 
 import clases.AccesoSQL;
 import clases.Cliente;
+import clases.Producto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,19 +46,29 @@ public class Inter_Ticket extends javax.swing.JFrame {
         return fec;
     }
     
-    public String empleado(){
-        String empleado = login.obtenerUsuarioLogado();
-        return empleado;
+    public void mostrarProductos(){
+        Producto producto = new Producto();
+        try{
+            ArrayList<Object> lista = acceso.listadoCompleto("Producto");
+            for(int i = 0; i < lista.size(); i++){
+                producto = (Producto) lista.get(i);
+                jComboBox1.addItem(producto.getModelo());
+            }            
+        } catch (SQLException e){
+        }
     }
     
     public void limpiar(){
         this.campoCliente.setText("");
+        jComboBox1.setSelectedIndex(0);
     }
     
     public Inter_Ticket() {
         initComponents();
         camposNoEditables();
         campoFecha.setText(fechaActual());
+        campoEmpleado.setText(login.obtenerUsuarioLogado());
+        mostrarProductos();
     }
 
     /**
@@ -177,6 +190,11 @@ public class Inter_Ticket extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(219, 126, 138));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         etqProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         etqProducto.setForeground(new java.awt.Color(219, 126, 138));
@@ -308,9 +326,9 @@ public class Inter_Ticket extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(etqTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(campoTicket, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(etqTicket, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(campoTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(etqFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -414,18 +432,14 @@ public class Inter_Ticket extends javax.swing.JFrame {
     private void botonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarClienteActionPerformed
         String tlf = this.campoCliente.getText();
         Cliente cliente = new Cliente();
-        try {
-            
+        try {            
             ArrayList<Object> lista = acceso.listado("Cliente", tlf);
             cliente = (Cliente) lista.get(0);
             
         } catch (SQLException e){
-            
         }
-        
-        
         if(cliente.getNombre()== null && cliente.getApellidos() == null){
-            JOptionPane.showMessageDialog(null, "El nº de teléfono introducido no pertenece a ningún usuario registrado.", "Atención", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El nº de teléfono introducido no pertenece a ningún usuario registrado.", "¡Atención!", JOptionPane.WARNING_MESSAGE);
         }
         else{
             this.campoCliente.setText(cliente.getNombre() + " " + cliente.getApellidos());
@@ -436,6 +450,10 @@ public class Inter_Ticket extends javax.swing.JFrame {
     private void campoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTicketActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTicketActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
