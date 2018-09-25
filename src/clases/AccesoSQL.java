@@ -51,6 +51,8 @@ public class AccesoSQL {
         
         switch (tabla){ //Selecciona por el campo introducido como parámetro
         
+//-------------------------------CLIENTE---------------------------------------//            
+            
             case "Cliente":
             preparedStatement = con.prepareStatement("select * from "+tabla+
             " where nombre LIKE '%"+filtro+"%' OR apellidos LIKE '%"+
@@ -68,6 +70,9 @@ public class AccesoSQL {
                     lista.add(cliente);
                 }
                 return lista;
+
+//-------------------------------EMPLEADO--------------------------------------//
+                
             case "Empleado":
                 preparedStatement = con.prepareStatement("select * from "+tabla+
                 " where nombre LIKE '%"+filtro+"%' OR apellidos LIKE '%"+
@@ -79,12 +84,19 @@ public class AccesoSQL {
                     emp.setDni(rs.getString(1));
                     emp.setNombre(rs.getString(2));
                     emp.setApellidos(rs.getString(3));
-                    emp.setCorreo(rs.getString(4));
-                    emp.setTelefono(rs.getInt(5));
-                    //System.out.println(cliente); // Comando de prueba en consola
+                    emp.setCorreo(rs.getString(5));
+                    emp.setTelefono(rs.getInt(4));
+                    System.out.println(emp); // Comando de prueba en consola
                     lista.add(emp);
                 }
+                return lista;
+                
+//-------------------------------FACTURA---------------------------------------//                
+                
             case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
+            
+//-------------------------------PRODUCTO--------------------------------------//            
+            
             case "Producto":
                 preparedStatement = con.prepareStatement("select * from "+tabla+
                 " where idProducto LIKE '%"+filtro+"%' OR precioUnitario LIKE '%"+
@@ -106,6 +118,7 @@ public class AccesoSQL {
         return lista;
         
     }
+    
     /**
     * Devuelve un ArrayList de "Objects" referente a la consulta lanzada. 
     * El argumento indica la tabla en la que está haciendo la consulta
@@ -295,23 +308,25 @@ public class AccesoSQL {
         }
     }
                
-    public boolean UpdateSql(String query, String mensaje){
+    public boolean UpdateSql(String query){
         
         Statement st;
         try {
             st = con.createStatement();
             if ((st.executeUpdate(query)) == 1){
-                JOptionPane.showMessageDialog(null,"El registro ha sido "+mensaje+" correctamente.");
+                JOptionPane.showMessageDialog(null,"El registro ha sido actualizado correctamente.");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null,"El registro no ha podido ser "+mensaje+" correctamente.");
+                JOptionPane.showMessageDialog(null,"El registro no ha podido ser actualizado correctamente.");
                 return false;
             }
                         
         } catch (MySQLSyntaxErrorException e){
             JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!");
+            System.out.println(e);
             return false;
         } catch (SQLException ex) {
+            System.out.println(ex);
             JOptionPane.showMessageDialog(null,"Ha habido un error!");
             return false;
         }

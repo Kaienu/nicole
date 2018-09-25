@@ -286,7 +286,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                 "',`telefono`="+jTextField_telefono.getText()+
                 " WHERE `idCliente` = "+this.id;
         acceso = new AccesoSQL();
-        acceso.UpdateSql(query, "actualizado");
+        acceso.UpdateSql(query);
         acceso.cerrar();
     }//GEN-LAST:event_botonModificarActionPerformed
 

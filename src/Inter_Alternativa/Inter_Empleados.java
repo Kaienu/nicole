@@ -5,17 +5,45 @@
  */
 package Inter_Alternativa;
 
+import clases.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kaien
  */
 public class Inter_Empleados extends javax.swing.JFrame {
 
+    int edit_mode = 0;
+    AccesoSQL acceso;
+    
     /**
      * Creates new form Inter_Empleados
      */
     public Inter_Empleados() {
         initComponents();
+        acceso = new AccesoSQL();
+        ArrayList<Object> lista = new ArrayList<>();
+        try {
+            lista = acceso.listado("Empleado", "");
+        } catch (SQLException e) {
+            //Error 05;
+        }
+
+        Iterator<Object> it = lista.iterator();
+        while (it.hasNext()) {
+            Empleado empleado = (Empleado) it.next();
+            jComboBox1.addItem(empleado);
+        }
+        jTextFieldDni.disable();
+        jTextFieldApellidos.disable();
+        jTextFieldCorreo.disable();
+        jTextFieldNombre.disable();
+        jTextFieldTelefono.disable();
+
     }
 
     /**
@@ -27,21 +55,349 @@ public class Inter_Empleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextFieldDni3 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButtonNuevo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jTextFieldDni = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldApellidos = new javax.swing.JTextField();
+        jTextFieldTelefono = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldCorreo = new javax.swing.JTextField();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonAtras = new javax.swing.JButton();
+
+        jTextFieldDni3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(248, 241, 242));
+
+        jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleciona empleado" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseEntered(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButtonNuevo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButtonNuevo.setForeground(new java.awt.Color(219, 126, 138));
+        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anadir.png"))); // NOI18N
+        jButtonNuevo.setText("Nuevo Empleado");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Factura", "Importe", "Fecha", "Cliente"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jTextFieldDni.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setText("DNI");
+
+        jTextFieldNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jTextFieldApellidos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jTextFieldTelefono.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setText("Nombre");
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel3.setText("Apellidos");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel4.setText("Teléfono");
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel5.setText("Correo");
+
+        jTextFieldCorreo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jButtonEditar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButtonEditar.setForeground(new java.awt.Color(219, 126, 138));
+        jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiztiny.png"))); // NOI18N
+        jButtonEditar.setText("Editar Empleado");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
+        jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
+        jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldTelefono))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldNombre)))
+                            .addComponent(jTextFieldCorreo))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBox1, 0, 261, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonNuevo))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonAtras)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNuevo)
+                    .addComponent(jButtonEditar))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jButtonAtras)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (jComboBox1.getSelectedItem() instanceof String) {
+            jTextFieldDni.setText("");
+            jTextFieldNombre.setText("");
+            jTextFieldApellidos.setText("");
+            jTextFieldTelefono.setText("");
+            jTextFieldCorreo.setText("");
+        } else {
+            System.out.println(jComboBox1.getSelectedItem());
+            Empleado emp = (Empleado) jComboBox1.getSelectedItem();
+            jTextFieldDni.setText(emp.getDni());
+            jTextFieldNombre.setText(emp.getNombre());
+            jTextFieldApellidos.setText(emp.getApellidos());
+            jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
+            jTextFieldCorreo.setText(emp.getCorreo());
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
+
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jComboBox1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseEntered
+
+    }//GEN-LAST:event_jComboBox1MouseEntered
+
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        Empleado emp;
+        switch (edit_mode){
+        
+        case 0: //Adición Empleado OFF ----------------------------------------//
+        
+            edit_mode = 1;
+            jTextFieldDni.setText("");
+            jTextFieldNombre.setText("");
+            jTextFieldApellidos.setText("");
+            jTextFieldTelefono.setText("");
+            jTextFieldCorreo.setText("");
+            jTextFieldDni.enable();
+            jTextFieldApellidos.enable();
+            jTextFieldCorreo.enable();
+            jTextFieldNombre.enable();
+            jTextFieldTelefono.enable();
+            jComboBox1.setVisible(false);
+            jButtonNuevo.setText("Aplicar");
+            jButtonEditar.setText("Cancelar");
+            break;
+            
+        case 1: //Adición Empleado ON -----------------------------------------//
+            
+            emp = new Empleado(jTextFieldNombre.getText(),
+                jTextFieldApellidos.getText(),
+                jTextFieldCorreo.getText(),
+                Integer.parseInt(jTextFieldTelefono.getText()),
+                jTextFieldDni.getText());
+            
+            if (acceso.insertSql(emp)){
+                edit_mode = 0;
+                new Inter_Empleados().setVisible(true);
+                this.dispose();
+            }
+            break;
+            
+        case 2: //Edición Empleado --------------------------------------------//
+            String query = "UPDATE Empleado SET nombre='"+
+                    jTextFieldNombre.getText()+"',apellidos='"+
+                    jTextFieldApellidos.getText()+"',telefono="+
+                    jTextFieldTelefono.getText()+",correo='" +
+                    jTextFieldCorreo.getText()+"' WHERE dni = '"+
+                    jTextFieldDni.getText()+"'";
+            if (acceso.UpdateSql(query)){
+                edit_mode = 0;
+                new Inter_Empleados().setVisible(true);
+                this.dispose();
+            }
+            break;
+    }
+
+
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        
+        switch (edit_mode){
+            
+            case 0: //Adición Empleado OFF ------------------------------------//
+                
+                if (jComboBox1.getSelectedItem() instanceof String){
+                    JOptionPane.showMessageDialog(null,
+                        "Tienes que seleccionar un usuario primero!");
+                } else {
+                    Empleado emp = (Empleado) jComboBox1.getSelectedItem();
+                    edit_mode = 2;
+                    jComboBox1.setVisible(false);
+                    jTextFieldApellidos.enable();
+                    jTextFieldCorreo.enable();
+                    jTextFieldNombre.enable();
+                    jTextFieldTelefono.enable();
+                    jTextFieldApellidos.setText(emp.getApellidos());
+                    jTextFieldCorreo.setText(emp.getCorreo());
+                    jTextFieldNombre.setText(emp.getNombre());
+                    jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
+                    jButtonNuevo.setText("Aplicar");
+                    jButtonEditar.setText("Cancelar");                    
+                }
+                break;
+                
+            case 1: //Adición Empleado ON -------------------------------------//
+                
+                new Inter_Empleados().setVisible(true);
+                this.dispose();
+                edit_mode = 0;
+                break;
+                
+            case 2: //Edición Empleado ----------------------------------------//
+                
+                new Inter_Empleados().setVisible(true);
+                this.dispose();
+                edit_mode = 0;
+                break;
+                            
+        }
+        
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        new Inter_Menu_Gestion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +435,23 @@ public class Inter_Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAtras;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JComboBox<Object> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldApellidos;
+    private javax.swing.JTextField jTextFieldCorreo;
+    private javax.swing.JTextField jTextFieldDni;
+    private javax.swing.JTextField jTextFieldDni3;
+    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
 }

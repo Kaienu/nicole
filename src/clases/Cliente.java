@@ -80,4 +80,19 @@ public class Cliente{
         } else return false;
     }
     
+     /*
+       @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof Persona) {
+            if (this.nombre.equals(((Persona) obj) .nombre)) {
+                if (this.apellidos.equals(((Persona) obj) .apellidos)) {
+                    if (this.correo.equals(((Persona) obj) .correo)) {
+                        return this.telefono == (((Persona) obj) .telefono);
+                    } else return false;
+                } else return false;    
+            } else return false;
+        } else return false;
+    }
+    */
+    
 }
