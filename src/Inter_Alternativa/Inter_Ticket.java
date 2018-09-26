@@ -8,11 +8,11 @@ package Inter_Alternativa;
 import clases.AccesoSQL;
 import clases.Cliente;
 import clases.Producto;
+import java.util.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,21 +35,15 @@ public class Inter_Ticket extends javax.swing.JFrame {
     }
     
     public String fechaActual(){
-        Calendar fecha = Calendar.getInstance();
-        int año = fecha.get(Calendar.YEAR);
-        int mes = fecha.get(Calendar.MONTH);
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        int hora = fecha.get(Calendar.HOUR);
-        int minuto = fecha.get(Calendar.MINUTE);
-        
-        String fec = dia + "/" + (mes+1) + "/" + año + " " + hora + ":" + minuto;
-        return fec;
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return hourdateFormat.format(date);
     }
     
     public void mostrarProductos(){
         Producto producto = new Producto();
         try{
-            ArrayList<Object> lista = acceso.listadoCompleto("Producto");
+            ArrayList<Object> lista = acceso.listado("Producto", "");
             for(int i = 0; i < lista.size(); i++){
                 producto = (Producto) lista.get(i);
                 jComboBox1.addItem(producto.getModelo());
@@ -66,9 +60,9 @@ public class Inter_Ticket extends javax.swing.JFrame {
     public Inter_Ticket() {
         initComponents();
         camposNoEditables();
-        campoFecha.setText(fechaActual());
-        campoEmpleado.setText(login.obtenerUsuarioLogado());
         mostrarProductos();
+        campoFecha.setText(fechaActual());
+        campoEmpleado.setText(login.obtenerUsuarioLogado());        
     }
 
     /**
@@ -288,14 +282,14 @@ public class Inter_Ticket extends javax.swing.JFrame {
                                     .addComponent(campoCliente)
                                     .addComponent(botonBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(campoEmpleado)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(campoTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(campoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                            .addComponent(campoTicket))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,8 +384,7 @@ public class Inter_Ticket extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        this.dispose();
-        
+        this.dispose();        
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void jTable_Display_User3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_User3MouseClicked

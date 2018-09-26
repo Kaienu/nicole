@@ -246,7 +246,7 @@ public class Inter_Login extends javax.swing.JFrame {
     }
     
     public String obtenerUsuarioLogado(){
-        String usuario = this.campoUsuario.getText();
+        String usuario = campoUsuario.getText();
         return usuario;
     }   
     
