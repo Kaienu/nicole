@@ -7,12 +7,16 @@ package Inter_Alternativa;
 
 import clases.AccesoSQL;
 import clases.Cliente;
+import clases.Empleado;
 import clases.Producto;
 import java.util.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,44 +43,34 @@ public class Inter_Ticket extends javax.swing.JFrame {
         return hourdateFormat.format(date);
     }
     
-    public void mostrarProductos(){
-        Producto producto = new Producto();
-        try{
-            ArrayList<Object> lista = acceso.listado("Producto", "");
-            for(int i = 0; i < lista.size(); i++){
-                producto = (Producto) lista.get(i);
-                jComboBox1.addItem(producto.getModelo());
-            }            
-        } catch (SQLException e){
+    public void mostrarProductos() throws SQLException{
+        
+        ArrayList<Object> lista = new ArrayList<>();
+        try {
+            lista = acceso.listado("Producto", "");
+        } catch (SQLException e) {
+            //Error 05;
+        }
+
+        Iterator<Object> it = lista.iterator();
+        while (it.hasNext()) {
+            Producto producto = (Producto) it.next();
+            jComboBox1.addItem(producto);
         }
     }
     
     public void agregarProducto() throws SQLException{
-        String productoSeleccionado = (String) jComboBox1.getSelectedItem();//Capturar en un String el producto seleccionado en el comboBox
-        System.out.println(productoSeleccionado);
-        
-        ArrayList<Object> lista = acceso.listado("Producto", "");
-        
-        System.out.println(lista.contains(productoSeleccionado));
-        
-        Producto producto = new Producto();
-                
-        if(lista.contains(productoSeleccionado) == false){
-            
+        Producto productoSeleccionado =  (Producto) jComboBox1.getSelectedItem();//Capturar en un String el producto seleccionado en el comboBox
+              
             DefaultTableModel model = (DefaultTableModel) tablero.getModel();
             Object[] row = new Object[4];
-            //for(int i = 0; i < lista.size();i++){
-                Producto pro = (Producto) lista.get(0);
-                row[0] = pro.getIdProducto();
-                row[1] = pro.getMarca();
-                row[2] = pro.getModelo();
-                row[3] = pro.getPrecioUnitario();
+           
+                row[0] = productoSeleccionado.getIdProducto();
+                row[1] = productoSeleccionado.getMarca();
+                row[2] = productoSeleccionado.getModelo();
+                row[3] = productoSeleccionado.getPrecioUnitario();
                 model.addRow(row);
-            //}
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Se ha producido un error", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        
     }
 
     
@@ -85,7 +79,7 @@ public class Inter_Ticket extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
     }
     
-    public Inter_Ticket() {
+    public Inter_Ticket() throws SQLException {
         initComponents();
         camposNoEditables();
         mostrarProductos();
@@ -450,7 +444,10 @@ public class Inter_Ticket extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inter_Ticket().setVisible(true);
+                try {
+                    new Inter_Ticket().setVisible(true);
+                } catch (SQLException ex) {
+                }
             }
         });
     }
@@ -469,7 +466,7 @@ public class Inter_Ticket extends javax.swing.JFrame {
     private javax.swing.JLabel etqEmpleado1;
     private javax.swing.JLabel etqPrecio;
     private javax.swing.JLabel etqProducto;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Object> jComboBox1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable_Display_User3;
