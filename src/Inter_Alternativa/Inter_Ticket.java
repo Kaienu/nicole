@@ -68,7 +68,7 @@ public class Inter_Ticket extends javax.swing.JFrame {
                 row[0] = productoSeleccionado.getIdProducto();
                 row[1] = productoSeleccionado.getMarca();
                 row[2] = productoSeleccionado.getModelo();
-                row[3] = productoSeleccionado.getPrecioUnitario();
+                row[3] = productoSeleccionado.getPrecioUnitario()+"€";
                 model.addRow(row);
         
     }

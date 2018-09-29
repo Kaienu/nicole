@@ -1,15 +1,19 @@
 package clases;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Objects;
 
 public class Producto {
     
-    private int idProducto,precioUnitario;
+    private BigDecimal precioUnitario;
+    private int idProducto;
     private String marca,modelo;
 
-    public Producto(int idProducto, int precioUnitario, String marca, String modelo) {
+    public Producto(int idProducto, BigDecimal precioUnitario, String marca, String modelo) {
         this.idProducto = idProducto;
         this.precioUnitario = precioUnitario;
+        
         this.marca = marca;
         this.modelo = modelo;
     }
@@ -30,7 +34,7 @@ public class Producto {
         return modelo;
     }
 
-    public int getPrecioUnitario() {
+    public BigDecimal getPrecioUnitario() {
         return precioUnitario;
     }
 
@@ -46,7 +50,7 @@ public class Producto {
         this.modelo = modelo;
     }
 
-    public void setPrecioUnitario(int precioUnitario) {
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 
@@ -67,7 +71,7 @@ public class Producto {
     public int hashCode() {
         int hash = 7;
         hash = 37 * hash + this.idProducto;
-        hash = 37 * hash + this.precioUnitario;
+        hash = 37 * hash + Objects.hashCode(this.precioUnitario);
         hash = 37 * hash + Objects.hashCode(this.marca);
         hash = 37 * hash + Objects.hashCode(this.modelo);
         return hash;

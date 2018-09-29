@@ -1,7 +1,12 @@
 package clases;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.sql.*;
+import java.text.NumberFormat;
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -104,11 +109,13 @@ public class AccesoSQL {
                 filtro+"%'");
                 rs=preparedStatement.executeQuery();
                 while (rs.next()){
+                    //BigDecimal n = new BigDecimal(rs.getDouble(4)).round(new MathContext(4, RoundingMode.HALF_UP));
+                    BigDecimal n = new BigDecimal(rs.getDouble(4)).setScale(2, RoundingMode.HALF_UP);
                     Producto producto = new Producto();
                     producto.setIdProducto(rs.getInt(1));
                     producto.setMarca(rs.getString(2));
                     producto.setModelo(rs.getString(3));
-                    producto.setPrecioUnitario(rs.getInt(4));
+                    producto.setPrecioUnitario(n);
                     lista.add(producto);
                 }
                 return lista;
