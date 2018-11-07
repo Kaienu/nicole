@@ -9,7 +9,6 @@ import clases.AccesoSQL;
 import clases.Cliente;
 import clases.Empleado;
 import clases.Producto;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -25,14 +24,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Antonio
  */
-public class Inter_Ticket extends javax.swing.JFrame {
+public class Inter_Ticket_alt extends javax.swing.JFrame {
 
     /**
      * Creates new form Inter_Ticket
      */
     Inter_Login login = new Inter_Login();
     AccesoSQL acceso = new AccesoSQL();
-    BigDecimal suma;
     
     public void camposNoEditables(){
         this.campoEmpleado.setEditable(false);
@@ -72,11 +70,6 @@ public class Inter_Ticket extends javax.swing.JFrame {
                 row[2] = productoSeleccionado.getModelo();
                 row[3] = productoSeleccionado.getPrecioUnitario()+"€";
                 model.addRow(row);
-                
-                suma = suma.add(productoSeleccionado.getPrecioUnitario());
-                
-                campoPrecio.setText(suma.toEngineeringString()+"€");
-                
         
     }
 
@@ -86,9 +79,8 @@ public class Inter_Ticket extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
     }
     
-    public Inter_Ticket() throws SQLException {
+    public Inter_Ticket_alt() throws SQLException {
         initComponents();
-        suma = new BigDecimal(0);
         camposNoEditables();
         mostrarProductos();
         campoEmpleado.setText(login.obtenerUsuarioLogado());        
@@ -439,21 +431,22 @@ public class Inter_Ticket extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inter_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Ticket_alt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inter_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Ticket_alt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inter_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Ticket_alt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inter_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Ticket_alt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Inter_Ticket().setVisible(true);
+                    new Inter_Ticket_alt().setVisible(true);
                 } catch (SQLException ex) {
                 }
             }
