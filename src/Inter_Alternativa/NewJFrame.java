@@ -41,7 +41,7 @@ public class NewJFrame extends javax.swing.JFrame {
         botones = new ArrayList<JButton>();
         
         for (Object lista1 : lista) {
-            JButton boton = new JButton(lista1.toString);
+            JButton boton = new JButton(lista1.toString());
             boton.setBounds(x, y, 110, 110);
             botones.add(boton);
             jPanel2.add(boton);
