@@ -86,11 +86,15 @@ public class Inter_Ticket extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
     }
     
-    public Inter_Ticket() throws SQLException {
+    public Inter_Ticket() {
         initComponents();
         suma = new BigDecimal(0);
         camposNoEditables();
-        mostrarProductos();
+        try {
+            mostrarProductos();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         campoEmpleado.setText(login.obtenerUsuarioLogado());        
     }
 
@@ -452,10 +456,8 @@ public class Inter_Ticket extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new Inter_Ticket().setVisible(true);
-                } catch (SQLException ex) {
-                }
+                new Inter_Ticket().setVisible(true);
+                
             }
         });
     }
