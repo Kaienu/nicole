@@ -6,9 +6,16 @@
 package Inter_Alternativa;
 
 import clases.AccesoSQL;
+import clases.MainHandler;
+import clases.Producto;
+import java.awt.Font;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,12 +29,18 @@ public class NewJFrame extends javax.swing.JFrame {
     int x = 10;
     int y = 10;
     int cont = 0;
+    Font predet;
+    BigDecimal total = new BigDecimal(0);
 
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
         initComponents();
+        
+        MainHandler controlador = new MainHandler(this);
+                
+        predet = new Font("Terminal", Font.PLAIN, 10);
         acceso = new AccesoSQL();
         try {
             lista = acceso.listado("Producto", "");
@@ -37,12 +50,18 @@ public class NewJFrame extends javax.swing.JFrame {
         
         int tamanoLista = lista.size();
         
-        jLabel1.setText("Número de items: "+String.valueOf(tamanoLista));
+        //jLabel1.setText("Número de items: "+String.valueOf(tamanoLista));
         botones = new ArrayList<JButton>();
         
         for (Object lista1 : lista) {
             JButton boton = new JButton(lista1.toString());
+            controlador.setProducto((Producto)lista1);
+            boton.addActionListener(controlador);
             boton.setBounds(x, y, 110, 110);
+            boton.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+            boton.setForeground(new java.awt.Color(219, 126, 138));
+
+            //boton.setFont(predet);
             botones.add(boton);
             jPanel2.add(boton);
             if (x<370) {
@@ -52,20 +71,28 @@ public class NewJFrame extends javax.swing.JFrame {
                 x = 10;
             }
         }
-        /*JButton botonaso1 = new JButton();
-        botonaso1.setBounds(10, 10, 110, 110);
-        jPanel2.add(botonaso1);
-        JButton botonaso2 = new JButton();
-        botonaso2.setBounds(130, 10, 110, 110);
-        jPanel2.add(botonaso2);
-        JButton botonaso3 = new JButton();
-        botonaso3.setBounds(250, 10, 110, 110);
-        jPanel2.add(botonaso3);
-        JButton botonaso4 = new JButton();
-        botonaso4.setBounds(370, 10, 110, 110);
-        jPanel2.add(botonaso4);*/
+        
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        
     }
-
+    
+    public void setTabla(Producto prod){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object[] row = new Object[3];
+        row[0] = "1";
+        row[1] = prod.getModelo();
+        row[2] = prod.getPrecioUnitario().toEngineeringString()+"€";
+        model.addRow(row);
+        total = total.add(prod.getPrecioUnitario());
+        jTextField1.setText(total.toEngineeringString()+"€");
+    }
+    
+    public ArrayList getLista(){
+        return lista;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,9 +106,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButtonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
 
@@ -90,10 +119,24 @@ public class NewJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cantidad", "Artículo", "Precio"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,7 +149,26 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGap(0, 427, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("jLabel1");
+        jTextField1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField1.setText("0,00€");
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField1.setEnabled(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
+        jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
+        jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,20 +180,26 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonAtras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1)
+                    .addComponent(jButtonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,7 +220,17 @@ public class NewJFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        new Inter_Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,10 +268,11 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonAtras;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -79,11 +79,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="etqMenu" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="botonBusquedas" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
-                      <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                          <Component id="botonFacturacion" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
-                          <Component id="botonBusquedas1" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
-                          <Component id="botonBusquedas2" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="botonFacturacion" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
+                      <Component id="botonBusquedas1" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
+                      <Component id="botonBusquedas2" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
                       <Component id="botonTicket" alignment="2" min="-2" pref="350" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>

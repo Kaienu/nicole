@@ -1,5 +1,7 @@
 package Inter_Alternativa;
 
+import javax.swing.JOptionPane;
+
 public class Inter_Menu extends javax.swing.JFrame {
     
     public Inter_Menu() {
@@ -162,8 +164,22 @@ public class Inter_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
 
     private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
-        new Inter_Ticket().setVisible(true);
-        this.dispose();
+        int input = JOptionPane.showConfirmDialog(null, "¿Quieres usar la interfaz de tickets alternativa?");
+        
+        switch (input){
+            
+            case 0:
+                new NewJFrame().setVisible(true);
+                this.dispose();
+                break;
+            case 1:
+                new Inter_Ticket().setVisible(true);
+                this.dispose();
+                break;
+            case 2:
+                break;   
+        }
+        
     }//GEN-LAST:event_botonTicketActionPerformed
 
     /**
