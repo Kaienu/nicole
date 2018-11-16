@@ -67,7 +67,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jButton_Insert" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="campoInsertar" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jButton_Update" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -118,7 +118,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton_Insert" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="campoInsertar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jButton_Update" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jButton_Delete" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
@@ -283,12 +283,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton_Insert">
+        <Component class="javax.swing.JButton" name="campoInsertar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Insertar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_InsertActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoInsertarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_Update">

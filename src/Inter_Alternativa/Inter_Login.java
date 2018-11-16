@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
  * @author Antonio
  */
 public class Inter_Login extends javax.swing.JFrame { 
+    
+    public static String usuario;
         
     public Inter_Login() {
         initComponents();
@@ -245,8 +247,9 @@ public class Inter_Login extends javax.swing.JFrame {
         });
     }
     
-    public String obtenerUsuarioLogado(){
-        String usuario = campoUsuario.getText();
+    public String obtenerUsuarioLogado(){        
+        String usuarioCapturado = this.campoUsuario.getText();
+        usuarioCapturado = usuario;
         return usuario;
     }   
     

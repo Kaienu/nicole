@@ -12,8 +12,8 @@ import java.awt.Font;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -93,6 +93,18 @@ public class NewJFrame extends javax.swing.JFrame {
         return lista;
     }
     
+    //FALTA RESTAR EL PRECIO DEL PRODUCTO ELIMINADO AL PRECIO TOTAL
+    public void borrarProductoSeleccionado(){   
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int fila = jTable1.getSelectedRow();
+        if(fila >= 0){
+            model.removeRow(fila); 
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Debes de seleccionar previamente el producto que desees eliminar", "¡Atención!", JOptionPane.WARNING_MESSAGE);
+        }     
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,12 +120,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButtonAtras = new javax.swing.JButton();
+        botonEliminarProducto = new javax.swing.JButton();
+        jButtonFinVenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -130,6 +145,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(50);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -163,10 +179,31 @@ public class NewJFrame extends javax.swing.JFrame {
         jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
         jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
-        jButtonAtras.setText("Atras");
+        jButtonAtras.setText("Atrás");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
+            }
+        });
+
+        botonEliminarProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonEliminarProducto.setForeground(new java.awt.Color(219, 126, 138));
+        botonEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/escoba-de-limpieza-para-suelos.png"))); // NOI18N
+        botonEliminarProducto.setText("Eliminar producto seleccionado");
+        botonEliminarProducto.setPreferredSize(new java.awt.Dimension(277, 41));
+        botonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarProductoActionPerformed(evt);
+            }
+        });
+
+        jButtonFinVenta.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButtonFinVenta.setForeground(new java.awt.Color(219, 126, 138));
+        jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
+        jButtonFinVenta.setText("Finalizar Venta");
+        jButtonFinVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinVentaActionPerformed(evt);
             }
         });
 
@@ -176,17 +213,20 @@ public class NewJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonAtras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonFinVenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +234,12 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1)
-                    .addComponent(jButtonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEliminarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonFinVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,8 +253,8 @@ public class NewJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,6 +276,26 @@ public class NewJFrame extends javax.swing.JFrame {
         new Inter_Menu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void botonEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarProductoActionPerformed
+        borrarProductoSeleccionado();
+    }//GEN-LAST:event_botonEliminarProductoActionPerformed
+
+    private void jButtonFinVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinVentaActionPerformed
+        int ticket = JOptionPane.showConfirmDialog(null, "¿Quieres imprimir ticket de venta?");
+        
+        switch (ticket){
+            
+            case 0:
+                new Inter_Ticket_Generado().setVisible(true);
+                break;
+            case 1:
+                new NewJFrame().setVisible(true);
+                break;
+            case 2:
+                break;   
+        }
+    }//GEN-LAST:event_jButtonFinVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,7 +333,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonEliminarProducto;
     private javax.swing.JButton jButtonAtras;
+    private javax.swing.JButton jButtonFinVenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

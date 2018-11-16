@@ -16,6 +16,8 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
 
     private String id;
     AccesoSQL acceso;
+        
+    
     
     /**
      * Creates new form Inter_Cliente_edit
@@ -33,6 +35,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         jTextField_telefono.setText(String.valueOf(cliente.getTelefono()));
         jLabel1.setText("Cliente ID "+id);
         acceso.cerrar();
+        this.campoFecha.setText("Cliente/a desde: ");
     }
 
     private Inter_Cliente_edit() {
@@ -61,7 +64,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        campoFecha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         botonTicket = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
@@ -135,8 +138,8 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Tiene x facturas asociadas");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel3.setText("Cliente desde \"Fecha\"");
+        campoFecha.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoFecha.setText("Cliente desde \"Fecha\"");
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Última visita: \"Fecha\"");
@@ -183,7 +186,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                            .addComponent(campoFecha)
                             .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1)
@@ -221,7 +224,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addComponent(campoFecha)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -330,9 +333,9 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonTicket;
+    private javax.swing.JLabel campoFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

@@ -1,8 +1,12 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.io.PrintStream;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +27,12 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
             
         }
         
+    }
+    
+    public String fechaActual(){
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return hourdateFormat.format(date);
     }
 
     /*public Connection getConnection(){
@@ -109,7 +119,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         jTextField_Telefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Display_User = new javax.swing.JTable();
-        jButton_Insert = new javax.swing.JButton();
+        campoInsertar = new javax.swing.JButton();
         jButton_Update = new javax.swing.JButton();
         jButton_Delete = new javax.swing.JButton();
         botonBusquedas2 = new javax.swing.JButton();
@@ -192,10 +202,10 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable_Display_User);
 
-        jButton_Insert.setText("Insertar");
-        jButton_Insert.addActionListener(new java.awt.event.ActionListener() {
+        campoInsertar.setText("Insertar");
+        campoInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_InsertActionPerformed(evt);
+                campoInsertarActionPerformed(evt);
             }
         });
 
@@ -247,7 +257,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
                                     .addComponent(jTextField_Apellidos)
                                     .addComponent(jTextField_Correo)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -286,7 +296,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
                             .addComponent(jTextField_Telefono))
                         .addGap(105, 105, 105)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -332,7 +342,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_TelefonoActionPerformed
 
-    private void jButton_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InsertActionPerformed
+    private void campoInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoInsertarActionPerformed
         String query = "INSERT INTO `Cliente`(`nombre`, `apellidos`, `correo`, `telefono`)"
                 + " VALUES ('"+ jTextField_Nombre.getText()+"',"
                 + "'"+ jTextField_Apellidos.getText()+"',"
@@ -342,7 +352,9 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         acceso.UpdateSql(query);
         Refrescar();
         acceso.cerrar();
-    }//GEN-LAST:event_jButton_InsertActionPerformed
+        String fecha = fechaActual();
+        
+    }//GEN-LAST:event_campoInsertarActionPerformed
 
     private void jButton_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UpdateActionPerformed
         String query = "UPDATE `Cliente` SET `nombre`='"+jTextField_Nombre.getText()+
@@ -424,8 +436,8 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBusquedas2;
+    private javax.swing.JButton campoInsertar;
     private javax.swing.JButton jButton_Delete;
-    private javax.swing.JButton jButton_Insert;
     private javax.swing.JButton jButton_Update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
