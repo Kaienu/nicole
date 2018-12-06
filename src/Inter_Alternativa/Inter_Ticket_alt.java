@@ -410,7 +410,7 @@ public class Inter_Ticket_alt extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        new Inter_Menu().setVisible(true);
+        new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 

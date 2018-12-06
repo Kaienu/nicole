@@ -5,12 +5,10 @@
  */
 package clases;
 
-import Inter_Alternativa.NewJFrame;
+import Inter_Alternativa.Menu_Ticket;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 /**
  *
@@ -18,11 +16,11 @@ import javax.swing.JFrame;
  */
 public class MainHandler implements ActionListener {
 
-    NewJFrame ventana;
+    Menu_Ticket ventana;
     Producto prod;
     JButton boton;
     
-    public MainHandler(NewJFrame ventana) {
+    public MainHandler(Menu_Ticket ventana) {
         this.ventana = ventana;
     }
 
@@ -37,7 +35,7 @@ public class MainHandler implements ActionListener {
         for (int i=0;i<ventana.getLista().size();i++) {
             prod = (Producto)ventana.getLista().get(i);
             if (prod.getModelo().equals(boton.getText())) {
-                ventana.setTabla(prod);
+                ventana.addTabla(prod);
                 break;
             }
         }

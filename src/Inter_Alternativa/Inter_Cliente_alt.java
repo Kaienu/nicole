@@ -389,7 +389,7 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
 
     private void botonBusquedas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas2ActionPerformed
         this.dispose();
-        new Inter_Menu().setVisible(true);
+        new Menu().setVisible(true);
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
 
     /**

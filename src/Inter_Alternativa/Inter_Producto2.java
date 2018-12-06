@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -14,22 +13,17 @@ import javax.swing.table.TableModel;
  *
  * @author kaien
  */
-public class Inter_Cliente extends javax.swing.JFrame {
+public class Inter_Producto2 extends javax.swing.JFrame {
 
-    AccesoSQL acceso;
+    public AccesoSQL acceso;
     
-    public Inter_Cliente() {
+    public Inter_Producto2() {
      
         initComponents();
      
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(180);
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         try{
             
-            MostrarSQL("Cliente","",false);
+            MostrarSQL("Producto","",false);
             
         } catch (SQLException e){
             e.printStackTrace();
@@ -40,33 +34,17 @@ public class Inter_Cliente extends javax.swing.JFrame {
     
     public void MostrarSQL(String tabla,String filtro,Boolean ID) throws SQLException{
         acceso = new AccesoSQL();
-        if (ID==false){ //Si indicamos "false", no buscará por ID,
-                        //solo filtro normal de campos.
-            ArrayList<Object> lista = acceso.listado(tabla,filtro);
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            Object[] row = new Object[5];
-            for(int i = 0; i < lista.size();i++){
-                Cliente cli = (Cliente) lista.get(i);
-                row[0] = cli.getIdCliente();
-                row[1] = cli.getNombre();
-                row[2] = cli.getApellidos();
-                row[3] = cli.getCorreo();
-                row[4] = cli.getTelefono();
-                model.addRow(row);
-            }
-        } else {    //Si indicamos "true", buscará por ID (Un solo resultado).
-            Cliente cliente = (Cliente) acceso.listadoID("Cliente",filtro);
-            //Es necesario hacer el casteo ya que devuelve un Objeto.
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            Object[] row = new Object[5];
-            row[0] = cliente.getIdCliente();
-            row[1] = cliente.getNombre();
-            row[2] = cliente.getApellidos();
-            row[3] = cliente.getCorreo();
-            row[4] = cliente.getTelefono();
+        ArrayList<Object> lista = acceso.listado(tabla,filtro);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object[] row = new Object[4];
+        for(int i = 0; i < lista.size();i++){
+            Producto pro = (Producto) lista.get(i);
+            row[0] = pro.getIdProducto();
+            row[1] = pro.getMarca();
+            row[2] = pro.getModelo();
+            row[3] = pro.getPrecioUnitario().toEngineeringString()+"€";
             model.addRow(row);
         }
-        acceso.cerrar();
     }
 
     /**
@@ -125,11 +103,11 @@ public class Inter_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IdCliente", "Nombre", "Apellidos", "Correo", "Teléfono"
+                "Id", "Marca", "Modelo", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -278,7 +256,7 @@ public class Inter_Cliente extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         try{
-            MostrarSQL("Cliente",jTextField_Busqueda.getText(),false);
+            MostrarSQL("Producto",jTextField_Busqueda.getText(),false);
         }catch (SQLException e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error 03");
@@ -291,24 +269,20 @@ public class Inter_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        jTextField_Busqueda.setText("");
-        try {
-            MostrarSQL("Cliente","",false);
-        }catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Error 04");
-        }
+        limpiar();
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
     private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
-        this.dispose();
-        new Inter_Add_Cliente().setVisible(true);
+        new Add_Prod(this, true).setVisible(true);
+        limpiar();
     }//GEN-LAST:event_botonAddActionPerformed
 
+    private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_BusquedaKeyPressed
+
     private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
-        
+
     }//GEN-LAST:event_jTable1MouseEntered
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -319,14 +293,22 @@ public class Inter_Cliente extends javax.swing.JFrame {
             new Inter_Cliente_edit(id).setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Inter_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Inter_Producto2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_BusquedaKeyPressed
-
+    public void limpiar(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        jTextField_Busqueda.setText("");
+        try {
+            MostrarSQL("Producto","",false);
+        }catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error 04");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -344,23 +326,29 @@ public class Inter_Cliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inter_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Producto2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inter_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Producto2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inter_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Producto2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inter_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inter_Producto2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inter_Cliente().setVisible(true);
+                new Inter_Producto2().setVisible(true);
             }
         });
+    }
+    
+    public AccesoSQL getConexion(){
+        return acceso;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

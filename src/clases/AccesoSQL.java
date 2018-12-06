@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 
 public class AccesoSQL {
     
-    private String sURL = "jdbc:mysql://sql2.freemysqlhosting.net/sql2255331";
-    private String usu = "sql2255331";
-    private String pass = "sI5!cN7!";
+    private String sURL = "jdbc:mysql://192.168.1.39/nicole";
+    private String usu = "pedro";
+    private String pass = "oxgnub";
     private Connection con;
     
     PreparedStatement preparedStatement;
@@ -220,7 +220,10 @@ public class AccesoSQL {
             query = "";
         }else if (obj instanceof Producto){
             Producto prod = (Producto) obj;
-            query = "";
+            query = 
+            "insert into Producto(marca,modelo,precioUnitario) values('"+
+                    prod.getMarca()+"','"+prod.getModelo()+"','"+
+                    prod.getPrecioUnitario().toEngineeringString()+"')";
         }else if (obj instanceof Promocion){
             Promocion prom = (Promocion) obj;
             query ="";

@@ -3,5 +3,5 @@ CREATE TABLE Producto
 idProducto MEDIUMINT ZEROFILL PRIMARY KEY AUTO_INCREMENT,
 marca VARCHAR (30) NOT NULL,
 modelo VARCHAR (50) NOT NULL,
-precioUnitario SMALLINT (5) NOT NULL CHECK (precioUnitario>=0)
+precioUnitario FLOAT NOT NULL CHECK (precioUnitario>=0)
 );

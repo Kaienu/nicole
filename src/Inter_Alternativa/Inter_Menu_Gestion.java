@@ -124,7 +124,7 @@ public class Inter_Menu_Gestion extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBusquedas3ActionPerformed
 
     private void botonBusquedas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas4ActionPerformed
-        new Inter_Menu().setVisible(true);
+        new Menu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonBusquedas4ActionPerformed
 

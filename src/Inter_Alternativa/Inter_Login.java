@@ -192,7 +192,7 @@ public class Inter_Login extends javax.swing.JFrame {
         String passUser = new String (pass);        
         
         if(campoUsuario.getText().equals(usuario) && passUser.equals(contraseña)){
-            new Inter_Alternativa.Inter_Menu().setVisible(true);
+            new Inter_Alternativa.Menu().setVisible(true);
             this.dispose();
         }
         else{
@@ -205,7 +205,7 @@ public class Inter_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonIniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciar1ActionPerformed
-        new Inter_Menu().setVisible(true);
+        new Menu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonIniciar1ActionPerformed
 

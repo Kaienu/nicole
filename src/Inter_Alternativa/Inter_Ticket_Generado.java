@@ -25,7 +25,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
     }
     
-    NewJFrame nuevoFrame;
+    Menu_Ticket nuevoFrame;
     
     public String fechaActual(){
         Date date = new Date();

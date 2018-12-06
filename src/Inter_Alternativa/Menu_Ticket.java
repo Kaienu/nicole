@@ -8,6 +8,7 @@ package Inter_Alternativa;
 import clases.AccesoSQL;
 import clases.MainHandler;
 import clases.Producto;
+import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -21,10 +22,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author kaien
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class Menu_Ticket extends javax.swing.JFrame {
     
     AccesoSQL acceso;
     ArrayList<Object> lista;
+    ArrayList<Producto> carrito;
     ArrayList<JButton> botones;
     int x = 10;
     int y = 10;
@@ -35,8 +37,9 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public Menu_Ticket() {
         initComponents();
+        carrito = new ArrayList<Producto>();
         
         MainHandler controlador = new MainHandler(this);
                 
@@ -59,7 +62,8 @@ public class NewJFrame extends javax.swing.JFrame {
             boton.addActionListener(controlador);
             boton.setBounds(x, y, 110, 110);
             boton.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
-            boton.setForeground(new java.awt.Color(219, 126, 138));
+            boton.setForeground(new Color(219, 126, 138));
+            boton.setBackground(new Color(255,255,255));
 
             //boton.setFont(predet);
             botones.add(boton);
@@ -78,7 +82,34 @@ public class NewJFrame extends javax.swing.JFrame {
         
     }
     
-    public void setTabla(Producto prod){
+    public void actualizarTabla(){
+        total = new BigDecimal(0);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (Producto p : carrito) {
+            Object[] row = new Object[3];
+            row[0] = String.valueOf(p.getCount());
+            row[1] = p.getModelo();
+            row[2] = p.getPrecioTotalAcumulado().toEngineeringString()+"€";
+            model.addRow(row);
+            total = total.add(p.getPrecioTotalAcumulado());
+        }
+        jTextField1.setText(total.toEngineeringString()+"€");
+    }
+    
+    public void addTabla(Producto prod) {
+        if (carrito.contains(prod)) {
+            int indice = carrito.indexOf(prod);
+            Producto p = carrito.get(indice);
+            p.increaseCount();
+            p.setPrecioTotalAcumulado(p.getPrecioUnitario().add(p.getPrecioUnitario()));
+        } else {
+            carrito.add(prod);
+        }
+        actualizarTabla();
+    }
+    
+    /*public void setTabla(Producto prod){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Object[] row = new Object[3];
         row[0] = "1";
@@ -87,23 +118,38 @@ public class NewJFrame extends javax.swing.JFrame {
         model.addRow(row);
         total = total.add(prod.getPrecioUnitario());
         jTextField1.setText(total.toEngineeringString()+"€");
-    }
+    }*/
     
     public ArrayList getLista(){
         return lista;
     }
     
-    //FALTA RESTAR EL PRECIO DEL PRODUCTO ELIMINADO AL PRECIO TOTAL
-    public void borrarProductoSeleccionado(){   
+    public void borrarProductoSeleccionado(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int fila = jTable1.getSelectedRow();
+        
+        if (fila<0) {
+            JOptionPane.showMessageDialog(null, "Debes de seleccionar previamente el producto que desees eliminar", "¡Atención!", JOptionPane.WARNING_MESSAGE);
+        } else if (carrito.get(fila).getCount()>1) {
+            carrito.get(fila).decreaseCount();
+        } else if (carrito.get(fila).getCount()==1) {
+            carrito.remove(fila);
+        }
+        actualizarTabla();
+    }
+    
+    //FALTA RESTAR EL PRECIO DEL PRODUCTO ELIMINADO AL PRECIO TOTAL
+    /*public void borrarProductoSeleccionado(){   
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int fila = jTable1.getSelectedRow();
+        
         if(fila >= 0){
             model.removeRow(fila); 
         }
         else{
             JOptionPane.showMessageDialog(null, "Debes de seleccionar previamente el producto que desees eliminar", "¡Atención!", JOptionPane.WARNING_MESSAGE);
         }     
-    }
+    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,6 +222,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonAtras.setBackground(new java.awt.Color(225, 225, 225));
         jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
         jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
@@ -186,6 +233,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        botonEliminarProducto.setBackground(new java.awt.Color(225, 225, 225));
         botonEliminarProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonEliminarProducto.setForeground(new java.awt.Color(219, 126, 138));
         botonEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/escoba-de-limpieza-para-suelos.png"))); // NOI18N
@@ -197,6 +245,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonFinVenta.setBackground(new java.awt.Color(225, 225, 225));
         jButtonFinVenta.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonFinVenta.setForeground(new java.awt.Color(219, 126, 138));
         jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contenido.png"))); // NOI18N
@@ -273,7 +322,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
-        new Inter_Menu().setVisible(true);
+        new Menu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
@@ -290,7 +339,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 new Inter_Ticket_Generado().setVisible(true);
                 break;
             case 1:
-                new NewJFrame().setVisible(true);
+                new Menu_Ticket().setVisible(true);
                 break;
             case 2:
                 break;   
@@ -314,20 +363,21 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Ticket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new Menu_Ticket().setVisible(true);
             }
         });
     }
