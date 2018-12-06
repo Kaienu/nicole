@@ -2,17 +2,15 @@ package clases;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.sql.*;
-import java.text.NumberFormat;
 import java.util.*;
 import javax.swing.JOptionPane;
 
 public class AccesoSQL {
     
     private String sURL = "jdbc:mysql://192.168.1.39/nicole";
+    private String extURL = "jdbc:mysql://79.146.89.178/nicole";
     private String usu = "pedro";
     private String pass = "oxgnub";
     private Connection con;
@@ -23,16 +21,25 @@ public class AccesoSQL {
     public AccesoSQL(){
         
         try {
-            
             con = DriverManager.getConnection(sURL, usu, pass);
-            if (con.isClosed()) System.out.println("Error en la conexión");
+            if (con.isClosed()) System.out.println("Error en la conexión local");
             else System.out.println("Conexión exitosa");
             		
 	} catch (SQLException e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null,"Error 01");
+            remoteConnect();
 	}
 		
+    }
+    
+    public void remoteConnect(){
+        try {
+            con = DriverManager.getConnection(extURL, usu, pass);
+            if (con.isClosed()) System.out.println("Error en la conexión remota");
+            else System.out.println("Conexión exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Error al acceder a la Base de Datos");
+        }
     }
     
     /**
