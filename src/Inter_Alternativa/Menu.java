@@ -152,7 +152,8 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturacionActionPerformed
-        // TODO add your handling code here:
+        new Inter_Factura().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonFacturacionActionPerformed
 
     private void botonBusquedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedasActionPerformed

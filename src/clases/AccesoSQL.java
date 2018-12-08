@@ -14,9 +14,7 @@ public class AccesoSQL {
     private String usu = "pedro";
     private String pass = "oxgnub";
     private Connection con;
-    
-    PreparedStatement preparedStatement;
-    ResultSet rs;
+    private int autonum;
     
     public AccesoSQL(){
         
@@ -60,17 +58,19 @@ public class AccesoSQL {
     public ArrayList<Object> listado(String tabla,String filtro) throws SQLException{
         
         ArrayList<Object> lista = new ArrayList<>();
+        PreparedStatement ps;
+        ResultSet rs;
         
         switch (tabla){ //Selecciona por el campo introducido como parámetro
         
 //-------------------------------CLIENTE---------------------------------------//            
             
             case "Cliente":
-            preparedStatement = con.prepareStatement("select * from "+tabla+
+            ps = con.prepareStatement("select * from "+tabla+
             " where nombre LIKE '%"+filtro+"%' OR apellidos LIKE '%"+
             filtro+"%' OR correo LIKE '%"+filtro+"%' OR telefono LIKE '%"+
             filtro+"%'");
-            rs=preparedStatement.executeQuery();
+            rs=ps.executeQuery();
                 while (rs.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setIdCliente(rs.getString(1));
@@ -81,16 +81,18 @@ public class AccesoSQL {
                     //System.out.println(cliente); // Comando de prueba en consola
                     lista.add(cliente);
                 }
+                rs.close();
+                ps.close(); 
                 return lista;
 
 //-------------------------------EMPLEADO--------------------------------------//
                 
             case "Empleado":
-                preparedStatement = con.prepareStatement("select * from "+tabla+
+                ps = con.prepareStatement("select * from "+tabla+
                 " where nombre LIKE '%"+filtro+"%' OR apellidos LIKE '%"+
                 filtro+"%' OR correo LIKE '%"+filtro+"%' OR telefono LIKE '%"+
                 filtro+"%'");
-                rs=preparedStatement.executeQuery();
+                rs=ps.executeQuery();
                 while (rs.next()) {
                     Empleado emp = new Empleado();
                     emp.setDni(rs.getString(1));
@@ -101,16 +103,19 @@ public class AccesoSQL {
                     System.out.println(emp); // Comando de prueba en consola
                     lista.add(emp);
                 }
+                rs.close();
+                ps.close(); 
                 return lista;
                 
 //-------------------------------FACTURA---------------------------------------//                
                 
             case "Factura": 
-                preparedStatement = con.prepareStatement("select * from "+tabla+
+                /*ps = con.prepareStatement("select * from "+tabla+
                 " where idFactura LIKE '%"+filtro+"%' OR idCliente LIKE '%"+
                 filtro+"%' OR dniEmpleado LIKE '%"+filtro+"%' OR fecha LIKE '%"+
-                filtro+"%'");
-                rs=preparedStatement.executeQuery();
+                filtro+"%'");*/
+                ps = con.prepareStatement("select * from "+tabla);
+                rs=ps.executeQuery();
                 while (rs.next()){
                     BigDecimal facTotal = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
                     Factura fact = new Factura();
@@ -119,16 +124,19 @@ public class AccesoSQL {
                     fact.setDni(rs.getString(3));
                     fact.setImporte(facTotal);
                     fact.setFecha(rs.getDate(4));
+                    System.out.println(fact);
                     lista.add(fact);
                 }
+                rs.close();
+                ps.close(); 
                 return lista;
                 
 //-------------------------------FACTURA X IDCLIENTE---------------------------//                
                 
             case "FacturaCliente": 
-                preparedStatement = con.prepareStatement("select * from Factura"
+                ps = con.prepareStatement("select * from Factura"
                     + " where idCliente LIKE '"+filtro+"'");
-                rs=preparedStatement.executeQuery();
+                rs=ps.executeQuery();
                 while (rs.next()){
                     BigDecimal facTotal = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
                     Factura fact = new Factura();
@@ -137,18 +145,21 @@ public class AccesoSQL {
                     fact.setDni(rs.getString(3));
                     fact.setImporte(facTotal);
                     fact.setFecha(rs.getDate(4));
+                    System.out.println(fact);
                     lista.add(fact);
                 }
+                rs.close();
+                ps.close(); 
                 return lista;
             
 //-------------------------------PRODUCTO--------------------------------------//            
             
             case "Producto":
-                preparedStatement = con.prepareStatement("select * from "+tabla+
+                ps = con.prepareStatement("select * from "+tabla+
                 " where idProducto LIKE '%"+filtro+"%' OR precioUnitario LIKE '%"+
                 filtro+"%' OR marca LIKE '%"+filtro+"%' OR modelo LIKE '%"+
                 filtro+"%'");
-                rs=preparedStatement.executeQuery();
+                rs=ps.executeQuery();
                 while (rs.next()){
                     //BigDecimal n = new BigDecimal(rs.getDouble(4)).round(new MathContext(4, RoundingMode.HALF_UP));
                     BigDecimal n = new BigDecimal(rs.getDouble(4)).setScale(2, RoundingMode.HALF_UP);
@@ -159,6 +170,8 @@ public class AccesoSQL {
                     producto.setPrecioUnitario(n);
                     lista.add(producto);
                 }
+                rs.close();
+                ps.close(); 
                 return lista;
 
 //-------------------------------PROMOCION--------------------------------------//    
@@ -166,7 +179,6 @@ public class AccesoSQL {
             case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
                 
         }
-        
         return lista;
         
     }
@@ -187,12 +199,14 @@ public class AccesoSQL {
     
     public Object listadoID(String tabla,String id) throws SQLException{
         Object nulo = null;
+        PreparedStatement ps;
+        ResultSet rs;
         switch (tabla){ //Selecciona por el campo introducido como parámetro
         
             case "Cliente":
-                preparedStatement = con.prepareStatement("select * from "+
+                ps = con.prepareStatement("select * from "+
                         tabla+" where idCliente = "+id);
-                rs=preparedStatement.executeQuery();
+                rs=ps.executeQuery();
                 Cliente cliente = new Cliente();
                 while (rs.next()) {
                     cliente.setIdCliente(rs.getString(1));
@@ -202,12 +216,14 @@ public class AccesoSQL {
                     cliente.setTelefono(rs.getInt(5));
                     //System.out.println(cliente); // Comando de prueba en consola
                 }
+                rs.close();
+                ps.close(); 
                 return (Object) cliente;
                 
             case "Empleado":
-                preparedStatement = con.prepareStatement("select * from "+
+                ps = con.prepareStatement("select * from "+
                         tabla+" where id = "+id);
-                rs=preparedStatement.executeQuery();
+                rs=ps.executeQuery();
                 Empleado emp = new Empleado();
                 while (rs.next()) {
                     emp.setDni(rs.getString(1));
@@ -217,9 +233,25 @@ public class AccesoSQL {
                     emp.setTelefono(rs.getInt(5));
                     //System.out.println(cliente); // Comando de prueba en consola
                 }
+                rs.close();
+                ps.close(); 
                 return (Object) emp;
                 
-            case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Factura": 
+                ps = con.prepareStatement("select * from "+
+                        tabla+" where idFactura = "+id);
+                rs=ps.executeQuery();
+                Factura fact = new Factura();
+                while (rs.next()) {
+                    BigDecimal n = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
+                    fact.setIdFactura(rs.getString(1));
+                    fact.setDni(rs.getString(3));
+                    fact.setFecha(rs.getDate(4));
+                    fact.setIdCliente(rs.getString(2));
+                    fact.setImporte(n);
+                }
+                return (Object) fact;
+                
             case "Producto": JOptionPane.showMessageDialog(null,"No implementado aun");
             case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
                 
@@ -275,15 +307,21 @@ public class AccesoSQL {
             
         }
             
-        Statement st;
+        PreparedStatement st;
         
         try {
-            st = con.createStatement();
-            if ((st.executeUpdate(query)) == 1){
+            st = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            
+            if ((st.executeUpdate()) == 1){
                 JOptionPane.showMessageDialog(null,
                         "El registro ha sido insertado correctamente.");
+                ResultSet res = st.getGeneratedKeys();
+                res.next();
+                autonum = res.getInt(1);
+                st.close();
                 return true;
             } else {
+                st.close();
                 JOptionPane.showMessageDialog(null,
                         "El registro no ha podido ser insertado correctamente.");
                 return false;
@@ -302,14 +340,16 @@ public class AccesoSQL {
                
     public boolean UpdateSql(String query){
         
-        Statement st;
+        PreparedStatement st;
         try {
-            st = con.createStatement();
-            if ((st.executeUpdate(query)) == 1){
+            st = con.prepareStatement(query);
+            if ((st.executeUpdate()) == 1){
                 JOptionPane.showMessageDialog(null,"El registro ha sido actualizado correctamente.");
+                st.close();
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null,"El registro no ha podido ser actualizado correctamente.");
+                st.close();
                 return false;
             }
                         
@@ -323,6 +363,79 @@ public class AccesoSQL {
             return false;
         }
         
+    }
+    
+    public boolean insertLista(ArrayList<Producto> lista, String auto) {
+        try {
+            con.setAutoCommit(false);
+            String query =
+                    "insert into Linea(idFactura,idProducto,idPromocion,cantidad,importeLinea)"
+                    +" values(?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(query);
+            int i = 0;
+            for (Producto p : lista) {
+                st.setString(1, auto);
+                st.setString(2, p.getIdProducto());
+                st.setString(3, "0000001");
+                st.setString(4, String.valueOf(p.getCount()));
+                st.setString(5, p.getPrecioTotalAcumulado().toEngineeringString());
+                st.addBatch();
+            }
+            int[] contador = st.executeBatch();
+            if (comprobarContador(contador)){
+                con.commit();
+                System.out.println("Lineas generadas correctamente.");
+                st.close();
+                return true;
+            }
+            System.err.println("Error al crear las lineas de factura!");
+            st.close();
+            return false;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"El registro no ha podido ser actualizado correctamente.");
+            return false;
+        }
+    }
+    
+    public boolean comprobarContador(int[] contador){
+        for (int i=0;i<contador.length;i++){
+            if (contador[i] >= 0) {
+                System.out.println("OK");
+            } else if (contador[i] == Statement.SUCCESS_NO_INFO){
+                System.out.println("OK...");
+            } else if (contador[i] == Statement.EXECUTE_FAILED){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public ArrayList<Linea> facturaFormateada(String idFact) throws SQLException{
+        ArrayList<Linea> lineas = new ArrayList<>();
+        String query = "select Producto.modelo, Linea.cantidad, Linea.idPromocion,"
+            +" Linea.importeLinea from Linea inner join Producto on "
+            +"Linea.idProducto=Producto.idProducto where Linea.idFactura like"
+            +" '"+idFact+"'";
+        PreparedStatement st = con.prepareStatement(query);
+        ResultSet rs = st.executeQuery();
+        while (rs.next()){
+            Linea linea = new Linea();
+            BigDecimal n = new BigDecimal(rs.getDouble(4)).setScale(2, RoundingMode.HALF_UP);
+            linea.setModelo(rs.getString(1));
+            linea.setCantidad(rs.getInt(2));
+            linea.setIdPromocion(rs.getString(3));
+            linea.setImporteLinea(n);
+            lineas.add(linea);
+        }
+        rs.close();
+        st.close();
+        return lineas;
+    }
+    
+    public String getAutonum(){
+        String auto = String.format("%08d", autonum);
+        return auto;
     }
     
     public void cerrar() {

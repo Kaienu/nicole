@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -116,6 +117,7 @@ public class Inter_Empleados extends javax.swing.JFrame {
             }
         });
 
+        jButtonNuevo.setBackground(new java.awt.Color(225, 225, 225));
         jButtonNuevo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonNuevo.setForeground(new java.awt.Color(219, 126, 138));
         jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anadir.png"))); // NOI18N
@@ -140,6 +142,11 @@ public class Inter_Empleados extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -169,6 +176,7 @@ public class Inter_Empleados extends javax.swing.JFrame {
 
         jTextFieldCorreo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
+        jButtonEditar.setBackground(new java.awt.Color(225, 225, 225));
         jButtonEditar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonEditar.setForeground(new java.awt.Color(219, 126, 138));
         jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lapiztiny.png"))); // NOI18N
@@ -179,6 +187,7 @@ public class Inter_Empleados extends javax.swing.JFrame {
             }
         });
 
+        jButtonAtras.setBackground(new java.awt.Color(225, 225, 225));
         jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
         jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
@@ -420,6 +429,19 @@ public class Inter_Empleados extends javax.swing.JFrame {
         new Inter_Menu_Gestion().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String idFact = model.getValueAt(i,0).toString();
+        Factura fact = new Factura();
+        try {
+            fact = (Factura) acceso.listadoID("Factura", idFact);
+        } catch (SQLException ex) {
+            System.err.println("Error al procesar la Factura.");
+        }
+        new DetalleFactura(this, true, fact,acceso);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

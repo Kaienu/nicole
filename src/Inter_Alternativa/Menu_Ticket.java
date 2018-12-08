@@ -342,7 +342,17 @@ public class Menu_Ticket extends javax.swing.JFrame {
             case 1:
                 Factura fact = new Factura("00000001","02569854E",total);
                 System.out.println(fact);
-                acceso.insertSql(fact);
+                if (acceso.insertSql(fact)) {
+                    if (acceso.insertLista(carrito, acceso.getAutonum())){
+                        JOptionPane.showMessageDialog(null, "Factura Creada","Se ha generado la factura nº "+acceso.getAutonum(),JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        System.err.println("Linea-01");
+                        break;
+                    }
+                } else {
+                    System.err.println("Linea-02");
+                    break;
+                }
                 this.dispose();
                 new Menu_Ticket().setVisible(true);
                 break;
