@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -154,6 +155,11 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -318,6 +324,19 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         acceso.UpdateSql(query);
         
     }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String idFact = model.getValueAt(i,0).toString();
+        Factura fact = new Factura();
+        try {
+            fact = (Factura) acceso.listadoID("Factura", idFact);
+        } catch (SQLException ex) {
+            System.err.println("Error al procesar la Factura.");
+        }
+        new DetalleFactura(this, true, fact,acceso);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

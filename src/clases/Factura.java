@@ -24,7 +24,7 @@ public class Factura {
         this.setImporte(importe);
     }
 
-    Factura() {
+    public Factura() {
     }
     
     public void setIdFactura(String idFactura) {

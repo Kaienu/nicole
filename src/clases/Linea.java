@@ -1,80 +1,100 @@
 package clases;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 public class Linea {
     
-    private int idLinea,idFactura,idProducto,idPromocion,cantidad,importeLinea;
-    
-    public void Factura(int idLinea, int idFactura, int idProducto, int idPromocion, int cantidad, int importeLinea){
-        this.setIdFactura(idFactura);
+    private int cantidad;
+    private String idLinea,idFactura,idProducto,idPromocion,modelo;
+    private BigDecimal importeLinea;
+
+    public Linea() {
     }
 
-    public int getIdLinea() {
-        return idLinea;
-    }
-
-    public void setIdLinea(int idLinea) {
-        this.idLinea = idLinea;
-    }
-
-    public int getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(int idFactura) {
+    public Linea(int cantidad, String idFactura, String idProducto, String idPromocion, BigDecimal importeLinea, String modelo) {
+        this.cantidad = cantidad;
         this.idFactura = idFactura;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
+        this.modelo = modelo;
         this.idProducto = idProducto;
-    }
-
-    public int getIdPromocion() {
-        return idPromocion;
-    }
-
-    public void setIdPromocion(int idPromocion) {
         this.idPromocion = idPromocion;
+        this.importeLinea = importeLinea;
     }
 
     public int getCantidad() {
         return cantidad;
     }
 
+    public String getIdFactura() {
+        return idFactura;
+    }
+
+    public String getIdLinea() {
+        return idLinea;
+    }
+
+    public String getIdProducto() {
+        return idProducto;
+    }
+
+    public String getIdPromocion() {
+        return idPromocion;
+    }
+
+    public BigDecimal getImporteLinea() {
+        return importeLinea;
+    }
+
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
-    public int getImporteLinea() {
-        return importeLinea;
+    public void setIdFactura(String idFactura) {
+        this.idFactura = idFactura;
     }
 
-    public void setImporteLinea(int importeLinea) {
+    public void setIdLinea(String idLinea) {
+        this.idLinea = idLinea;
+    }
+
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public void setIdPromocion(String idPromocion) {
+        this.idPromocion = idPromocion;
+    }
+
+    public void setImporteLinea(BigDecimal importeLinea) {
         this.importeLinea = importeLinea;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
     
     @Override
     public boolean equals(Object obj) {
 	if (obj instanceof Linea) {
-            if (((Linea) obj).getIdFactura() == this.getIdFactura()) {
-                return ((Linea) obj).getIdLinea() == this.getIdLinea();
-            } else return false;
+            return this.getIdLinea().equals(((Linea)obj).getIdLinea());
         } else return false;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + this.idLinea;
-        hash = 43 * hash + this.idFactura;
-        hash = 43 * hash + this.idProducto;
-        hash = 43 * hash + this.idPromocion;
-        hash = 43 * hash + this.cantidad;
-        hash = 43 * hash + this.importeLinea;
+        int hash = 7;
+        hash = 41 * hash + this.cantidad;
+        hash = 41 * hash + Objects.hashCode(this.idLinea);
+        hash = 41 * hash + Objects.hashCode(this.idFactura);
+        hash = 41 * hash + Objects.hashCode(this.idProducto);
+        hash = 41 * hash + Objects.hashCode(this.idPromocion);
+        hash = 41 * hash + Objects.hashCode(this.modelo);
+        hash = 41 * hash + Objects.hashCode(this.importeLinea);
         return hash;
     }
-    
+
 }
