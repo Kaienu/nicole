@@ -2,14 +2,14 @@ package clases;
 
 public class Cliente{
     
-    private String nombre,apellidos,correo;
-    private int telefono,idCliente;
+    private String nombre,apellidos,correo,idCliente;
+    private int telefono;
     
     public Cliente(){
         
     }
     
-    public Cliente(String nombre, String apellidos, String correo, int telefono, int idCliente) {
+    public Cliente(String nombre, String apellidos, String correo, int telefono, String idCliente) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -24,11 +24,11 @@ public class Cliente{
         this.telefono = telefono;
     }
     
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
     
-    public int getIdCliente(){
+    public String getIdCliente(){
         return this.idCliente;
     }
     
@@ -76,7 +76,7 @@ public class Cliente{
     @Override
     public boolean equals(Object obj) {
 	if (obj instanceof Cliente) {
-            return (((Cliente) obj) .idCliente) == this.idCliente;
+            return this.idCliente.equals(((Cliente)obj).idCliente);
         } else return false;
     }
     

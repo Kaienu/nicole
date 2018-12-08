@@ -7,11 +7,10 @@ public class Producto {
     
     private BigDecimal precioUnitario;
     private BigDecimal precioTotalAcumulado = new BigDecimal(0);
-    private int idProducto;
     private int count = 1;
-    private String marca,modelo;
+    private String marca,modelo,idProducto;
 
-    public Producto(int idProducto, BigDecimal precioUnitario, String marca, String modelo) {
+    public Producto(String idProducto, BigDecimal precioUnitario, String marca, String modelo) {
         this.idProducto = idProducto;
         this.precioUnitario = precioUnitario;
         this.marca = marca;
@@ -28,7 +27,7 @@ public class Producto {
         
     }
 
-    public int getIdProducto() {
+    public String getIdProducto() {
         return idProducto;
     }
 
@@ -44,7 +43,7 @@ public class Producto {
         return precioUnitario;
     }
 
-    public void setIdProducto(int idProducto) {
+    public void setIdProducto(String idProducto) {
         this.idProducto = idProducto;
     }
 
@@ -89,23 +88,25 @@ public class Producto {
     
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Producto) return (this.getIdProducto() == ((Producto) obj).idProducto);
+        if (obj instanceof Producto) return this.getIdProducto().equals(((Producto)obj).getIdProducto());
         else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.precioUnitario);
+        hash = 89 * hash + Objects.hashCode(this.precioTotalAcumulado);
+        hash = 89 * hash + this.count;
+        hash = 89 * hash + Objects.hashCode(this.marca);
+        hash = 89 * hash + Objects.hashCode(this.modelo);
+        hash = 89 * hash + Objects.hashCode(this.idProducto);
+        return hash;
     }
 
     @Override
     public String toString() {
         return modelo;
     }
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.idProducto;
-        hash = 37 * hash + Objects.hashCode(this.precioUnitario);
-        hash = 37 * hash + Objects.hashCode(this.marca);
-        hash = 37 * hash + Objects.hashCode(this.modelo);
-        return hash;
-    }
-    
+   
 }

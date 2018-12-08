@@ -32,8 +32,8 @@ public class Inter_Cliente extends javax.swing.JFrame {
             MostrarSQL("Cliente","",false);
             
         } catch (SQLException e){
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error 02");
+            System.out.println(e.getMessage());
         }
         
     }
@@ -312,15 +312,13 @@ public class Inter_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseEntered
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        try {
-            int i = jTable1.getSelectedRow();
-            TableModel model = jTable1.getModel();
-            String id = model.getValueAt(i,0).toString();
-            new Inter_Cliente_edit(id).setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(Inter_Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String id = model.getValueAt(i,0).toString();
+        new Inter_Cliente_edit(id).setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed

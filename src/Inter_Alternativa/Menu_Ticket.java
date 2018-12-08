@@ -6,6 +6,7 @@
 package Inter_Alternativa;
 
 import clases.AccesoSQL;
+import clases.Factura;
 import clases.MainHandler;
 import clases.Producto;
 import java.awt.Color;
@@ -322,8 +323,8 @@ public class Menu_Ticket extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
-        new Menu().setVisible(true);
         this.dispose();
+        new Menu().setVisible(true);
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     private void botonEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarProductoActionPerformed
@@ -339,6 +340,10 @@ public class Menu_Ticket extends javax.swing.JFrame {
                 new Inter_Ticket_Generado().setVisible(true);
                 break;
             case 1:
+                Factura fact = new Factura("00000001","02569854E",total);
+                System.out.println(fact);
+                acceso.insertSql(fact);
+                this.dispose();
                 new Menu_Ticket().setVisible(true);
                 break;
             case 2:

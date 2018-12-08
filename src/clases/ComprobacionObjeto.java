@@ -14,5 +14,9 @@ public class ComprobacionObjeto{
     public static boolean Comprobacion(Empleado empleado){
         return !(empleado.getNombre().isEmpty() || empleado.getApellidos().isEmpty());
     }
+    
+    public static boolean Comprobacion(Factura factura){
+        return !(factura.getImporte().equals(null) || factura.getDniEmpleado().isEmpty());
+    }
 
 }

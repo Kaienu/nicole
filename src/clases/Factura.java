@@ -1,35 +1,45 @@
 package clases;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
 
 public class Factura {
     
-    private String dniEmpleado;
-    private int idCliente,idfactura,importe;
+    private String dniEmpleado,idCliente,idfactura;
+    private BigDecimal importe;
     private Date fecha;
-    
-    public void Factura(int idFactura, int idCliente, String dni, Date fecha, int importe){
+
+    public Factura(String idFactura, String idCliente, String dni, Date fecha, BigDecimal importe){
         this.setIdFactura(idFactura);
         this.setIdCliente(idCliente);
-        this.setDni(dniEmpleado);
+        this.setDni(dni);
         this.setFecha(fecha);
         this.setImporte(importe);
     }
     
-    public void setIdFactura(int idFactura) {
+    public Factura(String idCliente, String dni, BigDecimal importe){
+        this.setIdCliente(idCliente);
+        this.setDni(dni);
+        this.setImporte(importe);
+    }
+
+    Factura() {
+    }
+    
+    public void setIdFactura(String idFactura) {
 	this.idfactura = idFactura;
     }
     
-    public int getIdFactura(){
+    public String getIdFactura(){
         return this.idfactura;
     }
     
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
 	this.idCliente = idCliente;
     }
     
-     public int getIdCliente(){
+     public String getIdCliente(){
         return this.idCliente;
     }
     
@@ -41,7 +51,7 @@ public class Factura {
         return this.dniEmpleado;
     }
     
-    public void setImporte(int importe) {
+    public void setImporte(BigDecimal importe) {
 	this.importe = importe;
     }
     
@@ -53,26 +63,36 @@ public class Factura {
 	this.fecha = fecha;
     }
     
-    public int getImporte(){
+    public BigDecimal getImporte(){
         return this.importe;
+    }
+    
+    @Override
+    public String toString() {
+        return "Factura nº"+idfactura+", Empleado:"+dniEmpleado+", Cliente:"+
+                idCliente+", importe:"+importe.toEngineeringString()+"€.";
     }
     
     @Override
     public boolean equals(Object obj) {
 	if (obj instanceof Factura) {
-            return ((Factura) obj).getIdFactura() == this.getIdFactura();
+            return this.getIdFactura().equals(((Factura)obj).idfactura);
         } else return false;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.dniEmpleado);
-        hash = 53 * hash + this.idCliente;
-        hash = 53 * hash + this.idfactura;
-        hash = 53 * hash + this.importe;
-        hash = 53 * hash + Objects.hashCode(this.fecha);
+        hash = 67 * hash + Objects.hashCode(this.dniEmpleado);
+        hash = 67 * hash + Objects.hashCode(this.idCliente);
+        hash = 67 * hash + Objects.hashCode(this.idfactura);
+        hash = 67 * hash + Objects.hashCode(this.importe);
+        hash = 67 * hash + Objects.hashCode(this.fecha);
         return hash;
     }
+
+    
+
+   
     
 }

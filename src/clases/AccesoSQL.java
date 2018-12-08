@@ -73,7 +73,7 @@ public class AccesoSQL {
             rs=preparedStatement.executeQuery();
                 while (rs.next()) {
                     Cliente cliente = new Cliente();
-                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setIdCliente(rs.getString(1));
                     cliente.setNombre(rs.getString(2));
                     cliente.setApellidos(rs.getString(3));
                     cliente.setCorreo(rs.getString(4));
@@ -105,7 +105,41 @@ public class AccesoSQL {
                 
 //-------------------------------FACTURA---------------------------------------//                
                 
-            case "Factura": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Factura": 
+                preparedStatement = con.prepareStatement("select * from "+tabla+
+                " where idFactura LIKE '%"+filtro+"%' OR idCliente LIKE '%"+
+                filtro+"%' OR dniEmpleado LIKE '%"+filtro+"%' OR fecha LIKE '%"+
+                filtro+"%'");
+                rs=preparedStatement.executeQuery();
+                while (rs.next()){
+                    BigDecimal facTotal = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
+                    Factura fact = new Factura();
+                    fact.setIdFactura(rs.getString(1));
+                    fact.setIdCliente(rs.getString(2));
+                    fact.setDni(rs.getString(3));
+                    fact.setImporte(facTotal);
+                    fact.setFecha(rs.getDate(4));
+                    lista.add(fact);
+                }
+                return lista;
+                
+//-------------------------------FACTURA X IDCLIENTE---------------------------//                
+                
+            case "FacturaCliente": 
+                preparedStatement = con.prepareStatement("select * from Factura"
+                    + " where idCliente LIKE '"+filtro+"'");
+                rs=preparedStatement.executeQuery();
+                while (rs.next()){
+                    BigDecimal facTotal = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
+                    Factura fact = new Factura();
+                    fact.setIdFactura(rs.getString(1));
+                    fact.setIdCliente(rs.getString(2));
+                    fact.setDni(rs.getString(3));
+                    fact.setImporte(facTotal);
+                    fact.setFecha(rs.getDate(4));
+                    lista.add(fact);
+                }
+                return lista;
             
 //-------------------------------PRODUCTO--------------------------------------//            
             
@@ -119,7 +153,7 @@ public class AccesoSQL {
                     //BigDecimal n = new BigDecimal(rs.getDouble(4)).round(new MathContext(4, RoundingMode.HALF_UP));
                     BigDecimal n = new BigDecimal(rs.getDouble(4)).setScale(2, RoundingMode.HALF_UP);
                     Producto producto = new Producto();
-                    producto.setIdProducto(rs.getInt(1));
+                    producto.setIdProducto(rs.getString(1));
                     producto.setMarca(rs.getString(2));
                     producto.setModelo(rs.getString(3));
                     producto.setPrecioUnitario(n);
@@ -161,7 +195,7 @@ public class AccesoSQL {
                 rs=preparedStatement.executeQuery();
                 Cliente cliente = new Cliente();
                 while (rs.next()) {
-                    cliente.setIdCliente(rs.getInt(1));
+                    cliente.setIdCliente(rs.getString(1));
                     cliente.setNombre(rs.getString(2));
                     cliente.setApellidos(rs.getString(3));
                     cliente.setCorreo(rs.getString(4));
@@ -224,7 +258,10 @@ public class AccesoSQL {
                     empleado.getCorreo()+"')";
         }else if (obj instanceof Factura){
             Factura factura = (Factura) obj;
-            query = "";
+            query = 
+            "insert into Factura(idCliente,dniEmpleado,importe) values('"+
+                    String.valueOf(factura.getIdCliente())+"','"+factura.getDniEmpleado()+"','"+
+                    factura.getImporte().toEngineeringString()+"')";
         }else if (obj instanceof Producto){
             Producto prod = (Producto) obj;
             query = 
@@ -258,6 +295,7 @@ public class AccesoSQL {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Ha habido un error!");
+            System.out.println(ex.getMessage());
             return false;
         }
     }

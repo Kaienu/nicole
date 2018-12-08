@@ -7,6 +7,10 @@ package Inter_Alternativa;
 
 import clases.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,30 +20,52 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
 
     private String id;
     AccesoSQL acceso;
-        
+    Cliente cliente;
     
     
     /**
      * Creates new form Inter_Cliente_edit
      * @param id
      */
-    public Inter_Cliente_edit(String id) throws SQLException {
+    public Inter_Cliente_edit(String id) {
         initComponents();
         this.id = id;
         acceso = new AccesoSQL();
-        //Cliente cliente = acceso.listadoIndividual(id).get(0);
-        Cliente cliente = (Cliente) acceso.listadoID("Cliente",id);
+        try {
+            cliente = (Cliente) acceso.listadoID("Cliente",id);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
         jTextField_nombre.setText(cliente.getNombre());
         jTextField_apellidos.setText(cliente.getApellidos());
         jTextField_correo.setText(cliente.getCorreo());
         jTextField_telefono.setText(String.valueOf(cliente.getTelefono()));
         jLabel1.setText("Cliente ID "+id);
-        acceso.cerrar();
+        try {
+            MostrarSQL("FacturaCliente",cliente.getIdCliente());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
         this.campoFecha.setText("Cliente/a desde: ");
     }
 
     private Inter_Cliente_edit() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void MostrarSQL(String tabla,String filtro) throws SQLException{
+
+        ArrayList<Object> lista = acceso.listado(tabla,filtro);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[3];
+        for(int i = 0; i < lista.size();i++){
+            Factura fact = (Factura) lista.get(i);
+            row[0] = fact.getIdFactura();
+            row[1] = fact.getFecha().toString();
+            row[2] = fact.getImporte().toEngineeringString();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -278,6 +304,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
     }//GEN-LAST:event_botonTicketActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        acceso.cerrar();
         new Inter_Cliente().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
@@ -288,9 +315,8 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                 "',`correo`='"+jTextField_correo.getText()+
                 "',`telefono`="+jTextField_telefono.getText()+
                 " WHERE `idCliente` = "+this.id;
-        acceso = new AccesoSQL();
         acceso.UpdateSql(query);
-        acceso.cerrar();
+        
     }//GEN-LAST:event_botonModificarActionPerformed
 
     /**

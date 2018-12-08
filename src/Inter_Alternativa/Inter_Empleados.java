@@ -9,7 +9,10 @@ import clases.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -38,12 +41,28 @@ public class Inter_Empleados extends javax.swing.JFrame {
             Empleado empleado = (Empleado) it.next();
             jComboBox1.addItem(empleado);
         }
-        jTextFieldDni.disable();
-        jTextFieldApellidos.disable();
-        jTextFieldCorreo.disable();
-        jTextFieldNombre.disable();
-        jTextFieldTelefono.disable();
+        jTextFieldDni.setEnabled(false);
+        jTextFieldApellidos.setEnabled(false);
+        jTextFieldCorreo.setEnabled(false);
+        jTextFieldNombre.setEnabled(false);
+        jTextFieldTelefono.setEnabled(false);
 
+    }
+    
+    public void MostrarSQL(String tabla,String filtro) throws SQLException{
+
+        ArrayList<Object> lista = acceso.listado(tabla,filtro);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[4];
+        for(int i = 0; i < lista.size();i++){
+            Factura fact = (Factura) lista.get(i);
+            row[0] = fact.getIdFactura();
+            row[1] = fact.getImporte().toEngineeringString();
+            row[2] = fact.getFecha().toString();
+            row[3] = fact.getIdCliente();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -281,6 +300,11 @@ public class Inter_Empleados extends javax.swing.JFrame {
             jTextFieldApellidos.setText(emp.getApellidos());
             jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
             jTextFieldCorreo.setText(emp.getCorreo());
+            try {
+                MostrarSQL("Factura",emp.getDni());
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -304,11 +328,11 @@ public class Inter_Empleados extends javax.swing.JFrame {
             jTextFieldApellidos.setText("");
             jTextFieldTelefono.setText("");
             jTextFieldCorreo.setText("");
-            jTextFieldDni.enable();
-            jTextFieldApellidos.enable();
-            jTextFieldCorreo.enable();
-            jTextFieldNombre.enable();
-            jTextFieldTelefono.enable();
+            jTextFieldDni.setEnabled(true);
+            jTextFieldApellidos.setEnabled(true);
+            jTextFieldCorreo.setEnabled(true);
+            jTextFieldNombre.setEnabled(true);
+            jTextFieldTelefono.setEnabled(true);
             jComboBox1.setVisible(false);
             jButtonNuevo.setText("Aplicar");
             jButtonEditar.setText("Cancelar");
@@ -360,10 +384,10 @@ public class Inter_Empleados extends javax.swing.JFrame {
                     Empleado emp = (Empleado) jComboBox1.getSelectedItem();
                     edit_mode = 2;
                     jComboBox1.setVisible(false);
-                    jTextFieldApellidos.enable();
-                    jTextFieldCorreo.enable();
-                    jTextFieldNombre.enable();
-                    jTextFieldTelefono.enable();
+                    jTextFieldApellidos.setEnabled(true);
+                    jTextFieldCorreo.setEnabled(true);
+                    jTextFieldNombre.setEnabled(true);
+                    jTextFieldTelefono.setEnabled(true);
                     jTextFieldApellidos.setText(emp.getApellidos());
                     jTextFieldCorreo.setText(emp.getCorreo());
                     jTextFieldNombre.setText(emp.getNombre());
@@ -392,6 +416,7 @@ public class Inter_Empleados extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        acceso.cerrar();
         new Inter_Menu_Gestion().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
