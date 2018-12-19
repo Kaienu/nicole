@@ -40,9 +40,11 @@ public class Inter_Producto2 extends javax.swing.JFrame {
         for(int i = 0; i < lista.size();i++){
             Producto pro = (Producto) lista.get(i);
             row[0] = pro.getIdProducto();
-            row[1] = pro.getMarca();
-            row[2] = pro.getModelo();
-            row[3] = pro.getPrecioUnitario().toEngineeringString()+"€";
+            row[1] = pro.getTipo();
+            row[2] = pro.getMarca();
+            row[3] = pro.getModelo();
+            row[4] = pro.getPrecioUnitario().toEngineeringString()+"€";
+            row[5] = pro.getObservaciones();
             model.addRow(row);
         }
     }

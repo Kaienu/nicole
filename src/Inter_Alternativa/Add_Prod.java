@@ -38,14 +38,18 @@ public class Add_Prod extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextModelo = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextMarca = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextPrecio = new javax.swing.JTextField();
+        campoTipo = new javax.swing.JTextField();
+        etqTipo = new javax.swing.JLabel();
+        etqMarca = new javax.swing.JLabel();
+        campoMarca = new javax.swing.JTextField();
+        etqPrecio = new javax.swing.JLabel();
+        campoPrecio = new javax.swing.JTextField();
         jButtonNuevo = new javax.swing.JButton();
         jButtonNuevo1 = new javax.swing.JButton();
+        etqModelo = new javax.swing.JLabel();
+        campoModelo = new javax.swing.JTextField();
+        campoObservaciones = new javax.swing.JTextField();
+        etqObservaciones = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -56,33 +60,33 @@ public class Add_Prod extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("ID Producto: ");
 
-        jTextModelo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextModelo.addActionListener(new java.awt.event.ActionListener() {
+        campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextModeloActionPerformed(evt);
+                campoTipoActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel2.setText("Modelo");
+        etqTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqTipo.setText("Tipo");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel3.setText("Marca");
+        etqMarca.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqMarca.setText("Marca");
 
-        jTextMarca.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextMarca.addActionListener(new java.awt.event.ActionListener() {
+        campoMarca.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextMarcaActionPerformed(evt);
+                campoMarcaActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel4.setText("Precio");
+        etqPrecio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqPrecio.setText("Precio");
 
-        jTextPrecio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextPrecio.addActionListener(new java.awt.event.ActionListener() {
+        campoPrecio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextPrecioActionPerformed(evt);
+                campoPrecioActionPerformed(evt);
             }
         });
 
@@ -108,6 +112,26 @@ public class Add_Prod extends javax.swing.JDialog {
             }
         });
 
+        etqModelo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqModelo.setText("Modelo");
+
+        campoModelo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoModeloActionPerformed(evt);
+            }
+        });
+
+        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoObservaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoObservacionesActionPerformed(evt);
+            }
+        });
+
+        etqObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqObservaciones.setText("Observaciones");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,47 +139,57 @@ public class Add_Prod extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(204, 449, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextModelo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextMarca, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap())))
+                    .addComponent(campoPrecio)
+                    .addComponent(campoTipo)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(etqTipo)
+                            .addComponent(etqMarca)
+                            .addComponent(etqModelo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoMarca)
+                    .addComponent(campoModelo)
+                    .addComponent(campoObservaciones)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etqPrecio)
+                            .addComponent(etqObservaciones))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel2))
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(etqTipo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(etqModelo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(etqMarca)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(etqPrecio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(etqObservaciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -180,21 +214,21 @@ public class Add_Prod extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextModeloActionPerformed
+    private void campoTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextModeloActionPerformed
+    }//GEN-LAST:event_campoTipoActionPerformed
 
-    private void jTextMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMarcaActionPerformed
+    private void campoMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextMarcaActionPerformed
+    }//GEN-LAST:event_campoMarcaActionPerformed
 
-    private void jTextPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPrecioActionPerformed
+    private void campoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextPrecioActionPerformed
+    }//GEN-LAST:event_campoPrecioActionPerformed
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
-        BigDecimal precio = new BigDecimal(Double.parseDouble(jTextPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
-        Producto prod = new Producto(precio,jTextMarca.getText(),jTextModelo.getText());
+        BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
+        Producto prod = new Producto(campoTipo.getText(),campoMarca.getText(),campoModelo.getText(),precio,campoObservaciones.getText());
         try {
             acceso = new AccesoSQL();
             acceso.insertSql(prod);
@@ -207,6 +241,14 @@ public class Add_Prod extends javax.swing.JDialog {
     private void jButtonNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevo1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonNuevo1ActionPerformed
+
+    private void campoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoModeloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoModeloActionPerformed
+
+    private void campoObservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoObservacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoObservacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,15 +293,19 @@ public class Add_Prod extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoMarca;
+    private javax.swing.JTextField campoModelo;
+    private javax.swing.JTextField campoObservaciones;
+    private javax.swing.JTextField campoPrecio;
+    private javax.swing.JTextField campoTipo;
+    private javax.swing.JLabel etqMarca;
+    private javax.swing.JLabel etqModelo;
+    private javax.swing.JLabel etqObservaciones;
+    private javax.swing.JLabel etqPrecio;
+    private javax.swing.JLabel etqTipo;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonNuevo1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextMarca;
-    private javax.swing.JTextField jTextModelo;
-    private javax.swing.JTextField jTextPrecio;
     // End of variables declaration//GEN-END:variables
 }

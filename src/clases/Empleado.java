@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Empleado{
@@ -61,6 +62,7 @@ public class Empleado{
     
     
     
+    
     @Override
     public String toString() {
         return this.getNombre()+" "+this.getApellidos();
@@ -78,16 +80,7 @@ public class Empleado{
         } else return false;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.dni);
-        hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.apellidos);
-        hash = 97 * hash + Objects.hashCode(this.correo);
-        hash = 97 * hash + this.telefono;
-        return hash;
-    }
+   
     
     /*
        @Override
@@ -103,5 +96,18 @@ public class Empleado{
         } else return false;
     }
     */
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.dni);
+        hash = 47 * hash + Objects.hashCode(this.nombre);
+        hash = 47 * hash + Objects.hashCode(this.apellidos);
+        hash = 47 * hash + Objects.hashCode(this.correo);
+        hash = 47 * hash + this.telefono;
+        return hash;
+    }
+
+    
 
 }

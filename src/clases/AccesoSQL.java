@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class AccesoSQL {
     
     private String sURL = "jdbc:mysql://192.168.1.39/nicole";
-    private String extURL = "jdbc:mysql://79.146.89.178/nicole";
+    private String extURL = "jdbc:mysql://2.138.128.157/nicole";
     private String usu = "pedro";
     private String pass = "oxgnub";
     private Connection con;
@@ -162,12 +162,14 @@ public class AccesoSQL {
                 rs=ps.executeQuery();
                 while (rs.next()){
                     //BigDecimal n = new BigDecimal(rs.getDouble(4)).round(new MathContext(4, RoundingMode.HALF_UP));
-                    BigDecimal n = new BigDecimal(rs.getDouble(4)).setScale(2, RoundingMode.HALF_UP);
+                    BigDecimal n = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
                     Producto producto = new Producto();
                     producto.setIdProducto(rs.getString(1));
-                    producto.setMarca(rs.getString(2));
-                    producto.setModelo(rs.getString(3));
+                    producto.setTipo(rs.getString(2));
+                    producto.setMarca(rs.getString(3));
+                    producto.setModelo(rs.getString(4));
                     producto.setPrecioUnitario(n);
+                    producto.setObservaciones(rs.getString(6));
                     lista.add(producto);
                 }
                 rs.close();

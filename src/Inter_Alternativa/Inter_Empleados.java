@@ -7,10 +7,11 @@ package Inter_Alternativa;
 
 import clases.*;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -65,6 +66,17 @@ public class Inter_Empleados extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
+    
+    /**************************************************
+    FALTA INSERTAR LA FECHA DE ALTA Y BAJA DEL EMPLEADO    
+    **************************************************/
+    
+    
+    public String fechaActual(){
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return hourdateFormat.format(date);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,7 +104,7 @@ public class Inter_Empleados extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldCorreo = new javax.swing.JTextField();
         jButtonEditar = new javax.swing.JButton();
-        jButtonAtras = new javax.swing.JButton();
+        botonBaja = new javax.swing.JButton();
 
         jTextFieldDni3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
@@ -187,14 +199,14 @@ public class Inter_Empleados extends javax.swing.JFrame {
             }
         });
 
-        jButtonAtras.setBackground(new java.awt.Color(225, 225, 225));
-        jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
-        jButtonAtras.setText("Atras");
-        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+        botonBaja.setBackground(new java.awt.Color(225, 225, 225));
+        botonBaja.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonBaja.setForeground(new java.awt.Color(219, 126, 138));
+        botonBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
+        botonBaja.setText("Atrás");
+        botonBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAtrasActionPerformed(evt);
+                botonBajaActionPerformed(evt);
             }
         });
 
@@ -203,41 +215,42 @@ public class Inter_Empleados extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldDni, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTelefono))
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldDni, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldTelefono))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldNombre)))
-                            .addComponent(jTextFieldCorreo))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(jTextFieldNombre)))
+                    .addComponent(jTextFieldCorreo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, 0, 261, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonNuevo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonAtras)))
+                        .addComponent(jComboBox1, 0, 207, Short.MAX_VALUE)
+                        .addGap(18, 314, Short.MAX_VALUE)
+                        .addComponent(botonBaja))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(290, Short.MAX_VALUE)
+                .addComponent(jButtonEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonNuevo)
+                .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,12 +275,12 @@ public class Inter_Empleados extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jButtonAtras)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(botonBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -349,11 +362,13 @@ public class Inter_Empleados extends javax.swing.JFrame {
             
         case 1: //Adición Empleado ON -----------------------------------------//
             
-            emp = new Empleado(jTextFieldNombre.getText(),
+            emp = new Empleado(
+                jTextFieldNombre.getText(),
                 jTextFieldApellidos.getText(),
                 jTextFieldCorreo.getText(),
                 Integer.parseInt(jTextFieldTelefono.getText()),
-                jTextFieldDni.getText());
+                jTextFieldDni.getText()
+                );
             
             if (acceso.insertSql(emp)){
                 edit_mode = 0;
@@ -424,11 +439,11 @@ public class Inter_Empleados extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
-    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+    private void botonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajaActionPerformed
         acceso.cerrar();
         new Inter_Menu_Gestion().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButtonAtrasActionPerformed
+    }//GEN-LAST:event_botonBajaActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int i = jTable1.getSelectedRow();
@@ -479,7 +494,7 @@ public class Inter_Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAtras;
+    private javax.swing.JButton botonBaja;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JComboBox<Object> jComboBox1;

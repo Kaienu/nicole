@@ -8,25 +8,33 @@ public class Producto {
     private BigDecimal precioUnitario;
     private BigDecimal precioTotalAcumulado = new BigDecimal(0);
     private int count = 1;
-    private String marca,modelo,idProducto;
+    private String idProducto,tipo,marca,modelo,observaciones;
 
-    public Producto(String idProducto, BigDecimal precioUnitario, String marca, String modelo) {
+    public Producto(String idProducto, String tipo, String marca, String modelo, BigDecimal precioUnitario, String observaciones) {
         this.idProducto = idProducto;
-        this.precioUnitario = precioUnitario;
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
+        this.precioUnitario = precioUnitario;
+        this.observaciones = observaciones;
     }
     
-     public Producto(BigDecimal precioUnitario, String marca, String modelo) {
-        this.precioUnitario = precioUnitario;
+     public Producto(String tipo, String marca, String modelo, BigDecimal precioUnitario, String observaciones) {
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
+        this.precioUnitario = precioUnitario;
+        this.observaciones = observaciones;
     }
     
     public Producto(){
         
     }
-
+    
+    public String getTipo(){
+        return tipo;
+    }
+    
     public String getIdProducto() {
         return idProducto;
     }
@@ -42,7 +50,14 @@ public class Producto {
     public BigDecimal getPrecioUnitario() {
         return precioUnitario;
     }
+    public String getObservaciones(){
+        return observaciones;
+    }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public void setIdProducto(String idProducto) {
         this.idProducto = idProducto;
     }
@@ -57,6 +72,10 @@ public class Producto {
 
     public void setPrecioUnitario(BigDecimal precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+    
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public int getCount() {
@@ -94,15 +113,19 @@ public class Producto {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.precioUnitario);
-        hash = 89 * hash + Objects.hashCode(this.precioTotalAcumulado);
-        hash = 89 * hash + this.count;
-        hash = 89 * hash + Objects.hashCode(this.marca);
-        hash = 89 * hash + Objects.hashCode(this.modelo);
-        hash = 89 * hash + Objects.hashCode(this.idProducto);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.precioUnitario);
+        hash = 17 * hash + Objects.hashCode(this.precioTotalAcumulado);
+        hash = 17 * hash + this.count;
+        hash = 17 * hash + Objects.hashCode(this.idProducto);
+        hash = 17 * hash + Objects.hashCode(this.tipo);
+        hash = 17 * hash + Objects.hashCode(this.marca);
+        hash = 17 * hash + Objects.hashCode(this.modelo);
+        hash = 17 * hash + Objects.hashCode(this.observaciones);
         return hash;
     }
+
+
 
     @Override
     public String toString() {
