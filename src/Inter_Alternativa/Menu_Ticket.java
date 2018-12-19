@@ -139,6 +139,8 @@ public class Menu_Ticket extends javax.swing.JFrame {
         actualizarTabla();
     }
     
+    
+    
     //FALTA RESTAR EL PRECIO DEL PRODUCTO ELIMINADO AL PRECIO TOTAL
     /*public void borrarProductoSeleccionado(){   
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -333,14 +335,27 @@ public class Menu_Ticket extends javax.swing.JFrame {
 
     private void jButtonFinVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinVentaActionPerformed
         int ticket = JOptionPane.showConfirmDialog(null, "¿Quieres imprimir ticket de venta?");
+        Factura fact = new Factura("00000001","02569854E",total);
         
-        switch (ticket){
-            
-            case 0:
-                new Inter_Ticket_Generado().setVisible(true);
+        switch (ticket){            
+            case 0:                               
+                System.out.println(fact);
+                if (acceso.insertSql(fact)) {
+                    if (acceso.insertLista(carrito, acceso.getAutonum())){
+                        JOptionPane.showMessageDialog(null, "Factura Creada","Se ha generado la factura nº "+acceso.getAutonum(),JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        System.err.println("Linea-01");
+                        break;
+                    }
+                } else {
+                    System.err.println("Linea-02");
+                    break;
+                }
+                this.dispose();
+                new Inter_Ticket_Generado(fact,carrito).setVisible(true);
+                //new Menu_Ticket().setVisible(true);
                 break;
             case 1:
-                Factura fact = new Factura("00000001","02569854E",total);
                 System.out.println(fact);
                 if (acceso.insertSql(fact)) {
                     if (acceso.insertLista(carrito, acceso.getAutonum())){
