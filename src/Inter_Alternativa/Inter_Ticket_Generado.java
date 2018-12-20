@@ -5,10 +5,12 @@
  */
 package Inter_Alternativa;
 
+import clases.Factura;
+import clases.Producto;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JFrame;
 
 /**
  *
@@ -16,13 +18,18 @@ import javax.swing.JFrame;
  */
 public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
+    static Factura fact;
+    static ArrayList<Producto> lista;
     /**
      * Creates new form Inter_Ticket_Generado
      */
-    public Inter_Ticket_Generado() {
+    public Inter_Ticket_Generado(Factura factu, ArrayList<Producto> listad) {
         initComponents();
+        lista = listad;
+        fact = factu;
         jTextArea1.setText(textoTicket());
         jTextArea1.setEditable(false);
+        
     }
     
     Menu_Ticket nuevoFrame;
@@ -33,20 +40,30 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         return hourdateFormat.format(date);
     }
     
+    public String prueba(){
+        String prueba = "";
+        for (Producto p : lista){
+            prueba.concat(p.getModelo()+"\n");
+        }
+        
+        return prueba;
+    }
+    
     public String textoTicket(){
         //VARIABLES
+        String jjj = prueba();
         String datosNegocio =
                 "Centro de  Peuquería y Estética Nicole\n"
                 + "CIF: 30263512C \n"
                 + "Dirección: Torreblascopedro Nº2, 41016 Sevilla\n"
                 + "Tlf.: 640 727 831\n"
                 + fechaActual() + "\n\n"
+                //+ "Le atendió" + empleado
                 + "Cantidad\t Artículo\t Precio\n"
-                + "=======================================\n\n"
-                + "Nº de artículos: x \n\n"
-                + "Total a pagar: x €\n"
-                + "Pago con: x €\n"
-                + "Su cambio: x €\n\n"
+                + "=======================================\n"
+                + jjj
+                + "=======================================\n"
+                + "Total a pagar: " + fact.getImporte() + " €\n"
                 + "Gracias por su visita";        
         
         return datosNegocio;
@@ -159,7 +176,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inter_Ticket_Generado().setVisible(true);
+                new Inter_Ticket_Generado(fact,lista).setVisible(true);
             }
         });
     }
