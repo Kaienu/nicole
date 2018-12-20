@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 public class Impresion {
     
-    static public void main(String[] args){
-        ArrayList<String> lista = new ArrayList<>();
+    public static void main(ArrayList<String> lista) {
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setPrintable(new TicketImpresion(lista));
         if (job.printDialog()){

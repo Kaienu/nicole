@@ -14,7 +14,7 @@ public class TicketImpresion implements Printable {
     private final String cif = "CIF: 30263512C";
     private final String direccion = "Torreblascopedro nº2, 41016 Sevilla";
     private final String tlf = "Tlf: 640 727 831";
-    private int linea = 30;
+    private int linea = 110;
     
     public String fechaActual(){
         Date date = new Date();
@@ -27,18 +27,18 @@ public class TicketImpresion implements Printable {
     }
     
     public int siguienteLinea(int linea){
-        linea = linea + 15;
-        return linea;
+        this.linea = linea + 15;
+        return this.linea;
     }
     
     @Override
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
         if (pageIndex == 0) {
-            graphics.drawString(denom, 15, linea);
-            graphics.drawString(cif, 15, siguienteLinea(linea));
-            graphics.drawString(direccion, 15, siguienteLinea(linea));
-            graphics.drawString(tlf, 15, siguienteLinea(linea));
-            graphics.drawString(fechaActual(), 15, siguienteLinea(linea));
+            graphics.drawString(denom, 15, 30);
+            graphics.drawString(cif, 15, 45);
+            graphics.drawString(direccion, 15, 60);
+            graphics.drawString(tlf, 15, 75);
+            graphics.drawString(fechaActual(), 15, 90);
             for (String s : ticket){
                 graphics.drawString(s, 15, siguienteLinea(linea));
             }

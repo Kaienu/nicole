@@ -6,6 +6,7 @@
 package Inter_Alternativa;
 
 import clases.Factura;
+import clases.Impresion;
 import clases.Producto;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
     static Factura fact;
     static ArrayList<Producto> lista;
+    static ArrayList<String> listado;
     /**
      * Creates new form Inter_Ticket_Generado
      */
@@ -27,6 +29,10 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         initComponents();
         lista = listad;
         fact = factu;
+        listado = new ArrayList<>();
+        for (Producto p : lista) {
+            listado.add(p.toString());
+        }
         jTextArea1.setText(textoTicket());
         jTextArea1.setEditable(false);
         
@@ -96,6 +102,11 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         botonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
         botonImprimir.setText("Imprimir");
         botonImprimir.setPreferredSize(new java.awt.Dimension(277, 41));
+        botonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonImprimirActionPerformed(evt);
+            }
+        });
 
         botonSalir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(219, 126, 138));
@@ -145,6 +156,10 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
+        Impresion.main(listado);
+    }//GEN-LAST:event_botonImprimirActionPerformed
 
     /**
      * @param args the command line arguments
