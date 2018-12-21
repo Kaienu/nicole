@@ -9,12 +9,11 @@ import java.util.Date;
 
 public class TicketImpresion implements Printable {
 
-    private ArrayList<String> ticket;
+    private ArrayList<Producto> ticket;
     private final String denom = "Centro de Peluquería y Estética Nicole";
     private final String cif = "CIF: 30263512C";
     private final String direccion = "Torreblascopedro nº2, 41016 Sevilla";
     private final String tlf = "Tlf: 640 727 831";
-    private int linea = 110;
     
     public String fechaActual(){
         Date date = new Date();
@@ -22,30 +21,70 @@ public class TicketImpresion implements Printable {
         return hourdateFormat.format(date);
     }
     
-    public TicketImpresion(ArrayList<String> ticket){
+    public TicketImpresion(ArrayList<Producto> ticket){
         this.ticket = ticket;
-    }
-    
-    public int siguienteLinea(int linea){
-        this.linea = linea + 15;
-        return this.linea;
     }
     
     @Override
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+        String cabeceraTabla = "CANT   ARTÍCULO                    PRECIO   IMPORTE";
+        Font titulo = new Font("Lucida Sans Typewriter", Font.BOLD, 12);
+        Font cuerpo = new Font("Lucida Sans Typewriter", Font.PLAIN, 10);
+        int linea = 130;
         if (pageIndex == 0) {
-            graphics.drawString(denom, 15, 30);
-            graphics.drawString(cif, 15, 45);
-            graphics.drawString(direccion, 15, 60);
-            graphics.drawString(tlf, 15, 75);
-            graphics.drawString(fechaActual(), 15, 90);
-            for (String s : ticket){
-                graphics.drawString(s, 15, siguienteLinea(linea));
+            graphics.setFont(titulo);
+            graphics.drawString(denom, 50, 25);
+            graphics.setFont(cuerpo);
+            graphics.drawString(cif, 50, 45);
+            graphics.drawString(direccion, 50, 60);
+            graphics.drawString(tlf, 50, 75);
+            graphics.drawString(fechaActual(), 50, 90);
+            graphics.drawString(cabeceraTabla, 50, 115);
+            for (Producto p : ticket){
+                graphics.drawString(descripcionProd(p), 50, linea);
+                linea = Integer.sum(linea, 15);
             }
             return PAGE_EXISTS;
         } else {
             return NO_SUCH_PAGE;
         }
+    }
+    
+    public String descripcionProd (Producto prod) {
+        String cantidad = String.format("%02d", prod.getCount());
+        String detalle = " ";
+        detalle = detalle + cantidad;
+        detalle = detalle + " " + prod.getModelo() + " ";
+        for (int saltos = detalle.length(); saltos<32; saltos++) {
+            detalle = detalle + " ";
+        }
+        String precio = prod.getPrecioUnitario().toEngineeringString()+"€";
+        switch (precio.length()) {
+            case 5:
+                detalle = detalle + "    ";
+                break;
+            default:
+                detalle = detalle + "   ";
+                break;
+        }
+        detalle = detalle + prod.getPrecioUnitario().toEngineeringString()+"€";
+        for (int saltos = detalle.length(); saltos<42; saltos++) {
+            detalle = detalle + " ";
+        }
+        String total = prod.getPrecioTotalAcumulado().toEngineeringString() + "€";
+        switch (total.length()) {
+            case 5:
+                detalle = detalle + "    ";
+                break;
+            case 7:
+                detalle = detalle + "  ";
+                break;
+            default:
+                detalle = detalle + "   ";
+                break;
+        }
+        detalle = detalle + total;
+        return detalle;
     }
     
 }

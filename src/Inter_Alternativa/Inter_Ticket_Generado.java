@@ -21,7 +21,6 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
     static Factura fact;
     static ArrayList<Producto> lista;
-    static ArrayList<String> listado;
     /**
      * Creates new form Inter_Ticket_Generado
      */
@@ -29,10 +28,6 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         initComponents();
         lista = listad;
         fact = factu;
-        listado = new ArrayList<>();
-        for (Producto p : lista) {
-            listado.add(p.toString());
-        }
         jTextArea1.setText(textoTicket());
         jTextArea1.setEditable(false);
         
@@ -158,7 +153,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
-        Impresion.main(listado);
+        Impresion.main(lista);
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     /**

@@ -54,6 +54,4 @@ public class MainHandler implements ActionListener {
         
     }
     
-    
-    
 }
