@@ -1,68 +1,95 @@
 package clases;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Cliente{
     
-    private String nombre,apellidos,correo,idCliente;
+    private String nombre,apellidos,correo,idCliente,observaciones;
+    private Date fechaAlta;
     private int telefono;
     
     public Cliente(){
         
     }
     
-    public Cliente(String nombre, String apellidos, String correo, int telefono, String idCliente) {
+    public Cliente(String nombre, String apellidos, String correo, int telefono, String idCliente, String observaciones, Date fechaAlta) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.telefono = telefono;
+        this.observaciones = observaciones;
+        this.fechaAlta = fechaAlta;
     }
     
-     public Cliente(String nombre, String apellidos, String correo, int telefono) {
+     public Cliente(String nombre, String apellidos, String correo, int telefono, String observaciones) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
         this.telefono = telefono;
+        this.observaciones = observaciones;
     }
-    
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-    
-    public String getIdCliente(){
-        return this.idCliente;
-    }
-    
+
     public String getNombre() {
-	return nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-	this.nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getApellidos() {
-	return apellidos;
+        return apellidos;
     }
 
     public void setApellidos(String apellidos) {
-	this.apellidos = apellidos;
+        this.apellidos = apellidos;
     }
 
     public String getCorreo() {
-	return correo;
+        return correo;
     }
 
     public void setCorreo(String correo) {
-	this.correo = correo;
+        this.correo = correo;
+    }
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public int getTelefono() {
-	return telefono;
+        return telefono;
     }
 
     public void setTelefono(int telefono) {
-	this.telefono = telefono;
+        this.telefono = telefono;
     }
+
+    public Date getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(Date fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }   
+    
+    
+    
     
     @Override
     public String toString() {
@@ -70,7 +97,9 @@ public class Cliente{
                 this.getNombre() + " " +
                 this.getApellidos() + " || " + 
                 this.getCorreo() +" || " +
-                this.getTelefono();
+                this.getTelefono() + " || " + 
+                this.getObservaciones() + " || " +
+                this.getFechaAlta();
     }
     
     @Override
@@ -80,6 +109,11 @@ public class Cliente{
         } else return false;
     }
     
+    public final String fechaActual(){
+        //Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return hourdateFormat.format(fechaAlta);
+    }
      /*
        @Override
     public boolean equals(Object obj) {

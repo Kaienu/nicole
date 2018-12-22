@@ -7,9 +7,10 @@ package Inter_Alternativa;
 
 import clases.*;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -22,6 +23,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
     private String id;
     AccesoSQL acceso;
     Cliente cliente;
+    Inter_Cliente_alt interCli;
     
     
     /**
@@ -41,13 +43,14 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         jTextField_apellidos.setText(cliente.getApellidos());
         jTextField_correo.setText(cliente.getCorreo());
         jTextField_telefono.setText(String.valueOf(cliente.getTelefono()));
+        campoObservaciones.setText(cliente.getObservaciones());
         jLabel1.setText("Cliente ID "+id);
         try {
             MostrarSQL("FacturaCliente",cliente.getIdCliente());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        this.campoFecha.setText("Cliente/a desde: ");
+        this.campoFecha.setText("Cliente/a desde: " + fechaActual());
     }
 
     private Inter_Cliente_edit() {
@@ -67,6 +70,11 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
             row[2] = fact.getImporte().toEngineeringString();
             model.addRow(row);
         }
+    }
+    public String fechaActual(){
+        Date date = new Date(cliente.getFechaAlta().getTime());
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return hourdateFormat.format(date);
     }
 
     /**
@@ -96,6 +104,9 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
         botonTicket = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        campoObservaciones = new javax.swing.JTextArea();
 
         jTextField_Busqueda1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
@@ -209,6 +220,13 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setText("Observaciones:");
+
+        campoObservaciones.setColumns(20);
+        campoObservaciones.setRows(5);
+        jScrollPane2.setViewportView(campoObservaciones);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,6 +234,7 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoFecha)
@@ -236,7 +255,8 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                                 .addGap(53, 53, 53)
                                 .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
-                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -264,7 +284,11 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,8 +309,8 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -316,11 +340,10 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        String query = "UPDATE `Cliente` SET `nombre`='"+jTextField_nombre.getText()+
-                "',`apellidos`='"+jTextField_apellidos.getText()+
-                "',`correo`='"+jTextField_correo.getText()+
-                "',`telefono`="+jTextField_telefono.getText()+
-                " WHERE `idCliente` = "+this.id;
+        String query = 
+    "UPDATE `Cliente` SET `nombre`='"+jTextField_nombre.getText()+"',`apellidos`='"+jTextField_apellidos.getText()+
+        "',`correo`='"+jTextField_correo.getText()+"',`telefono`="+jTextField_telefono.getText()+
+        ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idCliente` = "+this.id;
         acceso.UpdateSql(query);
         
     }//GEN-LAST:event_botonModificarActionPerformed
@@ -379,12 +402,15 @@ public class Inter_Cliente_edit extends javax.swing.JFrame {
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonTicket;
     private javax.swing.JLabel campoFecha;
+    private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField_Busqueda1;
     private javax.swing.JTextField jTextField_Busqueda6;

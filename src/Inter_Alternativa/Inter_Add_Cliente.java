@@ -1,6 +1,7 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +13,7 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
     AccesoSQL acceso;
     
     public Inter_Add_Cliente() {
+        
         initComponents();
     }
     
@@ -265,11 +267,13 @@ public class Inter_Add_Cliente extends javax.swing.JFrame {
             this.dispose();
         }
         acceso.cerrar();*/
+        
         try{
         Cliente cliente = new Cliente(jTextField_nombre.getText(),
                 jTextField_apellidos.getText(),
                 jTextField_correo.getText(),
-                Integer.parseInt(jTextField_telefono.getText()));
+                Integer.parseInt(jTextField_telefono.getText()),
+                jTextField_observ.getText());
         acceso = new AccesoSQL();
         acceso.insertSql(cliente);
         }catch (NumberFormatException e){

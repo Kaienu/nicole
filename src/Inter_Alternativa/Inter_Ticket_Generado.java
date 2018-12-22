@@ -173,6 +173,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
+        new Menu_Ticket().setVisible(true);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed

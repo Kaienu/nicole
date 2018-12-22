@@ -36,15 +36,14 @@ public class Inter_Producto2 extends javax.swing.JFrame {
         acceso = new AccesoSQL();
         ArrayList<Object> lista = acceso.listado(tabla,filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[5];
         for(int i = 0; i < lista.size();i++){
             Producto pro = (Producto) lista.get(i);
             row[0] = pro.getIdProducto();
             row[1] = pro.getTipo();
             row[2] = pro.getMarca();
             row[3] = pro.getModelo();
-            row[4] = pro.getPrecioUnitario().toEngineeringString()+"€";
-            row[5] = pro.getObservaciones();
+            row[4] = pro.getPrecioUnitario()+"\u20ac";
             model.addRow(row);
         }
     }
@@ -99,17 +98,17 @@ public class Inter_Producto2 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Marca", "Modelo", "Precio"
+                "Id", "Tipo", "Marca", "Modelo", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -78,6 +78,7 @@ public class AccesoSQL {
                     cliente.setApellidos(rs.getString(3));
                     cliente.setCorreo(rs.getString(4));
                     cliente.setTelefono(rs.getInt(5));
+                    cliente.setObservaciones(rs.getString(6));
                     //System.out.println(cliente); // Comando de prueba en consola
                     lista.add(cliente);
                 }
@@ -216,6 +217,8 @@ public class AccesoSQL {
                     cliente.setApellidos(rs.getString(3));
                     cliente.setCorreo(rs.getString(4));
                     cliente.setTelefono(rs.getInt(5));
+                    cliente.setObservaciones(rs.getString(6));
+                    cliente.setFechaAlta(rs.getDate(7));
                     //System.out.println(cliente); // Comando de prueba en consola
                 }
                 rs.close();
@@ -294,9 +297,9 @@ public class AccesoSQL {
         if (obj instanceof Cliente && ComprobacionObjeto.Comprobacion((Cliente) obj)){
             Cliente cliente = (Cliente) obj;
             query =
-            "insert into Cliente(nombre,apellidos,correo,telefono) values('"+
+            "insert into Cliente(nombre,apellidos,correo,telefono,observaciones) values('"+
                     cliente.getNombre()+"','"+cliente.getApellidos()+"','"+
-                    cliente.getCorreo()+"',"+cliente.getTelefono()+")";
+                    cliente.getCorreo()+"',"+cliente.getTelefono()+",'"+cliente.getObservaciones()+"')";
         }else if (obj instanceof Empleado && ComprobacionObjeto.Comprobacion((Empleado) obj)){
             Empleado empleado = (Empleado) obj;
             query =
@@ -313,9 +316,10 @@ public class AccesoSQL {
         }else if (obj instanceof Producto){
             Producto prod = (Producto) obj;
             query = 
-            "insert into Producto(marca,modelo,precioUnitario) values('"+
-                    prod.getMarca()+"','"+prod.getModelo()+"','"+
-                    prod.getPrecioUnitario().toEngineeringString()+"')";
+            "insert into Producto(tipo,marca,modelo,precioUnitario,observaciones) values('"+
+                    prod.getTipo()+"','"+prod.getMarca()+"','"+
+                    prod.getModelo()+"','"+prod.getPrecioUnitario().toEngineeringString()+"')"+
+                    prod.getObservaciones();
         }else if (obj instanceof Promocion){
             Promocion prom = (Promocion) obj;
             query ="";

@@ -30,11 +30,15 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
     }
     
     public String fechaActual(){
-        Date date = new Date();
-        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return hourdateFormat.format(date);
+        String cliente = "cliente";
+        String fechaAlta = "SELECT DATE_FORMAT(CURDATE(), \"%d/%m/%Y\")";
+        try {
+            acceso.listado(cliente, fechaAlta);
+        } catch (SQLException ex) {
+            Logger.getLogger(Inter_Cliente_alt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fechaAlta;
     }
-
     /*public Connection getConnection(){
         Connection con;
         try {
@@ -352,7 +356,9 @@ public class Inter_Cliente_alt extends javax.swing.JFrame {
         acceso.UpdateSql(query);
         Refrescar();
         acceso.cerrar();
-        String fecha = fechaActual();
+        fechaActual();
+        
+        
         
     }//GEN-LAST:event_campoInsertarActionPerformed
 
