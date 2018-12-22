@@ -8,6 +8,7 @@ package Inter_Alternativa;
 import clases.Factura;
 import clases.Impresion;
 import clases.Producto;
+import clases.TicketImpresion;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,18 +42,35 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         return hourdateFormat.format(date);
     }
     
-    public String prueba(){
-        String prueba = "";
+    public String articulo(){
+        String articulo = "";
         for (Producto p : lista){
-            prueba.concat(p.getModelo()+"\n");
+            articulo.concat(p.getModelo()+"\n");
+        }        
+        return articulo;
+    }
+    
+    public String cantidad() {
+        String cantidad = "";
+        for (Producto p : lista) {
+            cantidad.concat(p.getCount()+"\n");
         }
-        
-        return prueba;
+        return cantidad;
+    }
+    
+    public String precio() {
+        String precio = "";
+        for (Producto p : lista) {
+            precio.concat(p.getPrecioUnitario()+"\n");
+        }
+        return precio;   
     }
     
     public String textoTicket(){
         //VARIABLES
-        String jjj = prueba();
+        String articulos = articulo();
+        String cantidad = cantidad();
+        String precio = precio();
         String datosNegocio =
                 "Centro de  Peuquería y Estética Nicole\n"
                 + "CIF: 30263512C \n"
@@ -62,13 +80,18 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
                 //+ "Le atendió" + empleado
                 + "Cantidad\t Artículo\t Precio\n"
                 + "=======================================\n"
-                + jjj
+                + cantidad + articulos + precio
                 + "=======================================\n"
                 + "Total a pagar: " + fact.getImporte() + " €\n"
                 + "Gracias por su visita";        
         
         return datosNegocio;
     }
+    
+    /*public int ticket(){
+        return tick.print(graphics, pageFormat, WIDTH)
+    }*/
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -153,7 +176,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
-        Impresion.main(lista);
+        Impresion.main(lista,fact);
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     /**
