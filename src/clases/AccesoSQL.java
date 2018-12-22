@@ -255,6 +255,20 @@ public class AccesoSQL {
                 return (Object) fact;
                 
             case "Producto": JOptionPane.showMessageDialog(null,"No implementado aun");
+            ps = con.prepareStatement("select * from "+
+                        tabla+" where idFactura = "+id);
+                rs=ps.executeQuery();
+                Producto produ = new Producto();
+                while (rs.next()) {
+                    BigDecimal n = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
+                    produ.setIdProducto(rs.getString(1));
+                    produ.setTipo(rs.getString(2));
+                    produ.setMarca(rs.getString(3));
+                    produ.setModelo(rs.getString(4));
+                    produ.setPrecioUnitario(n);
+                    produ.setObservaciones(rs.getString(5));
+                }
+                return (Object) produ;
             case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
                 
         }
