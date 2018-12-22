@@ -171,13 +171,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
 
     private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
-        int input = JOptionPane.showConfirmDialog(null, "¿Quieres usar la interfaz de tickets alternativa?");
+        /*int input = JOptionPane.showConfirmDialog(null, "¿Quieres usar la interfaz de tickets alternativa?");
         
         switch (input){
             
-            case 0:
+            case 0:*/
                 new Menu_Ticket().setVisible(true);
-                this.dispose();
+                this.dispose();/*
                 break;
             case 1:
                 new Inter_Ticket().setVisible(true);
@@ -185,7 +185,7 @@ public class Menu extends javax.swing.JFrame {
                 break;
             case 2:
                 break;   
-        }
+        }*/
         
     }//GEN-LAST:event_botonTicketActionPerformed
 
