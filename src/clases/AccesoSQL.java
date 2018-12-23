@@ -9,35 +9,27 @@ import javax.swing.JOptionPane;
 
 public class AccesoSQL {
     
-    private String sURL = "jdbc:mysql://192.168.1.39/nicole";
-    private String extURL = "jdbc:mysql://2.138.128.157/nicole";
-    private String usu = "pedro";
-    private String pass = "oxgnub";
     private Connection con;
     private int autonum;
+    private static boolean intentos = false;
     
     public AccesoSQL(){
         
-        try {
-            con = DriverManager.getConnection(sURL, usu, pass);
-            if (con.isClosed()) System.out.println("Error en la conexión local");
-            else System.out.println("Conexión exitosa");
-            		
-	} catch (SQLException e) {
-            remoteConnect();
-	}
+        con = Conexion.getConnection();
+        
+        if (con==null) {
+            System.err.println("No se pudo establecer la conexion!");
+        } else {
+            System.out.println("Conexion adquirida");
+        }
+    }
 		
+    public static void setIntento(boolean intent) {
+        intentos = intent;
     }
     
-    public void remoteConnect(){
-        try {
-            con = DriverManager.getConnection(extURL, usu, pass);
-            if (con.isClosed()) System.out.println("Error en la conexión remota");
-            else System.out.println("Conexión exitosa");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null,"Error al acceder a la Base de Datos");
-        }
+    public static boolean getIntento() {
+        return intentos;
     }
     
     /**
