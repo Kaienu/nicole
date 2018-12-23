@@ -32,9 +32,8 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(105);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         try{
-            
+            acceso = new AccesoSQL();
             MostrarSQL("Cliente","",false);
-            
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null,"Error 02");
             System.out.println(e.getMessage());
@@ -43,7 +42,7 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
     }
     
     public void MostrarSQL(String tabla,String filtro,Boolean ID) throws SQLException{
-        acceso = new AccesoSQL();
+        
         if (ID==false){ //Si indicamos "false", no buscará por ID,
                         //solo filtro normal de campos.
             ArrayList<Object> lista = acceso.listado(tabla,filtro);
@@ -70,7 +69,7 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
             row[4] = cliente.getTelefono();
             model.addRow(row);
         }
-        acceso.cerrar();
+        
     }
 
     /**
@@ -300,21 +299,11 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable_Display_UserMouseClicked
 
-    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        try{
-            MostrarSQL("Cliente",jTextField_Busqueda.getText(),false);
-        }catch (SQLException e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Error 03");
-        }
-    }//GEN-LAST:event_botonBusquedaActionPerformed
-
-    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
+        acceso.cerrar();
         this.dispose();
-        new Menu_MAIN().setVisible(true);
-    }//GEN-LAST:event_botonAtrasActionPerformed
+        new Cliente_ADD().setVisible(true);
+    }//GEN-LAST:event_botonAddActionPerformed
 
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -328,32 +317,22 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
-    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        acceso.cerrar();
         this.dispose();
-        new Cliente_ADD().setVisible(true);
-    }//GEN-LAST:event_botonAddActionPerformed
+        new Menu_MAIN().setVisible(true);
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
-    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
-        
-    }//GEN-LAST:event_jTable1MouseEntered
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
-        
-
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
-        
-    }//GEN-LAST:event_jTextField_BusquedaKeyPressed
-
-    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
-        int i = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String id = model.getValueAt(i,0).toString();
-        new Cliente_EDIT(id).setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jTable1MouseReleased
+    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try{
+            MostrarSQL("Cliente",jTextField_Busqueda.getText(),false);
+        }catch (SQLException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error 03");
+        }
+    }//GEN-LAST:event_botonBusquedaActionPerformed
 
     private void jTextField_BusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyReleased
         if (evt.VK_ENTER==evt.getKeyCode()) {
@@ -367,6 +346,27 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTextField_BusquedaKeyReleased
+
+    private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
+
+    }//GEN-LAST:event_jTextField_BusquedaKeyPressed
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String id = model.getValueAt(i,0).toString();
+        acceso.cerrar();
+        new Cliente_EDIT(id).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseReleased
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+
+    }//GEN-LAST:event_jTable1MouseEntered
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

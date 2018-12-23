@@ -1,7 +1,7 @@
 package Inter_Alternativa;
 
 import clases.*;
-import java.util.Date;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,10 +55,10 @@ public class Cliente_ADD extends javax.swing.JFrame {
         jTextField_apellidos = new javax.swing.JTextField();
         jTextField_correo = new javax.swing.JTextField();
         jTextField_telefono = new TextoFormateado();
-        jTextField_observ = new javax.swing.JTextField();
         botonAdd2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        botonAdd3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jTable_Display_User.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,15 +119,21 @@ public class Cliente_ADD extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(219, 126, 138));
         jLabel7.setText("Observaciones");
 
-        jTextField_nombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField_nombre.setFont(Presentacion.fuentePpal
 
-        jTextField_apellidos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+            (16,Font.PLAIN,Presentacion.LIGHT));
 
-        jTextField_correo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField_apellidos.setFont(Presentacion.fuentePpal
 
-        jTextField_telefono.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+            (16,Font.PLAIN,Presentacion.LIGHT));
 
-        jTextField_observ.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField_correo.setFont(Presentacion.fuentePpal
+
+            (16,Font.PLAIN,Presentacion.LIGHT));
+
+        jTextField_telefono.setFont(Presentacion.fuentePpal
+
+            (16,Font.PLAIN,Presentacion.LIGHT));
 
         botonAdd2.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -144,49 +150,39 @@ public class Cliente_ADD extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(219, 126, 138));
         jLabel8.setText("Añadir nuevo cliente");
 
-        botonAdd3.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonAdd3.setForeground(new java.awt.Color(219, 126, 138));
-        botonAdd3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/contenido.png"))); // NOI18N
-        botonAdd3.setText("Ticket");
-        botonAdd3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAdd3ActionPerformed(evt);
-            }
-        });
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(107, 107, 107))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField_nombre)
                             .addComponent(jTextField_apellidos)
                             .addComponent(jTextField_correo)
                             .addComponent(jTextField_telefono)
-                            .addComponent(jTextField_observ)))
+                            .addComponent(jScrollPane2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAdd3, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -194,33 +190,35 @@ public class Cliente_ADD extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField_apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField_correo, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField_observ, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botonAdd3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_correo, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(176, 176, 176)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAdd2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,9 +271,10 @@ public class Cliente_ADD extends javax.swing.JFrame {
                 jTextField_apellidos.getText(),
                 jTextField_correo.getText(),
                 Integer.parseInt(jTextField_telefono.getText()),
-                jTextField_observ.getText());
+                jTextArea1.getText());
         acceso = new AccesoSQL();
         acceso.insertSql(cliente);
+        acceso.cerrar();
         }catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null,
                     "El campo 'telefono' no puede estar vacío");
@@ -284,13 +283,10 @@ public class Cliente_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAddActionPerformed
 
     private void botonAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd2ActionPerformed
+        acceso.cerrar();
         new Cliente_BUSQ().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAdd2ActionPerformed
-
-    private void botonAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdd3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAdd3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,7 +333,6 @@ public class Cliente_ADD extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAdd;
     private javax.swing.JButton botonAdd2;
-    private javax.swing.JButton botonAdd3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -346,11 +341,12 @@ public class Cliente_ADD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_Display_User;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField_apellidos;
     private javax.swing.JTextField jTextField_correo;
     private javax.swing.JTextField jTextField_nombre;
-    private javax.swing.JTextField jTextField_observ;
     private javax.swing.JTextField jTextField_telefono;
     // End of variables declaration//GEN-END:variables
 }
