@@ -34,7 +34,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
         
     }
     
-    Menu_Ticket nuevoFrame;
+    Factura_ADD nuevoFrame;
     
     public String fechaActual(){
         Date date = new Date();
@@ -117,7 +117,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
         botonImprimir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonImprimir.setForeground(new java.awt.Color(219, 126, 138));
-        botonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
+        botonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/impresora.png"))); // NOI18N
         botonImprimir.setText("Imprimir");
         botonImprimir.setPreferredSize(new java.awt.Dimension(277, 41));
         botonImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +128,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
         botonSalir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(219, 126, 138));
-        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
+        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salida.png"))); // NOI18N
         botonSalir.setText("Salir");
         botonSalir.setPreferredSize(new java.awt.Dimension(277, 41));
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class Inter_Ticket_Generado extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
-        new Menu_Ticket().setVisible(true);
+        new Factura_ADD().setVisible(true);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed

@@ -5,7 +5,7 @@
  */
 package clases;
 
-import Inter_Alternativa.Menu_Ticket;
+import Inter_Alternativa.Factura_ADD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -16,11 +16,11 @@ import javax.swing.JButton;
  */
 public class MainHandler implements ActionListener {
 
-    Menu_Ticket ventana;
+    Factura_ADD ventana;
     Producto prod;
     JButton boton;
     
-    public MainHandler(Menu_Ticket ventana) {
+    public MainHandler(Factura_ADD ventana) {
         this.ventana = ventana;
     }
 
