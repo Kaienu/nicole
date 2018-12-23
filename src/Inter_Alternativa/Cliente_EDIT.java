@@ -188,7 +188,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         botonTicket.setBackground(new java.awt.Color(225, 225, 225));
         botonTicket.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonTicket.setForeground(new java.awt.Color(219, 126, 138));
-        botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/contenido.png"))); // NOI18N
+        botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Big.png"))); // NOI18N
         botonTicket.setText("Ticket");
         botonTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +210,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         botonModificar.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonModificar.setForeground(new java.awt.Color(219, 126, 138));
-        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/contenido.png"))); // NOI18N
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
         botonModificar.setText("Modificar");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
