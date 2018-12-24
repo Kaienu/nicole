@@ -5,6 +5,7 @@
  */
 package Inter_Alternativa;
 
+import clases.Empleado;
 import javax.swing.JOptionPane;
 
 /**
@@ -249,13 +250,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
                 new Login_SPLASH().setVisible(true);
             }
         });
-    }
-    
-    public String obtenerUsuarioLogado(){        
-        String usuarioCapturado = this.campoUsuario.getText();
-        usuarioCapturado = usuario;
-        return usuario;
-    }   
+    }  
     
     
     

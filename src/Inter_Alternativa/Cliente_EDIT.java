@@ -222,6 +222,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jLabel6.setText("Observaciones:");
 
         campoObservaciones.setColumns(20);
+        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         campoObservaciones.setRows(5);
         jScrollPane2.setViewportView(campoObservaciones);
 
