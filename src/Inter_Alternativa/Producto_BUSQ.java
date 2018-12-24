@@ -37,7 +37,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     public void ocultarBotones() {
         botonAdd.setVisible(false);
         jButtonDel.setVisible(false);
-        jButtonMod.setVisible(false);
     }
     
     public void MostrarSQL(String tabla,String filtro,Boolean ID) throws SQLException{
@@ -77,7 +76,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         botonLimpiar = new javax.swing.JButton();
         botonAdd = new javax.swing.JButton();
         jButtonDel = new javax.swing.JButton();
-        jButtonMod = new javax.swing.JButton();
 
         jTable_Display_User.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,17 +200,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         jButtonDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
         jButtonDel.setText("Eliminar");
 
-        jButtonMod.setBackground(new java.awt.Color(225, 225, 225));
-        jButtonMod.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButtonMod.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
-        jButtonMod.setText("Modificar");
-        jButtonMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -232,8 +219,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonMod, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jButtonDel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,7 +235,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonMod, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonDel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -328,14 +312,10 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         int i = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         String id = model.getValueAt(i,0).toString();
-        new Cliente_EDIT(id).setVisible(true);
+        new Producto_EDIT(id).setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButtonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModActionPerformed
-        new Producto_EDIT().setVisible(true);
-    }//GEN-LAST:event_jButtonModActionPerformed
 
     public void limpiar(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -401,7 +381,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonLimpiar;
     private javax.swing.JButton jButtonDel;
-    private javax.swing.JButton jButtonMod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

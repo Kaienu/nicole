@@ -39,6 +39,10 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoObservaciones.setText(producto.getObservaciones());
     }
 
+    private Producto_EDIT() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
     /**

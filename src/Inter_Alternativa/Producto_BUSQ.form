@@ -103,9 +103,7 @@
                           <Component id="botonLimpiar" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botonAdd" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButtonMod" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonDel" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botonAtras" min="-2" pref="120" max="-2" attributes="0"/>
@@ -126,7 +124,6 @@
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="botonAtras" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="botonAdd" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jButtonMod" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jButtonDel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="botonBusqueda" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="botonLimpiar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -328,26 +325,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonMod">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e1" green="e1" red="e1" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/recursos/lapiz.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
