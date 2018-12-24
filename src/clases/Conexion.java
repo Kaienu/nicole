@@ -9,7 +9,7 @@ public class Conexion extends Thread {
     
     static private volatile Connection con;
     private static final String SURL = "jdbc:mysql://192.168.1.35/nicole";
-    private static final String EXTURL = "jdbc:mysql://79.146.92.216/nicole";
+    private static final String EXTURL = "jdbc:mysql://79.148.58.130/nicole";
     private static final String USU = "pedro";
     private static final String PASS = "oxgnub";
     
