@@ -32,7 +32,7 @@ public class Conexion extends Thread {
             int i = 0;
             h.start();
             try {
-                while (i<6) {
+                while (i<2) {
                     if (con==null) {
                         i++;                
                         System.out.println("Intento "+i+"...");

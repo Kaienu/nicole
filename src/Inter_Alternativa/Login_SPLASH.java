@@ -50,7 +50,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
         jPanelLogin.setName("Nicole"); // NOI18N
         jPanelLogin.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        logoNicole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/posibleLogo.jpg"))); // NOI18N
+        logoNicole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo.jpg"))); // NOI18N
         logoNicole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         etqUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -116,7 +116,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(etqInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(logoNicole, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(logoNicole, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -143,7 +143,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(logoNicole, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoNicole, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(etqInicioSesion)
                 .addGap(33, 33, 33)
@@ -176,7 +176,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

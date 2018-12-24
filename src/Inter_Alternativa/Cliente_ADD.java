@@ -15,6 +15,7 @@ public class Cliente_ADD extends javax.swing.JFrame {
     public Cliente_ADD() {
         
         initComponents();
+        acceso = new AccesoSQL();
     }
     
     /*public void Mostrar_usuarios(String query){
@@ -32,6 +33,14 @@ public class Cliente_ADD extends javax.swing.JFrame {
         }
         acceso.cerrar();
     }*/
+    
+    public void limpiar() {
+        jTextField_nombre.setText("");
+        jTextField_apellidos.setText("");
+        jTextField_correo.setText("");
+        jTextArea1.setText("");
+        jTextField_telefono.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -243,42 +252,29 @@ public class Cliente_ADD extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable_Display_UserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_UserMouseClicked
-        /*int i = jTable_Display_User.getSelectedRow();
-        TableModel model = jTable_Display_User.getModel();
-        jTextField_ID.setText(model.getValueAt(i,0).toString());
-        jTextField_Nombre.setText(model.getValueAt(i,1).toString());
-        jTextField_Apellidos.setText(model.getValueAt(i,2).toString());
-        jTextField_Correo.setText(model.getValueAt(i,3).toString());
-        jTextField_Telefono.setText(model.getValueAt(i,4).toString());*/
-
+        
     }//GEN-LAST:event_jTable_Display_UserMouseClicked
 
     private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
-        /*String query = "INSERT INTO `Cliente`(`nombre`, `apellidos`, `correo`, `telefono`)"
-                + " VALUES ('"+ jTextField_nombre.getText()+"',"
-                + "'"+ jTextField_apellidos.getText()+"',"
-                + "'"+ jTextField_correo.getText()+"',"
-                + ""+ jTextField_telefono.getText()+")";
-        acceso = new AccesoSQL();
-        if (acceso.UpdateSql(query, "insertado")){
-            new Inter_Cliente().setVisible(true);
-            this.dispose();
-        }
-        acceso.cerrar();*/
-        
         try{
-        Cliente cliente = new Cliente(jTextField_nombre.getText(),
+            Cliente cliente = new Cliente(jTextField_nombre.getText(),
                 jTextField_apellidos.getText(),
                 jTextField_correo.getText(),
                 Integer.parseInt(jTextField_telefono.getText()),
                 jTextArea1.getText());
-        acceso = new AccesoSQL();
-        acceso.insertSql(cliente);
-        acceso.cerrar();
+            acceso.insertSql(cliente);
         }catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null,
-                    "El campo 'telefono' no puede estar vacío");
+                    "El campo 'teléfono' no puede estar vacío");
         }
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea introducir otro cliente?","Añadir otro cliente",JOptionPane.OK_OPTION);
+        if (opcion == 0) {
+           limpiar(); 
+        } else {
+            new Cliente_BUSQ().setVisible(true);
+            this.dispose();
+        }        
+        
         
     }//GEN-LAST:event_botonAddActionPerformed
 

@@ -5,8 +5,10 @@
  */
 package Inter_Alternativa;
 
+import static Inter_Alternativa.Inter_Ticket_Generado.lista;
 import clases.AccesoSQL;
 import clases.Factura;
+import clases.Impresion;
 import clases.MainHandler;
 import clases.Producto;
 import java.awt.Color;
@@ -138,21 +140,6 @@ public class Factura_ADD extends javax.swing.JFrame {
         }
         actualizarTabla();
     }
-    
-    
-    
-    //FALTA RESTAR EL PRECIO DEL PRODUCTO ELIMINADO AL PRECIO TOTAL
-    /*public void borrarProductoSeleccionado(){   
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        int fila = jTable1.getSelectedRow();
-        
-        if(fila >= 0){
-            model.removeRow(fila); 
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Debes de seleccionar previamente el producto que desees eliminar", "¡Atención!", JOptionPane.WARNING_MESSAGE);
-        }     
-    }*/
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -334,8 +321,13 @@ public class Factura_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarProductoActionPerformed
 
     private void jButtonFinVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinVentaActionPerformed
-        int ticket = JOptionPane.showConfirmDialog(null, "¿Quieres imprimir ticket de venta?");
         Factura fact = new Factura("00000001","02569854E",total);
+        
+        if (carrito.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado ningún artículo", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int ticket = JOptionPane.showConfirmDialog(null, "¿Quieres imprimir ticket de venta?");
         
         switch (ticket){            
             case 0:                               
@@ -351,9 +343,9 @@ public class Factura_ADD extends javax.swing.JFrame {
                     System.err.println("Linea-02");
                     break;
                 }
+                Impresion.main(carrito,fact);
+                new Factura_ADD().setVisible(true);
                 this.dispose();
-                new Inter_Ticket_Generado(fact,carrito).setVisible(true);
-                //new Menu_Ticket().setVisible(true);
                 break;
             case 1:
                 System.out.println(fact);
@@ -368,8 +360,8 @@ public class Factura_ADD extends javax.swing.JFrame {
                     System.err.println("Linea-02");
                     break;
                 }
-                this.dispose();
                 new Factura_ADD().setVisible(true);
+                this.dispose();
                 break;
             case 2:
                 break;   

@@ -1,6 +1,7 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -134,7 +135,8 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField_Busqueda.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.LIGHT)
+        );
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
