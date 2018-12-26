@@ -266,7 +266,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         String query = 
-    "UPDATE `Cliente` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
+    "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
         "',`modelo`='"+campoModelo.getText()+"',`precio`="+campoPrecio.getText()+
         ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
         acceso.UpdateSql(query);
