@@ -30,53 +30,56 @@ public class Producto {
     public Producto(){
         
     }
-    
-    public String getTipo(){
-        return tipo;
+
+    public BigDecimal getPrecioUnitario() {
+        return precioUnitario;
     }
-    
+
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
     public String getIdProducto() {
         return idProducto;
+    }
+
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
-    public String getObservaciones(){
-        return observaciones;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
-    public void setIdProducto(String idProducto) {
-        this.idProducto = idProducto;
-    }
-
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
     }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
+    public String getObservaciones() {
+        return observaciones;
     }
-    
+
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
+    
+    
 
     public int getCount() {
         return count;
@@ -114,22 +117,19 @@ public class Producto {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.precioUnitario);
-        hash = 17 * hash + Objects.hashCode(this.precioTotalAcumulado);
-        hash = 17 * hash + this.count;
-        hash = 17 * hash + Objects.hashCode(this.idProducto);
-        hash = 17 * hash + Objects.hashCode(this.tipo);
-        hash = 17 * hash + Objects.hashCode(this.marca);
-        hash = 17 * hash + Objects.hashCode(this.modelo);
-        hash = 17 * hash + Objects.hashCode(this.observaciones);
+        hash = 23 * hash + Objects.hashCode(this.precioUnitario);
+        hash = 23 * hash + Objects.hashCode(this.precioTotalAcumulado);
+        hash = 23 * hash + this.count;
+        hash = 23 * hash + Objects.hashCode(this.idProducto);
+        hash = 23 * hash + Objects.hashCode(this.tipo);
+        hash = 23 * hash + Objects.hashCode(this.marca);
+        hash = 23 * hash + Objects.hashCode(this.modelo);
+        hash = 23 * hash + Objects.hashCode(this.observaciones);
         return hash;
     }
-
-
-
+    
     @Override
     public String toString() {
         return modelo;
     }
-   
 }

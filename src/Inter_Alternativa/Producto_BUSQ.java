@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -17,20 +19,26 @@ import javax.swing.table.TableModel;
 public class Producto_BUSQ extends javax.swing.JFrame {
 
     public AccesoSQL acceso;
-    public Login_SPLASH login;
     
-    public Producto_BUSQ() {
-     
+    public Producto_BUSQ() {     
         initComponents();
-        //ocultarBotones();
-     
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(0);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(90);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(366);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(105);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        
         try{
-            
+            acceso = new AccesoSQL();
             MostrarSQL("Producto","",false);
-            
         } catch (SQLException e){
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error 02");
+            System.out.println(e.getMessage());
         }
         
     }
@@ -40,19 +48,31 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     }
     
     public void MostrarSQL(String tabla,String filtro,Boolean ID) throws SQLException{
-        acceso = new AccesoSQL();
-        ArrayList<Object> lista = acceso.listado(tabla,filtro);
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object[] row = new Object[5];
-        for(int i = 0; i < lista.size();i++){
-            Producto pro = (Producto) lista.get(i);
-            row[0] = pro.getIdProducto();
-            row[1] = pro.getTipo();
-            row[2] = pro.getMarca();
-            row[3] = pro.getModelo();
-            row[4] = pro.getPrecioUnitario()+"\u20ac";
-            model.addRow(row);
-        }
+        
+        if (ID == false) {
+            ArrayList<Object> lista = acceso.listado(tabla,filtro);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            Object[] row = new Object[5];
+            for(int i = 0; i < lista.size();i++){
+                Producto pro = (Producto) lista.get(i);
+                row[0] = pro.getIdProducto();
+                row[1] = pro.getTipo();
+                row[2] = pro.getMarca();
+                row[3] = pro.getModelo();
+                row[4] = pro.getPrecioUnitario()+"\u20ac";
+                model.addRow(row);
+            }
+        }   else {
+                Producto producto = (Producto) acceso.listadoID("Producto", filtro);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                Object[] row = new Object[5];
+                row[0] = producto.getIdProducto();
+                row[1] = producto.getTipo();
+                row[2] = producto.getMarca();
+                row[3] = producto.getModelo();
+                row[4] = producto.getPrecioUnitario()+"\u20ac";
+                model.addRow(row);
+            }
     }
 
     /**
@@ -135,6 +155,9 @@ public class Producto_BUSQ extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jTable1MouseEntered(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
         });
         jScrollPane3.setViewportView(jTable1);
 
@@ -147,6 +170,9 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField_BusquedaKeyReleased(evt);
             }
         });
 
@@ -309,13 +335,31 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseEntered
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         int i = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         String id = model.getValueAt(i,0).toString();
+        acceso.cerrar();
         new Producto_EDIT(id).setVisible(true);
         this.dispose();
+    }//GEN-LAST:event_jTable1MouseReleased
 
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void jTextField_BusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyReleased
+        if (evt.VK_ENTER==evt.getKeyCode()) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            try{
+                MostrarSQL("Producto",jTextField_Busqueda.getText(),false);
+            }catch (SQLException e){
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null,"Error 03");
+            }
+        }
+    }//GEN-LAST:event_jTextField_BusquedaKeyReleased
 
     public void limpiar(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();

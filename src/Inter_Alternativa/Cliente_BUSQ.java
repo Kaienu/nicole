@@ -174,6 +174,11 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
 
             (16,Font.PLAIN,Presentacion.LIGHT)
         );
+        jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_BusquedaActionPerformed(evt);
+            }
+        });
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
@@ -367,6 +372,10 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField_BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_BusquedaActionPerformed
 
     /**
      * @param args the command line arguments

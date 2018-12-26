@@ -7,6 +7,8 @@ package Inter_Alternativa;
 
 import clases.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +21,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
     Producto producto;
     
     /**
-     * Creates new form Inter_Cliente_edit
+     * Creates new form Inter_Producto_edit
      * @param id
      */
     public Producto_EDIT(String id) {
@@ -30,11 +32,11 @@ public class Producto_EDIT extends javax.swing.JFrame {
             producto = (Producto) acceso.listadoID("Producto",id);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-        jLabelIDproducto.setText("ID Producto" + id);
+        } 
+        jLabelIDproducto.setText("ID Producto " + id);
         campoTipo.setText(producto.getTipo());
         campoMarca.setText(producto.getMarca());
-        campoMarca.setText(producto.getModelo());
+        campoModelo.setText(producto.getModelo());
         campoPrecio.setText(String.valueOf(producto.getPrecioUnitario()));
         campoObservaciones.setText(producto.getObservaciones());
     }
@@ -42,6 +44,8 @@ public class Producto_EDIT extends javax.swing.JFrame {
     private Producto_EDIT() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     
 

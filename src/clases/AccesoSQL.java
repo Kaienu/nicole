@@ -150,7 +150,7 @@ public class AccesoSQL {
             case "Producto":
                 ps = con.prepareStatement("select * from "+tabla+
                 " where idProducto LIKE '%"+filtro+"%' OR precioUnitario LIKE '%"+
-                filtro+"%' OR marca LIKE '%"+filtro+"%' OR modelo LIKE '%"+
+                filtro+"%' OR tipo LIKE '%"+filtro+"%' OR marca LIKE '%"+filtro+"%' OR modelo LIKE '%"+
                 filtro+"%'");
                 rs=ps.executeQuery();
                 while (rs.next()){
@@ -249,9 +249,9 @@ public class AccesoSQL {
                 }
                 return (Object) fact;
                 
-            case "Producto": JOptionPane.showMessageDialog(null,"No implementado aun");
+            case "Producto": //JOptionPane.showMessageDialog(null,"No implementado aun");
             ps = con.prepareStatement("select * from "+
-                        tabla+" where idFactura = "+id);
+                        tabla+" where idProducto = "+id);
                 rs=ps.executeQuery();
                 Producto produ = new Producto();
                 while (rs.next()) {
@@ -261,7 +261,7 @@ public class AccesoSQL {
                     produ.setMarca(rs.getString(3));
                     produ.setModelo(rs.getString(4));
                     produ.setPrecioUnitario(n);
-                    produ.setObservaciones(rs.getString(5));
+                    produ.setObservaciones(rs.getString(6));
                 }
                 return (Object) produ;
             case "Promocion": JOptionPane.showMessageDialog(null,"No implementado aun");
