@@ -310,8 +310,8 @@ public class AccesoSQL {
             query = 
             "insert into Producto(tipo,marca,modelo,precioUnitario,observaciones) values('"+
                     prod.getTipo()+"','"+prod.getMarca()+"','"+
-                    prod.getModelo()+"','"+prod.getPrecioUnitario().toEngineeringString()+"')"+
-                    prod.getObservaciones();
+                    prod.getModelo()+"','"+prod.getPrecioUnitario().toEngineeringString()+"','"+
+                    prod.getObservaciones()+"')";
         }else if (obj instanceof Promocion){
             Promocion prom = (Promocion) obj;
             query ="";
