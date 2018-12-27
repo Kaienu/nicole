@@ -285,15 +285,20 @@ public class Producto_EDIT extends javax.swing.JFrame {
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         String query = 
-    "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
-        "',`modelo`='"+campoModelo.getText()+"',`precio`="+campoPrecio.getText()+
-        ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
+            "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
+            "',`modelo`='"+campoModelo.getText()+"',`precioUnitario`="+campoPrecio.getText()+
+            ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
         acceso.UpdateSql(query);
         
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
+        String query =
+            "DELETE FROM `Producto` WHERE  `idProducto` = " + this.id;
+        acceso.UpdateSql(query);
+        new Producto_BUSQ().setVisible(true);
+        this.dispose();        
+        
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**
