@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Inter_Alternativa;
 
 import clases.AccesoSQL;
 import clases.Factura;
 import clases.Impresion;
+import clases.MainHandler;
 import clases.Presentacion;
 import clases.Producto;
 import java.awt.Color;
@@ -22,110 +18,69 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author kaien
- */
 public class Factura_ADD extends javax.swing.JFrame {
     
     AccesoSQL acceso;
-    ArrayList<Object> lista;
     ArrayList<String> textos;
-    ArrayList<Producto> carrito;
-    ArrayList<JButton> botones;
-    ArrayList<JButton> pulsadores;
-    int x = 0;
-    int y = 0;
+    ArrayList<Producto> carrito  = new ArrayList<>();
+    ArrayList<JButton> botones = new ArrayList<>();
+    ArrayList<JButton> pulsadores = new ArrayList<>();
+    ArrayList<Object> lista = new ArrayList<>();
+    String tipoArticulo;
+    int x;
+    int y;
     int yR = 0;
     int cont = 0;
-    Font predet;
     BigDecimal total = new BigDecimal(0);
+    MainHandler controlador;
 
     /**
      * Creates new form NewJFrame
      */
     public Factura_ADD() {
         initComponents();
+        inicializar();
+        
+    }
+    
+    public void inicializar() {
         panelSwitches1.setBackground(new Color(248,241,242));
         panelSwitches.setBackground(new Color(248,241,242));
         acceso = new AccesoSQL();
+        controlador = new MainHandler(this);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
+        jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
+        inicializarMenuLateral();
+        
+        
+    }
+    
+    public void inicializarMenuLateral() {
         try {
             textos = acceso.selectSQLDistinct("Producto", "tipo");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        
-        pulsadores = new ArrayList<>();
         for (String t : textos) {
             JButton boton = new JButton(t);
             boton.setBounds(0, yR, 120, 40);
             yR = yR +45;
+            boton.addActionListener(controlador);
             boton.setFont(Presentacion.fuentePpal(14, Font.PLAIN, Presentacion.CONDENSED));
-            boton.setBackground(new Color(255,255,255));
+            boton.setBackground(new Color(225,225,225));
             boton.setForeground(new Color(219,126,138));
             pulsadores.add(boton);
             panelSwitches1.add(boton);
         }
-        
+        tipoArticulo = pulsadores.get(0).getText();
+        pulsadores.get(0).setBackground(Color.PINK);
+        pulsadores.get(0).setForeground(Color.BLACK);
         panelSwitches1.setPreferredSize(new Dimension(110, (pulsadores.size()*45)));
-        jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
-            
-        carrito = new ArrayList<>();
-        //MainHandler controlador = new MainHandler(this);
-
-        try {
-            lista = acceso.listado("Producto", "");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        int tamanoLista = lista.size();
-        int salto = 1;
-        botones = new ArrayList<JButton>();
-        for (Object lista1 : lista) {
-            JButton boton = new JButton(lista1.toString());
-            //controlador.setProducto((Producto)lista1);
-            //boton.addActionListener(controlador);
-            boton.setBounds(x, y, 140, 80);
-            //boton.setIcon(new Icon);
-            boton.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.CONDENSED));
-            boton.setForeground(new Color(219, 126, 138));
-            boton.setBackground(new Color(255,255,255));
-            boton.setVerticalAlignment(SwingConstants.BOTTOM);
-            botones.add(boton);
-            panelSwitches.add(boton);
-            
-            if (x>300) {
-                y = y + 85;
-                x = 0;
-                salto++;
-            } else {
-                x = x + 145;
-            }
-        }
         
-        panelSwitches.setPreferredSize(new Dimension(450, (salto*90)));
-
-
-        
-               
-        
-        /*JScrollPane panelDeslizante = new JScrollPane(jPanel2);
-        panelDeslizante.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        panelDeslizante.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        panelDeslizante.setBounds(50, 30, 300, 50);
-        JPanel contentPane = new JPanel(null);
-        contentPane.setPreferredSize(new Dimension(500, 400));
-        contentPane.add(panelDeslizante);
-        this.setContentPane(contentPane);
-        this.pack();*/
-        
-        //this.add(panelPane);
-        
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        
+        asignarLista(tipoArticulo);
     }
     
     public void actualizarTabla(){
@@ -155,19 +110,16 @@ public class Factura_ADD extends javax.swing.JFrame {
         actualizarTabla();
     }
     
-    /*public void setTabla(Producto prod){
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object[] row = new Object[3];
-        row[0] = "1";
-        row[1] = prod.getModelo();
-        row[2] = prod.getPrecioUnitario().toEngineeringString()+"€";
-        model.addRow(row);
-        total = total.add(prod.getPrecioUnitario());
-        jTextField1.setText(total.toEngineeringString()+"€");
-    }*/
-    
     public ArrayList getLista(){
         return lista;
+    }
+    
+    public ArrayList<JButton> getTextos(){
+        return pulsadores;
+    }
+    
+    public void setTextos(ArrayList<JButton> pulsadores) {
+        this.pulsadores = pulsadores;
     }
     
     public void borrarProductoSeleccionado(){
@@ -182,6 +134,54 @@ public class Factura_ADD extends javax.swing.JFrame {
             carrito.remove(fila);
         }
         actualizarTabla();
+    }
+    
+    public void asignarLista(String tipo) {
+        try {
+            if (this.lista.isEmpty()) {
+                this.lista = acceso.listado("Producto", tipo);
+            } else {
+                this.lista.clear();
+                erase();
+                this.lista = acceso.listado("Producto", tipo);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        x = 0;
+        y = 0;
+        int salto = 1;
+        for (Object lista1 : lista) {
+            JButton boton = new JButton(lista1.toString());
+            controlador.setProducto((Producto)lista1);
+            boton.addActionListener(controlador);
+            boton.setBounds(x, y, 140, 80);
+            //boton.setIcon(new Icon);
+            boton.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.CONDENSED));
+            boton.setForeground(new Color(219, 126, 138));
+            boton.setBackground(new Color(255,255,255));
+            //boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
+            boton.setVerticalTextPosition(SwingConstants.BOTTOM);
+            boton.setHorizontalTextPosition(SwingConstants.CENTER);
+            botones.add(boton);
+            panelSwitches.add(boton);
+            
+            if (x>250) {
+                y = y + 85;
+                x = 0;
+                salto++;
+            } else {
+                x = x + 145;
+            }
+        }
+        panelSwitches.setPreferredSize(new Dimension(450, (salto*90)));
+    }
+    
+    public void erase(){
+        panelSwitches.removeAll();
+        panelSwitches.revalidate();
+        panelSwitches.repaint();
     }
     
     /**

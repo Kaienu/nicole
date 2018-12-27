@@ -6,8 +6,10 @@
 package clases;
 
 import Inter_Alternativa.Factura_ADD;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
@@ -19,6 +21,7 @@ public class MainHandler implements ActionListener {
     Factura_ADD ventana;
     Producto prod;
     JButton boton;
+    ArrayList<JButton> pulsadores;
     
     public MainHandler(Factura_ADD ventana) {
         this.ventana = ventana;
@@ -32,14 +35,33 @@ public class MainHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         boton = (JButton)e.getSource();
-        for (int i=0;i<ventana.getLista().size();i++) {
-            prod = (Producto)ventana.getLista().get(i);
-            if (prod.getModelo().equals(boton.getText())) {
-                ventana.addTabla(prod);
-                break;
+        
+        System.out.println(boton.getClass());
+        System.out.println(boton);
+        
+        if (ventana.getTextos().contains(boton)) {
+            System.out.println(boton.getText());
+            pulsadores = ventana.getTextos();
+            for (JButton but : pulsadores) {
+                if (boton.equals(but)) {
+                    but.setBackground(Color.PINK);
+                    but.setForeground(Color.BLACK);
+                    ventana.asignarLista(boton.getText());
+                } else {
+                    but.setBackground(new Color(225,225,225));
+                    but.setForeground(new Color(219,126,138));
+                }
+            }
+            ventana.setTextos(pulsadores);
+        } else {
+            for (int i=0;i<ventana.getLista().size();i++) {
+                prod = (Producto)ventana.getLista().get(i);
+                if (prod.getModelo().equals(boton.getText())) {
+                    ventana.addTabla(prod);
+                    break;
+                }
             }
         }
-        
         
         /*String detalle = 
         boton = (JButton) e.getSource();
