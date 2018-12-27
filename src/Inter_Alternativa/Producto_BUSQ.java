@@ -30,7 +30,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(366);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(318);
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(105);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         
@@ -160,12 +160,11 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.LIGHT)
-        );
+        jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
@@ -176,7 +175,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         });
 
         botonBusqueda.setBackground(new java.awt.Color(225, 225, 225));
-        botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
         botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/buscartiny.png"))); // NOI18N
         botonBusqueda.setText("Buscar");
@@ -187,7 +186,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         });
 
         botonAtras.setBackground(new java.awt.Color(225, 225, 225));
-        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonAtras.setText("Atrás");
@@ -199,7 +198,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         });
 
         botonLimpiar.setBackground(new java.awt.Color(225, 225, 225));
-        botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
         botonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonLimpiar.setText("Limpiar");
@@ -210,7 +209,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         });
 
         botonAñadir.setBackground(new java.awt.Color(225, 225, 225));
-        botonAñadir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAñadir.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonAñadir.setForeground(new java.awt.Color(219, 126, 138));
         botonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
         botonAñadir.setText("Añadir");
@@ -232,7 +231,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
