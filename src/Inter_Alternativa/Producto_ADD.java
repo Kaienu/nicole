@@ -48,8 +48,9 @@ public class Producto_ADD extends javax.swing.JDialog {
         jButtonNuevo1 = new javax.swing.JButton();
         etqModelo = new javax.swing.JLabel();
         campoModelo = new javax.swing.JTextField();
-        campoObservaciones = new javax.swing.JTextField();
         etqObservaciones = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        campoObservaciones = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -122,26 +123,24 @@ public class Producto_ADD extends javax.swing.JDialog {
             }
         });
 
-        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoObservaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoObservacionesActionPerformed(evt);
-            }
-        });
-
         etqObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         etqObservaciones.setText("Observaciones");
+
+        campoObservaciones.setColumns(20);
+        campoObservaciones.setRows(5);
+        jScrollPane1.setViewportView(campoObservaciones);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoPrecio)
-                    .addComponent(campoTipo)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(campoPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoTipo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(etqTipo)
@@ -151,10 +150,9 @@ public class Producto_ADD extends javax.swing.JDialog {
                         .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(campoMarca)
-                    .addComponent(campoModelo)
-                    .addComponent(campoObservaciones)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(campoMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoModelo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etqPrecio)
                             .addComponent(etqObservaciones))
@@ -188,9 +186,9 @@ public class Producto_ADD extends javax.swing.JDialog {
                 .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(etqObservaciones)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,10 +244,6 @@ public class Producto_ADD extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoModeloActionPerformed
 
-    private void campoObservacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoObservacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoObservacionesActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -296,7 +290,7 @@ public class Producto_ADD extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campoMarca;
     private javax.swing.JTextField campoModelo;
-    private javax.swing.JTextField campoObservaciones;
+    private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JTextField campoPrecio;
     private javax.swing.JTextField campoTipo;
     private javax.swing.JLabel etqMarca;
@@ -308,5 +302,6 @@ public class Producto_ADD extends javax.swing.JDialog {
     private javax.swing.JButton jButtonNuevo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
