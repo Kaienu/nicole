@@ -61,7 +61,8 @@ public class Factura_ADD extends javax.swing.JFrame {
             boton.setBounds(0, yR, 120, 40);
             yR = yR +45;
             boton.setFont(Presentacion.fuentePpal(14, Font.PLAIN, Presentacion.CONDENSED));
-            boton.setBackground(new Color(225,225,225));
+            boton.setBackground(new Color(255,255,255));
+            boton.setForeground(new Color(219,126,138));
             pulsadores.add(boton);
             panelSwitches1.add(boton);
         }
@@ -85,7 +86,7 @@ public class Factura_ADD extends javax.swing.JFrame {
             JButton boton = new JButton(lista1.toString());
             //controlador.setProducto((Producto)lista1);
             //boton.addActionListener(controlador);
-            boton.setBounds(x, y, 102, 90);
+            boton.setBounds(x, y, 140, 80);
             //boton.setIcon(new Icon);
             boton.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.CONDENSED));
             boton.setForeground(new Color(219, 126, 138));
@@ -95,15 +96,15 @@ public class Factura_ADD extends javax.swing.JFrame {
             panelSwitches.add(boton);
             
             if (x>300) {
-                y = y + 95;
+                y = y + 85;
                 x = 0;
                 salto++;
             } else {
-                x = x + 108;
+                x = x + 145;
             }
         }
         
-        panelSwitches.setPreferredSize(new Dimension(450, (salto*95)));
+        panelSwitches.setPreferredSize(new Dimension(450, (salto*90)));
 
 
         
