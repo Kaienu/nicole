@@ -445,6 +445,20 @@ public class AccesoSQL {
         return lineas;
     }
     
+    public ArrayList<String> selectSQLDistinct(String tabla, String campo) throws SQLException{
+        ArrayList<String> texto = new ArrayList<>();
+        String query = "select distinct "+campo+" from "+tabla+" order by tipo DESC;";
+        PreparedStatement st = con.prepareStatement(query);
+        ResultSet rs = st.executeQuery();
+        while (rs.next()){
+            String text = rs.getString(1);
+            texto.add(text);
+        }
+        rs.close();
+        st.close();
+        return texto;
+    }
+    
     public String getAutonum(){
         String auto = String.format("%08d", autonum);
         return auto;
