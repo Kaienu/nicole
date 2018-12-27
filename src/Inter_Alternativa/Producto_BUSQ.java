@@ -22,6 +22,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     
     public Producto_BUSQ() {     
         initComponents();
+        //ocultarBotones();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(0);
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -43,8 +44,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         
     }
     public void ocultarBotones() {
-        botonAdd.setVisible(false);
-        jButtonDel.setVisible(false);
+        botonAñadir.setVisible(false);
     }
     
     public void MostrarSQL(String tabla,String filtro,Boolean ID) throws SQLException{
@@ -94,8 +94,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         botonBusqueda = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
         botonLimpiar = new javax.swing.JButton();
-        botonAdd = new javax.swing.JButton();
-        jButtonDel = new javax.swing.JButton();
+        botonAñadir = new javax.swing.JButton();
 
         jTable_Display_User.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,6 +191,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonAtras.setText("Atrás");
+        botonAtras.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
@@ -209,22 +209,16 @@ public class Producto_BUSQ extends javax.swing.JFrame {
             }
         });
 
-        botonAdd.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonAdd.setForeground(new java.awt.Color(219, 126, 138));
-        botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
-        botonAdd.setText("Añadir");
-        botonAdd.addActionListener(new java.awt.event.ActionListener() {
+        botonAñadir.setBackground(new java.awt.Color(225, 225, 225));
+        botonAñadir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(219, 126, 138));
+        botonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
+        botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAddActionPerformed(evt);
+                botonAñadirActionPerformed(evt);
             }
         });
-
-        jButtonDel.setBackground(new java.awt.Color(225, 225, 225));
-        jButtonDel.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButtonDel.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
-        jButtonDel.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,32 +232,27 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonDel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonDel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -321,11 +310,6 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_botonLimpiarActionPerformed
 
-    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
-        new Producto_ADD(this, true).setVisible(true);
-        limpiar();
-    }//GEN-LAST:event_botonAddActionPerformed
-
     private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_BusquedaKeyPressed
@@ -360,6 +344,11 @@ public class Producto_BUSQ extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTextField_BusquedaKeyReleased
+
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+        new Producto_ADD(this, true).setVisible(true);
+        limpiar();
+    }//GEN-LAST:event_botonAñadirActionPerformed
 
     public void limpiar(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -420,11 +409,10 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAdd;
     private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonLimpiar;
-    private javax.swing.JButton jButtonDel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
