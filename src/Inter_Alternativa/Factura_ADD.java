@@ -5,13 +5,13 @@
  */
 package Inter_Alternativa;
 
-import static Inter_Alternativa.Inter_Ticket_Generado.lista;
 import clases.AccesoSQL;
 import clases.Factura;
 import clases.Impresion;
-import clases.MainHandler;
+import clases.Presentacion;
 import clases.Producto;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,10 +30,13 @@ public class Factura_ADD extends javax.swing.JFrame {
     
     AccesoSQL acceso;
     ArrayList<Object> lista;
+    ArrayList<String> textos;
     ArrayList<Producto> carrito;
     ArrayList<JButton> botones;
-    int x = 10;
-    int y = 10;
+    ArrayList<JButton> pulsadores;
+    int x = 0;
+    int y = 0;
+    int yR = 0;
     int cont = 0;
     Font predet;
     BigDecimal total = new BigDecimal(0);
@@ -42,42 +46,80 @@ public class Factura_ADD extends javax.swing.JFrame {
      */
     public Factura_ADD() {
         initComponents();
-        carrito = new ArrayList<Producto>();
-        
-        MainHandler controlador = new MainHandler(this);
-                
-        predet = new Font("Terminal", Font.PLAIN, 10);
+        panelSwitches1.setBackground(new Color(248,241,242));
+        panelSwitches.setBackground(new Color(248,241,242));
         acceso = new AccesoSQL();
+        try {
+            textos = acceso.selectSQLDistinct("Producto", "tipo");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        pulsadores = new ArrayList<>();
+        for (String t : textos) {
+            JButton boton = new JButton(t);
+            boton.setBounds(0, yR, 120, 40);
+            yR = yR +45;
+            boton.setFont(Presentacion.fuentePpal(14, Font.PLAIN, Presentacion.CONDENSED));
+            boton.setBackground(new Color(225,225,225));
+            pulsadores.add(boton);
+            panelSwitches1.add(boton);
+        }
+        
+        panelSwitches1.setPreferredSize(new Dimension(110, (pulsadores.size()*45)));
+        jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
+            
+        carrito = new ArrayList<>();
+        //MainHandler controlador = new MainHandler(this);
+
         try {
             lista = acceso.listado("Producto", "");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-        
+
         int tamanoLista = lista.size();
-        
-        //jLabel1.setText("Número de items: "+String.valueOf(tamanoLista));
+        int salto = 1;
         botones = new ArrayList<JButton>();
-        
         for (Object lista1 : lista) {
             JButton boton = new JButton(lista1.toString());
-            controlador.setProducto((Producto)lista1);
-            boton.addActionListener(controlador);
-            boton.setBounds(x, y, 110, 110);
-            boton.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+            //controlador.setProducto((Producto)lista1);
+            //boton.addActionListener(controlador);
+            boton.setBounds(x, y, 102, 90);
+            //boton.setIcon(new Icon);
+            boton.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.CONDENSED));
             boton.setForeground(new Color(219, 126, 138));
             boton.setBackground(new Color(255,255,255));
-
-            //boton.setFont(predet);
+            boton.setVerticalAlignment(SwingConstants.BOTTOM);
             botones.add(boton);
-            jPanel2.add(boton);
-            if (x<370) {
-                x += 120;
+            panelSwitches.add(boton);
+            
+            if (x>300) {
+                y = y + 95;
+                x = 0;
+                salto++;
             } else {
-                y += 120;
-                x = 10;
+                x = x + 108;
             }
         }
+        
+        panelSwitches.setPreferredSize(new Dimension(450, (salto*95)));
+
+
+        
+               
+        
+        /*JScrollPane panelDeslizante = new JScrollPane(jPanel2);
+        panelDeslizante.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        panelDeslizante.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        panelDeslizante.setBounds(50, 30, 300, 50);
+        JPanel contentPane = new JPanel(null);
+        contentPane.setPreferredSize(new Dimension(500, 400));
+        contentPane.add(panelDeslizante);
+        this.setContentPane(contentPane);
+        this.pack();*/
+        
+        //this.add(panelPane);
         
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
@@ -153,16 +195,21 @@ public class Factura_ADD extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButtonAtras = new javax.swing.JButton();
         botonEliminarProducto = new javax.swing.JButton();
         jButtonFinVenta = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelSwitches = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        panelSwitches1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -190,101 +237,93 @@ public class Factura_ADD extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 360, 440));
 
         jTextField1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("0,00€");
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jTextField1.setEnabled(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 40));
 
         jButtonAtras.setBackground(new java.awt.Color(225, 225, 225));
         jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salida.png"))); // NOI18N
+        jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         jButtonAtras.setText("Atrás");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 100, 40));
 
         botonEliminarProducto.setBackground(new java.awt.Color(225, 225, 225));
         botonEliminarProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonEliminarProducto.setForeground(new java.awt.Color(219, 126, 138));
         botonEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
-        botonEliminarProducto.setText("Eliminar producto seleccionado");
+        botonEliminarProducto.setText("Eliminar");
         botonEliminarProducto.setPreferredSize(new java.awt.Dimension(277, 41));
         botonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarProductoActionPerformed(evt);
             }
         });
+        jPanel1.add(botonEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 120, 40));
 
         jButtonFinVenta.setBackground(new java.awt.Color(225, 225, 225));
         jButtonFinVenta.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonFinVenta.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/contenido.png"))); // NOI18N
-        jButtonFinVenta.setText("Finalizar Venta");
+        jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png"))); // NOI18N
+        jButtonFinVenta.setText("Finalizar");
         jButtonFinVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFinVentaActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonFinVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 120, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonAtras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonFinVenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        javax.swing.GroupLayout panelSwitchesLayout = new javax.swing.GroupLayout(panelSwitches);
+        panelSwitches.setLayout(panelSwitchesLayout);
+        panelSwitchesLayout.setHorizontalGroup(
+            panelSwitchesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 433, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonEliminarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonFinVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        panelSwitchesLayout.setVerticalGroup(
+            panelSwitchesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
         );
+
+        jScrollPane2.setViewportView(panelSwitches);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 450, 430));
+
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        javax.swing.GroupLayout panelSwitches1Layout = new javax.swing.GroupLayout(panelSwitches1);
+        panelSwitches1.setLayout(panelSwitches1Layout);
+        panelSwitches1Layout.setHorizontalGroup(
+            panelSwitches1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        panelSwitches1Layout.setVerticalGroup(
+            panelSwitches1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+
+        jScrollPane3.setViewportView(panelSwitches1);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -292,14 +331,14 @@ public class Factura_ADD extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -411,9 +450,12 @@ public class Factura_ADD extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonFinVenta;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel panelSwitches;
+    private javax.swing.JPanel panelSwitches1;
     // End of variables declaration//GEN-END:variables
 }
