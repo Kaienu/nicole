@@ -13,6 +13,10 @@ public class AccesoSQL {
     private int autonum;
     private static boolean intentos = false;
     
+    /**
+     *  CONSTRUCTOR
+     */
+    
     public AccesoSQL(){
         
         con = Conexion.getConnection();
@@ -23,7 +27,11 @@ public class AccesoSQL {
             System.out.println("Conexion adquirida");
         }
     }
-		
+    
+    /**
+     *  SET y GET de los intentos de conexión a la BBDD
+     */
+    
     public static void setIntento(boolean intent) {
         intentos = intent;
     }
@@ -116,7 +124,7 @@ public class AccesoSQL {
                     fact.setIdCliente(rs.getString(2));
                     fact.setDni(rs.getString(3));
                     fact.setImporte(facTotal);
-                    fact.setFecha(rs.getDate(4));
+                    fact.setFecha(rs.getTimestamp(4));
                     System.out.println(fact);
                     lista.add(fact);
                 }
@@ -137,7 +145,7 @@ public class AccesoSQL {
                     fact.setIdCliente(rs.getString(2));
                     fact.setDni(rs.getString(3));
                     fact.setImporte(facTotal);
-                    fact.setFecha(rs.getDate(4));
+                    fact.setFecha(rs.getTimestamp(4));
                     System.out.println(fact);
                     lista.add(fact);
                 }
@@ -243,7 +251,7 @@ public class AccesoSQL {
                     BigDecimal n = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
                     fact.setIdFactura(rs.getString(1));
                     fact.setDni(rs.getString(3));
-                    fact.setFecha(rs.getDate(4));
+                    fact.setFecha(rs.getTimestamp(4));
                     fact.setIdCliente(rs.getString(2));
                     fact.setImporte(n);
                 }
@@ -443,6 +451,35 @@ public class AccesoSQL {
         rs.close();
         st.close();
         return lineas;
+    }
+    
+    public ArrayList<Factura> vistaFactura(String filtro) {
+        ArrayList<Factura> facturas = new ArrayList<>();
+        try {
+            String query = "select Factura.idFactura, concat_ws(' ',Empleado.nombre,"
+                    + " Empleado.apellidos), concat_ws(' ',Cliente.nombre,"
+                    + " Cliente.apellidos), Factura.fecha, Factura.importe from"
+                    + " Factura left join Empleado on Factura.dniEmpleado=Empleado.dni"
+                    + " inner join Cliente on Factura.idCliente=Cliente.idCliente;";
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                Factura fact = new Factura();
+                BigDecimal n = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
+                fact.setIdFactura(rs.getString(1));
+                fact.setIdCliente(rs.getString(2));
+                fact.setDni(rs.getString(3));
+                fact.setImporte(n);
+                fact.setFecha(rs.getTimestamp(4));
+                if (fact.comparacion(filtro)) facturas.add(fact);
+            }
+            rs.close();
+            st.close();
+            return facturas;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return facturas;
     }
     
     public ArrayList<String> selectSQLDistinct(String tabla, String campo) throws SQLException{

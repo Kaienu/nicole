@@ -1,9 +1,13 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -13,31 +17,43 @@ import javax.swing.table.TableModel;
  */
 public class Factura_BUSQ extends javax.swing.JFrame {
 
-    public AccesoSQL acceso;
+    AccesoSQL acceso;
     
     public Factura_BUSQ() {
      
         initComponents();
-     
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(0);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(90);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(150);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         try{
-            MostrarSQL("FacturaCliente","00000001");
+            acceso = new AccesoSQL();
+            MostrarSQL("");
         } catch (SQLException e){
-            System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Error 02");
+            System.out.println(e.getMessage());
         }
+        
     }
     
-    public void MostrarSQL(String tabla,String filtro) throws SQLException{
-
-        ArrayList<Object> lista = acceso.listado(tabla,filtro);
+    public void MostrarSQL(String filtro) throws SQLException{
+        ArrayList<Factura> facturas = acceso.vistaFactura(filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        Object[] row = new Object[3];
-        for(int i = 0; i < lista.size();i++){
-            Factura fact = (Factura) lista.get(i);
+        Object[] row = new Object[5];
+        for(int i = 0; i < facturas.size();i++){
+            Factura fact = facturas.get(i);
             row[0] = fact.getIdFactura();
-            row[1] = fact.getFecha().toString();
-            row[2] = fact.getImporte().toEngineeringString();
+            row[1] = fact.getDniEmpleado();
+            row[2] = fact.getIdCliente();
+            row[3] = fact.fechaActual();
+            row[4] = fact.getImporte().toEngineeringString()+"€";
             model.addRow(row);
         }
     }
@@ -92,17 +108,19 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTable1.setFont(Presentacion.fuentePpal
+
+            (16,Font.PLAIN,Presentacion.LIGHT));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Factura", "Fecha", "Importe"
+                "Nº Factura", "Empleado", "Cliente", "Fecha", "Importe"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,22 +139,38 @@ public class Factura_BUSQ extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jTable1MouseEntered(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
         });
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextField_Busqueda.setFont(Presentacion.fuentePpal
+
+            (16,Font.PLAIN,Presentacion.LIGHT)
+        );
+        jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_BusquedaActionPerformed(evt);
+            }
+        });
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField_BusquedaKeyReleased(evt);
             }
         });
 
@@ -144,6 +178,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
         botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/buscartiny.png"))); // NOI18N
+        botonBusqueda.setText("Buscar");
         botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBusquedaActionPerformed(evt);
@@ -153,7 +188,8 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         botonAtras.setBackground(new java.awt.Color(225, 225, 225));
         botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
-        botonAtras.setText("Atras");
+        botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
+        botonAtras.setText("Atrás");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
@@ -163,6 +199,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         botonLimpiar.setBackground(new java.awt.Color(225, 225, 225));
         botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
+        botonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonLimpiar.setText("Limpiar");
         botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +211,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAdd.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
+        botonAdd.setText("Añadir");
         botonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAddActionPerformed(evt);
@@ -190,33 +228,31 @@ public class Factura_BUSQ extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(8, 8, 8)
-                        .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
-                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(botonBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -252,60 +288,81 @@ public class Factura_BUSQ extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable_Display_UserMouseClicked
 
+    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
+        acceso.cerrar();
+        this.dispose();
+        new Cliente_ADD().setVisible(true);
+    }//GEN-LAST:event_botonAddActionPerformed
+
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        jTextField_Busqueda.setText("");
+        try {
+            MostrarSQL("");
+        }catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error 04");
+        }
+    }//GEN-LAST:event_botonLimpiarActionPerformed
+
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        acceso.cerrar();
+        this.dispose();
+        new Menu_MAIN().setVisible(true);
+    }//GEN-LAST:event_botonAtrasActionPerformed
+
     private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        String filtro = jTextField_Busqueda.getText();
         try{
-            MostrarSQL("Factura",jTextField_Busqueda.getText());
+            MostrarSQL(filtro);
         }catch (SQLException e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error 03");
         }
     }//GEN-LAST:event_botonBusquedaActionPerformed
 
-    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        this.dispose();
-        new Menu_MAIN().setVisible(true);
-    }//GEN-LAST:event_botonAtrasActionPerformed
-
-    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
-        limpiar();
-    }//GEN-LAST:event_botonLimpiarActionPerformed
-
-    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
-        new Producto_ADD(this, true).setVisible(true);
-        limpiar();
-    }//GEN-LAST:event_botonAddActionPerformed
+    private void jTextField_BusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyReleased
+        if (evt.VK_ENTER==evt.getKeyCode()) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            String filtro = jTextField_Busqueda.getText();
+            try{
+                MostrarSQL(filtro);
+            }catch (SQLException e){
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null,"Error 03");
+            }
+        }
+    }//GEN-LAST:event_jTextField_BusquedaKeyReleased
 
     private void jTextField_BusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BusquedaKeyPressed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextField_BusquedaKeyPressed
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+        int i = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String id = model.getValueAt(i,0).toString();
+        acceso.cerrar();
+        new Cliente_EDIT(id).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseReleased
 
     private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
 
     }//GEN-LAST:event_jTable1MouseEntered
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int i = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String id = model.getValueAt(i,0).toString();
-        new Cliente_EDIT(id).setVisible(true);
-        this.dispose();
 
     }//GEN-LAST:event_jTable1MouseClicked
 
-    public void limpiar(){
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        jTextField_Busqueda.setText("");
-        try {
-            MostrarSQL("Producto","");
-        }catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Error 04");
-        }
-    }
-    
+    private void jTextField_BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_BusquedaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -354,10 +411,6 @@ public class Factura_BUSQ extends javax.swing.JFrame {
                 new Factura_BUSQ().setVisible(true);
             }
         });
-    }
-    
-    public AccesoSQL getConexion(){
-        return acceso;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

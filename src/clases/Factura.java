@@ -1,16 +1,18 @@
 package clases;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Factura {
     
     private String dniEmpleado,idCliente,idfactura;
     private BigDecimal importe;
-    private Date fecha;
+    private Timestamp fecha;
 
-    public Factura(String idFactura, String idCliente, String dni, Date fecha, BigDecimal importe){
+    public Factura(String idFactura, String idCliente, String dni, Timestamp fecha, BigDecimal importe){
         this.setIdFactura(idFactura);
         this.setIdCliente(idCliente);
         this.setDni(dni);
@@ -55,16 +57,30 @@ public class Factura {
 	this.importe = importe;
     }
     
-    public Date getFecha(){
+    public Timestamp getFecha(){
         return this.fecha;
     }
     
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
 	this.fecha = fecha;
     }
     
     public BigDecimal getImporte(){
         return this.importe;
+    }
+    
+    public String fechaActual(){
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return hourdateFormat.format(fecha);
+    }
+    
+    public boolean comparacion(String filtro) {
+        String text = filtro.toUpperCase();
+        if (this.dniEmpleado.toUpperCase().contains(text)) return true;
+        else if (this.idCliente.toUpperCase().contains(text)) return true;
+        else if (fechaActual().contains(text)) return true;
+        else if (this.idfactura.toUpperCase().contains(text)) return true;
+        else return false;
     }
     
     @Override
