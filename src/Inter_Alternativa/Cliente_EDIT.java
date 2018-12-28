@@ -6,6 +6,7 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,18 +38,18 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        jTextField_nombre.setText(cliente.getNombre());
-        jTextField_apellidos.setText(cliente.getApellidos());
-        jTextField_correo.setText(cliente.getCorreo());
-        jTextField_telefono.setText(String.valueOf(cliente.getTelefono()));
+        textNombre.setText(cliente.getNombre());
+        textApellidos.setText(cliente.getApellidos());
+        textCorreo.setText(cliente.getCorreo());
+        textTelf.setText(String.valueOf(cliente.getTelefono()));
         campoObservaciones.setText(cliente.getObservaciones());
-        jLabel1.setText("Cliente ID "+id);
+        textIdCliente.setText(id);
         try {
             MostrarSQL("FacturaCliente",cliente.getIdCliente());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        this.campoFecha.setText("Cliente/a desde: " + fechaActual());
+        //this.campoFecha.setText("Cliente/a desde: " + fechaActual());
     }
 
     private Cliente_EDIT() {
@@ -89,22 +90,33 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         botonAdd1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField_nombre = new javax.swing.JTextField();
-        jTextField_apellidos = new javax.swing.JTextField();
-        jTextField_correo = new javax.swing.JTextField();
-        jTextField_telefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        campoFecha = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        botonTicket = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         campoObservaciones = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        textIdCliente = new javax.swing.JTextField();
+        textNombre = new javax.swing.JTextField();
+        textApellidos = new javax.swing.JTextField();
+        textTelf = new javax.swing.JTextField();
+        textCorreo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        botonModificar1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        botonModificar2 = new javax.swing.JButton();
 
         jTextField_Busqueda1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
@@ -132,24 +144,13 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField_nombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField_nombre.setText("Pedro Luis");
+        jTable1.setFont(Presentacion.fuentePpal
 
-        jTextField_apellidos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField_apellidos.setText("Muñoz Gordo");
-
-        jTextField_correo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField_correo.setText("kaienu.jp@gmail.com");
-
-        jTextField_telefono.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jTextField_telefono.setText("608505377");
-        jTextField_telefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_telefonoActionPerformed(evt);
-            }
-        });
-
+            (16, Font.PLAIN, Presentacion.LIGHT)
+        );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -166,134 +167,192 @@ public class Cliente_EDIT extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(25);
+        jTable1.setSelectionBackground(new java.awt.Color(255, 204, 204));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel1.setText("Cliente ID 0000021");
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel2.setText("Tiene x facturas asociadas");
-
-        campoFecha.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoFecha.setText("Cliente desde \"Fecha\"");
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel5.setText("Última visita: \"Fecha\"");
-
-        botonTicket.setBackground(new java.awt.Color(225, 225, 225));
-        botonTicket.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonTicket.setForeground(new java.awt.Color(219, 126, 138));
-        botonTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Big.png"))); // NOI18N
-        botonTicket.setText("Ticket");
-        botonTicket.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonTicketActionPerformed(evt);
-            }
-        });
-
-        botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
-        botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
-        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
-        botonCancelar.setText("Cancelar");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 480, 160));
 
         botonModificar.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonModificar.setForeground(new java.awt.Color(219, 126, 138));
-        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
-        botonModificar.setText("Modificar");
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png"))); // NOI18N
+        botonModificar.setText("Ticket");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setText("Observaciones:");
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 25, 160, 40));
 
         campoObservaciones.setColumns(20);
-        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        campoObservaciones.setFont(Presentacion.fuentePpal
+
+            (16, Font.PLAIN, Presentacion.LIGHT)
+        );
         campoObservaciones.setRows(5);
+        campoObservaciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        campoObservaciones.setEnabled(false);
         jScrollPane2.setViewportView(campoObservaciones);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoFecha)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(jTextField_correo, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                                .addComponent(jTextField_apellidos)
-                                .addComponent(jTextField_nombre)
-                                .addComponent(jTextField_telefono)))
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 480, 120));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel1.setText("Observaciones");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, 35));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setText("ID:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 35));
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel7.setText("Nombre:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 35));
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel8.setText("Apellidos:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 35));
+
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel9.setText("Teléfono:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, 35));
+
+        textIdCliente.setFont(Presentacion.fuentePpal
+
+            (18, Font.PLAIN, Presentacion.LIGHT)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoFecha)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        textIdCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textIdCliente.setEnabled(false);
+        jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 110, 35));
+
+        textNombre.setFont(Presentacion.fuentePpal
+
+            (18, Font.PLAIN, Presentacion.LIGHT)
         );
+        textNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textNombre.setEnabled(false);
+        jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, 35));
+
+        textApellidos.setFont(Presentacion.fuentePpal
+
+            (18, Font.PLAIN, Presentacion.LIGHT)
+        );
+        textApellidos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textApellidos.setEnabled(false);
+        jPanel1.add(textApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 190, 35));
+
+        textTelf.setFont(Presentacion.fuentePpal
+
+            (18
+                , Font.PLAIN, Presentacion.LIGHT)
+        );
+        textTelf.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textTelf.setEnabled(false);
+        jPanel1.add(textTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 190, 35));
+
+        textCorreo.setFont(Presentacion.fuentePpal
+
+            (18, Font.PLAIN, Presentacion.LIGHT)
+        );
+        textCorreo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        textCorreo.setEnabled(false);
+        jPanel1.add(textCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 400, 35));
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel10.setText("Correo:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 35));
+
+        botonModificar1.setBackground(new java.awt.Color(225, 225, 225));
+        botonModificar1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonModificar1.setForeground(new java.awt.Color(219, 126, 138));
+        botonModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
+        botonModificar1.setText("Modificar");
+        botonModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 25, 150, 40));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.setFont(Presentacion.fuentePpal
+
+            (14, Font.PLAIN, Presentacion.LIGHT)
+        );
+        jTextField1.setText("jTextField1");
+        jTextField1.setEnabled(false);
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 150, 35));
+
+        jTextField2.setFont(Presentacion.fuentePpal
+
+            (14, Font.PLAIN, Presentacion.LIGHT)
+        );
+        jTextField2.setText("jTextField1");
+        jTextField2.setEnabled(false);
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 110, 35));
+
+        jTextField3.setFont(Presentacion.fuentePpal
+
+            (14, Font.PLAIN, Presentacion.LIGHT)
+        );
+        jTextField3.setText("jTextField1");
+        jTextField3.setEnabled(false);
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 110, 35));
+
+        jTextField4.setFont(Presentacion.fuentePpal
+
+            (14, Font.PLAIN, Presentacion.LIGHT)
+        );
+        jTextField4.setText("jTextField1");
+        jTextField4.setEnabled(false);
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 150, 35));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel13.setText("Alta cliente:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 35));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel14.setText("Nº Facturas:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 35));
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel11.setText("Última visita:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, 35));
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel12.setText("Total:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, 35));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 500, 110));
+
+        botonModificar2.setBackground(new java.awt.Color(225, 225, 225));
+        botonModificar2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonModificar2.setForeground(new java.awt.Color(219, 126, 138));
+        botonModificar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
+        botonModificar2.setText("Atrás");
+        botonModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificar2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonModificar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 25, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,24 +360,20 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_telefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_telefonoActionPerformed
 
     private void jTextField_Busqueda6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_Busqueda6ActionPerformed
         // TODO add your handling code here:
@@ -328,26 +383,30 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAdd1ActionPerformed
 
-    private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonTicketActionPerformed
-
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        acceso.cerrar();
-        new Cliente_BUSQ().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_botonCancelarActionPerformed
-
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        String query = 
+       /* String query = 
     "UPDATE `Cliente` SET `nombre`='"+jTextField_nombre.getText()+"',`apellidos`='"+jTextField_apellidos.getText()+
         "',`correo`='"+jTextField_correo.getText()+"',`telefono`="+jTextField_telefono.getText()+
         ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idCliente` = "+this.id;
-        acceso.UpdateSql(query);
+        acceso.UpdateSql(query);*/
         
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void botonModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonModificar1ActionPerformed
+
+    private void botonModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificar2ActionPerformed
+        acceso.cerrar();
+        new Cliente_BUSQ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonModificar2ActionPerformed
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         int i = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         String idFact = model.getValueAt(i,0).toString();
@@ -358,9 +417,9 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             System.err.println("Error al procesar la Factura.");
         }
         acceso.cerrar();
-        new Factura_DETAIL(fact).setVisible(true);
+        new Factura_DETAIL(fact,2,this.id).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jTable1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -400,25 +459,36 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAdd1;
-    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonModificar;
-    private javax.swing.JButton botonTicket;
-    private javax.swing.JLabel campoFecha;
+    private javax.swing.JButton botonModificar1;
+    private javax.swing.JButton botonModificar2;
     private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField_Busqueda1;
     private javax.swing.JTextField jTextField_Busqueda6;
-    private javax.swing.JTextField jTextField_apellidos;
-    private javax.swing.JTextField jTextField_correo;
-    private javax.swing.JTextField jTextField_nombre;
-    private javax.swing.JTextField jTextField_telefono;
+    private javax.swing.JTextField textApellidos;
+    private javax.swing.JTextField textCorreo;
+    private javax.swing.JTextField textIdCliente;
+    private javax.swing.JTextField textNombre;
+    private javax.swing.JTextField textTelf;
     // End of variables declaration//GEN-END:variables
 }

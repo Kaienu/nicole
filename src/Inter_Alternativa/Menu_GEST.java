@@ -10,22 +10,10 @@ public class Menu_GEST extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonBusquedas3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         etqMenu = new javax.swing.JLabel();
         botonBusquedas = new javax.swing.JButton();
         botonBusquedas4 = new javax.swing.JButton();
-
-        botonBusquedas3.setBackground(new java.awt.Color(225, 225, 225));
-        botonBusquedas3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonBusquedas3.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Clientes.png"))); // NOI18N
-        botonBusquedas3.setText("Empleados");
-        botonBusquedas3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBusquedas3ActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 241, 242));
@@ -45,7 +33,7 @@ public class Menu_GEST extends javax.swing.JFrame {
         botonBusquedas.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusquedas.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Clientes.png"))); // NOI18N
+        botonBusquedas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gestion-Big.png"))); // NOI18N
         botonBusquedas.setText("Empleados");
         botonBusquedas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +44,7 @@ public class Menu_GEST extends javax.swing.JFrame {
         botonBusquedas4.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBusquedas4.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Clientes.png"))); // NOI18N
+        botonBusquedas4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Big.png"))); // NOI18N
         botonBusquedas4.setText("Atrás");
         botonBusquedas4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,10 +106,6 @@ public class Menu_GEST extends javax.swing.JFrame {
         new Empleado_MAIN().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonBusquedasActionPerformed
-
-    private void botonBusquedas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBusquedas3ActionPerformed
 
     private void botonBusquedas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas4ActionPerformed
         new Menu_MAIN().setVisible(true);
@@ -234,7 +218,6 @@ public class Menu_GEST extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBusquedas;
-    private javax.swing.JButton botonBusquedas3;
     private javax.swing.JButton botonBusquedas4;
     private javax.swing.JLabel etqMenu;
     private javax.swing.JPanel jPanel1;

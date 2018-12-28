@@ -112,7 +112,8 @@ public class Factura_BUSQ extends javax.swing.JFrame {
 
         jTable1.setFont(Presentacion.fuentePpal
 
-            (16,Font.PLAIN,Presentacion.LIGHT));
+            (16,Font.PLAIN,Presentacion.LIGHT)
+        );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -130,7 +131,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
             }
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setRowHeight(30);
+        jTable1.setRowHeight(35);
         jTable1.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -160,7 +161,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
 
         jTextField_Busqueda.setFont(Presentacion.fuentePpal
 
-            (16,Font.PLAIN,Presentacion.LIGHT)
+            (18,Font.PLAIN,Presentacion.LIGHT)
         );
         jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +178,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         });
 
         botonBusqueda.setBackground(new java.awt.Color(225, 225, 225));
-        botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonBusqueda.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
         botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/buscartiny.png"))); // NOI18N
         botonBusqueda.setText("Buscar");
@@ -188,7 +189,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         });
 
         botonAtras.setBackground(new java.awt.Color(225, 225, 225));
-        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonAtras.setText("Atrás");
@@ -199,7 +200,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         });
 
         botonLimpiar.setBackground(new java.awt.Color(225, 225, 225));
-        botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
         botonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonLimpiar.setText("Limpiar");
@@ -210,7 +211,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         });
 
         botonAdd.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         botonAdd.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
         botonAdd.setText("Añadir");
@@ -351,7 +352,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
             String id = model.getValueAt(i,0).toString();
             Factura factu = (Factura) acceso.listadoID("Factura",id);
             acceso.cerrar();
-            new Factura_DETAIL(factu).setVisible(true);
+            new Factura_DETAIL(factu,0).setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

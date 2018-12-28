@@ -25,13 +25,13 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         //ocultarBotones();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(0);
-        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(90);
         jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(250);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(318);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(105);
+        //jTable1.getColumnModel().getColumn(4).setPreferredWidth(105);
         jTable1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         
         try{
@@ -125,7 +125,10 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setFont(Presentacion.fuentePpal
+
+            (16,Font.PLAIN,Presentacion.LIGHT)
+        );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -143,7 +146,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
             }
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setRowHeight(30);
+        jTable1.setRowHeight(35);
         jTable1.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -160,11 +163,14 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jTextField_Busqueda.setFont(Presentacion.fuentePpal
+
+            (18,Font.PLAIN,Presentacion.LIGHT)
+        );
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
@@ -231,7 +237,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)

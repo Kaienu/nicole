@@ -112,6 +112,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleciona empleado" }));
@@ -456,7 +457,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             System.err.println("Error al procesar la Factura.");
         }
         acceso.cerrar();
-        new Factura_DETAIL(fact).setVisible(true);
+        new Factura_DETAIL(fact,1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
