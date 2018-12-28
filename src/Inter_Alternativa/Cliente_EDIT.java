@@ -64,7 +64,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         for(int i = 0; i < lista.size();i++){
             Factura fact = (Factura) lista.get(i);
             row[0] = fact.getIdFactura();
-            row[1] = fact.getFecha().toString();
+            row[1] = fact.fechaActual();
             row[2] = fact.getImporte().toEngineeringString();
             model.addRow(row);
         }
@@ -357,7 +357,9 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.err.println("Error al procesar la Factura.");
         }
-        new Factura_DETAIL(this, true, fact,acceso);
+        acceso.cerrar();
+        new Factura_DETAIL(fact).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**

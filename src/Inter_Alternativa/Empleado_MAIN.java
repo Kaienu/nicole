@@ -455,7 +455,9 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.err.println("Error al procesar la Factura.");
         }
-        new Factura_DETAIL(this, true, fact,acceso);
+        acceso.cerrar();
+        new Factura_DETAIL(fact).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**

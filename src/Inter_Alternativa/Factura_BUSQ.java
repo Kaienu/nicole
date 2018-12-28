@@ -4,6 +4,8 @@ import clases.*;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -343,12 +345,17 @@ public class Factura_BUSQ extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_BusquedaKeyPressed
 
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
-        int i = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String id = model.getValueAt(i,0).toString();
-        acceso.cerrar();
-        new Cliente_EDIT(id).setVisible(true);
-        this.dispose();
+        try {
+            int i = jTable1.getSelectedRow();
+            TableModel model = jTable1.getModel();
+            String id = model.getValueAt(i,0).toString();
+            Factura factu = (Factura) acceso.listadoID("Factura",id);
+            acceso.cerrar();
+            new Factura_DETAIL(factu).setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered

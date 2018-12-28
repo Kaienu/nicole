@@ -436,7 +436,7 @@ public class AccesoSQL {
         String query = "select Producto.modelo, Linea.cantidad, Linea.idPromocion,"
             +" Linea.importeLinea from Linea inner join Producto on "
             +"Linea.idProducto=Producto.idProducto where Linea.idFactura like"
-            +" '"+idFact+"'";
+            +" '"+idFact+"';";
         PreparedStatement st = con.prepareStatement(query);
         ResultSet rs = st.executeQuery();
         while (rs.next()){
@@ -446,6 +446,7 @@ public class AccesoSQL {
             linea.setCantidad(rs.getInt(2));
             linea.setIdPromocion(rs.getString(3));
             linea.setImporteLinea(n);
+            System.out.println(linea);
             lineas.add(linea);
         }
         rs.close();
@@ -467,8 +468,8 @@ public class AccesoSQL {
                 Factura fact = new Factura();
                 BigDecimal n = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
                 fact.setIdFactura(rs.getString(1));
-                fact.setIdCliente(rs.getString(2));
-                fact.setDni(rs.getString(3));
+                fact.setIdCliente(rs.getString(3));
+                fact.setDni(rs.getString(2));
                 fact.setImporte(n);
                 fact.setFecha(rs.getTimestamp(4));
                 if (fact.comparacion(filtro)) facturas.add(fact);
