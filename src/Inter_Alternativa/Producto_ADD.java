@@ -222,14 +222,15 @@ public class Producto_ADD extends javax.swing.JDialog {
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
-        Producto prod = new Producto(campoTipo.getText(),campoMarca.getText(),campoModelo.getText(),precio,campoObservaciones.getText());
-        try {
-            acceso = new AccesoSQL();
-            acceso.insertSql(prod);
-        } catch (NumberFormatException e) {
+            Producto prod = new Producto(campoTipo.getText(),campoMarca.getText(),campoModelo.getText(),precio,campoObservaciones.getText());
+            try {
+                acceso = new AccesoSQL();
+                acceso.insertSql(prod);
+            } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Introduzca un precio valido", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+            }
+            this.dispose();
+        
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevo1ActionPerformed

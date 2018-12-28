@@ -6,6 +6,8 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,8 +20,10 @@ import javax.swing.table.DefaultTableModel;
 public class Producto_EDIT extends javax.swing.JFrame {
 
     private String id;
+    int edit_mode = 0;
     AccesoSQL acceso;
     Producto producto;
+    ArrayList<Producto> carrito  = new ArrayList<>();
     
     /**
      * Creates new form Inter_Producto_edit
@@ -42,6 +46,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoModelo.setText(producto.getModelo());
         campoPrecio.setText(String.valueOf(producto.getPrecioUnitario()));
         campoObservaciones.setText(producto.getObservaciones());
+        //comboTipo.addItem(producto.getTipo());
     }
 
     private Producto_EDIT() {
@@ -54,9 +59,17 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoMarca.setEditable(Opcion);
         campoModelo.setEditable(Opcion);
         campoPrecio.setEditable(Opcion);
-        campoObservaciones.setEditable(Opcion);                
+        campoObservaciones.setEditable(Opcion);
+        //comboTipo.setVisible(Producto);
     }
-    
+    /*
+    if (estado == true){
+            String query =
+                "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
+                "',`modelo`='"+campoModelo.getText()+"',`precioUnitario`="+campoPrecio.getText()+
+                ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
+            acceso.UpdateSql(query);
+    */
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,7 +101,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoPrecio = new javax.swing.JTextField();
         botonEliminar = new javax.swing.JButton();
         campoIDproducto = new javax.swing.JTextField();
-        checkModificar = new javax.swing.JCheckBox();
+        comboTipo = new javax.swing.JComboBox<>();
 
         jTextField_Busqueda1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
@@ -117,15 +130,17 @@ public class Producto_EDIT extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelIDproducto.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         jLabelIDproducto.setForeground(new java.awt.Color(219, 126, 138));
         jLabelIDproducto.setText("ID Producto:");
+        jPanel1.add(jLabelIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 35));
 
         botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
         botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
-        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir-Normal.png"))); // NOI18N
+        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonCancelar.setText("Atrás");
         botonCancelar.setMaximumSize(new java.awt.Dimension(105, 31));
         botonCancelar.setMinimumSize(new java.awt.Dimension(105, 31));
@@ -135,50 +150,68 @@ public class Producto_EDIT extends javax.swing.JFrame {
                 botonCancelarActionPerformed(evt);
             }
         });
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 170, 40));
 
         botonModificar.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonModificar.setForeground(new java.awt.Color(219, 126, 138));
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
-        botonModificar.setText("Guardar");
+        botonModificar.setText("Modificar");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
             }
         });
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 40));
 
         etqTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         etqTipo.setForeground(new java.awt.Color(219, 126, 138));
         etqTipo.setText("Tipo:");
+        jPanel1.add(etqTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 35));
 
         etqMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         etqMarca.setForeground(new java.awt.Color(219, 126, 138));
         etqMarca.setText("Marca:");
+        jPanel1.add(etqMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, 35));
 
         etqModelo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         etqModelo.setForeground(new java.awt.Color(219, 126, 138));
         etqModelo.setText("Modelo:");
+        jPanel1.add(etqModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, 35));
 
         etqPrecio.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         etqPrecio.setForeground(new java.awt.Color(219, 126, 138));
         etqPrecio.setText("Precio:");
+        jPanel1.add(etqPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, 35));
 
         etqObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         etqObservaciones.setForeground(new java.awt.Color(219, 126, 138));
         etqObservaciones.setText("Observaciones:");
+        jPanel1.add(etqObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 35));
 
         campoObservaciones.setColumns(20);
         campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         campoObservaciones.setRows(5);
         jScrollPane1.setViewportView(campoObservaciones);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 550, 200));
+
         campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jPanel1.add(campoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
 
         campoMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoMarcaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 170, 35));
 
         campoModelo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 440, 35));
 
         campoPrecio.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 170, 35));
 
         botonEliminar.setBackground(new java.awt.Color(225, 225, 225));
         botonEliminar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -190,98 +223,19 @@ public class Producto_EDIT extends javax.swing.JFrame {
                 botonEliminarActionPerformed(evt);
             }
         });
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 176, 40));
 
         campoIDproducto.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jPanel1.add(campoIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 150, 35));
 
-        checkModificar.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        checkModificar.setForeground(new java.awt.Color(219, 126, 138));
-        checkModificar.setText("Modificar Producto");
-        checkModificar.addActionListener(new java.awt.event.ActionListener() {
+        comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        comboTipo.setForeground(new java.awt.Color(219, 126, 138));
+        comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkModificarActionPerformed(evt);
+                comboTipoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelIDproducto)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoIDproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etqPrecio)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(etqObservaciones)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-                                .addComponent(checkModificar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etqMarca)
-                                            .addComponent(etqTipo))
-                                        .addGap(26, 26, 26))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(etqModelo)
-                                        .addGap(19, 19, 19)))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campoMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                                    .addComponent(campoTipo)
-                                    .addComponent(campoModelo)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqPrecio)
-                    .addComponent(campoIDproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelIDproducto))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqTipo)
-                    .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqMarca)
-                    .addComponent(campoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqModelo)
-                    .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(checkModificar)
-                    .addComponent(etqObservaciones))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -289,14 +243,14 @@ public class Producto_EDIT extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -313,43 +267,64 @@ public class Producto_EDIT extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAdd1ActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        acceso.cerrar();
-        new Producto_BUSQ().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        if (checkModificar.isSelected() == true){
-            String query = 
+        switch (edit_mode){
+            case 0: //BOTÓN MODIFICAR OFF
+                edit_mode = 1;
+                botonModificar.setText("Guardar");
+                botonEliminar.setText("Cancelar");
+                camposNoEditables(true);
+                break;
+            case 1: 
+                String query =
                 "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
                 "',`modelo`='"+campoModelo.getText()+"',`precioUnitario`="+campoPrecio.getText()+
                 ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
-            acceso.UpdateSql(query);
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe de marcar la opción modificar");
+                acceso.UpdateSql(query);
+                if (acceso.UpdateSql(query)) {
+                   edit_mode = 0;
+                    new Producto_EDIT().setVisible(true);
+                    this.dispose(); 
+                }
+                break;
         }
         
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        int resp = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?", "¡Atención!", JOptionPane.YES_NO_OPTION);
-            if (resp == 0){
-                String query = "DELETE FROM `Producto` WHERE  `idProducto` = " + this.id;
-                acceso.UpdateSql(query);
-                new Producto_BUSQ().setVisible(true);
-                this.dispose();    
-            } else {
-                JOptionPane.showMessageDialog(null, "No se ha eliminado el producto");
-            }        
+        switch (edit_mode){
+            case 0: //BOTÓN ELIMINAR
+                int resp = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?", "¡Atención!", JOptionPane.YES_NO_OPTION);
+                if (resp == 0){
+                    String query = "DELETE FROM `Producto` WHERE  `idProducto` = " + this.id;
+                    acceso.UpdateSql(query);
+                    new Producto_BUSQ().setVisible(true);
+                    this.dispose();    
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha eliminado el producto");
+                } 
+            case 1: //BOTÓN CANCELAR
+                edit_mode = 0;
+                new Producto_EDIT().setVisible(true);
+                this.dispose();
+                break;
+        }
+        
+        
+        
+               
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void checkModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkModificarActionPerformed
-        if (checkModificar.isSelected() == true){
-            camposNoEditables(true);
-        } else {
-            camposNoEditables(false);
-        }
-    }//GEN-LAST:event_checkModificarActionPerformed
+    private void campoMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoMarcaActionPerformed
+
+    private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,7 +374,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
     private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JTextField campoPrecio;
     private javax.swing.JTextField campoTipo;
-    private javax.swing.JCheckBox checkModificar;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel etqMarca;
     private javax.swing.JLabel etqModelo;
     private javax.swing.JLabel etqObservaciones;

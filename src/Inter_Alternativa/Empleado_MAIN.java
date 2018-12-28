@@ -203,7 +203,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         botonBaja.setBackground(new java.awt.Color(225, 225, 225));
         botonBaja.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonBaja.setForeground(new java.awt.Color(219, 126, 138));
-        botonBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salida.png"))); // NOI18N
+        botonBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonBaja.setText("Atrás");
         botonBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,8 +241,8 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, 0, 207, Short.MAX_VALUE)
-                        .addGap(18, 314, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, 0, 211, Short.MAX_VALUE)
+                        .addGap(18, 318, Short.MAX_VALUE)
                         .addComponent(botonBaja))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
