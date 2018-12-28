@@ -1,5 +1,6 @@
 package clases;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,14 +8,14 @@ import java.util.Date;
 public class Cliente{
     
     private String nombre,apellidos,correo,idCliente,observaciones;
-    private Date fechaAlta;
+    private Timestamp fechaAlta;
     private int telefono;
     
     public Cliente(){
         
     }
     
-    public Cliente(String nombre, String apellidos, String correo, int telefono, String idCliente, String observaciones, Date fechaAlta) {
+    public Cliente(String nombre, String apellidos, String correo, int telefono, String idCliente, String observaciones, Timestamp fechaAlta) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -80,11 +81,11 @@ public class Cliente{
         this.telefono = telefono;
     }
 
-    public Date getFechaAlta() {
+    public Timestamp getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(Timestamp fechaAlta) {
         this.fechaAlta = fechaAlta;
     }   
     
@@ -110,8 +111,12 @@ public class Cliente{
     }
     
     public final String fechaActual(){
-        //Date date = new Date();
         DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return hourdateFormat.format(fechaAlta);
+    }
+    
+    public final String fechaAlta(){
+        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return hourdateFormat.format(fechaAlta);
     }
      /*

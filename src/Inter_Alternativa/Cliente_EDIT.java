@@ -44,6 +44,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         textTelf.setText(String.valueOf(cliente.getTelefono()));
         campoObservaciones.setText(cliente.getObservaciones());
         textIdCliente.setText(id);
+        textFecha.setText(cliente.fechaAlta());
         try {
             MostrarSQL("FacturaCliente",cliente.getIdCliente());
         } catch (SQLException ex) {
@@ -69,11 +70,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             row[2] = fact.getImporte().toEngineeringString();
             model.addRow(row);
         }
-    }
-    public String fechaActual(){
-        Date date = new Date(cliente.getFechaAlta().getTime());
-        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return hourdateFormat.format(date);
     }
 
     /**
@@ -109,7 +105,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         botonModificar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        textFecha = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -297,32 +293,36 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             (14, Font.PLAIN, Presentacion.LIGHT)
         );
         jTextField1.setText("jTextField1");
+        jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField1.setEnabled(false);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 150, 35));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 170, 35));
 
-        jTextField2.setFont(Presentacion.fuentePpal
+        textFecha.setFont(Presentacion.fuentePpal
 
             (14, Font.PLAIN, Presentacion.LIGHT)
         );
-        jTextField2.setText("jTextField1");
-        jTextField2.setEnabled(false);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 110, 35));
+        textFecha.setText("jTextField1");
+        textFecha.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        textFecha.setEnabled(false);
+        jPanel2.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 100, 35));
 
         jTextField3.setFont(Presentacion.fuentePpal
 
             (14, Font.PLAIN, Presentacion.LIGHT)
         );
         jTextField3.setText("jTextField1");
+        jTextField3.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField3.setEnabled(false);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 110, 35));
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 35));
 
         jTextField4.setFont(Presentacion.fuentePpal
 
             (14, Font.PLAIN, Presentacion.LIGHT)
         );
         jTextField4.setText("jTextField1");
+        jTextField4.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField4.setEnabled(false);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 150, 35));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 170, 35));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setText("Alta cliente:");
@@ -334,11 +334,11 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel11.setText("Última visita:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, 35));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, 35));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel12.setText("Total:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, 35));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, 35));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 500, 110));
 
@@ -480,13 +480,13 @@ public class Cliente_EDIT extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField_Busqueda1;
     private javax.swing.JTextField jTextField_Busqueda6;
     private javax.swing.JTextField textApellidos;
     private javax.swing.JTextField textCorreo;
+    private javax.swing.JTextField textFecha;
     private javax.swing.JTextField textIdCliente;
     private javax.swing.JTextField textNombre;
     private javax.swing.JTextField textTelf;

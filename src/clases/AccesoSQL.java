@@ -79,6 +79,7 @@ public class AccesoSQL {
                     cliente.setCorreo(rs.getString(4));
                     cliente.setTelefono(rs.getInt(5));
                     cliente.setObservaciones(rs.getString(6));
+                    cliente.setFechaAlta(rs.getTimestamp(7));
                     //System.out.println(cliente); // Comando de prueba en consola
                     lista.add(cliente);
                 }
@@ -218,7 +219,7 @@ public class AccesoSQL {
                     cliente.setCorreo(rs.getString(4));
                     cliente.setTelefono(rs.getInt(5));
                     cliente.setObservaciones(rs.getString(6));
-                    cliente.setFechaAlta(rs.getDate(7));
+                    cliente.setFechaAlta(rs.getTimestamp(7));
                     //System.out.println(cliente); // Comando de prueba en consola
                 }
                 rs.close();
