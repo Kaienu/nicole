@@ -9,22 +9,38 @@ import clases.AccesoSQL;
 import clases.Producto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author kaien
+ * @author Antonio
  */
-public class Producto_ADD extends javax.swing.JDialog {
+public class Producto_ADD extends javax.swing.JFrame {
 
     AccesoSQL acceso;
-    
+    Producto produ;
+    private ArrayList<String> lista;
     /**
-     * Creates new form Add_Prod
+     * Creates new form Producto_ADD1
      */
-    public Producto_ADD(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Producto_ADD() {
+        acceso = new AccesoSQL();
         initComponents();
+        llenarCombo();        
+    }
+    
+    public void llenarCombo() {
+        lista = new ArrayList<>();
+        try {
+            lista = acceso.selectSQLDistinct("Producto", "tipo");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        for (String s : lista) {
+            String pro = s;
+            comboTipo.addItem(pro);
+        }
     }
 
     /**
@@ -37,125 +53,103 @@ public class Producto_ADD extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        campoTipo = new javax.swing.JTextField();
-        etqTipo = new javax.swing.JLabel();
-        etqMarca = new javax.swing.JLabel();
-        campoMarca = new javax.swing.JTextField();
-        etqPrecio = new javax.swing.JLabel();
-        campoPrecio = new javax.swing.JTextField();
-        jButtonNuevo = new javax.swing.JButton();
-        jButtonNuevo1 = new javax.swing.JButton();
-        etqModelo = new javax.swing.JLabel();
-        campoModelo = new javax.swing.JTextField();
-        etqObservaciones = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoObservaciones = new javax.swing.JTextArea();
+        botonCancelar = new javax.swing.JButton();
+        botonAñadir = new javax.swing.JButton();
+        campoPrecio = new javax.swing.JTextField();
+        comboTipo = new javax.swing.JComboBox<>();
+        campoModelo = new javax.swing.JTextField();
+        campoMarca = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel1.setText("ID Producto: ");
-
-        campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTipoActionPerformed(evt);
-            }
-        });
-
-        etqTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqTipo.setText("Tipo");
-
-        etqMarca.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqMarca.setText("Marca");
-
-        campoMarca.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoMarcaActionPerformed(evt);
-            }
-        });
-
-        etqPrecio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqPrecio.setText("Precio");
-
-        campoPrecio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoPrecioActionPerformed(evt);
-            }
-        });
-
-        jButtonNuevo.setBackground(new java.awt.Color(225, 225, 225));
-        jButtonNuevo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButtonNuevo.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
-        jButtonNuevo.setText("Añadir");
-        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNuevoActionPerformed(evt);
-            }
-        });
-
-        jButtonNuevo1.setBackground(new java.awt.Color(225, 225, 225));
-        jButtonNuevo1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButtonNuevo1.setForeground(new java.awt.Color(219, 126, 138));
-        jButtonNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
-        jButtonNuevo1.setText("Cancelar");
-        jButtonNuevo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNuevo1ActionPerformed(evt);
-            }
-        });
-
-        etqModelo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqModelo.setText("Modelo");
-
-        campoModelo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        campoModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoModeloActionPerformed(evt);
-            }
-        });
-
-        etqObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        etqObservaciones.setText("Observaciones");
 
         campoObservaciones.setColumns(20);
+        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         campoObservaciones.setRows(5);
         jScrollPane1.setViewportView(campoObservaciones);
+
+        botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
+        botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
+        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+
+        botonAñadir.setBackground(new java.awt.Color(225, 225, 225));
+        botonAñadir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(219, 126, 138));
+        botonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
+        botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+
+        comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el Tipo" }));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel1.setText("Tipo:");
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel2.setText("Marca:");
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel3.setText("Modelo:");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel4.setText("Precio:");
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel5.setText("Observaciones:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(campoTipo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etqTipo)
-                            .addComponent(etqMarca)
-                            .addComponent(etqModelo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(campoMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoModelo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etqPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etqObservaciones, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(campoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -163,32 +157,26 @@ public class Producto_ADD extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(etqTipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(etqModelo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(etqMarca)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoModelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(etqPrecio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(etqObservaciones)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,8 +185,8 @@ public class Producto_ADD extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,38 +200,21 @@ public class Producto_ADD extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoMarcaActionPerformed
-
-    private void campoPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoPrecioActionPerformed
-
-    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
-            Producto prod = new Producto(campoTipo.getText(),campoMarca.getText(),campoModelo.getText(),precio,campoObservaciones.getText());
+        String combo = (String)comboTipo.getSelectedItem();    
+            Producto pro = new Producto(combo,campoMarca.getText(),campoModelo.getText(),precio,campoObservaciones.getText());
             try {
-                acceso = new AccesoSQL();
-                acceso.insertSql(prod);
+                acceso.insertSql(pro);
             } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Introduzca un precio valido", "Error", JOptionPane.ERROR_MESSAGE);
             }
             this.dispose();
-        
-    }//GEN-LAST:event_jButtonNuevoActionPerformed
+    }//GEN-LAST:event_botonAñadirActionPerformed
 
-    private void jButtonNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevo1ActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButtonNuevo1ActionPerformed
-
-    private void campoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoModeloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoModeloActionPerformed
-
-    private void campoTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTipoActionPerformed
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,35 +244,27 @@ public class Producto_ADD extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Producto_ADD dialog = new Producto_ADD(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new Producto_ADD().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAñadir;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JTextField campoMarca;
     private javax.swing.JTextField campoModelo;
     private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JTextField campoPrecio;
-    private javax.swing.JTextField campoTipo;
-    private javax.swing.JLabel etqMarca;
-    private javax.swing.JLabel etqModelo;
-    private javax.swing.JLabel etqObservaciones;
-    private javax.swing.JLabel etqPrecio;
-    private javax.swing.JLabel etqTipo;
-    private javax.swing.JButton jButtonNuevo;
-    private javax.swing.JButton jButtonNuevo1;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

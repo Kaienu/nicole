@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +25,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
     AccesoSQL acceso;
     Producto producto;
     ArrayList<Producto> carrito  = new ArrayList<>();
+    private ArrayList<String> lista;
     
     /**
      * Creates new form Inter_Producto_edit
@@ -42,6 +42,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         } 
         obtenerDatos();
+        llenarCombo();
     }
 
     private Producto_EDIT() {
@@ -57,7 +58,6 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoObservaciones.setEditable(Opcion);
         if (Opcion) campoObservaciones.setBackground(Color.white);
         else campoObservaciones.setBackground(new Color(240,240,240));
-        //comboTipo.setVisible(Producto);
     }
     
     public void obtenerDatos() {
@@ -67,7 +67,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoModelo.setText(producto.getModelo());
         campoPrecio.setText(String.valueOf(producto.getPrecioUnitario()));
         campoObservaciones.setText(producto.getObservaciones());
-        //comboTipo.addItem(producto.getTipo());
+        comboTipo.setVisible(false);
     }
     
     public void cancelarModificacion() {
@@ -75,20 +75,32 @@ public class Producto_EDIT extends javax.swing.JFrame {
         botonAtras.setEnabled(true);
         botonModificar.setText("Modificar");
         botonEliminar.setText("Eliminar");
+        comboTipo.setVisible(false);
+        campoTipo.setVisible(true);
     }
     
     public void modificarProductos() {
-        this.producto.setTipo(campoTipo.getText());
+        String combo = (String)comboTipo.getSelectedItem();
+        this.producto.setTipo(combo);
         this.producto.setMarca(campoMarca.getText());
         this.producto.setModelo(campoModelo.getText()); 
         BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
         this.producto.setPrecioUnitario(precio);
         this.producto.setObservaciones(campoObservaciones.getText());
     }
-    /*
-    if (estado == true){
-            
-    */
+    
+     public void llenarCombo() {
+        lista = new ArrayList<>();
+        try {
+            lista = acceso.selectSQLDistinct("Producto", "tipo");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        for (String s : lista) {
+            String pro = s;
+            comboTipo.addItem(pro);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,13 +126,13 @@ public class Producto_EDIT extends javax.swing.JFrame {
         etqObservaciones = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoObservaciones = new javax.swing.JTextArea();
-        campoTipo = new javax.swing.JTextField();
         campoMarca = new javax.swing.JTextField();
         campoModelo = new javax.swing.JTextField();
         campoPrecio = new javax.swing.JTextField();
         botonEliminar = new javax.swing.JButton();
         campoIDproducto = new javax.swing.JTextField();
         comboTipo = new javax.swing.JComboBox<>();
+        campoTipo = new javax.swing.JTextField();
 
         jTextField_Busqueda1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
@@ -209,9 +221,6 @@ public class Producto_EDIT extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 550, 200));
 
-        campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        jPanel1.add(campoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
-
         campoMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         campoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,14 +250,12 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoIDproducto.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         jPanel1.add(campoIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 150, 35));
 
-        comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        comboTipo.setForeground(new java.awt.Color(219, 126, 138));
-        comboTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTipoActionPerformed(evt);
-            }
-        });
+        comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el Tipo" }));
         jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
+
+        campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jPanel1.add(campoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,14 +263,14 @@ public class Producto_EDIT extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -289,6 +296,8 @@ public class Producto_EDIT extends javax.swing.JFrame {
         JButton boton = (JButton)evt.getSource();
         if (boton.getText().equalsIgnoreCase("Modificar")) {
             modificarCampos(true);
+            comboTipo.setVisible(true);
+            campoTipo.setVisible(false);
             botonAtras.setEnabled(false);
             botonModificar.setText("Guardar");
             botonEliminar.setText("Cancelar");
@@ -296,6 +305,9 @@ public class Producto_EDIT extends javax.swing.JFrame {
             int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
             if (eleccion == 0) {
                 modificarProductos();
+                comboTipo.setVisible(false);
+                campoTipo.setVisible(true);
+                obtenerDatos();
                 if (acceso.updatePorducto(producto)) {
                     cancelarModificacion();
                 }
@@ -325,10 +337,6 @@ public class Producto_EDIT extends javax.swing.JFrame {
     private void campoMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoMarcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoMarcaActionPerformed
-
-    private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTipoActionPerformed
 
     /**
      * @param args the command line arguments
