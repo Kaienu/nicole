@@ -15,7 +15,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,12 +43,19 @@ public class Factura_ADD extends javax.swing.JFrame {
      */
     public Factura_ADD() {
         initComponents();
-        inicializar();    
+        inicializar(); 
+        campoBuscarCliente.setEnabled(false);
+        campoEmpleadoLogado.setEditable(false);
+        
     }
     
     public Factura_ADD(Cliente cliente){
         this();
         this.cliPrincipal = cliente;
+    }
+
+    public void obtenerCliente (String nombre, String apellidos) {
+        campoBuscarCliente.setText(Factura_BUSQ_CLIEN.nombre + "" + Factura_BUSQ_CLIEN.apellidos);
     }
     
     public void inicializar() {
@@ -60,8 +69,6 @@ public class Factura_ADD extends javax.swing.JFrame {
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(10);
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(10);
         inicializarMenuLateral();
-        
-        
     }
     
     public void inicializarMenuLateral() {
@@ -210,6 +217,8 @@ public class Factura_ADD extends javax.swing.JFrame {
         panelSwitches = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         panelSwitches1 = new javax.swing.JPanel();
+        campoBuscarCliente = new javax.swing.JTextField();
+        campoEmpleadoLogado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -249,6 +258,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("0,00€");
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jTextField1.setEnabled(false);
@@ -264,6 +274,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
         jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         jButtonAtras.setText("Atrás");
+        jButtonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
@@ -276,6 +287,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         botonEliminarProducto.setForeground(new java.awt.Color(219, 126, 138));
         botonEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonEliminarProducto.setText("Eliminar");
+        botonEliminarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonEliminarProducto.setPreferredSize(new java.awt.Dimension(277, 41));
         botonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +301,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         jButtonFinVenta.setForeground(new java.awt.Color(219, 126, 138));
         jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png"))); // NOI18N
         jButtonFinVenta.setText("Finalizar");
+        jButtonFinVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jButtonFinVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFinVentaActionPerformed(evt);
@@ -331,6 +344,21 @@ public class Factura_ADD extends javax.swing.JFrame {
         jScrollPane3.setViewportView(panelSwitches1);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 400));
+
+        campoBuscarCliente.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoBuscarCliente.setText("Buscar cliente...");
+        campoBuscarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        campoBuscarCliente.setDisabledTextColor(new java.awt.Color(219, 126, 138));
+        campoBuscarCliente.setSelectionColor(new java.awt.Color(219, 126, 138));
+        campoBuscarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoBuscarClienteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(campoBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 200, 40));
+
+        campoEmpleadoLogado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.add(campoEmpleadoLogado, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 10, 200, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -417,6 +445,16 @@ public class Factura_ADD extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonFinVentaActionPerformed
 
+    private void campoBuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarClienteMouseClicked
+        new Factura_BUSQ_CLIEN(this).setVisible(true);
+    }//GEN-LAST:event_campoBuscarClienteMouseClicked
+    public void setCampo(Cliente cliente) {
+        campoBuscarCliente.setText(cliente.getNombre()+" "+cliente.getApellidos());
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
     /**
      * @param args the command line arguments
      */
@@ -457,6 +495,8 @@ public class Factura_ADD extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminarProducto;
+    private javax.swing.JTextField campoBuscarCliente;
+    private javax.swing.JTextField campoEmpleadoLogado;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonFinVenta;
     private javax.swing.JPanel jPanel1;
