@@ -36,11 +36,11 @@ public class Conexion extends Thread {
                     if (con==null) {
                         i++;                
                         System.out.println("Intento "+i+"...");
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } else if (con.isClosed()) {
                         i++;                
                         System.out.println("Intento "+i+"...");
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } else {
                         return con;
                     }
