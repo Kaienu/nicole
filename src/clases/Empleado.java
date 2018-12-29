@@ -6,7 +6,7 @@ public class Empleado{
     
     private String dni,nombre,apellidos,correo;
     private int telefono;
-    private Timestamp fechaAlta = Util.FECHAERROR;
+    private Timestamp fechaAlta = Tool.FECHAERROR;
     
     
     public Empleado(){    
@@ -71,6 +71,14 @@ public class Empleado{
 
     public void setFechaAlta(Timestamp fechaAlta) {
         this.fechaAlta = fechaAlta;
+    }
+    
+    public String getNombreCompleto(){
+        return this.nombre+" "+this.getApellidos();
+    }
+    
+    public void asignarPass(String pass) {
+        String passwd = Tool.hashWith256(pass);
     }
     
     @Override
