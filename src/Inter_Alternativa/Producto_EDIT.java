@@ -6,10 +6,12 @@
 package Inter_Alternativa;
 
 import clases.*;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,8 +33,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
      */
     public Producto_EDIT(String id) {
         initComponents();
-        camposNoEditables(false);
-        
+        modificarCampos(false);
         this.id = id;
         acceso = new AccesoSQL();
         try {
@@ -40,6 +41,26 @@ public class Producto_EDIT extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } 
+        obtenerDatos();
+    }
+
+    private Producto_EDIT() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void modificarCampos(boolean Opcion) {
+        campoIDproducto.setEditable(false);
+        campoTipo.setEditable(Opcion);
+        campoMarca.setEditable(Opcion);
+        campoModelo.setEditable(Opcion);
+        campoPrecio.setEditable(Opcion);
+        campoObservaciones.setEditable(Opcion);
+        if (Opcion) campoObservaciones.setBackground(Color.white);
+        else campoObservaciones.setBackground(new Color(240,240,240));
+        //comboTipo.setVisible(Producto);
+    }
+    
+    public void obtenerDatos() {
         campoIDproducto.setText(id);
         campoTipo.setText(producto.getTipo());
         campoMarca.setText(producto.getMarca());
@@ -48,27 +69,25 @@ public class Producto_EDIT extends javax.swing.JFrame {
         campoObservaciones.setText(producto.getObservaciones());
         //comboTipo.addItem(producto.getTipo());
     }
-
-    private Producto_EDIT() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public void cancelarModificacion() {
+        modificarCampos(false);
+        botonAtras.setEnabled(true);
+        botonModificar.setText("Modificar");
+        botonEliminar.setText("Eliminar");
     }
     
-    public void camposNoEditables(boolean Opcion) {
-        campoIDproducto.setEditable(false);
-        campoTipo.setEditable(Opcion);
-        campoMarca.setEditable(Opcion);
-        campoModelo.setEditable(Opcion);
-        campoPrecio.setEditable(Opcion);
-        campoObservaciones.setEditable(Opcion);
-        //comboTipo.setVisible(Producto);
+    public void modificarProductos() {
+        this.producto.setTipo(campoTipo.getText());
+        this.producto.setMarca(campoMarca.getText());
+        this.producto.setModelo(campoModelo.getText()); 
+        BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
+        this.producto.setPrecioUnitario(precio);
+        this.producto.setObservaciones(campoObservaciones.getText());
     }
     /*
     if (estado == true){
-            String query =
-                "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
-                "',`modelo`='"+campoModelo.getText()+"',`precioUnitario`="+campoPrecio.getText()+
-                ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
-            acceso.UpdateSql(query);
+            
     */
 
     /**
@@ -86,7 +105,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
         botonAdd1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelIDproducto = new javax.swing.JLabel();
-        botonCancelar = new javax.swing.JButton();
+        botonAtras = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         etqTipo = new javax.swing.JLabel();
         etqMarca = new javax.swing.JLabel();
@@ -132,25 +151,24 @@ public class Producto_EDIT extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelIDproducto.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        jLabelIDproducto.setForeground(new java.awt.Color(219, 126, 138));
+        jLabelIDproducto.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabelIDproducto.setText("ID Producto:");
         jPanel1.add(jLabelIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 35));
 
-        botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
-        botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
-        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
-        botonCancelar.setText("Atrás");
-        botonCancelar.setMaximumSize(new java.awt.Dimension(105, 31));
-        botonCancelar.setMinimumSize(new java.awt.Dimension(105, 31));
-        botonCancelar.setPreferredSize(new java.awt.Dimension(105, 31));
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        botonAtras.setBackground(new java.awt.Color(225, 225, 225));
+        botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAtras.setForeground(new java.awt.Color(219, 126, 138));
+        botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
+        botonAtras.setText("Atrás");
+        botonAtras.setMaximumSize(new java.awt.Dimension(105, 31));
+        botonAtras.setMinimumSize(new java.awt.Dimension(105, 31));
+        botonAtras.setPreferredSize(new java.awt.Dimension(105, 31));
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
+                botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 170, 40));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 170, 40));
 
         botonModificar.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -164,28 +182,23 @@ public class Producto_EDIT extends javax.swing.JFrame {
         });
         jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 40));
 
-        etqTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        etqTipo.setForeground(new java.awt.Color(219, 126, 138));
+        etqTipo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         etqTipo.setText("Tipo:");
         jPanel1.add(etqTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 35));
 
-        etqMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        etqMarca.setForeground(new java.awt.Color(219, 126, 138));
+        etqMarca.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         etqMarca.setText("Marca:");
         jPanel1.add(etqMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, 35));
 
-        etqModelo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        etqModelo.setForeground(new java.awt.Color(219, 126, 138));
+        etqModelo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         etqModelo.setText("Modelo:");
         jPanel1.add(etqModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, 35));
 
-        etqPrecio.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        etqPrecio.setForeground(new java.awt.Color(219, 126, 138));
+        etqPrecio.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         etqPrecio.setText("Precio:");
         jPanel1.add(etqPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, 35));
 
-        etqObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        etqObservaciones.setForeground(new java.awt.Color(219, 126, 138));
+        etqObservaciones.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         etqObservaciones.setText("Observaciones:");
         jPanel1.add(etqObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 35));
 
@@ -266,38 +279,35 @@ public class Producto_EDIT extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAdd1ActionPerformed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        
-    }//GEN-LAST:event_botonCancelarActionPerformed
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        acceso.cerrar();
+        new Producto_BUSQ().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        switch (edit_mode){
-            case 0: //BOTÓN MODIFICAR OFF
-                edit_mode = 1;
-                botonModificar.setText("Guardar");
-                botonEliminar.setText("Cancelar");
-                camposNoEditables(true);
-                break;
-            case 1: 
-                String query =
-                "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
-                "',`modelo`='"+campoModelo.getText()+"',`precioUnitario`="+campoPrecio.getText()+
-                ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
-                acceso.updateSql(query);
-                if (acceso.updateSql(query)) {
-                   edit_mode = 0;
-                    new Producto_EDIT().setVisible(true);
-                    this.dispose(); 
+        JButton boton = (JButton)evt.getSource();
+        if (boton.getText().equalsIgnoreCase("Modificar")) {
+            modificarCampos(true);
+            botonAtras.setEnabled(false);
+            botonModificar.setText("Guardar");
+            botonEliminar.setText("Cancelar");
+        } else if(boton.getText().equalsIgnoreCase("Guardar")) {
+            int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
+            if (eleccion == 0) {
+                modificarProductos();
+                if (acceso.updatePorducto(producto)) {
+                    cancelarModificacion();
                 }
-                break;
+            }
         }
         
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        switch (edit_mode){
-            case 0: //BOTÓN ELIMINAR
-                int resp = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?", "¡Atención!", JOptionPane.YES_NO_OPTION);
+        JButton boton = (JButton)evt.getSource();
+        if (boton.getText().equalsIgnoreCase("Eliminar")) {
+            int resp = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?", "¡Atención!", JOptionPane.YES_NO_OPTION);
                 if (resp == 0){
                     String query = "DELETE FROM `Producto` WHERE  `idProducto` = " + this.id;
                     acceso.updateSql(query);
@@ -305,16 +315,10 @@ public class Producto_EDIT extends javax.swing.JFrame {
                     this.dispose();    
                 } else {
                     JOptionPane.showMessageDialog(null, "No se ha eliminado el producto");
-                } 
-            case 1: //BOTÓN CANCELAR
-                edit_mode = 0;
-                new Producto_EDIT().setVisible(true);
-                this.dispose();
-                break;
-        }
-        
-        
-        
+                }
+        } else if (boton.getText().equalsIgnoreCase("Cancelar")) {
+            cancelarModificacion();
+        }    
                
     }//GEN-LAST:event_botonEliminarActionPerformed
 
@@ -365,7 +369,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAdd1;
-    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JTextField campoIDproducto;

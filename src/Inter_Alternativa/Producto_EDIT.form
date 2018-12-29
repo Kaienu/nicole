@@ -107,10 +107,7 @@
         <Component class="javax.swing.JLabel" name="jLabelIDproducto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Font name="Century Gothic" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ID Producto:"/>
           </Properties>
@@ -120,7 +117,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="botonCancelar">
+        <Component class="javax.swing.JButton" name="botonAtras">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e1" green="e1" red="e1" type="rgb"/>
@@ -146,7 +143,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAtrasActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -182,10 +179,7 @@
         <Component class="javax.swing.JLabel" name="etqTipo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Font name="Century Gothic" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tipo:"/>
           </Properties>
@@ -198,10 +192,7 @@
         <Component class="javax.swing.JLabel" name="etqMarca">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Font name="Century Gothic" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Marca:"/>
           </Properties>
@@ -214,10 +205,7 @@
         <Component class="javax.swing.JLabel" name="etqModelo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Font name="Century Gothic" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Modelo:"/>
           </Properties>
@@ -230,10 +218,7 @@
         <Component class="javax.swing.JLabel" name="etqPrecio">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Font name="Century Gothic" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Precio:"/>
           </Properties>
@@ -246,10 +231,7 @@
         <Component class="javax.swing.JLabel" name="etqObservaciones">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Font name="Century Gothic" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Observaciones:"/>
           </Properties>

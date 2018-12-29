@@ -77,6 +77,24 @@ public class AccesoSQL {
     
     /***************************************************************************
      * 
+     *              PRODUCTO
+     * 
+     ***************************************************************************/
+    
+    public boolean updatePorducto(Producto producto) {
+        String query =
+                "UPDATE Producto SET"
+                + " tipo='" + producto.getTipo()
+                + "',marca='" + producto.getMarca()
+                + "', modelo='" + producto.getModelo()
+                + "', precioUnitario=" + producto.getPrecioUnitario()
+                + ", observaciones='" + producto.getObservaciones()
+                + "' WHERE idProducto = " + producto.getIdProducto();
+            return updateSql(query);
+    }
+    
+    /***************************************************************************
+     * 
      *              FACTURA
      * 
      ***************************************************************************/
