@@ -350,6 +350,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         new Producto_ADD().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     public void limpiar(){

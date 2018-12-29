@@ -213,6 +213,7 @@ public class Producto_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        new Producto_BUSQ().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
