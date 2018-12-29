@@ -1,12 +1,16 @@
 package clases;
 
-import java.util.Date;
-import java.util.Objects;
+import java.sql.Timestamp;
 
 public class Empleado{
     
     private String dni,nombre,apellidos,correo;
     private int telefono;
+    private Timestamp fechaAlta = Util.FECHAERROR;
+    
+    
+    public Empleado(){    
+    }
     
     public Empleado(String nombre, String apellidos, String correo, int telefono, String dni) {
         this.nombre = nombre;
@@ -16,8 +20,9 @@ public class Empleado{
         this.dni = dni;
     }
     
-    public Empleado(){
-        
+    public Empleado(String nombre, String apellidos, String correo, int telefono, String dni,Timestamp fechaAlta) {
+        this(nombre, apellidos, correo, telefono, dni);
+        this.fechaAlta = fechaAlta;
     }
     
     public void setDni(String dni) {
@@ -59,9 +64,14 @@ public class Empleado{
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
-    
-    
+
+    public Timestamp getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(Timestamp fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
     
     @Override
     public String toString() {
@@ -79,35 +89,5 @@ public class Empleado{
             return this.dni.equals(((Empleado) obj) .dni); //(((Empleado) obj) .dni) == this.dni;
         } else return false;
     }
-
-   
     
-    /*
-       @Override
-    public boolean equals(Object obj) {
-	if (obj instanceof Persona) {
-            if (this.nombre.equals(((Persona) obj) .nombre)) {
-                if (this.apellidos.equals(((Persona) obj) .apellidos)) {
-                    if (this.correo.equals(((Persona) obj) .correo)) {
-                        return this.telefono == (((Persona) obj) .telefono);
-                    } else return false;
-                } else return false;    
-            } else return false;
-        } else return false;
-    }
-    */
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.dni);
-        hash = 47 * hash + Objects.hashCode(this.nombre);
-        hash = 47 * hash + Objects.hashCode(this.apellidos);
-        hash = 47 * hash + Objects.hashCode(this.correo);
-        hash = 47 * hash + this.telefono;
-        return hash;
-    }
-
-    
-
 }

@@ -32,6 +32,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1920, 1080));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonBusquedas.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -44,6 +45,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
                 botonBusquedasActionPerformed(evt);
             }
         });
+        jPanel1.add(botonBusquedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 360, 70));
 
         botonTicket.setBackground(new java.awt.Color(225, 225, 225));
         botonTicket.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -56,6 +58,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
                 botonTicketActionPerformed(evt);
             }
         });
+        jPanel1.add(botonTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 70));
 
         botonFacturacion.setBackground(new java.awt.Color(225, 225, 225));
         botonFacturacion.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -68,6 +71,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
                 botonFacturacionActionPerformed(evt);
             }
         });
+        jPanel1.add(botonFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 360, 70));
 
         botonBusquedas1.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -81,6 +85,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
                 botonBusquedas1ActionPerformed(evt);
             }
         });
+        jPanel1.add(botonBusquedas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 360, 70));
 
         botonBusquedas2.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -94,6 +99,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
                 botonBusquedas2ActionPerformed(evt);
             }
         });
+        jPanel1.add(botonBusquedas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 360, 70));
 
         botonBusquedas3.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -107,39 +113,7 @@ public class Menu_MAIN extends javax.swing.JFrame {
                 botonBusquedas3ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(botonBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBusquedas3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBusquedas1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBusquedas2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botonTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonBusquedas3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonBusquedas1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonBusquedas2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(botonBusquedas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 360, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,14 +121,14 @@ public class Menu_MAIN extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

@@ -358,6 +358,7 @@ public class Factura_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        acceso.cerrar();
         this.dispose();
         new Menu_MAIN().setVisible(true);
     }//GEN-LAST:event_jButtonAtrasActionPerformed
@@ -390,6 +391,7 @@ public class Factura_ADD extends javax.swing.JFrame {
                     break;
                 }
                 Impresion.main(carrito,fact);
+                acceso.cerrar();
                 new Factura_ADD().setVisible(true);
                 this.dispose();
                 break;
@@ -406,6 +408,7 @@ public class Factura_ADD extends javax.swing.JFrame {
                     System.err.println("Linea-02");
                     break;
                 }
+                acceso.cerrar();
                 new Factura_ADD().setVisible(true);
                 this.dispose();
                 break;

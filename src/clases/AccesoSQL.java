@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AccesoSQL {
@@ -47,8 +49,8 @@ public class AccesoSQL {
      ***************************************************************************/
     
     public boolean updateCliente(Cliente cliente) {
-        String query = "UPDATE Cliente SET"
-                + " nombre='" + cliente.getNombre()
+        String query = "UPDATE Cliente SET "
+                + "nombre='" + cliente.getNombre()
                 + "',apellidos='" + cliente.getApellidos()
                 + "',telefono=" + cliente.getTelefono()
                 + ",correo='" + cliente.getCorreo()
@@ -57,6 +59,57 @@ public class AccesoSQL {
         return updateSql(query);
     }
     
+    /***************************************************************************
+     * 
+     *              EMPLEADO
+     * 
+     ***************************************************************************/
+    
+    public boolean updateEmpleado(Empleado empleado) {
+        String query = "UPDATE Empleado SET "
+                + "nombre='" + empleado.getNombre()
+                + "',apellidos='" + empleado.getApellidos()
+                + "',telefono=" + empleado.getTelefono()
+                + ",correo='" + empleado.getCorreo()
+                + "' WHERE dni = '"+ empleado.getDni() +"'";
+        return updateSql(query);
+    }
+    
+    /***************************************************************************
+     * 
+     *              FACTURA
+     * 
+     ***************************************************************************/
+    
+    public ArrayList<Factura> listadoFactura(String dni) {
+        
+        ArrayList<Factura> facturas = new ArrayList<>();
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            
+            ps = con.prepareStatement("select * from Factura where dniEmpleado like '"+dni+"'");
+            rs=ps.executeQuery();
+            while (rs.next()){
+                BigDecimal facTotal = new BigDecimal(rs.getDouble(5)).setScale(2, RoundingMode.HALF_UP);
+                Factura fact = new Factura();
+                fact.setIdFactura(rs.getString(1));
+                fact.setIdCliente(rs.getString(2));
+                fact.setDni(rs.getString(3));
+                fact.setImporte(facTotal);
+                fact.setFecha(rs.getTimestamp(4));
+                System.out.println(fact);
+                facturas.add(fact);
+            }
+            rs.close();
+            ps.close();
+            return facturas;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Se ha producido un error SQL","Error 078",JOptionPane.ERROR_MESSAGE);
+            return facturas;
+        }
+    }
     
     /**
     * Devuelve un ArrayList de "Objects" referente a la consulta lanzada. 
@@ -406,10 +459,10 @@ public class AccesoSQL {
             } 
         } catch (MySQLSyntaxErrorException e){
             JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!","Error 106",JOptionPane.ERROR_MESSAGE);
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return false;
         } catch (SQLException ex) {
-            System.out.println(ex);
+            System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null,"Se ha producido un error SQL","Error 005",JOptionPane.ERROR_MESSAGE);
             return false;
         }   

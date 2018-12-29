@@ -3,6 +3,7 @@
 072 - <AccesoSQL.java>              Error en SELECT returnInt()
 073 - <AccesoSQL.java>              Error en SELECT returnDouble()
 074 - <AccesoSQL.java>              Error en SELECT returnTimestamp()
+078 - <AccesoSQL.java>              Error en SELECT listadoFactura()
 106 - <AccesoSQL.java>              Formato campo incorrecto en UPDATE updateSql()
 
 

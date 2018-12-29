@@ -20,4 +20,15 @@ public class Util {
         }
     }
     
+    public static String fechaFormateadaCorta(Timestamp fecha) {
+        if (fecha.equals(FECHAVACIA)){
+            return "Nunca";
+        } else if (fecha.equals(FECHAERROR)){
+            return "##ERROR##";
+        } else {
+            DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return hourdateFormat.format(fecha);   
+        }
+    }
+    
 }

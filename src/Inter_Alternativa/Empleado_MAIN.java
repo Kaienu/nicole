@@ -1,66 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Inter_Alternativa;
 
 import clases.*;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-/**
- *
- * @author kaien
- */
 public class Empleado_MAIN extends javax.swing.JFrame {
 
-    int edit_mode = 0;
-    AccesoSQL acceso;
+    private int edit_mode = 0;
+    private AccesoSQL acceso;
+    private ArrayList<Object> lista;
+    private ArrayList<Factura> listaFacturas;
+    private boolean firstRun = true;
     
-    /**
-     * Creates new form Inter_Empleados
-     */
     public Empleado_MAIN() {
         initComponents();
+        // Consigo la lista de empleados y la meto en el ArrayList
         acceso = new AccesoSQL();
-        ArrayList<Object> lista = new ArrayList<>();
-        try {
-            lista = acceso.listado("Empleado", "");
-        } catch (SQLException e) {
-            //Error 05;
-        }
-
-        Iterator<Object> it = lista.iterator();
-        while (it.hasNext()) {
-            Empleado empleado = (Empleado) it.next();
-            jComboBox1.addItem(empleado);
-        }
-        jTextFieldDni.setEnabled(false);
-        jTextFieldApellidos.setEnabled(false);
-        jTextFieldCorreo.setEnabled(false);
-        jTextFieldNombre.setEnabled(false);
-        jTextFieldTelefono.setEnabled(false);
-
+        lista = new ArrayList<>();
+        listaFacturas = new ArrayList<>();
+        disableTextField(false);
+        inicCombo();
+        firstRun = false;
     }
     
-    public void MostrarSQL(String tabla,String filtro) throws SQLException{
-
-        ArrayList<Object> lista = acceso.listado(tabla,filtro);
+    public void MostrarSQL(String filtroDni) {
+        if (!listaFacturas.isEmpty()) {
+            listaFacturas.clear();
+        }
+        listaFacturas = acceso.listadoFactura(filtroDni);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+        ((DefaultTableModel)jTable1.getModel()).setNumRows(0);
         Object[] row = new Object[4];
-        for(int i = 0; i < lista.size();i++){
-            Factura fact = (Factura) lista.get(i);
+        for (Factura fact : listaFacturas) {
             row[0] = fact.getIdFactura();
-            row[1] = fact.getImporte().toEngineeringString();
+            row[1] = fact.getImporte().toEngineeringString()+"€";
             row[2] = fact.getFecha().toString();
             row[3] = fact.getIdCliente();
             model.addRow(row);
@@ -71,11 +51,66 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     FALTA INSERTAR LA FECHA DE ALTA Y BAJA DEL EMPLEADO    
     **************************************************/
     
+    public void inicCombo() {
+        try {
+            lista = acceso.listado("Empleado", "");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        try {
+            jComboBox1.removeAllItems();
+            for (Object o : lista) {
+                Empleado emp = (Empleado) o;
+                jComboBox1.addItem(emp);
+            }
+        } catch (NullPointerException e){
+            System.out.println(e.getMessage());
+            for (Object o : lista) {
+                Empleado emp = (Empleado) o;
+                jComboBox1.addItem(emp);
+            }
+        }
+        
+    }
     
     public String fechaActual(){
         Date date = new Date();
         DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return hourdateFormat.format(date);
+    }
+    
+    public void disableTextField(boolean opcion) {
+        jTextFieldDni.setEditable(opcion);
+        jTextFieldApellidos.setEditable(opcion);
+        jTextFieldCorreo.setEditable(opcion);
+        jTextFieldNombre.setEditable(opcion);
+        jTextFieldTelefono.setEditable(opcion);
+        jTextFieldAlta.setEditable(false);
+    }
+    
+    public void emptyfield() {
+        jTextFieldDni.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldApellidos.setText("");
+        jTextFieldTelefono.setText("");
+        jTextFieldCorreo.setText("");
+        jTextFieldAlta.setText("");
+    }
+    
+    public void resetFrame() {
+        emptyfield();
+        disableTextField(false);
+        jComboBox1.setEnabled(true);
+        botonBaja.setEnabled(true);
+        edit_mode = 0;
+        lista.clear();
+        inicCombo();
+    }
+    
+    public void resetFrame(Empleado emp) {
+        resetFrame();
+        jComboBox1.setSelectedItem(emp);
+        jComboBox1.removeItem("Selecciona Empleado");
     }
 
     /**
@@ -105,6 +140,8 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         jTextFieldCorreo = new javax.swing.JTextField();
         jButtonEditar = new javax.swing.JButton();
         botonBaja = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFieldAlta = new javax.swing.JTextField();
 
         jTextFieldDni3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
@@ -113,15 +150,27 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jComboBox1.setFont(Presentacion.fuentePpal
+
+            (16,Font.PLAIN, Presentacion.LIGHT)
+        );
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleciona empleado" }));
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
             }
+        });
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBox1MouseEntered(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
             }
         });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -129,17 +178,19 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 180, 40));
 
         jButtonNuevo.setBackground(new java.awt.Color(225, 225, 225));
         jButtonNuevo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonNuevo.setForeground(new java.awt.Color(219, 126, 138));
         jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
-        jButtonNuevo.setText("Nuevo Empleado");
+        jButtonNuevo.setText("Añadir");
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 120, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,41 +215,64 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jTextFieldDni.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 550, 232));
+
+        jTextFieldDni.setFont(Presentacion.fuentePpal
+
+            (18,Font.PLAIN, Presentacion.LIGHT));
+        jPanel1.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 140, 35));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("DNI");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 35));
 
-        jTextFieldNombre.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTextFieldNombre.setFont(Presentacion.fuentePpal
 
-        jTextFieldApellidos.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+            (18,Font.PLAIN, Presentacion.LIGHT));
+        jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 250, 35));
 
-        jTextFieldTelefono.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTextFieldApellidos.setFont(Presentacion.fuentePpal
+
+            (18,Font.PLAIN, Presentacion.LIGHT));
+        jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 250, 35));
+
+        jTextFieldTelefono.setFont(Presentacion.fuentePpal
+
+            (18,Font.PLAIN, Presentacion.LIGHT));
+        jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 140, 35));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 35));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setText("Apellidos");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, 35));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Teléfono");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 35));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Correo");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 35));
 
-        jTextFieldCorreo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jTextFieldCorreo.setFont(Presentacion.fuentePpal
+
+            (18,Font.PLAIN, Presentacion.LIGHT));
+        jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 480, 35));
 
         jButtonEditar.setBackground(new java.awt.Color(225, 225, 225));
         jButtonEditar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonEditar.setForeground(new java.awt.Color(219, 126, 138));
         jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiztiny.png"))); // NOI18N
-        jButtonEditar.setText("Editar Empleado");
+        jButtonEditar.setText("Editar");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditarActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 120, 40));
 
         botonBaja.setBackground(new java.awt.Color(225, 225, 225));
         botonBaja.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -210,82 +284,16 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 botonBajaActionPerformed(evt);
             }
         });
+        jPanel1.add(botonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 100, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldDni, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jTextFieldTelefono))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(jTextFieldNombre)))
-                    .addComponent(jTextFieldCorreo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, 0, 211, Short.MAX_VALUE)
-                        .addGap(18, 318, Short.MAX_VALUE)
-                        .addComponent(botonBaja))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
-                .addComponent(jButtonEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonNuevo)
-                .addGap(10, 10, 10))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonNuevo)
-                    .addComponent(jButtonEditar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(botonBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel6.setText("Alta");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 35));
+
+        jTextFieldAlta.setFont(Presentacion.fuentePpal
+
+            (18,Font.PLAIN, Presentacion.LIGHT));
+        jPanel1.add(jTextFieldAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 140, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -293,14 +301,14 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -309,12 +317,11 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if (jComboBox1.getSelectedItem() instanceof String) {
-            jTextFieldDni.setText("");
-            jTextFieldNombre.setText("");
-            jTextFieldApellidos.setText("");
-            jTextFieldTelefono.setText("");
-            jTextFieldCorreo.setText("");
+        if (jComboBox1.getItemCount()==0) {
+            jComboBox1.addItem("Selecciona Empleado");
+            jComboBox1.setSelectedIndex(0);
+        } else if (jComboBox1.getSelectedItem() instanceof String || firstRun) {
+            emptyfield();
         } else {
             System.out.println(jComboBox1.getSelectedItem());
             Empleado emp = (Empleado) jComboBox1.getSelectedItem();
@@ -323,16 +330,13 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             jTextFieldApellidos.setText(emp.getApellidos());
             jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
             jTextFieldCorreo.setText(emp.getCorreo());
-            try {
-                MostrarSQL("Factura",emp.getDni());
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+            jTextFieldAlta.setText(Util.fechaFormateada(emp.getFechaAlta()));
+            MostrarSQL(emp.getDni());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-
+        
     }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void jComboBox1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseEntered
@@ -346,17 +350,10 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         case 0: //Adición Empleado OFF ----------------------------------------//
         
             edit_mode = 1;
-            jTextFieldDni.setText("");
-            jTextFieldNombre.setText("");
-            jTextFieldApellidos.setText("");
-            jTextFieldTelefono.setText("");
-            jTextFieldCorreo.setText("");
-            jTextFieldDni.setEnabled(true);
-            jTextFieldApellidos.setEnabled(true);
-            jTextFieldCorreo.setEnabled(true);
-            jTextFieldNombre.setEnabled(true);
-            jTextFieldTelefono.setEnabled(true);
-            jComboBox1.setVisible(false);
+            emptyfield();
+            disableTextField(true);
+            jComboBox1.setEnabled(false);
+            botonBaja.setEnabled(false);
             jButtonNuevo.setText("Aplicar");
             jButtonEditar.setText("Cancelar");
             break;
@@ -372,23 +369,19 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 );
             
             if (acceso.insertSql(emp)){
-                edit_mode = 0;
-                new Empleado_MAIN().setVisible(true);
-                this.dispose();
+                resetFrame();
             }
             break;
             
         case 2: //Edición Empleado --------------------------------------------//
-            String query = "UPDATE Empleado SET nombre='"+
-                    jTextFieldNombre.getText()+"',apellidos='"+
-                    jTextFieldApellidos.getText()+"',telefono="+
-                    jTextFieldTelefono.getText()+",correo='" +
-                    jTextFieldCorreo.getText()+"' WHERE dni = '"+
-                    jTextFieldDni.getText()+"'";
-            if (acceso.updateSql(query)){
-                edit_mode = 0;
-                new Empleado_MAIN().setVisible(true);
-                this.dispose();
+            Empleado empleado = new Empleado(
+                    jTextFieldNombre.getText(),
+                    jTextFieldApellidos.getText(),
+                    jTextFieldCorreo.getText(),
+                    Integer.valueOf(jTextFieldTelefono.getText()),
+                    jTextFieldDni.getText());
+            if (acceso.updateEmpleado(empleado)){
+                resetFrame(empleado);
             }
             break;
     }
@@ -408,11 +401,9 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 } else {
                     Empleado emp = (Empleado) jComboBox1.getSelectedItem();
                     edit_mode = 2;
-                    jComboBox1.setVisible(false);
-                    jTextFieldApellidos.setEnabled(true);
-                    jTextFieldCorreo.setEnabled(true);
-                    jTextFieldNombre.setEnabled(true);
-                    jTextFieldTelefono.setEnabled(true);
+                    botonBaja.setEnabled(false);
+                    jComboBox1.setEnabled(false);
+                    disableTextField(true);
                     jTextFieldApellidos.setText(emp.getApellidos());
                     jTextFieldCorreo.setText(emp.getCorreo());
                     jTextFieldNombre.setText(emp.getNombre());
@@ -424,16 +415,12 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 
             case 1: //Adición Empleado ON -------------------------------------//
                 
-                new Empleado_MAIN().setVisible(true);
-                this.dispose();
-                edit_mode = 0;
+                resetFrame();
                 break;
                 
             case 2: //Edición Empleado ----------------------------------------//
                 
-                new Empleado_MAIN().setVisible(true);
-                this.dispose();
-                edit_mode = 0;
+                resetFrame((Empleado)jComboBox1.getSelectedItem());
                 break;
                             
         }
@@ -460,6 +447,14 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         new Factura_DETAIL(fact,1).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jComboBox1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseReleased
+        
+    }//GEN-LAST:event_jComboBox1MouseReleased
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -507,9 +502,11 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldAlta;
     private javax.swing.JTextField jTextFieldApellidos;
     private javax.swing.JTextField jTextFieldCorreo;
     private javax.swing.JTextField jTextFieldDni;
