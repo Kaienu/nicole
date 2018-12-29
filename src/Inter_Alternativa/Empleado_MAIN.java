@@ -385,7 +385,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                     jTextFieldTelefono.getText()+",correo='" +
                     jTextFieldCorreo.getText()+"' WHERE dni = '"+
                     jTextFieldDni.getText()+"'";
-            if (acceso.UpdateSql(query)){
+            if (acceso.updateSql(query)){
                 edit_mode = 0;
                 new Empleado_MAIN().setVisible(true);
                 this.dispose();

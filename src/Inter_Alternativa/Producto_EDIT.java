@@ -283,8 +283,8 @@ public class Producto_EDIT extends javax.swing.JFrame {
                 "UPDATE `Producto` SET `tipo`='"+campoTipo.getText()+"',`marca`='"+campoMarca.getText()+
                 "',`modelo`='"+campoModelo.getText()+"',`precioUnitario`="+campoPrecio.getText()+
                 ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idProducto` = "+this.id;
-                acceso.UpdateSql(query);
-                if (acceso.UpdateSql(query)) {
+                acceso.updateSql(query);
+                if (acceso.updateSql(query)) {
                    edit_mode = 0;
                     new Producto_EDIT().setVisible(true);
                     this.dispose(); 
@@ -300,7 +300,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
                 int resp = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?", "¡Atención!", JOptionPane.YES_NO_OPTION);
                 if (resp == 0){
                     String query = "DELETE FROM `Producto` WHERE  `idProducto` = " + this.id;
-                    acceso.UpdateSql(query);
+                    acceso.updateSql(query);
                     new Producto_BUSQ().setVisible(true);
                     this.dispose();    
                 } else {

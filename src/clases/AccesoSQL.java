@@ -40,6 +40,24 @@ public class AccesoSQL {
         return intentos;
     }
     
+    /***************************************************************************
+     * 
+     *              CLIENTE
+     * 
+     ***************************************************************************/
+    
+    public boolean updateCliente(Cliente cliente) {
+        String query = "UPDATE Cliente SET"
+                + " nombre='" + cliente.getNombre()
+                + "',apellidos='" + cliente.getApellidos()
+                + "',telefono=" + cliente.getTelefono()
+                + ",correo='" + cliente.getCorreo()
+                + "',observaciones='" + cliente.getObservaciones()
+                + "' WHERE idCliente = '"+ cliente.getIdCliente() +"'";
+        return updateSql(query);
+    }
+    
+    
     /**
     * Devuelve un ArrayList de "Objects" referente a la consulta lanzada. 
     * El primer argumento indica la tabla en la que está haciendo la consulta,
@@ -359,31 +377,118 @@ public class AccesoSQL {
         }
     }
                
-    public boolean UpdateSql(String query){
+    /***************************************************************************
+    * 
+    *              MÉTODOS GENERALES
+    * 
+    ***************************************************************************/
+    
+    /**
+     * 
+     * Update en la BBDD. Solo necesita el query.
+     * 
+     */
+    
+    public boolean updateSql(String query){
         
         PreparedStatement st;
+        
         try {
             st = con.prepareStatement(query);
             if ((st.executeUpdate()) == 1){
-                JOptionPane.showMessageDialog(null,"El registro ha sido actualizado correctamente.");
+                JOptionPane.showMessageDialog(null,"El registro ha sido actualizado correctamente.","Insert OK", JOptionPane.INFORMATION_MESSAGE);
                 st.close();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null,"El registro no ha podido ser actualizado correctamente.");
+                JOptionPane.showMessageDialog(null,"El registro no ha podido ser actualizado correctamente.","Error 060",JOptionPane.ERROR_MESSAGE);
                 st.close();
                 return false;
-            }
-                        
+            } 
         } catch (MySQLSyntaxErrorException e){
-            JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!");
+            JOptionPane.showMessageDialog(null,"Uno de los campos presenta un error!","Error 106",JOptionPane.ERROR_MESSAGE);
             System.out.println(e);
             return false;
         } catch (SQLException ex) {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null,"Ha habido un error!");
+            JOptionPane.showMessageDialog(null,"Se ha producido un error SQL","Error 005",JOptionPane.ERROR_MESSAGE);
             return false;
+        }   
+    }
+    
+    /**
+     * 
+     * Devolución de un INT haciendo un SELECT
+     * 
+     */
+    
+    public int returnInt(String query) {
+        try {
+            int resultado;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            resultado = rs.getInt(1);
+            rs.close();
+            ps.close();
+            return resultado;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Se ha producido un error en la consulta","Error 072",JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex.getMessage());
+            return -1;
         }
-        
+    }
+    
+    /**
+     * 
+     * Devolución de un DOUBLE haciendo un SELECT
+     * 
+     */
+    
+    public double returnDouble(String query) {
+        try {
+            double resultado;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            resultado = rs.getDouble(1);
+            rs.close();
+            ps.close();
+            return resultado;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Se ha producido un error en la consulta","Error 073",JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex.getMessage());
+            return -1;
+        }
+    }
+    
+    /**
+     * 
+     * Devolución de TIMESTAMP haciendo un SELECT
+     * 
+     */
+    
+    public Timestamp returnTimestamp(String query) {
+        try {
+            Timestamp resultado;
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            resultado = rs.getTimestamp(1);
+            rs.close();
+            ps.close();
+            if (resultado==null) {
+                throw new NullPointerException();
+            } else {
+                return resultado;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Se ha producido un error en la consulta","Error 074",JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex.getMessage());
+            return Timestamp.valueOf("1970-1-1 00:00:00");
+        }   catch (NullPointerException ex) {
+            System.err.println(ex.getMessage());
+            return Timestamp.valueOf("1970-1-1 00:00:00");
+        }
     }
     
     public boolean insertLista(ArrayList<Producto> lista, String auto) {

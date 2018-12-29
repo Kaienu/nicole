@@ -1,24 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Inter_Alternativa;
 
 import clases.*;
+import java.awt.Color;
 import java.awt.Font;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.sql.Date;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-/**
- *
- * @author kaien
- */
 public class Cliente_EDIT extends javax.swing.JFrame {
 
     private String id;
@@ -32,6 +27,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
     public Cliente_EDIT(String id) {
         initComponents();
         this.id = id;
+        //disableText();
         acceso = new AccesoSQL();
         try {
             cliente = (Cliente) acceso.listadoID("Cliente",id);
@@ -59,6 +55,24 @@ public class Cliente_EDIT extends javax.swing.JFrame {
     
     public void MostrarSQL(String tabla,String filtro) throws SQLException{
 
+        //NºFacturas
+        int facturas = acceso.returnInt(
+                "select count(*) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
+        jTextField3.setText(String.valueOf(facturas));
+        //SumaImportes
+        double suma = acceso.returnDouble(
+                "select sum(importe) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
+        BigDecimal n = new BigDecimal(suma).setScale(2, RoundingMode.HALF_UP);
+        jTextField1.setText(n.toEngineeringString()+"€");
+        //ÚltimaVisita
+        Timestamp ultimaVisita = acceso.returnTimestamp(
+            "select max(fecha) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
+        if (ultimaVisita.equals(Util.FECHAVACIA)) {
+            jTextField4.setText("Nunca");
+        } else {
+            jTextField4.setText(Util.fechaFormateada(ultimaVisita));
+        }
+        //FormateoTabla
         ArrayList<Object> lista = acceso.listado(tabla,filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
@@ -71,7 +85,33 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
-
+    
+    public void disableText(boolean condicion) {
+        textNombre.setEditable(condicion);
+        textApellidos.setEditable(condicion);
+        textCorreo.setEditable(condicion);
+        textTelf.setEditable(condicion);
+        campoObservaciones.setEditable(condicion);
+        if (condicion) campoObservaciones.setBackground(Color.white);
+        else campoObservaciones.setBackground(new Color(240,240,240));
+    }
+    
+    public void cancelarMod() {
+        disableText(false);
+        botonModificar2.setEnabled(true);
+        botonModificar1.setText("Modificar");
+        botonModificar.setText("Ticket");
+        botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png")));
+    }
+    
+    public void modCliente() {
+        this.cliente.setApellidos(textApellidos.getText());
+        this.cliente.setNombre(textNombre.getText());
+        this.cliente.setCorreo(textCorreo.getText());
+        this.cliente.setObservaciones(campoObservaciones.getText());
+        this.cliente.setTelefono(Integer.valueOf(textTelf.getText()));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,6 +236,8 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         });
         jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 25, 160, 40));
 
+        campoObservaciones.setEditable(false);
+        campoObservaciones.setBackground(new java.awt.Color(240, 240, 240));
         campoObservaciones.setColumns(20);
         campoObservaciones.setFont(Presentacion.fuentePpal
 
@@ -203,7 +245,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         );
         campoObservaciones.setRows(5);
         campoObservaciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        campoObservaciones.setEnabled(false);
         jScrollPane2.setViewportView(campoObservaciones);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 480, 120));
@@ -228,45 +269,44 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jLabel9.setText("Teléfono:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, 35));
 
+        textIdCliente.setEditable(false);
         textIdCliente.setFont(Presentacion.fuentePpal
 
             (18, Font.PLAIN, Presentacion.LIGHT)
         );
-        textIdCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        textIdCliente.setEnabled(false);
+        textIdCliente.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 110, 35));
 
+        textNombre.setEditable(false);
         textNombre.setFont(Presentacion.fuentePpal
 
             (18, Font.PLAIN, Presentacion.LIGHT)
         );
-        textNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        textNombre.setEnabled(false);
+        textNombre.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, 35));
 
+        textApellidos.setEditable(false);
         textApellidos.setFont(Presentacion.fuentePpal
 
             (18, Font.PLAIN, Presentacion.LIGHT)
         );
-        textApellidos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        textApellidos.setEnabled(false);
+        textApellidos.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 190, 35));
 
+        textTelf.setEditable(false);
         textTelf.setFont(Presentacion.fuentePpal
 
             (18
                 , Font.PLAIN, Presentacion.LIGHT)
         );
-        textTelf.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        textTelf.setEnabled(false);
+        textTelf.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 190, 35));
 
+        textCorreo.setEditable(false);
         textCorreo.setFont(Presentacion.fuentePpal
 
             (18, Font.PLAIN, Presentacion.LIGHT)
         );
-        textCorreo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        textCorreo.setEnabled(false);
         jPanel1.add(textCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 400, 35));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -288,36 +328,41 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(Presentacion.fuentePpal
 
-            (14, Font.PLAIN, Presentacion.LIGHT)
+            (16, Font.PLAIN, Presentacion.LIGHT)
         );
         jTextField1.setText("jTextField1");
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField1.setEnabled(false);
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 170, 35));
 
+        textFecha.setEditable(false);
         textFecha.setFont(Presentacion.fuentePpal
 
-            (14, Font.PLAIN, Presentacion.LIGHT)
+            (16
+                , Font.PLAIN, Presentacion.LIGHT)
         );
         textFecha.setText("jTextField1");
         textFecha.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         textFecha.setEnabled(false);
         jPanel2.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 100, 35));
 
+        jTextField3.setEditable(false);
         jTextField3.setFont(Presentacion.fuentePpal
 
-            (14, Font.PLAIN, Presentacion.LIGHT)
+            (16, Font.PLAIN, Presentacion.LIGHT)
         );
         jTextField3.setText("jTextField1");
         jTextField3.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField3.setEnabled(false);
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 35));
 
+        jTextField4.setEditable(false);
         jTextField4.setFont(Presentacion.fuentePpal
 
-            (14, Font.PLAIN, Presentacion.LIGHT)
+            (16, Font.PLAIN, Presentacion.LIGHT)
         );
         jTextField4.setText("jTextField1");
         jTextField4.setDisabledTextColor(new java.awt.Color(102, 102, 102));
@@ -384,12 +429,14 @@ public class Cliente_EDIT extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAdd1ActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-       /* String query = 
-    "UPDATE `Cliente` SET `nombre`='"+jTextField_nombre.getText()+"',`apellidos`='"+jTextField_apellidos.getText()+
-        "',`correo`='"+jTextField_correo.getText()+"',`telefono`="+jTextField_telefono.getText()+
-        ",`observaciones`='"+campoObservaciones.getText()+"' WHERE `idCliente` = "+this.id;
-        acceso.UpdateSql(query);*/
-        
+        JButton boton = (JButton)evt.getSource();
+        if (boton.getText().equalsIgnoreCase("Ticket")) {
+            acceso.cerrar();
+            new Factura_ADD(cliente).setVisible(true);
+            this.dispose();
+        } else if (boton.getText().equalsIgnoreCase("Cancelar")) {
+            cancelarMod();
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -397,7 +444,22 @@ public class Cliente_EDIT extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void botonModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificar1ActionPerformed
-        // TODO add your handling code here:
+        JButton boton = (JButton)evt.getSource();
+        if (boton.getText().equalsIgnoreCase("Modificar")) {
+            disableText(true);
+            botonModificar2.setEnabled(false);
+            botonModificar1.setText("Guardar");
+            botonModificar.setText("Cancelar");
+            botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png")));
+        } else if (boton.getText().equalsIgnoreCase("Guardar")) {
+            int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
+            if (eleccion == 0) {
+                modCliente();
+                if (acceso.updateCliente(cliente)) {
+                    cancelarMod();
+                }
+            }
+        }     
     }//GEN-LAST:event_botonModificar1ActionPerformed
 
     private void botonModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificar2ActionPerformed

@@ -1,12 +1,20 @@
-Error 01 - Error en la conexión con la BBDD (AccesoSQL.java)
-Error 02 - Error en la busqueda de resultados de una tabla (Inter_Cliente.java)
-Error 03 - Error en la busqueda de resultados de una tabla (Inter_Cliente.java)
-Error 04 - Error en la busqueda de resultados de una tabla (Inter_Cliente.java)
+005 - <AccesoSQL.java>              Error SQL updateSql()
+060 - <AccesoSQL.java>              Error en UPDATE updateSql()
+072 - <AccesoSQL.java>              Error en SELECT returnInt()
+073 - <AccesoSQL.java>              Error en SELECT returnDouble()
+074 - <AccesoSQL.java>              Error en SELECT returnTimestamp()
+106 - <AccesoSQL.java>              Formato campo incorrecto en UPDATE updateSql()
 
 
 
 
+*SQL
+Conexion 	001 - 049
+Insert		050 - 059
+Update		060 - 069
+Select		070 - 079
+*Formato
+SQL             100 - 109
 
-
-Error 11 - El parámetro Style de la fuente se sale de las opciones marcadas.                    <Fuentes.java>
-Error 12 - La fuente asociada desde recursos no pudo ser cargada.                               <Fuentes.java>
+ERROR 10-19 - Carga de recursos
+ERROR 20-21 - Errores formato de campos

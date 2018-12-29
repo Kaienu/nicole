@@ -204,6 +204,10 @@
           <SubComponents>
             <Component class="javax.swing.JTextArea" name="campoObservaciones">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f0" green="f0" red="f0" type="rgb"/>
+                </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
@@ -212,7 +216,6 @@
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -284,13 +287,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textIdCliente">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(18, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -300,13 +303,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textNombre">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(18, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -316,13 +319,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textApellidos">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(18, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -332,13 +335,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textTelf">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(18&#xd;&#xa;, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -348,13 +351,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textCorreo">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(18, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
-            <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -420,8 +420,9 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="jTextField1">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(14, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jTextField1"/>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -437,8 +438,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="textFecha">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(14, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16&#xd;&#xa;, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jTextField1"/>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -454,8 +456,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField3">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(14, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jTextField1"/>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -471,8 +474,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField4">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(14, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jTextField1"/>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

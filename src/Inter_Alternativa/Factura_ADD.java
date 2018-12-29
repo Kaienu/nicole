@@ -1,6 +1,7 @@
 package Inter_Alternativa;
 
 import clases.AccesoSQL;
+import clases.Cliente;
 import clases.Factura;
 import clases.Impresion;
 import clases.MainHandler;
@@ -26,6 +27,7 @@ public class Factura_ADD extends javax.swing.JFrame {
     ArrayList<JButton> botones = new ArrayList<>();
     ArrayList<JButton> pulsadores = new ArrayList<>();
     ArrayList<Object> lista = new ArrayList<>();
+    Cliente cliPrincipal;
     String tipoArticulo;
     int x;
     int y;
@@ -39,8 +41,12 @@ public class Factura_ADD extends javax.swing.JFrame {
      */
     public Factura_ADD() {
         initComponents();
-        inicializar();
-        
+        inicializar();    
+    }
+    
+    public Factura_ADD(Cliente cliente){
+        this();
+        this.cliPrincipal = cliente;
     }
     
     public void inicializar() {
