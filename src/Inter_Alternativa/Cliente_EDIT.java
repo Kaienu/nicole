@@ -4,7 +4,6 @@ import clases.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -67,11 +66,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         //ÚltimaVisita
         Timestamp ultimaVisita = acceso.returnTimestamp(
             "select max(fecha) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
-        if (ultimaVisita.equals(Util.FECHAVACIA)) {
-            jTextField4.setText("Nunca");
-        } else {
-            jTextField4.setText(Util.fechaFormateada(ultimaVisita));
-        }
+        jTextField4.setText(Util.fechaFormateada(ultimaVisita));
         //FormateoTabla
         ArrayList<Object> lista = acceso.listado(tabla,filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();

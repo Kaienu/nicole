@@ -484,7 +484,7 @@ public class AccesoSQL {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Se ha producido un error en la consulta","Error 074",JOptionPane.ERROR_MESSAGE);
             System.out.println(ex.getMessage());
-            return Timestamp.valueOf("1970-1-1 00:00:00");
+            return Timestamp.valueOf("1971-1-1 00:00:00");
         }   catch (NullPointerException ex) {
             System.err.println(ex.getMessage());
             return Timestamp.valueOf("1970-1-1 00:00:00");
