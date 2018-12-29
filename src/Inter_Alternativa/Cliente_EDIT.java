@@ -66,7 +66,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         //ÚltimaVisita
         Timestamp ultimaVisita = acceso.returnTimestamp(
             "select max(fecha) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
-        jTextField4.setText(Util.fechaFormateada(ultimaVisita));
+        jTextField4.setText(Tool.fechaFormateada(ultimaVisita));
         //FormateoTabla
         ArrayList<Object> lista = acceso.listado(tabla,filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();

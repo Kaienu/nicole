@@ -330,7 +330,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             jTextFieldApellidos.setText(emp.getApellidos());
             jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
             jTextFieldCorreo.setText(emp.getCorreo());
-            jTextFieldAlta.setText(Util.fechaFormateada(emp.getFechaAlta()));
+            jTextFieldAlta.setText(Tool.fechaFormateada(emp.getFechaAlta()));
             MostrarSQL(emp.getDni());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
