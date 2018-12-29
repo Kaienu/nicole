@@ -15,7 +15,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -444,9 +446,15 @@ public class Factura_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFinVentaActionPerformed
 
     private void campoBuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarClienteMouseClicked
-        new Factura_BUSQ_CLIEN().setVisible(true);
+        new Factura_BUSQ_CLIEN(this).setVisible(true);
     }//GEN-LAST:event_campoBuscarClienteMouseClicked
+    public void setCampo(Cliente cliente) {
+        campoBuscarCliente.setText(cliente.getNombre()+" "+cliente.getApellidos());
+    }
 
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
     /**
      * @param args the command line arguments
      */

@@ -11,6 +11,7 @@ import clases.Presentacion;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,6 +25,7 @@ import javax.swing.table.TableModel;
 public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
     AccesoSQL acceso;
     Cliente cliente;
+    private JFrame ventana;
     static String nombre= " ", apellidos = " ";
     /**
      * Creates new form Factura_BUSQ_CLIEN
@@ -47,6 +49,11 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
         
+    }
+    
+    public Factura_BUSQ_CLIEN(JFrame ventana) {
+        this();
+        this.ventana = ventana;
     }
     
     public void MostrarSQL(String tabla, String filtro, Boolean ID) throws SQLException {
@@ -286,7 +293,7 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         nombre = model.getValueAt(i, 1).toString();
         apellidos = model.getValueAt(i, 2).toString();
         acceso.cerrar();
-        new Factura_ADD().obtenerCliente(nombre,apellidos);
+        
         this.dispose();
     }//GEN-LAST:event_jTable1MouseReleased
 
