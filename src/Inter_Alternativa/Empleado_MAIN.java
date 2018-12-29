@@ -21,6 +21,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     
     public Empleado_MAIN() {
         initComponents();
+        botonPassword.setVisible(false);
         // Consigo la lista de empleados y la meto en el ArrayList
         acceso = new AccesoSQL();
         lista = new ArrayList<>();
@@ -101,8 +102,12 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         emptyfield();
         disableTextField(false);
         jComboBox1.setEnabled(true);
-        botonBaja.setEnabled(true);
+        botonPassword.setEnabled(true);
+        botonPassword.setVisible(false);
         edit_mode = 0;
+        botonBaja1.setEnabled(true);
+        jButtonNuevo.setText("Añadir");
+        jButtonEditar.setText("Modificar");
         lista.clear();
         inicCombo();
     }
@@ -139,9 +144,10 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldCorreo = new javax.swing.JTextField();
         jButtonEditar = new javax.swing.JButton();
-        botonBaja = new javax.swing.JButton();
+        botonPassword = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldAlta = new javax.swing.JTextField();
+        botonBaja1 = new javax.swing.JButton();
 
         jTextFieldDni3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
@@ -274,17 +280,17 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 120, 40));
 
-        botonBaja.setBackground(new java.awt.Color(225, 225, 225));
-        botonBaja.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonBaja.setForeground(new java.awt.Color(219, 126, 138));
-        botonBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
-        botonBaja.setText("Atrás");
-        botonBaja.addActionListener(new java.awt.event.ActionListener() {
+        botonPassword.setBackground(new java.awt.Color(225, 225, 225));
+        botonPassword.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonPassword.setForeground(new java.awt.Color(219, 126, 138));
+        botonPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/password-Normal.png"))); // NOI18N
+        botonPassword.setText("Restablecer Contraseña");
+        botonPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBajaActionPerformed(evt);
+                botonPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 100, 40));
+        jPanel1.add(botonPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 230, 35));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Alta");
@@ -294,6 +300,18 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18,Font.PLAIN, Presentacion.LIGHT));
         jPanel1.add(jTextFieldAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 140, 35));
+
+        botonBaja1.setBackground(new java.awt.Color(225, 225, 225));
+        botonBaja1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonBaja1.setForeground(new java.awt.Color(219, 126, 138));
+        botonBaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
+        botonBaja1.setText("Atrás");
+        botonBaja1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBaja1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBaja1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 100, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -347,15 +365,15 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         Empleado emp;
         switch (edit_mode){
         
-        case 0: //Adición Empleado OFF ----------------------------------------//
+        case 0: //AÑADIR ------------------------------------------------------//
         
             edit_mode = 1;
             emptyfield();
             disableTextField(true);
             jComboBox1.setEnabled(false);
-            botonBaja.setEnabled(false);
-            jButtonNuevo.setText("Aplicar");
+            jButtonNuevo.setText("Guardar");
             jButtonEditar.setText("Cancelar");
+            botonBaja1.setEnabled(false);
             break;
             
         case 1: //Adición Empleado ON -----------------------------------------//
@@ -368,8 +386,11 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 jTextFieldDni.getText()
                 );
             
-            if (acceso.insertSql(emp)){
-                resetFrame();
+            if (acceso.insertEmpleado(emp)==1){
+                resetFrame(emp);
+                JOptionPane.showMessageDialog(null, "Empleado creado correctamente", "Crear Empleado", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo insertar el empleado", "Error 052", JOptionPane.ERROR_MESSAGE);
             }
             break;
             
@@ -401,19 +422,21 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 } else {
                     Empleado emp = (Empleado) jComboBox1.getSelectedItem();
                     edit_mode = 2;
-                    botonBaja.setEnabled(false);
+                    botonBaja1.setEnabled(false);
+                    botonPassword.setVisible(true);
+                    botonPassword.setEnabled(true);
                     jComboBox1.setEnabled(false);
                     disableTextField(true);
                     jTextFieldApellidos.setText(emp.getApellidos());
                     jTextFieldCorreo.setText(emp.getCorreo());
                     jTextFieldNombre.setText(emp.getNombre());
                     jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
-                    jButtonNuevo.setText("Aplicar");
+                    jButtonNuevo.setText("Guardar");
                     jButtonEditar.setText("Cancelar");                    
                 }
                 break;
                 
-            case 1: //Adición Empleado ON -------------------------------------//
+            case 1: //CANCELAR (EN AÑADIR) -------------------------------------//
                 
                 resetFrame();
                 break;
@@ -427,11 +450,9 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
-    private void botonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajaActionPerformed
-        acceso.cerrar();
-        new Menu_GEST().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_botonBajaActionPerformed
+    private void botonPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPasswordActionPerformed
+        new PopupPassword(this,(Empleado)jComboBox1.getSelectedItem(),acceso).setVisible(true);
+    }//GEN-LAST:event_botonPasswordActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int i = jTable1.getSelectedRow();
@@ -455,6 +476,12 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void botonBaja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBaja1ActionPerformed
+        acceso.cerrar();
+        new Menu_GEST().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonBaja1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -493,7 +520,8 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonBaja;
+    private javax.swing.JButton botonBaja1;
+    private javax.swing.JButton botonPassword;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JComboBox<Object> jComboBox1;

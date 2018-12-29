@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AccesoSQL {
@@ -71,6 +73,15 @@ public class AccesoSQL {
                 + ",correo='" + empleado.getCorreo()
                 + "' WHERE dni = '"+ empleado.getDni() +"'";
         return updateSql(query);
+    }
+    
+    public int insertEmpleado(Empleado empleado){
+        String query =
+            "insert into Empleado(dni,nombre,apellidos,telefono,correo) values('"+
+            empleado.getDni()+"','"+empleado.getNombre()+"','"+
+            empleado.getApellidos()+"',"+empleado.getTelefono()+",'"+
+            empleado.getCorreo()+"')";
+        return insertSql(query);
     }
     
     /***************************************************************************
@@ -486,6 +497,24 @@ public class AccesoSQL {
     
     /**
      * 
+     * Insert en la BBDD. Solo necesita el query.
+     * 
+     */
+    
+    
+    public int insertSql(String query){
+        try{
+            PreparedStatement st = con.prepareStatement(query);
+            return st.executeUpdate();    
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "No se pudo insertar el registro", "Error 053", JOptionPane.ERROR_MESSAGE);
+            return -1;
+        }
+    }
+    
+    /**
+     * 
      * Devolución de un INT haciendo un SELECT
      * 
      */
@@ -671,6 +700,49 @@ public class AccesoSQL {
         st.close();
         return texto;
     }
+    
+    /***************************************************************************
+     * 
+     *              CONTRASEÑAS
+     * 
+     ***************************************************************************/
+    
+    public boolean login(Empleado user, String pass) {
+        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            ps = con.prepareStatement("select clave from passwd where"
+                    + " dniEmpleado like '"+user.getDni()+"'");
+            rs=ps.executeQuery();
+            
+            if (rs.next()) {
+                String passRecuperada = rs.getString(1);
+            } else {
+                return false;
+            }
+            String passRecuperada = rs.getString(1);
+            rs.close();
+            ps.close();
+            return passRecuperada.equals(Tool.hashWith256(pass));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Se ha producido un error SQL","Error 077",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    public boolean updatePassword(Empleado empleado, String password) {
+        String query = "UPDATE passwd SET "
+                + "clave='" + Tool.hashWith256(password)
+                + "' WHERE dniEmpleado LIKE '" + empleado.getDni() +"'";
+        return updateSql(query);
+    }
+    
+    public int insertDniPassword(Empleado emp) {
+        String query = "insert into passwd(dniEmpleado) values('"+emp.getDni()+"')";
+        return insertSql(query);
+    }
+    
     
     public String getAutonum(){
         String auto = String.format("%08d", autonum);

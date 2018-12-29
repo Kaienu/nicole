@@ -1,10 +1,16 @@
 005 - <AccesoSQL.java>              Error SQL updateSql()
+052 - <Empleado_MAIN.java>          Error en INSERT jButtonNuevoActionPerformed()
+053 - <AccesoSQL.java>              Error en INSERT insertSql()
+059 - <PopupPassword.java>          Error en INSERT comprobacionEmpleado()
 060 - <AccesoSQL.java>              Error en UPDATE updateSql()
+061 - <PopupPassword.java>          Error en UPDATE actionPerformed() btnContinuar
 072 - <AccesoSQL.java>              Error en SELECT returnInt()
 073 - <AccesoSQL.java>              Error en SELECT returnDouble()
 074 - <AccesoSQL.java>              Error en SELECT returnTimestamp()
+077 - <AccesoSQL.java>              Error en SELECT login()
 078 - <AccesoSQL.java>              Error en SELECT listadoFactura()
 106 - <AccesoSQL.java>              Formato campo incorrecto en UPDATE updateSql()
+301 - <Login_SPLASH.java>           El empleado no se encuentra en la tabla de contraseñas
 
 
 
@@ -18,4 +24,5 @@ Select		070 - 079
 SQL             100 - 109
 
 ERROR 10-19 - Carga de recursos
-ERROR 20-21 - Errores formato de campos
+ERROR 20-29 - Errores formato de campos
+ERROR 30-39 - Errores programados

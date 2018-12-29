@@ -5,6 +5,7 @@ import clases.Empleado;
 import clases.Tool;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Login_SPLASH extends javax.swing.JFrame { 
     
@@ -29,6 +30,16 @@ public class Login_SPLASH extends javax.swing.JFrame {
         for (Object o : lista) {
             Empleado emp = (Empleado) o;
             jComboBox1.addItem(emp.getNombreCompleto());
+        }
+    }
+    
+    public boolean comprobacionEmpleado(Empleado emp) {
+        String query = "select count(*) from passwd where dniEmpleado like '"+emp.getDni()+"'";
+        if (acceso.returnInt(query)==0) {
+            JOptionPane.showMessageDialog(null, "El empleado está desactivado!", "Error 301", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
         }
     }
     
@@ -157,13 +168,21 @@ public class Login_SPLASH extends javax.swing.JFrame {
                 break;
             }
         }
+        if (!comprobacionEmpleado(empLog)) {
+            return;
+        }
         char pass[]=jPasswordField1.getPassword();
-        String passUser = new String (pass); 
-        String passwd = Tool.hashWith256(passUser);
-        //System.out.println(passwd);
-        //Cotejar passwd con campo contraseña de la misma tabla
-        // if (correcto) login con empleado
-        // else error!
+        String passUser = new String (pass);
+        if (acceso.login(empLog, passUser)) {
+            System.out.println("Logueado Correctamente");
+            acceso.cerrar();
+            new Menu_MAIN().setVisible(true);
+            this.dispose();
+        } else {
+            System.out.println("Contraseña Incorrecta");
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText("");
+        }
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
