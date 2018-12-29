@@ -349,8 +349,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_BusquedaKeyReleased
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-        new Producto_ADD(this, true).setVisible(true);
-        limpiar();
+        new Producto_ADD().setVisible(true);
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     public void limpiar(){

@@ -88,7 +88,7 @@ public class AccesoSQL {
                 + "', precioUnitario=" + producto.getPrecioUnitario()
                 + ", observaciones='" + producto.getObservaciones()
                 + "' WHERE idProducto = " + producto.getIdProducto();
-            return updateSql(query);
+        return updateSql(query);
     }
     
     /***************************************************************************
