@@ -6,6 +6,7 @@
 package Inter_Alternativa;
 
 import clases.*;
+import error.CampoVacio;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -261,16 +262,16 @@ public class Producto_EDIT extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -297,6 +298,7 @@ public class Producto_EDIT extends javax.swing.JFrame {
         if (boton.getText().equalsIgnoreCase("Modificar")) {
             modificarCampos(true);
             comboTipo.setVisible(true);
+            comboTipo.setSelectedItem(producto.getTipo());
             campoTipo.setVisible(false);
             botonAtras.setEnabled(false);
             botonModificar.setText("Guardar");
@@ -304,10 +306,10 @@ public class Producto_EDIT extends javax.swing.JFrame {
         } else if(boton.getText().equalsIgnoreCase("Guardar")) {
             int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
             if (eleccion == 0) {
-                modificarProductos();
-                comboTipo.setVisible(false);
-                campoTipo.setVisible(true);
-                obtenerDatos();
+                    modificarProductos();
+                    comboTipo.setVisible(false);
+                    campoTipo.setVisible(true);
+                    obtenerDatos();                
                 if (acceso.updatePorducto(producto)) {
                     cancelarModificacion();
                 }
