@@ -189,6 +189,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonAtras.setText("Atrás");
+        botonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonAtras.setMaximumSize(new java.awt.Dimension(105, 31));
         botonAtras.setMinimumSize(new java.awt.Dimension(105, 31));
         botonAtras.setPreferredSize(new java.awt.Dimension(105, 31));
@@ -204,6 +205,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         botonModificar.setForeground(new java.awt.Color(219, 126, 138));
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
         botonModificar.setText("Modificar");
+        botonModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
@@ -234,11 +236,13 @@ public class Producto_EDIT extends JFrame implements Permisos {
         campoObservaciones.setColumns(20);
         campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         campoObservaciones.setRows(5);
+        campoObservaciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jScrollPane1.setViewportView(campoObservaciones);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 550, 200));
 
         campoMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoMarca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         campoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoMarcaActionPerformed(evt);
@@ -247,9 +251,11 @@ public class Producto_EDIT extends JFrame implements Permisos {
         jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 170, 35));
 
         campoModelo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoModelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 440, 35));
 
         campoPrecio.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 170, 35));
 
         botonEliminar.setBackground(new java.awt.Color(225, 225, 225));
@@ -257,6 +263,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         botonEliminar.setForeground(new java.awt.Color(219, 126, 138));
         botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
         botonEliminar.setText("Eliminar");
+        botonEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
@@ -265,10 +272,12 @@ public class Producto_EDIT extends JFrame implements Permisos {
         jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 176, 40));
 
         campoIDproducto.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoIDproducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(campoIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 150, 35));
 
         comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el Tipo" }));
+        comboTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
 
         campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
