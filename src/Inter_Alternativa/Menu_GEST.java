@@ -15,6 +15,10 @@ public class Menu_GEST extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonBusquedas = new javax.swing.JButton();
         botonBusquedas2 = new javax.swing.JButton();
+        botonBusquedas1 = new javax.swing.JButton();
+        botonBusquedas3 = new javax.swing.JButton();
+        botonBusquedas4 = new javax.swing.JButton();
+        botonBusquedas5 = new javax.swing.JButton();
         detalle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -33,9 +37,10 @@ public class Menu_GEST extends javax.swing.JFrame {
         botonBusquedas.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonBusquedas.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gestion-Extra.png"))); // NOI18N
-        botonBusquedas.setText("Empleados");
-        botonBusquedas.setIconTextGap(40);
+        botonBusquedas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ajustes-Extra.png"))); // NOI18N
+        botonBusquedas.setText("Ajustes");
+        botonBusquedas.setEnabled(false);
+        botonBusquedas.setIconTextGap(65);
         botonBusquedas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botonBusquedasMouseEntered(evt);
@@ -49,7 +54,7 @@ public class Menu_GEST extends javax.swing.JFrame {
                 botonBusquedasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBusquedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 360, 70));
+        jPanel1.add(botonBusquedas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 360, 70));
 
         botonBusquedas2.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -73,6 +78,93 @@ public class Menu_GEST extends javax.swing.JFrame {
         });
         jPanel1.add(botonBusquedas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 360, 70));
 
+        botonBusquedas1.setBackground(new java.awt.Color(225, 225, 225));
+        botonBusquedas1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        botonBusquedas1.setForeground(new java.awt.Color(219, 126, 138));
+        botonBusquedas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gestion-Extra.png"))); // NOI18N
+        botonBusquedas1.setText("Empleados");
+        botonBusquedas1.setIconTextGap(40);
+        botonBusquedas1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonBusquedas1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonBusquedas1MouseExited(evt);
+            }
+        });
+        botonBusquedas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedas1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBusquedas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 360, 70));
+
+        botonBusquedas3.setBackground(new java.awt.Color(225, 225, 225));
+        botonBusquedas3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        botonBusquedas3.setForeground(new java.awt.Color(219, 126, 138));
+        botonBusquedas3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/promociones-Extra.png"))); // NOI18N
+        botonBusquedas3.setText("Promociones");
+        botonBusquedas3.setEnabled(false);
+        botonBusquedas3.setIconTextGap(20);
+        botonBusquedas3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonBusquedas3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonBusquedas3MouseExited(evt);
+            }
+        });
+        botonBusquedas3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedas3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBusquedas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 360, 70));
+
+        botonBusquedas4.setBackground(new java.awt.Color(225, 225, 225));
+        botonBusquedas4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        botonBusquedas4.setForeground(new java.awt.Color(219, 126, 138));
+        botonBusquedas4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/calendario-Extra.png"))); // NOI18N
+        botonBusquedas4.setText("Citas");
+        botonBusquedas4.setEnabled(false);
+        botonBusquedas4.setIconTextGap(90);
+        botonBusquedas4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonBusquedas4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonBusquedas4MouseExited(evt);
+            }
+        });
+        botonBusquedas4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedas4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBusquedas4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 360, 70));
+
+        botonBusquedas5.setBackground(new java.awt.Color(225, 225, 225));
+        botonBusquedas5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        botonBusquedas5.setForeground(new java.awt.Color(219, 126, 138));
+        botonBusquedas5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/graficos-Extra.png"))); // NOI18N
+        botonBusquedas5.setText("Gráficos");
+        botonBusquedas5.setEnabled(false);
+        botonBusquedas5.setIconTextGap(55);
+        botonBusquedas5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonBusquedas5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonBusquedas5MouseExited(evt);
+            }
+        });
+        botonBusquedas5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedas5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBusquedas5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 360, 70));
+
         detalle.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         detalle.setForeground(new java.awt.Color(219, 126, 138));
         detalle.setText("Licenciado para: Centro de Peluquería y Estética Nicole");
@@ -91,11 +183,10 @@ public class Menu_GEST extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(detalle)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(detalle))
         );
 
         pack();
@@ -108,8 +199,7 @@ public class Menu_GEST extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
 
     private void botonBusquedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedasActionPerformed
-        new Empleado_MAIN().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_botonBusquedasActionPerformed
 
     private void botonBusquedas2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas2MouseEntered
@@ -117,7 +207,7 @@ public class Menu_GEST extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBusquedas2MouseEntered
 
     private void botonBusquedasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedasMouseEntered
-        detalle.setText("Gestiona los empleados");
+        detalle.setText("Selecciona los ajustes de tu aplicación");
     }//GEN-LAST:event_botonBusquedasMouseEntered
 
     private void botonBusquedasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedasMouseExited
@@ -127,6 +217,55 @@ public class Menu_GEST extends javax.swing.JFrame {
     private void botonBusquedas2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas2MouseExited
         returnDetalle();
     }//GEN-LAST:event_botonBusquedas2MouseExited
+
+    private void botonBusquedas1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas1MouseEntered
+        detalle.setText("Gestiona los empleados");
+    }//GEN-LAST:event_botonBusquedas1MouseEntered
+
+    private void botonBusquedas1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBusquedas1MouseExited
+
+    private void botonBusquedas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas1ActionPerformed
+        new Empleado_MAIN().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonBusquedas1ActionPerformed
+
+    private void botonBusquedas3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas3MouseEntered
+        detalle.setText("Introduce nuevas promociones o modifica las actuales");
+    }//GEN-LAST:event_botonBusquedas3MouseEntered
+
+    private void botonBusquedas3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas3MouseExited
+        returnDetalle();
+    }//GEN-LAST:event_botonBusquedas3MouseExited
+
+    private void botonBusquedas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBusquedas3ActionPerformed
+
+    private void botonBusquedas4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas4MouseEntered
+        detalle.setText("Consulta el calendario de citas");
+    }//GEN-LAST:event_botonBusquedas4MouseEntered
+
+    private void botonBusquedas4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas4MouseExited
+        returnDetalle();
+    }//GEN-LAST:event_botonBusquedas4MouseExited
+
+    private void botonBusquedas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBusquedas4ActionPerformed
+
+    private void botonBusquedas5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas5MouseEntered
+        detalle.setText("Genera gráficos y estadísticas de tu negocio");
+    }//GEN-LAST:event_botonBusquedas5MouseEntered
+
+    private void botonBusquedas5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas5MouseExited
+        returnDetalle();
+    }//GEN-LAST:event_botonBusquedas5MouseExited
+
+    private void botonBusquedas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBusquedas5ActionPerformed
 
     public void returnDetalle(){
         detalle.setText("Licenciado para: Centro de Peluquería y Estética Nicole");
@@ -238,7 +377,11 @@ public class Menu_GEST extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBusquedas;
+    private javax.swing.JButton botonBusquedas1;
     private javax.swing.JButton botonBusquedas2;
+    private javax.swing.JButton botonBusquedas3;
+    private javax.swing.JButton botonBusquedas4;
+    private javax.swing.JButton botonBusquedas5;
     private javax.swing.JLabel detalle;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

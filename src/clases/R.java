@@ -1,5 +1,6 @@
 package clases;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -119,5 +120,12 @@ public class R {
         if (modelo.length()>24) return modelo.substring(0, 23);
         else return modelo;
     }
+    
+    /***************************************************************************
+     * Herramientas de Color
+     **************************************************************************/
+    
+    public static final Color FUCSIA = new Color(219,126,138);
+    public static final Color PANELFONDO = new Color(248,241,242);
     
 }

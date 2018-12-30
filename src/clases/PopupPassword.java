@@ -46,11 +46,13 @@ public class PopupPassword extends JDialog {
         JLabel labelContraseña = new JLabel("Introduzca nueva contraseña");
         labelContraseña.setHorizontalAlignment(SwingConstants.CENTER);
         //lblEnConstruccin.setIcon(new ImageIcon(PopupPassword.class.getResource("/recursos/grua.png")));
-        labelContraseña.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+        labelContraseña.setFont(new Font("Century Gothic", Font.BOLD, 24));
         labelContraseña.setBounds(20, 20, 360, 40);
         contentPanel.add(labelContraseña);
 
         btnContinuar = new JButton("Continuar");
+        btnContinuar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        btnContinuar.setForeground(R.FUCSIA);
         btnContinuar.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             if (passwdField.getPassword().length == 0){
@@ -71,7 +73,10 @@ public class PopupPassword extends JDialog {
         contentPanel.add(btnContinuar);
         
         btnCancelar = new JButton("Cancelar");
+        btnCancelar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        btnCancelar.setForeground(R.FUCSIA);
         btnCancelar.addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
         }
@@ -82,6 +87,8 @@ public class PopupPassword extends JDialog {
         
         passwdField = new JPasswordField();
         passwdField.setBounds(30, 80, 340, 40);
+        passwdField.setForeground(R.FUCSIA);
+        passwdField.setFont(R.fuenteRoboto(20, R.PLAIN, R.LIGHT));
         contentPanel.add(passwdField);
     }
     

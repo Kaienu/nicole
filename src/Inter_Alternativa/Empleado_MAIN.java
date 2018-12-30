@@ -105,6 +105,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     
     public void resetFrame() {
         emptyfield();
+        jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiztiny.png")));
         disableTextField(false);
         jComboBox1.setEnabled(true);
         botonPassword.setEnabled(true);
@@ -395,6 +396,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             jComboBox1.setEnabled(false);
             jButtonNuevo.setText("Guardar");
             jButtonEditar.setText("Cancelar");
+            jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png")));
             botonBaja1.setEnabled(false);
             break;
             
@@ -449,6 +451,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                     botonPassword.setEnabled(true);
                     jComboBox1.setEnabled(false);
                     disableTextField(true);
+                    jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png")));
                     jTextFieldApellidos.setText(emp.getApellidos());
                     jTextFieldCorreo.setText(emp.getCorreo());
                     jTextFieldNombre.setText(emp.getNombre());
@@ -474,6 +477,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
     private void botonPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPasswordActionPerformed
         new PopupPassword(this,(Empleado)jComboBox1.getSelectedItem(),acceso).setVisible(true);
+        resetFrame((Empleado) jComboBox1.getSelectedItem());
     }//GEN-LAST:event_botonPasswordActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

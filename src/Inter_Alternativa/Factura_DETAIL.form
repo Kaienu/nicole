@@ -151,7 +151,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
+                  <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="0">
@@ -195,8 +195,9 @@
         </Container>
         <Component class="javax.swing.JTextField" name="textFecha">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -211,8 +212,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textIdFactura">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -227,8 +229,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textIdCliente">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -243,8 +246,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textIdEmpleado">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -297,20 +301,22 @@
               <Image iconType="3" name="/recursos/impresora.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAtras2ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="40" width="-1" height="35"/>
+              <AbsoluteConstraints x="280" y="40" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="textImporte">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>

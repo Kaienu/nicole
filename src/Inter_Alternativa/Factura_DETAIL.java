@@ -127,7 +127,7 @@ public class Factura_DETAIL extends javax.swing.JFrame {
 
         jTable1.setFont(clases.R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT));
+            (18, clases.R.PLAIN, clases.R.LIGHT));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -157,33 +157,36 @@ public class Factura_DETAIL extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 520, 230));
 
+        textFecha.setEditable(false);
         textFecha.setFont(clases.R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT)
-        );
+            (18, clases.R.PLAIN, clases.R.LIGHT));
         textFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textFecha.setEnabled(false);
         jPanel1.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 190, 35));
 
+        textIdFactura.setEditable(false);
         textIdFactura.setFont(clases.R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textIdFactura.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textIdFactura.setEnabled(false);
         jPanel1.add(textIdFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 130, 35));
 
+        textIdCliente.setEditable(false);
         textIdCliente.setFont(clases.R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textIdCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textIdCliente.setEnabled(false);
         jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 410, 35));
 
+        textIdEmpleado.setEditable(false);
         textIdEmpleado.setFont(clases.R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT));
+            (18, clases.R.PLAIN, clases.R.LIGHT));
         textIdEmpleado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textIdEmpleado.setEnabled(false);
         jPanel1.add(textIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 410, 35));
@@ -205,17 +208,18 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         botonAtras2.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/impresora.png"))); // NOI18N
         botonAtras2.setText("Imprimir");
+        botonAtras2.setEnabled(false);
         botonAtras2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtras2ActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 35));
+        jPanel1.add(botonAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, 35));
 
+        textImporte.setEditable(false);
         textImporte.setFont(clases.R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT)
-        );
+            (18, clases.R.PLAIN, clases.R.LIGHT));
         textImporte.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textImporte.setEnabled(false);
         jPanel1.add(textImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 130, 35));

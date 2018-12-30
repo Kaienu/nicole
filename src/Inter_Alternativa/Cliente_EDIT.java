@@ -2,7 +2,6 @@ package Inter_Alternativa;
 
 import clases.*;
 import java.awt.Color;
-import java.awt.Font;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
@@ -19,10 +18,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
     AccesoSQL acceso;
     Cliente cliente;
     
-    /**
-     * Creates new form Inter_Cliente_edit
-     * @param id
-     */
     public Cliente_EDIT(String id) {
         initComponents();
         this.id = id;
@@ -55,11 +50,11 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         //NºFacturas
         int facturas = acceso.returnInt(
-                "select count(*) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
+            "select count(*) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
         jTextField3.setText(String.valueOf(facturas));
         //SumaImportes
         double suma = acceso.returnDouble(
-                "select sum(importe) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
+            "select sum(importe) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
         BigDecimal n = new BigDecimal(suma).setScale(2, RoundingMode.HALF_UP);
         jTextField1.setText(n.toEngineeringString()+"€");
         //ÚltimaVisita

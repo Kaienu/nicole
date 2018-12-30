@@ -122,7 +122,7 @@ public class Menu_MAIN extends JFrame implements Permisos {
         botonBusquedas1.setBackground(new java.awt.Color(225, 225, 225));
         botonBusquedas1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonBusquedas1.setForeground(new java.awt.Color(219, 126, 138));
-        botonBusquedas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gestion-Extra.png"))); // NOI18N
+        botonBusquedas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/opciones-Extra.png"))); // NOI18N
         botonBusquedas1.setText("Gestión");
         botonBusquedas1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         botonBusquedas1.setIconTextGap(60);
@@ -208,8 +208,8 @@ public class Menu_MAIN extends JFrame implements Permisos {
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(detalle, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(detalle, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
         );
 
         pack();
