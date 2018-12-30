@@ -45,7 +45,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        //this.campoFecha.setText("Cliente/a desde: " + fechaActual());
     }
 
     private Cliente_EDIT() {

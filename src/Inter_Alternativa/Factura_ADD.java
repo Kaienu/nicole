@@ -374,7 +374,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         });
         campoBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoBuscarClienteActionPerformed(evt);
+                none(evt);
             }
         });
         jPanel1.add(campoBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 220, 60));
@@ -484,9 +484,9 @@ public class Factura_ADD extends javax.swing.JFrame {
         refrescarCliente(modal.getCliente());
     }//GEN-LAST:event_campoBuscarClienteMouseClicked
 
-    private void campoBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscarClienteActionPerformed
+    private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoBuscarClienteActionPerformed
+    }//GEN-LAST:event_none
     
     public JPanel getjPanel1() {
         return jPanel1;

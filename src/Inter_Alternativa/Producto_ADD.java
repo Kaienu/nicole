@@ -201,6 +201,7 @@ public class Producto_ADD extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+        
         BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
         String combo = (String)comboTipo.getSelectedItem();    
             Producto pro = new Producto(combo,campoMarca.getText(),campoModelo.getText(),precio,campoObservaciones.getText());

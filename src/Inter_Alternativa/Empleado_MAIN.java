@@ -238,51 +238,51 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jPanel1.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 140, 35));
+        jPanel1.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 130, 35));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel1.setText("DNI");
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel1.setText("DNI:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 35));
 
         jTextFieldNombre.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 250, 35));
+        jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 230, 35));
 
         jTextFieldApellidos.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 250, 35));
+        jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 230, 35));
 
         jTextFieldTelefono.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 140, 35));
+        jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, 35));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel2.setText("Nombre");
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel2.setText("Nombre:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, 35));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel3.setText("Apellidos");
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel3.setText("Apellidos:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, 35));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel4.setText("Teléfono");
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel4.setText("Teléfono:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 35));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel5.setText("Correo");
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel5.setText("Correo:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 35));
 
         jTextFieldCorreo.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 480, 35));
+        jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 470, 35));
 
         jButtonEditar.setBackground(new java.awt.Color(225, 225, 225));
         jButtonEditar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -308,8 +308,8 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         });
         jPanel1.add(botonPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 230, 35));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setText("Alta");
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        jLabel6.setText("Alta:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 35));
 
         jTextFieldAlta.setFont(clases.R.fuenteRoboto
@@ -321,7 +321,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 jTextFieldAltaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 140, 35));
+        jPanel1.add(jTextFieldAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 130, 35));
 
         botonBaja1.setBackground(new java.awt.Color(225, 225, 225));
         botonBaja1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
