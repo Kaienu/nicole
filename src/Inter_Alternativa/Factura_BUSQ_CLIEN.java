@@ -8,6 +8,7 @@ package Inter_Alternativa;
 import clases.AccesoSQL;
 import clases.Cliente;
 import clases.Presentacion;
+import clases.R;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -108,7 +109,10 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
-        jTable1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jTable1.setFont(R.fuenteRoboto
+
+            (16, R.PLAIN, R.LIGHT)
+        );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -129,9 +133,9 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(Presentacion.fuentePpal
+        jTextField_Busqueda.setFont(R.fuenteRoboto
 
-            (18,Font.PLAIN,Presentacion.LIGHT)
+            (18, R.PLAIN, R.LIGHT)
 
         );
         jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {

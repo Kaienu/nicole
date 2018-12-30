@@ -2,7 +2,7 @@ package Inter_Alternativa;
 
 import clases.AccesoSQL;
 import clases.Empleado;
-import clases.Tool;
+import clases.R;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,11 +25,46 @@ public class Login_SPLASH extends javax.swing.JFrame {
             System.err.println(e.getMessage());
         }
         jComboBox1.addItem("Selecciona Usuario");
-        jComboBox1.addItem("Admin");
+        jComboBox1.addItem("Supervisor");
         jComboBox1.setSelectedIndex(0);
         for (Object o : lista) {
             Empleado emp = (Empleado) o;
             jComboBox1.addItem(emp.getNombreCompleto());
+        }
+    }
+    
+    public void login() {
+        Empleado empLog = null;
+        if (jComboBox1.getSelectedIndex()==0) {
+            JOptionPane.showMessageDialog(null, "Selecciona un usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (jComboBox1.getSelectedItem().equals("Supervisor")) {
+            empLog = R.SUPERVISOR;
+        } else {
+            for (Object e : lista) {
+                Empleado emp = (Empleado) e;
+                if (jComboBox1.getSelectedItem().equals(emp.getNombreCompleto())){
+                    empLog = emp;
+                    break;
+                }
+            }
+            if (!comprobacionEmpleado(empLog)) {
+                return;
+            }
+        }
+        
+        char pass[]=jPasswordField1.getPassword();
+        String passUser = new String (pass);
+        if (acceso.login(empLog, passUser)) {
+            System.out.println("Logueado Correctamente");
+            acceso.cerrar();
+            R.setEmpleadoLogado(empLog);
+            new Menu_MAIN().setVisible(true);
+            this.dispose();
+        } else {
+            System.out.println("Contraseña Incorrecta");
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText("");
         }
     }
     
@@ -117,6 +152,11 @@ public class Login_SPLASH extends javax.swing.JFrame {
         jPasswordField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(219, 126, 138));
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
         jPanelLogin.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 250, 35));
 
         botonIniciar1.setBackground(new java.awt.Color(243, 206, 211));
@@ -158,31 +198,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-        //char pass[]=jPasswordField1.getPassword();
-        //String passUser = new String (pass);        
-        Empleado empLog = null;
-        for (Object e : lista) {
-            Empleado emp = (Empleado) e;
-            if (jComboBox1.getSelectedItem().equals(emp.getNombreCompleto())){
-                empLog = emp;
-                break;
-            }
-        }
-        if (!comprobacionEmpleado(empLog)) {
-            return;
-        }
-        char pass[]=jPasswordField1.getPassword();
-        String passUser = new String (pass);
-        if (acceso.login(empLog, passUser)) {
-            System.out.println("Logueado Correctamente");
-            acceso.cerrar();
-            new Menu_MAIN().setVisible(true);
-            this.dispose();
-        } else {
-            System.out.println("Contraseña Incorrecta");
-            JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-            jPasswordField1.setText("");
-        }
+        login();
     }//GEN-LAST:event_botonIniciarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
@@ -192,9 +208,16 @@ public class Login_SPLASH extends javax.swing.JFrame {
 
     private void botonIniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciar1ActionPerformed
         acceso.cerrar();
+        R.setEmpleadoLogado(R.SUPERVISOR);
         new Menu_MAIN().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonIniciar1ActionPerformed
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        if (evt.VK_ENTER==evt.getKeyCode()) {
+           login();
+        }
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
     /**
      * @param args the command line arguments

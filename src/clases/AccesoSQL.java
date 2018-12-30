@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AccesoSQL {
@@ -90,7 +88,7 @@ public class AccesoSQL {
      * 
      ***************************************************************************/
     
-    public boolean updatePorducto(Producto producto) {
+    public boolean updateProducto(Producto producto) {
         String query =
                 "UPDATE Producto SET"
                 + " tipo='" + producto.getTipo()
@@ -198,8 +196,10 @@ public class AccesoSQL {
                     emp.setDni(rs.getString(1));
                     emp.setNombre(rs.getString(2));
                     emp.setApellidos(rs.getString(3));
-                    emp.setCorreo(rs.getString(5));
                     emp.setTelefono(rs.getInt(4));
+                    emp.setCorreo(rs.getString(5));
+                    emp.setFechaAlta(rs.getTimestamp(6));
+                    emp.setPermisos(rs.getInt(8));
                     System.out.println(emp); // Comando de prueba en consola
                     lista.add(emp);
                 }
@@ -333,8 +333,10 @@ public class AccesoSQL {
                     emp.setDni(rs.getString(1));
                     emp.setNombre(rs.getString(2));
                     emp.setApellidos(rs.getString(3));
-                    emp.setCorreo(rs.getString(4));
-                    emp.setTelefono(rs.getInt(5));
+                    emp.setTelefono(rs.getInt(4));
+                    emp.setCorreo(rs.getString(5));
+                    emp.setFechaAlta(rs.getTimestamp(6));
+                    emp.setPermisos(rs.getInt(8));
                     //System.out.println(cliente); // Comando de prueba en consola
                 }
                 rs.close();
@@ -723,7 +725,7 @@ public class AccesoSQL {
             String passRecuperada = rs.getString(1);
             rs.close();
             ps.close();
-            return passRecuperada.equals(Tool.hashWith256(pass));
+            return passRecuperada.equals(R.hashWith256(pass));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null,"Se ha producido un error SQL","Error 077",JOptionPane.ERROR_MESSAGE);
@@ -733,7 +735,7 @@ public class AccesoSQL {
     
     public boolean updatePassword(Empleado empleado, String password) {
         String query = "UPDATE passwd SET "
-                + "clave='" + Tool.hashWith256(password)
+                + "clave='" + R.hashWith256(password)
                 + "' WHERE dniEmpleado LIKE '" + empleado.getDni() +"'";
         return updateSql(query);
     }

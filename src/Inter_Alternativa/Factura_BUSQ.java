@@ -79,7 +79,6 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         botonBusqueda = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
         botonLimpiar = new javax.swing.JButton();
-        botonAdd = new javax.swing.JButton();
 
         jTable_Display_User.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,11 +107,12 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
 
-        jTable1.setFont(Presentacion.fuentePpal
+        jTable1.setFont(clases.R.fuenteRoboto
 
-            (16,Font.PLAIN,Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,9 +159,10 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(Presentacion.fuentePpal
+        jTextField_Busqueda.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN,Presentacion.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,17 +211,6 @@ public class Factura_BUSQ extends javax.swing.JFrame {
             }
         });
 
-        botonAdd.setBackground(new java.awt.Color(225, 225, 225));
-        botonAdd.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        botonAdd.setForeground(new java.awt.Color(219, 126, 138));
-        botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
-        botonAdd.setText("Añadir");
-        botonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAddActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -233,12 +223,10 @@ public class Factura_BUSQ extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                         .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -246,10 +234,9 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,12 +277,6 @@ public class Factura_BUSQ extends javax.swing.JFrame {
         jTextField_Telefono.setText(model.getValueAt(i,4).toString());*/
 
     }//GEN-LAST:event_jTable_Display_UserMouseClicked
-
-    private void botonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAddActionPerformed
-        acceso.cerrar();
-        this.dispose();
-        new Cliente_ADD().setVisible(true);
-    }//GEN-LAST:event_botonAddActionPerformed
 
     private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -422,7 +403,6 @@ public class Factura_BUSQ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAdd;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonLimpiar;

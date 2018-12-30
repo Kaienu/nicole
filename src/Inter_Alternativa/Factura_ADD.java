@@ -3,13 +3,11 @@ package Inter_Alternativa;
 import clases.AccesoSQL;
 import clases.Cliente;
 import clases.Factura;
-import clases.Impresion;
 import clases.MainHandler;
-import clases.Presentacion;
 import clases.Producto;
+import clases.R;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,20 +39,20 @@ public class Factura_ADD extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public Factura_ADD() {
+        cliPrincipal = R.CONTADO;
         initComponents();
-        inicializar(); 
-        campoBuscarCliente.setEnabled(false);
-        campoEmpleadoLogado.setEditable(false);
-        
+        inicializar();
     }
     
     public Factura_ADD(Cliente cliente){
-        this();
         this.cliPrincipal = cliente;
+        initComponents();
+        inicializar();
     }
 
-    public void obtenerCliente (String nombre, String apellidos) {
-        campoBuscarCliente.setText(Factura_BUSQ_CLIEN.nombre + "" + Factura_BUSQ_CLIEN.apellidos);
+    public void refrescarCliente (Cliente cliente) {
+        this.cliPrincipal = cliente;
+        campoBuscarCliente.setText(this.cliPrincipal.toString());
     }
     
     public void inicializar() {
@@ -82,7 +79,7 @@ public class Factura_ADD extends javax.swing.JFrame {
             boton.setBounds(0, yR, 120, 40);
             yR = yR +45;
             boton.addActionListener(controlador);
-            boton.setFont(Presentacion.fuentePpal(14, Font.PLAIN, Presentacion.CONDENSED));
+            boton.setFont(R.fuenteRoboto(14, R.PLAIN, R.CONDENSED));
             boton.setBackground(new Color(225,225,225));
             boton.setForeground(new Color(219,126,138));
             pulsadores.add(boton);
@@ -125,6 +122,10 @@ public class Factura_ADD extends javax.swing.JFrame {
     
     public ArrayList getLista(){
         return lista;
+    }
+    
+    public void setCliPrincipal(Cliente cliente) {
+        this.cliPrincipal = cliente;
     }
     
     public ArrayList<JButton> getTextos(){
@@ -171,7 +172,7 @@ public class Factura_ADD extends javax.swing.JFrame {
             boton.addActionListener(controlador);
             boton.setBounds(x, y, 140, 80);
             //boton.setIcon(new Icon);
-            boton.setFont(Presentacion.fuentePpal(12, Font.PLAIN, Presentacion.CONDENSED));
+            boton.setFont(R.fuenteRoboto(12, R.PLAIN, R.CONDENSED));
             boton.setForeground(new Color(219, 126, 138));
             boton.setBackground(new Color(255,255,255));
             //boton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
@@ -227,13 +228,16 @@ public class Factura_ADD extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTable1.setFont(R.fuenteRoboto
+
+            (18, R.PLAIN, R.CONDENSED)
+        );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cantidad", "Artículo", "Precio"
+                "Cant.", "Artículo", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -253,12 +257,17 @@ public class Factura_ADD extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 360, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 360, 440));
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("0,00€");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Importe", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+
+            (14, R.PLAIN, R.LIGHT)
+
+        ));
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jTextField1.setEnabled(false);
@@ -267,47 +276,47 @@ public class Factura_ADD extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 40));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 60));
 
         jButtonAtras.setBackground(new java.awt.Color(225, 225, 225));
         jButtonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
         jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         jButtonAtras.setText("Atrás");
-        jButtonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jButtonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 100, 40));
+        jPanel1.add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 15, 110, 55));
 
         botonEliminarProducto.setBackground(new java.awt.Color(225, 225, 225));
         botonEliminarProducto.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonEliminarProducto.setForeground(new java.awt.Color(219, 126, 138));
         botonEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonEliminarProducto.setText("Eliminar");
-        botonEliminarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        botonEliminarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         botonEliminarProducto.setPreferredSize(new java.awt.Dimension(277, 41));
         botonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 120, 40));
+        jPanel1.add(botonEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 15, 110, 55));
 
         jButtonFinVenta.setBackground(new java.awt.Color(225, 225, 225));
         jButtonFinVenta.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButtonFinVenta.setForeground(new java.awt.Color(219, 126, 138));
         jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png"))); // NOI18N
         jButtonFinVenta.setText("Finalizar");
-        jButtonFinVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jButtonFinVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonFinVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFinVentaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonFinVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 120, 40));
+        jPanel1.add(jButtonFinVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 15, 110, 55));
 
         jScrollPane2.setBorder(null);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -316,7 +325,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         panelSwitches.setLayout(panelSwitchesLayout);
         panelSwitchesLayout.setHorizontalGroup(
             panelSwitchesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         panelSwitchesLayout.setVerticalGroup(
             panelSwitchesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +334,7 @@ public class Factura_ADD extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(panelSwitches);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 450, 430));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 450, 410));
 
         jScrollPane3.setBorder(null);
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -343,22 +352,46 @@ public class Factura_ADD extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(panelSwitches1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 400));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 140, 410));
 
-        campoBuscarCliente.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        campoBuscarCliente.setText("Buscar cliente...");
-        campoBuscarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        campoBuscarCliente.setEditable(false);
+        campoBuscarCliente.setFont(clases.R.fuenteRoboto
+
+            (18, clases.R.PLAIN, clases.R.CONDENSED)
+        );
+        campoBuscarCliente.setText(cliPrincipal.toString());
+        campoBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+
+            (14, R.PLAIN, R.LIGHT)
+        ));
         campoBuscarCliente.setDisabledTextColor(new java.awt.Color(219, 126, 138));
+        campoBuscarCliente.setEnabled(false);
         campoBuscarCliente.setSelectionColor(new java.awt.Color(219, 126, 138));
         campoBuscarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoBuscarClienteMouseClicked(evt);
             }
         });
-        jPanel1.add(campoBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 200, 40));
+        campoBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoBuscarClienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(campoBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 220, 60));
 
-        campoEmpleadoLogado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
-        jPanel1.add(campoEmpleadoLogado, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 10, 200, 40));
+        campoEmpleadoLogado.setEditable(false);
+        campoEmpleadoLogado.setFont(clases.R.fuenteRoboto
+
+            (18, clases.R.PLAIN, clases.R.CONDENSED)
+        );
+        campoEmpleadoLogado.setText(R.getEmpleadoLogado().toString());
+        campoEmpleadoLogado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+
+            (14, R.PLAIN, R.LIGHT)
+        ));
+        campoEmpleadoLogado.setDisabledTextColor(new java.awt.Color(219, 126, 138));
+        campoEmpleadoLogado.setEnabled(false);
+        jPanel1.add(campoEmpleadoLogado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 200, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -373,8 +406,8 @@ public class Factura_ADD extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -396,7 +429,7 @@ public class Factura_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarProductoActionPerformed
 
     private void jButtonFinVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinVentaActionPerformed
-        Factura fact = new Factura("00000001","02569854E",total);
+        Factura fact = new Factura(cliPrincipal.getIdCliente(),R.getEmpleadoLogado().getDni(),total);
         
         if (carrito.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ningún artículo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -418,9 +451,9 @@ public class Factura_ADD extends javax.swing.JFrame {
                     System.err.println("Linea-02");
                     break;
                 }
-                Impresion.main(carrito,fact);
+                R.impresion(carrito,fact,R.getEmpleadoLogado(),cliPrincipal);
                 acceso.cerrar();
-                new Factura_ADD().setVisible(true);
+                new Menu_MAIN().setVisible(true);
                 this.dispose();
                 break;
             case 1:
@@ -437,7 +470,7 @@ public class Factura_ADD extends javax.swing.JFrame {
                     break;
                 }
                 acceso.cerrar();
-                new Factura_ADD().setVisible(true);
+                new Menu_MAIN().setVisible(true);
                 this.dispose();
                 break;
             case 2:
@@ -446,12 +479,15 @@ public class Factura_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFinVentaActionPerformed
 
     private void campoBuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarClienteMouseClicked
-        new Factura_BUSQ_CLIEN(this).setVisible(true);
+        Factura_ADD_BUSC modal = new Factura_ADD_BUSC(this, true, acceso);
+        modal.setVisible(true);
+        refrescarCliente(modal.getCliente());
     }//GEN-LAST:event_campoBuscarClienteMouseClicked
-    public void setCampo(Cliente cliente) {
-        campoBuscarCliente.setText(cliente.getNombre()+" "+cliente.getApellidos());
-    }
 
+    private void campoBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoBuscarClienteActionPerformed
+    
     public JPanel getjPanel1() {
         return jPanel1;
     }

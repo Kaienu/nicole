@@ -1,9 +1,10 @@
 package Inter_Alternativa;
 
 import clases.*;
-import java.awt.Font;
+import interfaces.Permisos;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -14,13 +15,13 @@ import javax.swing.table.TableModel;
  *
  * @author kaien
  */
-public class Producto_BUSQ extends javax.swing.JFrame {
+public class Producto_BUSQ extends JFrame implements Permisos {
 
     public AccesoSQL acceso;
     
     public Producto_BUSQ() {     
         initComponents();
-        //ocultarBotones();
+        comprobacionPermisos();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(0);
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -39,8 +40,22 @@ public class Producto_BUSQ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Error 02");
             System.out.println(e.getMessage());
         }
-        
     }
+    
+    
+    @Override
+    public void comprobacionPermisos() {
+        switch (R.getEmpleadoLogado().getPermisos()) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                botonAñadir.setEnabled(false);
+                break;
+        }
+    }
+    
     public void ocultarBotones() {
         botonAñadir.setVisible(false);
     }
@@ -121,11 +136,10 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
 
-        jTable1.setFont(Presentacion.fuentePpal
-
-            (16,Font.PLAIN,Presentacion.LIGHT)
+        jTable1.setFont(clases.R.fuenteRoboto
+            (16,clases.R.PLAIN,clases.R.LIGHT)
         );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,9 +179,9 @@ public class Producto_BUSQ extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(Presentacion.fuentePpal
+        jTextField_Busqueda.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN,Presentacion.LIGHT)
+            (18,clases.R.PLAIN,clases.R.LIGHT)
         );
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -235,7 +249,7 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,8 +270,8 @@ public class Producto_BUSQ extends javax.swing.JFrame {
                     .addComponent(botonBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

@@ -3,8 +3,7 @@ package Inter_Alternativa;
 import clases.AccesoSQL;
 import clases.Factura;
 import clases.Linea;
-import clases.Presentacion;
-import java.awt.Font;
+import clases.R;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -81,7 +80,6 @@ public class Factura_DETAIL extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField4 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -98,44 +96,38 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         botonAtras2 = new javax.swing.JButton();
         textImporte = new javax.swing.JTextField();
 
-        jTextField4.setFont(Presentacion.fuentePpal
-
-            (16, Font.PLAIN, Presentacion.LIGHT)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(566, 475));
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Factura nº:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 35));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 35));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Cliente: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 35));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 35));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setText("Empleado:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 35));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 35));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel4.setText("Fecha: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 35));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 35));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel5.setText("Importe: ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, 35));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, 35));
 
-        jTable1.setFont(Presentacion.fuentePpal
+        jTable1.setFont(clases.R.fuenteRoboto
 
-            (16,Font.PLAIN,Presentacion.LIGHT)
-        );
+            (16, clases.R.PLAIN, clases.R.LIGHT));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -163,39 +155,38 @@ public class Factura_DETAIL extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 520, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 520, 230));
 
-        textFecha.setFont(Presentacion.fuentePpal
+        textFecha.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
         );
         textFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textFecha.setEnabled(false);
-        jPanel1.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 190, 35));
+        jPanel1.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 190, 35));
 
-        textIdFactura.setFont(Presentacion.fuentePpal
+        textIdFactura.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
         );
         textIdFactura.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textIdFactura.setEnabled(false);
-        jPanel1.add(textIdFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 130, 35));
+        jPanel1.add(textIdFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 130, 35));
 
-        textIdCliente.setFont(Presentacion.fuentePpal
+        textIdCliente.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
         );
         textIdCliente.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textIdCliente.setEnabled(false);
-        jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 410, 35));
+        jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 410, 35));
 
-        textIdEmpleado.setFont(Presentacion.fuentePpal
+        textIdEmpleado.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
-        );
+            (16, clases.R.PLAIN, clases.R.LIGHT));
         textIdEmpleado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textIdEmpleado.setEnabled(false);
-        jPanel1.add(textIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 410, 35));
+        jPanel1.add(textIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 410, 35));
 
         botonAtras.setBackground(new java.awt.Color(225, 225, 225));
         botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
@@ -207,7 +198,7 @@ public class Factura_DETAIL extends javax.swing.JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 120, 35));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 120, 35));
 
         botonAtras2.setBackground(new java.awt.Color(225, 225, 225));
         botonAtras2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
@@ -219,15 +210,15 @@ public class Factura_DETAIL extends javax.swing.JFrame {
                 botonAtras2ActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, 35));
+        jPanel1.add(botonAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 35));
 
-        textImporte.setFont(Presentacion.fuentePpal
+        textImporte.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
         );
         textImporte.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textImporte.setEnabled(false);
-        jPanel1.add(textImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 130, 35));
+        jPanel1.add(textImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 130, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,7 +233,7 @@ public class Factura_DETAIL extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -314,7 +305,6 @@ public class Factura_DETAIL extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField textFecha;
     private javax.swing.JTextField textIdCliente;
     private javax.swing.JTextField textIdEmpleado;

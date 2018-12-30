@@ -1,7 +1,6 @@
 package Inter_Alternativa;
 
 import clases.*;
-import java.awt.Font;
 import javax.swing.JOptionPane;
 
 /**
@@ -129,21 +128,21 @@ public class Cliente_ADD extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(219, 126, 138));
         jLabel7.setText("Observaciones");
 
-        jTextField_nombre.setFont(Presentacion.fuentePpal
+        jTextField_nombre.setFont(R.fuenteRoboto
 
-            (16,Font.PLAIN,Presentacion.LIGHT));
+            (16, R.PLAIN, R.LIGHT));
 
-        jTextField_apellidos.setFont(Presentacion.fuentePpal
+        jTextField_apellidos.setFont(R.fuenteRoboto
 
-            (16,Font.PLAIN,Presentacion.LIGHT));
+            (16, R.PLAIN, R.LIGHT));
 
-        jTextField_correo.setFont(Presentacion.fuentePpal
+        jTextField_correo.setFont(R.fuenteRoboto
 
-            (16,Font.PLAIN,Presentacion.LIGHT));
+            (16, R.PLAIN, R.LIGHT));
 
-        jTextField_telefono.setFont(Presentacion.fuentePpal
+        jTextField_telefono.setFont(R.fuenteRoboto
 
-            (16,Font.PLAIN,Presentacion.LIGHT));
+            (16, R.PLAIN, R.LIGHT));
 
         botonAdd2.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N

@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 
 public class TicketImpresion implements Printable {
     private Factura factu;
-
+    private Cliente cliente;
+    private Empleado empleado;
     private ArrayList<Producto> ticket;
     private final String denom = "Centro de Peluquería y Estética Nicole";
     private final String cif = "CIF: 30263512C";
@@ -33,42 +34,60 @@ public class TicketImpresion implements Printable {
         return hourdateFormat.format(date);
     }
     
-    public TicketImpresion(ArrayList<Producto> ticket, Factura factu){
+    public TicketImpresion(ArrayList<Producto> ticket, Factura factu, Empleado emp, Cliente cli){
         this.ticket = ticket;
         this.factu = factu;
+        this.empleado = emp;
+        this.cliente = cli;
     }
     
     @Override
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
         String cabeceraTabla = "CANT   ARTÍCULO                PRECIO   IMPORTE";
-        int linea = 90;
+        String separacion = "===============================================";
+        int linea = 110;
         if (pageIndex == 0) {
             try {
                 graphics.setFont(fuente().deriveFont(Font.BOLD, 9f));
             } catch (FontFormatException | IOException ex) {
-                Logger.getLogger(TicketImpresion.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
             graphics.drawString(denom, x, 10);
             try {
                 graphics.setFont(fuente().deriveFont(Font.PLAIN, 8f));
             } catch (FontFormatException | IOException ex) {
-                Logger.getLogger(TicketImpresion.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
             graphics.drawString(cif, x, 25);
             graphics.drawString(direccion, x, 35);
             graphics.drawString(tlf, x, 45);
             graphics.drawString(fechaActual(), x, 55);
-            graphics.drawString(cabeceraTabla, x, 75);
+            graphics.drawString("Cliente: "+cliente.toString(), x, 65);
+            graphics.drawString(cabeceraTabla, x, 85);
+            graphics.drawString(separacion, x, 95);
             for (Producto p : ticket){
                 graphics.drawString(descripcionProd(p), x, linea);
                 linea = Integer.sum(linea, 10);
             }
+            linea = Integer.sum(linea, 10);
+            graphics.drawString(separacion, x, linea);
+            linea = Integer.sum(linea, 10);
             try {
                 graphics.setFont(fuente().deriveFont(Font.BOLD, 9f));
             } catch (FontFormatException | IOException ex) {
-                Logger.getLogger(TicketImpresion.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
-            graphics.drawString("Precio total: " + factu.getImporte().toEngineeringString()+"€", x, (linea+20));
+            graphics.drawString("    Importe total: " + factu.getImporte().toEngineeringString()+"€", x, linea);
+            
+            try {
+                graphics.setFont(fuente().deriveFont(Font.PLAIN, 8f));
+            } catch (FontFormatException | IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+            linea = Integer.sum(linea, 10);
+            graphics.drawString(separacion, x, linea);
+            linea = Integer.sum(linea, 20);
+            graphics.drawString(" Le atendió: " + empleado.getNombre(), x, linea);
             return PAGE_EXISTS;
         } else {
             return NO_SUCH_PAGE;
@@ -79,7 +98,7 @@ public class TicketImpresion implements Printable {
         String cantidad = String.format("%02d", prod.getCount());
         String detalle = " ";
         detalle = detalle + cantidad;
-        detalle = detalle + " " + prod.getModelo() + " ";
+        detalle = detalle + " " + R.limitarModelo(prod.getModelo()) + " ";
         for (int saltos = detalle.length(); saltos<28; saltos++) {
             detalle = detalle + " ";
         }
@@ -111,5 +130,6 @@ public class TicketImpresion implements Printable {
         detalle = detalle + total;
         return detalle;
     }
+    
     
 }

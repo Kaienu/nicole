@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.JTextField" name="jTextField4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="undecorated" type="boolean" value="true"/>
@@ -48,7 +39,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="473" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="493" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -61,10 +52,17 @@
           <Color blue="f2" green="f1" red="f8" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder justification="2" position="1" title="&lt;User Code&gt;">
+              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="8a" green="7e" red="db" type="rgb"/>
+                </LineBorder>
+              </Border>
+              <Connection PropertyName="titleX" code="R.getEmpleadoLogado().getNombreCompleto()" type="code"/>
+              <Font PropertyName="font" name="Century Gothic" size="18" style="0"/>
               <Color PropertyName="color" blue="8a" green="7e" red="db" type="rgb"/>
-            </LineBorder>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>
@@ -82,7 +80,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="20" width="-1" height="35"/>
+              <AbsoluteConstraints x="20" y="40" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -95,7 +93,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="70" width="-1" height="35"/>
+              <AbsoluteConstraints x="20" y="90" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -108,7 +106,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="120" width="-1" height="35"/>
+              <AbsoluteConstraints x="20" y="140" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -121,7 +119,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="170" width="-1" height="35"/>
+              <AbsoluteConstraints x="20" y="190" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -134,7 +132,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="330" y="170" width="-1" height="35"/>
+              <AbsoluteConstraints x="330" y="190" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -144,7 +142,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="220" width="520" height="230"/>
+              <AbsoluteConstraints x="20" y="240" width="520" height="230"/>
             </Constraint>
           </Constraints>
 
@@ -153,7 +151,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16,Font.PLAIN,Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+                  <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="0">
@@ -198,7 +196,7 @@
         <Component class="javax.swing.JTextField" name="textFecha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -207,14 +205,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="130" y="170" width="190" height="35"/>
+              <AbsoluteConstraints x="130" y="190" width="190" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="textIdFactura">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -223,14 +221,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="130" y="20" width="130" height="35"/>
+              <AbsoluteConstraints x="130" y="40" width="130" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="textIdCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -239,14 +237,14 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="130" y="70" width="410" height="35"/>
+              <AbsoluteConstraints x="130" y="90" width="410" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="textIdEmpleado">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -255,7 +253,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="130" y="120" width="410" height="35"/>
+              <AbsoluteConstraints x="130" y="140" width="410" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -280,7 +278,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="420" y="20" width="120" height="35"/>
+              <AbsoluteConstraints x="420" y="40" width="120" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -305,14 +303,14 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="20" width="-1" height="35"/>
+              <AbsoluteConstraints x="290" y="40" width="-1" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="textImporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16, Font.PLAIN, Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
             </Property>
             <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -321,7 +319,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="410" y="170" width="130" height="35"/>
+              <AbsoluteConstraints x="410" y="190" width="130" height="35"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -247,28 +247,28 @@
         <Component class="javax.swing.JTextField" name="jTextField_nombre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16,Font.PLAIN,Presentacion.LIGHT)" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_apellidos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16,Font.PLAIN,Presentacion.LIGHT)" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_correo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16,Font.PLAIN,Presentacion.LIGHT)" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_telefono">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16,Font.PLAIN,Presentacion.LIGHT)" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
           </Properties>
           <AuxValues>

@@ -5,8 +5,12 @@ import java.sql.Timestamp;
 public class Empleado{
     
     private String dni,nombre,apellidos,correo;
-    private int telefono;
-    private Timestamp fechaAlta = Tool.FECHAERROR;
+    private int telefono, permisos;
+    private Timestamp fechaAlta = R.FECHAERROR;
+
+    public static final int SUPERUSER = 0;
+    public static final int ADMIN = 1;
+    public static final int USER = 2;
     
     
     public Empleado(){    
@@ -18,6 +22,11 @@ public class Empleado{
 	this.correo = correo;
 	this.telefono = telefono;
         this.dni = dni;
+    }
+    
+    public Empleado(String nombre, String apellidos, String correo, int telefono, String dni, int permisos) {
+        this(nombre, apellidos, correo, telefono, dni);
+        this.permisos = permisos;
     }
     
     public Empleado(String nombre, String apellidos, String correo, int telefono, String dni,Timestamp fechaAlta) {
@@ -72,23 +81,30 @@ public class Empleado{
     public void setFechaAlta(Timestamp fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
+
+    public int getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(int permisos) {
+        this.permisos = permisos;
+    }
     
     public String getNombreCompleto(){
-        return this.nombre+" "+this.getApellidos();
+        if (this.permisos<2) {
+            return "<html><b>"+this.nombre+" "+this.apellidos+"</b></html>";
+        } else {
+            return this.nombre+" "+this.apellidos;
+        }
     }
     
     public void asignarPass(String pass) {
-        String passwd = Tool.hashWith256(pass);
+        String passwd = R.hashWith256(pass);
     }
     
     @Override
     public String toString() {
         return this.getNombre()+" "+this.getApellidos();
-	/*return "DNI " + this.getDni() + " || " +
-                this.getNombre() + " " +
-                this.getApellidos() + " || " + 
-                this.getCorreo() +" || " +
-                this.getTelefono();*/
     }
     
     @Override

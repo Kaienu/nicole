@@ -1,13 +1,11 @@
 package Inter_Alternativa;
 
 import clases.*;
-import java.awt.Font;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -21,6 +19,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
     
     public Empleado_MAIN() {
         initComponents();
+        formatearTabla();
         botonPassword.setVisible(false);
         // Consigo la lista de empleados y la meto en el ArrayList
         acceso = new AccesoSQL();
@@ -29,6 +28,18 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         disableTextField(false);
         inicCombo();
         firstRun = false;
+    }
+    
+    public void formatearTabla() {
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(0);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(90);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
     }
     
     public void MostrarSQL(String filtroDni) {
@@ -42,7 +53,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         for (Factura fact : listaFacturas) {
             row[0] = fact.getIdFactura();
             row[1] = fact.getImporte().toEngineeringString()+"€";
-            row[2] = fact.getFecha().toString();
+            row[2] = R.fechaFormateada(fact.getFecha());
             row[3] = fact.getIdCliente();
             model.addRow(row);
         }
@@ -72,12 +83,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             }
         }
         
-    }
-    
-    public String fechaActual(){
-        Date date = new Date();
-        DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return hourdateFormat.format(date);
     }
     
     public void disableTextField(boolean opcion) {
@@ -155,12 +160,13 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setFont(Presentacion.fuentePpal
+        jComboBox1.setFont(clases.R.fuenteRoboto
 
-            (16,Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleciona empleado" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -169,14 +175,14 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             }
         });
         jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBox1MouseEntered(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jComboBox1MouseReleased(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
             }
         });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +190,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 180, 40));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 180, 40));
 
         jButtonNuevo.setBackground(new java.awt.Color(225, 225, 225));
         jButtonNuevo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -196,8 +202,12 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 jButtonNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 120, 40));
+        jPanel1.add(jButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 110, 40));
 
+        jTable1.setFont(clases.R.fuenteRoboto
+
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -214,6 +224,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(30);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -221,52 +232,57 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 550, 232));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 550, 232));
 
-        jTextFieldDni.setFont(Presentacion.fuentePpal
+        jTextFieldDni.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN, Presentacion.LIGHT));
-        jPanel1.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 140, 35));
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
+        jPanel1.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 140, 35));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setText("DNI");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 35));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 35));
 
-        jTextFieldNombre.setFont(Presentacion.fuentePpal
+        jTextFieldNombre.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN, Presentacion.LIGHT));
-        jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 250, 35));
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
+        jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 250, 35));
 
-        jTextFieldApellidos.setFont(Presentacion.fuentePpal
+        jTextFieldApellidos.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN, Presentacion.LIGHT));
-        jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 250, 35));
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
+        jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 250, 35));
 
-        jTextFieldTelefono.setFont(Presentacion.fuentePpal
+        jTextFieldTelefono.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN, Presentacion.LIGHT));
-        jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 140, 35));
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
+        jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 140, 35));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 35));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, 35));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setText("Apellidos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, 35));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, 35));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Teléfono");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 35));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 35));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Correo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 35));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 35));
 
-        jTextFieldCorreo.setFont(Presentacion.fuentePpal
+        jTextFieldCorreo.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN, Presentacion.LIGHT));
-        jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 480, 35));
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
+        jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 480, 35));
 
         jButtonEditar.setBackground(new java.awt.Color(225, 225, 225));
         jButtonEditar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -278,7 +294,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 jButtonEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 120, 40));
+        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 120, 40));
 
         botonPassword.setBackground(new java.awt.Color(225, 225, 225));
         botonPassword.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -290,16 +306,22 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 botonPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(botonPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 230, 35));
+        jPanel1.add(botonPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 230, 35));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Alta");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 35));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 35));
 
-        jTextFieldAlta.setFont(Presentacion.fuentePpal
+        jTextFieldAlta.setFont(clases.R.fuenteRoboto
 
-            (18,Font.PLAIN, Presentacion.LIGHT));
-        jPanel1.add(jTextFieldAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 140, 35));
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+        );
+        jTextFieldAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAltaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextFieldAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 140, 35));
 
         botonBaja1.setBackground(new java.awt.Color(225, 225, 225));
         botonBaja1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -311,7 +333,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
                 botonBaja1ActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBaja1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 100, 40));
+        jPanel1.add(botonBaja1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -326,8 +348,8 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -348,7 +370,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             jTextFieldApellidos.setText(emp.getApellidos());
             jTextFieldTelefono.setText(String.valueOf(emp.getTelefono()));
             jTextFieldCorreo.setText(emp.getCorreo());
-            jTextFieldAlta.setText(Tool.fechaFormateada(emp.getFechaAlta()));
+            jTextFieldAlta.setText(R.fechaFormateadaCorta(emp.getFechaAlta()));
             MostrarSQL(emp.getDni());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -482,6 +504,10 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         new Menu_GEST().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonBaja1ActionPerformed
+
+    private void jTextFieldAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAltaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAltaActionPerformed
 
     /**
      * @param args the command line arguments

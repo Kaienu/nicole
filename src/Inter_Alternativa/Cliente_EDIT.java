@@ -66,7 +66,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         //ÚltimaVisita
         Timestamp ultimaVisita = acceso.returnTimestamp(
             "select max(fecha) from Factura where idCliente = '"+cliente.getIdCliente()+"'");
-        jTextField4.setText(Tool.fechaFormateada(ultimaVisita));
+        jTextField4.setText(R.fechaFormateada(ultimaVisita));
         //FormateoTabla
         ArrayList<Object> lista = acceso.listado(tabla,filtro);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -175,12 +175,13 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(Presentacion.fuentePpal
+        jTable1.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -203,11 +204,11 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTable1MouseReleased(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -217,7 +218,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 480, 160));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 480, 160));
 
         botonModificar.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -229,84 +230,86 @@ public class Cliente_EDIT extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 25, 160, 40));
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 160, 40));
 
         campoObservaciones.setEditable(false);
         campoObservaciones.setBackground(new java.awt.Color(240, 240, 240));
         campoObservaciones.setColumns(20);
-        campoObservaciones.setFont(Presentacion.fuentePpal
+        campoObservaciones.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         campoObservaciones.setRows(5);
         campoObservaciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(campoObservaciones);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 480, 120));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 480, 120));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Observaciones");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, 35));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, 35));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setText("ID:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 35));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 35));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel7.setText("Nombre:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 35));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 35));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel8.setText("Apellidos:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 35));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, 35));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel9.setText("Teléfono:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, 35));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, 35));
 
         textIdCliente.setEditable(false);
-        textIdCliente.setFont(Presentacion.fuentePpal
+        textIdCliente.setFont(clases.R.fuenteRoboto
 
-            (18, Font.PLAIN, Presentacion.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textIdCliente.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 110, 35));
+        jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 110, 35));
 
         textNombre.setEditable(false);
-        textNombre.setFont(Presentacion.fuentePpal
+        textNombre.setFont(clases.R.fuenteRoboto
 
-            (18, Font.PLAIN, Presentacion.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textNombre.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, 35));
+        jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 110, 35));
 
         textApellidos.setEditable(false);
-        textApellidos.setFont(Presentacion.fuentePpal
+        textApellidos.setFont(clases.R.fuenteRoboto
 
-            (18, Font.PLAIN, Presentacion.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textApellidos.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jPanel1.add(textApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 190, 35));
+        jPanel1.add(textApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 190, 35));
 
         textTelf.setEditable(false);
-        textTelf.setFont(Presentacion.fuentePpal
+        textTelf.setFont(clases.R.fuenteRoboto
 
-            (18
-                , Font.PLAIN, Presentacion.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         textTelf.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jPanel1.add(textTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 190, 35));
+        jPanel1.add(textTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 190, 35));
 
         textCorreo.setEditable(false);
-        textCorreo.setFont(Presentacion.fuentePpal
+        textCorreo.setFont(clases.R.fuenteRoboto
 
-            (18, Font.PLAIN, Presentacion.LIGHT)
+            (18, clases.R.PLAIN, clases.R.LIGHT)
+
         );
-        jPanel1.add(textCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 400, 35));
+        jPanel1.add(textCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 400, 35));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel10.setText("Correo:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 35));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 35));
 
         botonModificar1.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -318,15 +321,16 @@ public class Cliente_EDIT extends javax.swing.JFrame {
                 botonModificar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(botonModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 25, 150, 40));
+        jPanel1.add(botonModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 150, 40));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setEditable(false);
-        jTextField1.setFont(Presentacion.fuentePpal
+        jTextField1.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jTextField1.setText("jTextField1");
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
@@ -334,10 +338,10 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 170, 35));
 
         textFecha.setEditable(false);
-        textFecha.setFont(Presentacion.fuentePpal
+        textFecha.setFont(clases.R.fuenteRoboto
 
-            (16
-                , Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         textFecha.setText("jTextField1");
         textFecha.setDisabledTextColor(new java.awt.Color(102, 102, 102));
@@ -345,9 +349,10 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jPanel2.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 100, 35));
 
         jTextField3.setEditable(false);
-        jTextField3.setFont(Presentacion.fuentePpal
+        jTextField3.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jTextField3.setText("jTextField1");
         jTextField3.setDisabledTextColor(new java.awt.Color(102, 102, 102));
@@ -355,9 +360,10 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 35));
 
         jTextField4.setEditable(false);
-        jTextField4.setFont(Presentacion.fuentePpal
+        jTextField4.setFont(clases.R.fuenteRoboto
 
-            (16, Font.PLAIN, Presentacion.LIGHT)
+            (16, clases.R.PLAIN, clases.R.LIGHT)
+
         );
         jTextField4.setText("jTextField1");
         jTextField4.setDisabledTextColor(new java.awt.Color(102, 102, 102));
@@ -380,7 +386,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jLabel12.setText("Total:");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, 35));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 500, 110));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 500, 110));
 
         botonModificar2.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -392,7 +398,7 @@ public class Cliente_EDIT extends javax.swing.JFrame {
                 botonModificar2ActionPerformed(evt);
             }
         });
-        jPanel1.add(botonModificar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 25, 150, 40));
+        jPanel1.add(botonModificar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -407,8 +413,8 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

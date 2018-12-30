@@ -93,13 +93,7 @@ public class Cliente{
     
     @Override
     public String toString() {
-	return "ID cliente " + this.getIdCliente() + " || " +
-                this.getNombre() + " " +
-                this.getApellidos() + " || " + 
-                this.getCorreo() +" || " +
-                this.getTelefono() + " || " + 
-                this.getObservaciones() + " || " +
-                this.getFechaAlta();
+	return this.getNombre() + " " +this.getApellidos();
     }
     
     @Override

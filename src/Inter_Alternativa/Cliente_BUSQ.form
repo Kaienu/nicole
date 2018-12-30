@@ -63,9 +63,9 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -78,10 +78,17 @@
           <Color blue="f2" green="f1" red="f8" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder justification="2" position="1" title="&lt;User Code&gt;">
+              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="8a" green="7e" red="db" type="rgb"/>
+                </LineBorder>
+              </Border>
+              <Connection PropertyName="titleX" code="R.getEmpleadoLogado().getNombreCompleto()" type="code"/>
+              <Font PropertyName="font" name="Century Gothic" size="18" style="0"/>
               <Color PropertyName="color" blue="8a" green="7e" red="db" type="rgb"/>
-            </LineBorder>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>
@@ -97,7 +104,7 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jTextField_Busqueda" min="-2" pref="300" max="-2" attributes="0"/>
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                          <EmptySpace pref="35" max="32767" attributes="0"/>
                           <Component id="botonBusqueda" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botonLimpiar" min="-2" pref="120" max="-2" attributes="0"/>
@@ -114,7 +121,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="botonAtras" alignment="2" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="botonAdd" alignment="2" min="-2" pref="40" max="-2" attributes="0"/>
@@ -141,7 +148,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(16,Font.PLAIN,Presentacion.LIGHT)&#xd;&#xa;" type="code"/>
+                  <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(16, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
@@ -217,7 +224,7 @@
         <Component class="javax.swing.JTextField" name="jTextField_Busqueda">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Presentacion.fuentePpal&#xd;&#xa;&#xd;&#xa;(18,Font.PLAIN,Presentacion.LIGHT)&#xd;&#xa;&#xd;&#xa;" type="code"/>
+              <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)&#xd;&#xa;&#xd;&#xa;" type="code"/>
             </Property>
           </Properties>
           <Events>

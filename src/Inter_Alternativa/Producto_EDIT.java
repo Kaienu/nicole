@@ -6,20 +6,21 @@
 package Inter_Alternativa;
 
 import clases.*;
-import error.CampoVacio;
+import interfaces.Permisos;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author kaien
  */
-public class Producto_EDIT extends javax.swing.JFrame {
+public class Producto_EDIT extends JFrame implements Permisos {
 
     private String id;
     int edit_mode = 0;
@@ -44,10 +45,25 @@ public class Producto_EDIT extends javax.swing.JFrame {
         } 
         obtenerDatos();
         llenarCombo();
+        comprobacionPermisos();
     }
 
     private Producto_EDIT() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    @Override
+    public void comprobacionPermisos() {
+        switch (R.getEmpleadoLogado().getPermisos()) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                botonEliminar.setEnabled(false);
+                break;
+        }
     }
     
     public void modificarCampos(boolean Opcion) {
@@ -294,28 +310,48 @@ public class Producto_EDIT extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        JButton boton = (JButton)evt.getSource();
-        if (boton.getText().equalsIgnoreCase("Modificar")) {
-            modificarCampos(true);
-            comboTipo.setVisible(true);
-            comboTipo.setSelectedItem(producto.getTipo());
-            campoTipo.setVisible(false);
-            botonAtras.setEnabled(false);
-            botonModificar.setText("Guardar");
-            botonEliminar.setText("Cancelar");
-        } else if(boton.getText().equalsIgnoreCase("Guardar")) {
-            int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
-            if (eleccion == 0) {
-                    modificarProductos();
-                    comboTipo.setVisible(false);
-                    campoTipo.setVisible(true);
-                    obtenerDatos();                
-                if (acceso.updatePorducto(producto)) {
-                    cancelarModificacion();
+        if (R.getEmpleadoLogado().getPermisos()<2) {
+            JButton boton = (JButton)evt.getSource();
+            if (boton.getText().equalsIgnoreCase("Modificar")) {
+                modificarCampos(true);
+                comboTipo.setVisible(true);
+                comboTipo.setSelectedItem(producto.getTipo());
+                campoTipo.setVisible(false);
+                botonAtras.setEnabled(false);
+                botonModificar.setText("Guardar");
+                botonEliminar.setText("Cancelar");
+            } else if(boton.getText().equalsIgnoreCase("Guardar")) {
+                int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
+                if (eleccion == 0) {
+                        modificarProductos();
+                        comboTipo.setVisible(false);
+                        campoTipo.setVisible(true);
+                        obtenerDatos();                
+                    if (acceso.updateProducto(producto)) {
+                        cancelarModificacion();
+                    }
+                }
+            }
+        } else {
+            JButton boton = (JButton)evt.getSource();
+            if (boton.getText().equalsIgnoreCase("Modificar")) {
+                campoObservaciones.setEnabled(true);
+                campoObservaciones.setEditable(true);
+                campoObservaciones.setBackground(Color.white);
+                botonAtras.setEnabled(false);
+                botonEliminar.setEnabled(true);
+                botonModificar.setText("Guardar");
+                botonEliminar.setText("Cancelar");
+            } else if(boton.getText().equalsIgnoreCase("Guardar")) {
+                int eleccion = JOptionPane.showConfirmDialog(null, "¿Desea aplicar los cambios?", "Confirmación de cambios", JOptionPane.OK_CANCEL_OPTION);
+                if (eleccion == 0) {
+                    producto.setObservaciones(campoObservaciones.getText());
+                    if (acceso.updateProducto(producto)) {
+                        cancelarModificacion();
+                    }
                 }
             }
         }
-        
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
