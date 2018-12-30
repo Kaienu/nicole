@@ -102,7 +102,6 @@ public class Cliente_ADD extends javax.swing.JFrame {
         botonAdd.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
         botonAdd.setText("Añadir");
-        botonAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAddActionPerformed(evt);
@@ -127,29 +126,24 @@ public class Cliente_ADD extends javax.swing.JFrame {
         jTextField_nombre.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         jTextField_apellidos.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_apellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         jTextField_correo.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_correo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         jTextField_telefono.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_telefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         botonAdd2.setBackground(new java.awt.Color(225, 225, 225));
         botonAdd2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonAdd2.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
         botonAdd2.setText("Cancelar");
-        botonAdd2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonAdd2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAdd2ActionPerformed(evt);
@@ -158,7 +152,6 @@ public class Cliente_ADD extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

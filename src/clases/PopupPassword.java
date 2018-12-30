@@ -37,7 +37,6 @@ public class PopupPassword extends JDialog {
         setLocationRelativeTo(ventana);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new LineBorder(new Color(219,126,138), 2, true));
-        contentPanel.setBackground(new Color(248,241,242));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
         inicializar();
@@ -47,15 +46,11 @@ public class PopupPassword extends JDialog {
         JLabel labelContraseña = new JLabel("Introduzca nueva contraseña");
         labelContraseña.setHorizontalAlignment(SwingConstants.CENTER);
         //lblEnConstruccin.setIcon(new ImageIcon(PopupPassword.class.getResource("/recursos/grua.png")));
-        labelContraseña.setFont(new Font("Century Gothic", Font.BOLD, 18));
+        labelContraseña.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         labelContraseña.setBounds(20, 20, 360, 40);
-        labelContraseña.setForeground(new Color(219,126,138));
         contentPanel.add(labelContraseña);
 
         btnContinuar = new JButton("Continuar");
-        btnContinuar.setFont(new Font("Century Gothic", Font.BOLD,16));
-        btnContinuar.setForeground(new Color(219,126,138));
-        btnContinuar.setBackground(new Color(225,225,225));
         btnContinuar.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             if (passwdField.getPassword().length == 0){
@@ -76,9 +71,6 @@ public class PopupPassword extends JDialog {
         contentPanel.add(btnContinuar);
         
         btnCancelar = new JButton("Cancelar");
-        btnCancelar.setFont(new Font("Century Gothic", Font.BOLD,16));
-        btnCancelar.setForeground(new Color(219,126,138));
-        btnCancelar.setBackground(new Color(225,225,225));
         btnCancelar.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             dispose();
@@ -90,7 +82,6 @@ public class PopupPassword extends JDialog {
         
         passwdField = new JPasswordField();
         passwdField.setBounds(30, 80, 340, 40);
-        passwdField.setForeground(new Color(219,126,138));
         contentPanel.add(passwdField);
     }
     

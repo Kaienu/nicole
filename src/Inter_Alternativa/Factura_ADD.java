@@ -263,7 +263,11 @@ public class Factura_ADD extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("0,00€");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Importe", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+
+            (14, R.PLAIN, R.LIGHT)
+
+        ));
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jTextField1.setEnabled(false);
@@ -279,7 +283,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         jButtonAtras.setForeground(new java.awt.Color(219, 126, 138));
         jButtonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         jButtonAtras.setText("Atrás");
-        jButtonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jButtonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
@@ -292,7 +296,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         botonEliminarProducto.setForeground(new java.awt.Color(219, 126, 138));
         botonEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonEliminarProducto.setText("Eliminar");
-        botonEliminarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        botonEliminarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         botonEliminarProducto.setPreferredSize(new java.awt.Dimension(277, 41));
         botonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,7 +310,7 @@ public class Factura_ADD extends javax.swing.JFrame {
         jButtonFinVenta.setForeground(new java.awt.Color(219, 126, 138));
         jButtonFinVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png"))); // NOI18N
         jButtonFinVenta.setText("Finalizar");
-        jButtonFinVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jButtonFinVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButtonFinVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFinVentaActionPerformed(evt);
@@ -355,9 +359,11 @@ public class Factura_ADD extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.CONDENSED)
         );
-        campoBuscarCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campoBuscarCliente.setText(cliPrincipal.toString());
-        campoBuscarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        campoBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+
+            (14, R.PLAIN, R.LIGHT)
+        ));
         campoBuscarCliente.setDisabledTextColor(new java.awt.Color(219, 126, 138));
         campoBuscarCliente.setEnabled(false);
         campoBuscarCliente.setSelectionColor(new java.awt.Color(219, 126, 138));
@@ -378,9 +384,11 @@ public class Factura_ADD extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.CONDENSED)
         );
-        campoEmpleadoLogado.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campoEmpleadoLogado.setText(R.getEmpleadoLogado().toString());
-        campoEmpleadoLogado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        campoEmpleadoLogado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+
+            (14, R.PLAIN, R.LIGHT)
+        ));
         campoEmpleadoLogado.setDisabledTextColor(new java.awt.Color(219, 126, 138));
         campoEmpleadoLogado.setEnabled(false);
         jPanel1.add(campoEmpleadoLogado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 200, 60));

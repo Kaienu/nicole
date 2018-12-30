@@ -15,16 +15,13 @@ public class Menu_GEST extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonBusquedas = new javax.swing.JButton();
         botonBusquedas2 = new javax.swing.JButton();
-        botonPermisos = new javax.swing.JButton();
-        botonPromociones = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         detalle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(248, 241, 242));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setSize(new java.awt.Dimension(400, 559));
+        setSize(new java.awt.Dimension(400, 512));
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
@@ -76,45 +73,6 @@ public class Menu_GEST extends javax.swing.JFrame {
         });
         jPanel1.add(botonBusquedas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 360, 70));
 
-        botonPermisos.setBackground(new java.awt.Color(225, 225, 225));
-        botonPermisos.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        botonPermisos.setForeground(new java.awt.Color(219, 126, 138));
-        botonPermisos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/password-Extra.png"))); // NOI18N
-        botonPermisos.setText("Permisos");
-        botonPermisos.setEnabled(false);
-        botonPermisos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonPermisosMouseEntered(evt);
-            }
-        });
-        jPanel1.add(botonPermisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 360, 70));
-
-        botonPromociones.setBackground(new java.awt.Color(225, 225, 225));
-        botonPromociones.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        botonPromociones.setForeground(new java.awt.Color(219, 126, 138));
-        botonPromociones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Extra.png"))); // NOI18N
-        botonPromociones.setText("Promociones");
-        botonPromociones.setEnabled(false);
-        botonPromociones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonPromocionesMouseEntered(evt);
-            }
-        });
-        jPanel1.add(botonPromociones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 360, 75));
-
-        jButton3.setBackground(new java.awt.Color(225, 225, 225));
-        jButton3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(219, 126, 138));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/facturacion-Extra.png"))); // NOI18N
-        jButton3.setText("Estadísticas");
-        jButton3.setEnabled(false);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 275, 360, 75));
-
         detalle.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         detalle.setForeground(new java.awt.Color(219, 126, 138));
         detalle.setText("Licenciado para: Centro de Peluquería y Estética Nicole");
@@ -133,10 +91,11 @@ public class Menu_GEST extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(detalle))
+                .addComponent(detalle)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,18 +127,6 @@ public class Menu_GEST extends javax.swing.JFrame {
     private void botonBusquedas2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas2MouseExited
         returnDetalle();
     }//GEN-LAST:event_botonBusquedas2MouseExited
-
-    private void botonPermisosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPermisosMouseEntered
-        detalle.setText("Gestiona de permisos de acceso para los empleados");
-    }//GEN-LAST:event_botonPermisosMouseEntered
-
-    private void botonPromocionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPromocionesMouseEntered
-        detalle.setText("Gestion de promociones");
-    }//GEN-LAST:event_botonPromocionesMouseEntered
-
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        detalle.setText("Visualización de estadísticas");
-    }//GEN-LAST:event_jButton3MouseEntered
 
     public void returnDetalle(){
         detalle.setText("Licenciado para: Centro de Peluquería y Estética Nicole");
@@ -292,10 +239,7 @@ public class Menu_GEST extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBusquedas;
     private javax.swing.JButton botonBusquedas2;
-    private javax.swing.JButton botonPermisos;
-    private javax.swing.JButton botonPromociones;
     private javax.swing.JLabel detalle;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

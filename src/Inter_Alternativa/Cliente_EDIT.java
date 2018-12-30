@@ -224,7 +224,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         botonModificar.setForeground(new java.awt.Color(219, 126, 138));
         botonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ticket-Normal.png"))); // NOI18N
         botonModificar.setText("Ticket");
-        botonModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
@@ -241,7 +240,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         );
         campoObservaciones.setRows(5);
-        campoObservaciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         campoObservaciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(campoObservaciones);
 
@@ -272,7 +270,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        textIdCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         textIdCliente.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 110, 35));
 
@@ -281,7 +278,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        textNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         textNombre.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 110, 35));
 
@@ -290,7 +286,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        textApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         textApellidos.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 190, 35));
 
@@ -300,7 +295,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
 
         );
-        textTelf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         textTelf.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jPanel1.add(textTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 190, 35));
 
@@ -310,7 +304,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
 
         );
-        textCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(textCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 400, 35));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -322,7 +315,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         botonModificar1.setForeground(new java.awt.Color(219, 126, 138));
         botonModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiz.png"))); // NOI18N
         botonModificar1.setText("Modificar");
-        botonModificar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificar1ActionPerformed(evt);
@@ -340,10 +332,9 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         );
         jTextField1.setText("jTextField1");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextField1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField1.setEnabled(false);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 160, 35));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 170, 35));
 
         textFecha.setEditable(false);
         textFecha.setFont(clases.R.fuenteRoboto
@@ -352,7 +343,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         );
         textFecha.setText("jTextField1");
-        textFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         textFecha.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         textFecha.setEnabled(false);
         jPanel2.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 100, 35));
@@ -364,7 +354,6 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         );
         jTextField3.setText("jTextField1");
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextField3.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField3.setEnabled(false);
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 100, 35));
@@ -376,10 +365,9 @@ public class Cliente_EDIT extends javax.swing.JFrame {
 
         );
         jTextField4.setText("jTextField1");
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextField4.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextField4.setEnabled(false);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 160, 35));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 170, 35));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setText("Alta cliente:");
@@ -397,14 +385,13 @@ public class Cliente_EDIT extends javax.swing.JFrame {
         jLabel12.setText("Total:");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, 35));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 480, 110));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 500, 110));
 
         botonModificar2.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         botonModificar2.setForeground(new java.awt.Color(219, 126, 138));
         botonModificar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonModificar2.setText("Atrás");
-        botonModificar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonModificar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificar2ActionPerformed(evt);

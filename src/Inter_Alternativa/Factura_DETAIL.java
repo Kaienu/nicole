@@ -20,7 +20,8 @@ public class Factura_DETAIL extends javax.swing.JFrame {
     private String id;
     
     public Factura_DETAIL() {
-        initComponents();               
+        initComponents();
+        
     }
 
     public Factura_DETAIL(Factura factu,int opc,String id) {
@@ -92,7 +93,7 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         textIdCliente = new javax.swing.JTextField();
         textIdEmpleado = new javax.swing.JTextField();
         botonAtras = new javax.swing.JButton();
-        botonImprimir = new javax.swing.JButton();
+        botonAtras2 = new javax.swing.JButton();
         textImporte = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -156,7 +157,6 @@ public class Factura_DETAIL extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 520, 230));
 
-        textFecha.setEditable(false);
         textFecha.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT)
@@ -165,7 +165,6 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         textFecha.setEnabled(false);
         jPanel1.add(textFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 190, 35));
 
-        textIdFactura.setEditable(false);
         textIdFactura.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT)
@@ -174,7 +173,6 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         textIdFactura.setEnabled(false);
         jPanel1.add(textIdFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 130, 35));
 
-        textIdCliente.setEditable(false);
         textIdCliente.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT)
@@ -183,7 +181,6 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         textIdCliente.setEnabled(false);
         jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 410, 35));
 
-        textIdEmpleado.setEditable(false);
         textIdEmpleado.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT));
@@ -203,20 +200,18 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         });
         jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 120, 35));
 
-        botonImprimir.setBackground(new java.awt.Color(225, 225, 225));
-        botonImprimir.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        botonImprimir.setForeground(new java.awt.Color(219, 126, 138));
-        botonImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/impresora.png"))); // NOI18N
-        botonImprimir.setText("Imprimir");
-        botonImprimir.setEnabled(false);
-        botonImprimir.addActionListener(new java.awt.event.ActionListener() {
+        botonAtras2.setBackground(new java.awt.Color(225, 225, 225));
+        botonAtras2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        botonAtras2.setForeground(new java.awt.Color(219, 126, 138));
+        botonAtras2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/impresora.png"))); // NOI18N
+        botonAtras2.setText("Imprimir");
+        botonAtras2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonImprimirActionPerformed(evt);
+                botonAtras2ActionPerformed(evt);
             }
         });
-        jPanel1.add(botonImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 35));
+        jPanel1.add(botonAtras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 35));
 
-        textImporte.setEditable(false);
         textImporte.setFont(clases.R.fuenteRoboto
 
             (16, clases.R.PLAIN, clases.R.LIGHT)
@@ -246,9 +241,9 @@ public class Factura_DETAIL extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
+    private void botonAtras2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtras2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonImprimirActionPerformed
+    }//GEN-LAST:event_botonAtras2ActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         switch (opc) {
@@ -301,7 +296,7 @@ public class Factura_DETAIL extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
-    private javax.swing.JButton botonImprimir;
+    private javax.swing.JButton botonAtras2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

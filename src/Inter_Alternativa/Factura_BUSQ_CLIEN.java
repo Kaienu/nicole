@@ -109,9 +109,9 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
-        jTable1.setFont(clases.R.fuenteRoboto
+        jTable1.setFont(R.fuenteRoboto
 
-            (16, clases.R.PLAIN, clases.R.LIGHT)
+            (16, R.PLAIN, R.LIGHT)
         );
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,12 +133,11 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(219, 126, 138));
         jLabel1.setText("Búsqueda");
 
-        jTextField_Busqueda.setFont(clases.R.fuenteRoboto
+        jTextField_Busqueda.setFont(R.fuenteRoboto
 
-            (18, clases.R.PLAIN, clases.R.LIGHT)
+            (18, R.PLAIN, R.LIGHT)
 
         );
-        jTextField_Busqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_BusquedaActionPerformed(evt);
@@ -158,7 +157,6 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
         botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/buscartiny.png"))); // NOI18N
         botonBusqueda.setText("Buscar");
-        botonBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBusquedaActionPerformed(evt);
@@ -170,7 +168,6 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
         botonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonLimpiar.setText("Limpiar");
-        botonLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLimpiarActionPerformed(evt);
@@ -182,7 +179,6 @@ public class Factura_BUSQ_CLIEN extends javax.swing.JFrame {
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonAtras.setText("Atrás");
-        botonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);

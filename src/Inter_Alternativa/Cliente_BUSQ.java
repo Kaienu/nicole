@@ -175,7 +175,6 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
 
         );
-        jTextField_Busqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_BusquedaActionPerformed(evt);
@@ -195,7 +194,6 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
         botonBusqueda.setForeground(new java.awt.Color(219, 126, 138));
         botonBusqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/buscartiny.png"))); // NOI18N
         botonBusqueda.setText("Buscar");
-        botonBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBusquedaActionPerformed(evt);
@@ -207,7 +205,6 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
         botonAtras.setForeground(new java.awt.Color(219, 126, 138));
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonAtras.setText("Atrás");
-        botonAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
@@ -219,7 +216,6 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
         botonLimpiar.setForeground(new java.awt.Color(219, 126, 138));
         botonLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escoba-de-limpieza-para-suelos.png"))); // NOI18N
         botonLimpiar.setText("Limpiar");
-        botonLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLimpiarActionPerformed(evt);
@@ -231,7 +227,6 @@ public class Cliente_BUSQ extends javax.swing.JFrame {
         botonAdd.setForeground(new java.awt.Color(219, 126, 138));
         botonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
         botonAdd.setText("Añadir");
-        botonAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAddActionPerformed(evt);

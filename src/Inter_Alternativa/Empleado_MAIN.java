@@ -169,7 +169,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
         );
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleciona empleado" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -198,7 +197,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         jButtonNuevo.setForeground(new java.awt.Color(219, 126, 138));
         jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
         jButtonNuevo.setText("Añadir");
-        jButtonNuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoActionPerformed(evt);
@@ -240,7 +238,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jTextFieldDni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(jTextFieldDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 130, 35));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
@@ -251,21 +248,18 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jTextFieldNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 230, 35));
 
         jTextFieldApellidos.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jTextFieldApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 230, 35));
 
         jTextFieldTelefono.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jTextFieldTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, 35));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
@@ -288,7 +282,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jTextFieldCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 470, 35));
 
         jButtonEditar.setBackground(new java.awt.Color(225, 225, 225));
@@ -296,7 +289,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         jButtonEditar.setForeground(new java.awt.Color(219, 126, 138));
         jButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/lapiztiny.png"))); // NOI18N
         jButtonEditar.setText("Editar");
-        jButtonEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditarActionPerformed(evt);
@@ -309,7 +301,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         botonPassword.setForeground(new java.awt.Color(219, 126, 138));
         botonPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/password-Normal.png"))); // NOI18N
         botonPassword.setText("Restablecer Contraseña");
-        botonPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPasswordActionPerformed(evt);
@@ -325,7 +316,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
-        jTextFieldAlta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jTextFieldAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldAltaActionPerformed(evt);
@@ -338,7 +328,6 @@ public class Empleado_MAIN extends javax.swing.JFrame {
         botonBaja1.setForeground(new java.awt.Color(219, 126, 138));
         botonBaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/volver-Normal.png"))); // NOI18N
         botonBaja1.setText("Atrás");
-        botonBaja1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         botonBaja1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBaja1ActionPerformed(evt);
