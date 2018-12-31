@@ -18,7 +18,7 @@ import javax.swing.JTextField;
  *
  * @author Antonio
  */
-public class Producto_ADD extends javax.swing.JFrame {
+public class Producto_ADD1 extends javax.swing.JFrame {
 
     AccesoSQL acceso;
     Producto produ;
@@ -26,7 +26,7 @@ public class Producto_ADD extends javax.swing.JFrame {
     /**
      * Creates new form Producto_ADD1
      */
-    public Producto_ADD() {
+    public Producto_ADD1() {
         acceso = new AccesoSQL();
         initComponents();
         llenarCombo();        
@@ -63,6 +63,11 @@ public class Producto_ADD extends javax.swing.JFrame {
         comboTipo = new javax.swing.JComboBox<>();
         campoModelo = new javax.swing.JTextField();
         campoMarca = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -71,104 +76,108 @@ public class Producto_ADD extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setBorder(null);
-
-        campoObservaciones.setBackground(new java.awt.Color(248, 241, 242));
         campoObservaciones.setColumns(20);
         campoObservaciones.setFont(R.fuenteRoboto
 
             (16, R.PLAIN, R.LIGHT));
         campoObservaciones.setRows(5);
         campoObservaciones.setToolTipText("");
-        campoObservaciones.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Observaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+        campoObservaciones.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jScrollPane1.setViewportView(campoObservaciones);
 
-            (14, R.PLAIN, R.REGULAR)));
-    jScrollPane1.setViewportView(campoObservaciones);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 340, 140));
 
-    jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 340, 140));
+        botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
+        botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
+        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 170, 40));
 
-    botonCancelar.setBackground(new java.awt.Color(225, 225, 225));
-    botonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-    botonCancelar.setForeground(new java.awt.Color(219, 126, 138));
-    botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrar.png"))); // NOI18N
-    botonCancelar.setText("Cancelar");
-    botonCancelar.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonCancelarActionPerformed(evt);
-        }
-    });
-    jPanel1.add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 160, 40));
+        botonAñadir.setBackground(new java.awt.Color(225, 225, 225));
+        botonAñadir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(219, 126, 138));
+        botonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
+        botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 40));
 
-    botonAñadir.setBackground(new java.awt.Color(225, 225, 225));
-    botonAñadir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-    botonAñadir.setForeground(new java.awt.Color(219, 126, 138));
-    botonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anadir.png"))); // NOI18N
-    botonAñadir.setText("Añadir");
-    botonAñadir.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            botonAñadirActionPerformed(evt);
-        }
-    });
-    jPanel1.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 160, 40));
+        campoPrecio.setFont(R.fuenteRoboto
 
-    campoPrecio.setBackground(new java.awt.Color(248, 241, 242));
-    campoPrecio.setFont(R.fuenteRoboto
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 260, 35));
 
-        (18, R.PLAIN, R.LIGHT));
-    campoPrecio.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Modelo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+        comboTipo.setFont(R.fuenteRoboto
 
-        (14, R.PLAIN, R.REGULAR)));
-jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 340, 50));
+            (18, R.PLAIN, R.LIGHT)
+        );
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el Tipo" }));
+        comboTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboTipo.setName(""); // NOI18N
+        jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 260, 35));
 
-comboTipo.setFont(R.fuenteRoboto
+        campoModelo.setFont(R.fuenteRoboto
 
-    (18, R.PLAIN, R.LIGHT)
-    );
-    comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el Tipo" }));
-    comboTipo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tipo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 260, 35));
 
-        (14, R.PLAIN, R.REGULAR)));
-comboTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-comboTipo.setName(""); // NOI18N
-jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 340, 50));
+        campoMarca.setFont(R.fuenteRoboto
 
-campoModelo.setBackground(new java.awt.Color(248, 241, 242));
-campoModelo.setFont(R.fuenteRoboto
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 260, 35));
 
-    (18, R.PLAIN, R.LIGHT));
-    campoModelo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Precio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel1.setText("Observaciones");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 140, 35));
 
-        (14, R.PLAIN, R.REGULAR)));
-jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 340, 50));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Tipo:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 80, 35));
 
-campoMarca.setBackground(new java.awt.Color(248, 241, 242));
-campoMarca.setFont(R.fuenteRoboto
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Marca:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 80, 35));
 
-    (18, R.PLAIN, R.LIGHT));
-    campoMarca.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, R.fuenteRoboto
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Modelo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 80, 35));
 
-        (14, R.PLAIN, R.REGULAR)));
-jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 340, 50));
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Precio:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 80, 35));
 
-javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-getContentPane().setLayout(layout);
-layout.setHorizontalGroup(
-    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-    .addGroup(layout.createSequentialGroup()
-        .addContainerGap()
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-        .addContainerGap())
-    );
-    layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-            .addContainerGap())
-    );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-    pack();
-    setLocationRelativeTo(null);
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
@@ -233,6 +242,11 @@ layout.setHorizontalGroup(
     private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JTextField campoPrecio;
     private javax.swing.JComboBox<String> comboTipo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

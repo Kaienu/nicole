@@ -363,7 +363,7 @@ public class Producto_BUSQ extends JFrame implements Permisos {
     }//GEN-LAST:event_jTextField_BusquedaKeyReleased
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-        new Producto_ADD().setVisible(true);
+        new Producto_ADD1().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAñadirActionPerformed
 

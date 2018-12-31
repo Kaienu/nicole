@@ -66,23 +66,28 @@ public class Producto_EDIT extends JFrame implements Permisos {
         }
     }
     
-    public void modificarCampos(boolean Opcion) {
+    public void modificarCampos(boolean opcion) { //YES
         campoIDproducto.setEditable(false);
-        campoTipo.setEditable(Opcion);
-        campoMarca.setEditable(Opcion);
-        campoModelo.setEditable(Opcion);
-        campoPrecio.setEditable(Opcion);
-        campoObservaciones.setEditable(Opcion);
-        if (Opcion) campoObservaciones.setBackground(Color.white);
+        campoTipo.setEditable(opcion);
+        campoMarca.setEditable(opcion);
+        campoModelo.setEditable(opcion);
+        campoPrecio.setEditable(opcion);
+        campoPrecio.setVisible(!opcion);
+        campoPrecio1.setEditable(opcion);
+        campoPrecio1.setVisible(opcion);
+        campoObservaciones.setEditable(opcion);
+        if (opcion) campoObservaciones.setBackground(Color.white);
         else campoObservaciones.setBackground(new Color(240,240,240));
     }
     
     public void obtenerDatos() {
         campoIDproducto.setText(id);
-        campoTipo.setText(producto.getTipo());
+        campoIDproducto.setText(producto.getIdProducto());
         campoMarca.setText(producto.getMarca());
         campoModelo.setText(producto.getModelo());
-        campoPrecio.setText(String.valueOf(producto.getPrecioUnitario()));
+        campoTipo.setText(producto.getTipo());
+        campoPrecio.setText(String.valueOf(producto.getPrecioUnitario())+"€");
+        campoPrecio1.setText(String.valueOf(producto.getPrecioUnitario()));
         campoObservaciones.setText(producto.getObservaciones());
         comboTipo.setVisible(false);
     }
@@ -101,7 +106,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         this.producto.setTipo(combo);
         this.producto.setMarca(campoMarca.getText());
         this.producto.setModelo(campoModelo.getText()); 
-        BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio.getText())).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal precio = new BigDecimal(Double.parseDouble(campoPrecio1.getText())).setScale(2, RoundingMode.HALF_UP);
         this.producto.setPrecioUnitario(precio);
         this.producto.setObservaciones(campoObservaciones.getText());
     }
@@ -150,6 +155,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         campoIDproducto = new javax.swing.JTextField();
         comboTipo = new javax.swing.JComboBox<>();
         campoTipo = new javax.swing.JTextField();
+        campoPrecio1 = new javax.swing.JTextField();
 
         jTextField_Busqueda1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
@@ -177,12 +183,13 @@ public class Producto_EDIT extends JFrame implements Permisos {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(248, 241, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(219, 126, 138)), R.getEmpleadoLogado().getNombreCompleto(), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Century Gothic", 0, 18), new java.awt.Color(219, 126, 138))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelIDproducto.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        jLabelIDproducto.setText("ID Producto:");
-        jPanel1.add(jLabelIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 35));
+        jLabelIDproducto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelIDproducto.setText("ID:");
+        jPanel1.add(jLabelIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, 35));
 
         botonAtras.setBackground(new java.awt.Color(225, 225, 225));
         botonAtras.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -197,7 +204,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
                 botonAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 170, 40));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 130, 40));
 
         botonModificar.setBackground(new java.awt.Color(225, 225, 225));
         botonModificar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -209,48 +216,59 @@ public class Producto_EDIT extends JFrame implements Permisos {
                 botonModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 40));
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 130, 40));
 
         etqTipo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        etqTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqTipo.setText("Tipo:");
-        jPanel1.add(etqTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 35));
+        jPanel1.add(etqTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 60, 35));
 
         etqMarca.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        etqMarca.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqMarca.setText("Marca:");
-        jPanel1.add(etqMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, 35));
+        jPanel1.add(etqMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 60, 35));
 
         etqModelo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         etqModelo.setText("Modelo:");
-        jPanel1.add(etqModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, 35));
+        jPanel1.add(etqModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 35));
 
         etqPrecio.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        etqPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqPrecio.setText("Precio:");
-        jPanel1.add(etqPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, 35));
+        jPanel1.add(etqPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 60, 35));
 
         etqObservaciones.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        etqObservaciones.setText("Observaciones:");
-        jPanel1.add(etqObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 35));
+        etqObservaciones.setText("Observaciones");
+        jPanel1.add(etqObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, 35));
 
         campoObservaciones.setColumns(20);
-        campoObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoObservaciones.setFont(R.fuenteRoboto
+
+            (16, R.PLAIN, R.LIGHT));
         campoObservaciones.setRows(5);
         jScrollPane1.setViewportView(campoObservaciones);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 550, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 410, 150));
 
-        campoMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        campoMarca.setFont(R.fuenteRoboto
+
+            (18, R.PLAIN, R.LIGHT));
         campoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoMarcaActionPerformed(evt);
             }
         });
-        jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 170, 35));
+        jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 150, 35));
 
-        campoModelo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 440, 35));
+        campoModelo.setFont(R.fuenteRoboto
 
-        campoPrecio.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 170, 35));
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 340, 35));
+
+        campoPrecio.setFont(R.fuenteRoboto
+
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 100, 35));
 
         botonEliminar.setBackground(new java.awt.Color(225, 225, 225));
         botonEliminar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -262,17 +280,28 @@ public class Producto_EDIT extends JFrame implements Permisos {
                 botonEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 176, 40));
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 130, 40));
 
-        campoIDproducto.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        jPanel1.add(campoIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 150, 35));
+        campoIDproducto.setFont(R.fuenteRoboto
 
-        comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 100, 35));
+
+        comboTipo.setFont(R.fuenteRoboto
+
+            (18, R.PLAIN, R.LIGHT));
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el Tipo" }));
-        jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
+        jPanel1.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 150, 35));
 
-        campoTipo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
-        jPanel1.add(campoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 150, 35));
+        campoTipo.setFont(R.fuenteRoboto
+
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 150, 35));
+
+        campoPrecio1.setFont(R.fuenteRoboto
+
+            (18, R.PLAIN, R.LIGHT));
+        jPanel1.add(campoPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 100, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,14 +309,14 @@ public class Producto_EDIT extends JFrame implements Permisos {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -423,6 +452,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
     private javax.swing.JTextField campoModelo;
     private javax.swing.JTextArea campoObservaciones;
     private javax.swing.JTextField campoPrecio;
+    private javax.swing.JTextField campoPrecio1;
     private javax.swing.JTextField campoTipo;
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel etqMarca;
