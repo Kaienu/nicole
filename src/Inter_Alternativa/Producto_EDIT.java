@@ -246,6 +246,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
 
             (16, R.PLAIN, R.LIGHT));
         campoObservaciones.setRows(5);
+        campoObservaciones.setSelectionColor(new java.awt.Color(255, 204, 204));
         jScrollPane1.setViewportView(campoObservaciones);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 410, 150));
@@ -253,6 +254,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         campoMarca.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoMarca.setSelectionColor(new java.awt.Color(255, 204, 204));
         campoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoMarcaActionPerformed(evt);
@@ -263,11 +265,13 @@ public class Producto_EDIT extends JFrame implements Permisos {
         campoModelo.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoModelo.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 340, 35));
 
         campoPrecio.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoPrecio.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 100, 35));
 
         botonEliminar.setBackground(new java.awt.Color(225, 225, 225));
@@ -285,6 +289,7 @@ public class Producto_EDIT extends JFrame implements Permisos {
         campoIDproducto.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoIDproducto.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoIDproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 100, 35));
 
         comboTipo.setFont(R.fuenteRoboto
@@ -296,11 +301,13 @@ public class Producto_EDIT extends JFrame implements Permisos {
         campoTipo.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoTipo.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 150, 35));
 
         campoPrecio1.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoPrecio1.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 100, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

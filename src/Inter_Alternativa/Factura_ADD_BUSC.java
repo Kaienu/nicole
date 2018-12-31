@@ -17,6 +17,7 @@ public class Factura_ADD_BUSC extends JDialog {
     
     private Cliente clienteSeleccionado = null;
     private AccesoSQL acceso;
+    private boolean cambios;
 
     public Factura_ADD_BUSC(JFrame parent, boolean modal) {
         super(parent, modal);
@@ -51,7 +52,7 @@ public class Factura_ADD_BUSC extends JDialog {
     public void MostrarSQL(String tabla,String filtro) throws SQLException{
         
 
-        ArrayList<Object> lista = acceso.listado(tabla,filtro);
+        ArrayList<Object> lista = acceso.listadoClienteSinCorreo(filtro);
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         Object[] row = new Object[2];
         for (Object o : lista){
@@ -61,6 +62,10 @@ public class Factura_ADD_BUSC extends JDialog {
             model.addRow(row);
         }
         
+    }
+    
+    public boolean getCambios() {
+        return cambios;
     }
     
     /**
@@ -92,6 +97,7 @@ public class Factura_ADD_BUSC extends JDialog {
             (18, clases.R.PLAIN, clases.R.LIGHT)
 
         );
+        jTextField_Busqueda.setSelectionColor(new java.awt.Color(255, 204, 204));
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);
@@ -144,6 +150,8 @@ public class Factura_ADD_BUSC extends JDialog {
             }
         });
         jTable2.setRowHeight(25);
+        jTable2.setSelectionBackground(new java.awt.Color(255, 204, 204));
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.getTableHeader().setReorderingAllowed(false);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -174,6 +182,7 @@ public class Factura_ADD_BUSC extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        cambios = false;
         dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
@@ -181,6 +190,7 @@ public class Factura_ADD_BUSC extends JDialog {
         int i = jTable2.getSelectedRow();
         TableModel model = jTable2.getModel();
         this.clienteSeleccionado = (Cliente) model.getValueAt(i,0);
+        cambios = true;
         dispose();
     }//GEN-LAST:event_jTable2MouseReleased
 

@@ -136,25 +136,25 @@ public class Cliente_ADD extends javax.swing.JFrame {
         jTextField_nombre.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_nombre.setSelectionColor(new java.awt.Color(219, 126, 138));
+        jTextField_nombre.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextField_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 270, 35));
 
         jTextField_apellidos.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_apellidos.setSelectionColor(new java.awt.Color(219, 126, 138));
+        jTextField_apellidos.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextField_apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 270, 35));
 
         jTextField_correo.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_correo.setSelectionColor(new java.awt.Color(219, 126, 138));
+        jTextField_correo.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextField_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 270, 35));
 
         jTextField_telefono.setFont(clases.R.fuenteRoboto
 
             (18, clases.R.PLAIN, clases.R.LIGHT));
-        jTextField_telefono.setSelectionColor(new java.awt.Color(219, 126, 138));
+        jTextField_telefono.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextField_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 270, 35));
 
         botonAdd2.setBackground(new java.awt.Color(225, 225, 225));
@@ -175,7 +175,7 @@ public class Cliente_ADD extends javax.swing.JFrame {
             (16, clases.R.PLAIN, clases.R.LIGHT));
         jTextArea1.setRows(5);
         jTextArea1.setMargin(new java.awt.Insets(10, 10, 10, 10));
-        jTextArea1.setSelectionColor(new java.awt.Color(219, 126, 138));
+        jTextArea1.setSelectionColor(new java.awt.Color(255, 204, 204));
         jScrollPane2.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 370, 140));

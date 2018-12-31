@@ -29,7 +29,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
         for (Object o : lista) {
             Empleado emp = (Empleado) o;
-            jComboBox1.addItem(emp.getNombreCompleto());
+            jComboBox1.addItem(emp.toString());
         }
     }
     
@@ -43,7 +43,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
         } else {
             for (Object e : lista) {
                 Empleado emp = (Empleado) e;
-                if (jComboBox1.getSelectedItem().equals(emp.getNombreCompleto())){
+                if (jComboBox1.getSelectedItem().equals(emp.toString())){
                     empLog = emp;
                     break;
                 }
@@ -90,7 +90,6 @@ public class Login_SPLASH extends javax.swing.JFrame {
         botonIniciar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
-        botonIniciar1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,13 +108,15 @@ public class Login_SPLASH extends javax.swing.JFrame {
         logoNicole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelLogin.add(logoNicole, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 23, 350, 200));
 
-        etqUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqUsuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        etqUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqUsuario.setText("Usuario:");
-        jPanelLogin.add(etqUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 35));
+        jPanelLogin.add(etqUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 110, 35));
 
-        etqContrasena.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        etqContrasena.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        etqContrasena.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqContrasena.setText("Contraseña:");
-        jPanelLogin.add(etqContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 35));
+        jPanelLogin.add(etqContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 110, 35));
 
         etqInicioSesion.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         etqInicioSesion.setForeground(new java.awt.Color(219, 126, 138));
@@ -124,7 +125,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
         jPanelLogin.add(etqInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 241, 378, -1));
 
         botonIniciar.setBackground(new java.awt.Color(243, 206, 211));
-        botonIniciar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonIniciar.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonIniciar.setForeground(new java.awt.Color(219, 126, 138));
         botonIniciar.setText("Iniciar");
         botonIniciar.setToolTipText("");
@@ -134,10 +135,10 @@ public class Login_SPLASH extends javax.swing.JFrame {
                 botonIniciarActionPerformed(evt);
             }
         });
-        jPanelLogin.add(botonIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 150, 35));
+        jPanelLogin.add(botonIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 150, 50));
 
         botonSalir.setBackground(new java.awt.Color(243, 206, 211));
-        botonSalir.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonSalir.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(219, 126, 138));
         botonSalir.setText("Salir");
         botonSalir.setToolTipText("");
@@ -147,34 +148,28 @@ public class Login_SPLASH extends javax.swing.JFrame {
                 botonSalirActionPerformed(evt);
             }
         });
-        jPanelLogin.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 150, 35));
+        jPanelLogin.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 150, 50));
 
-        jPasswordField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jPasswordField1.setFont(R.fuenteRoboto
+
+            (16, R.PLAIN, R.LIGHT));
         jPasswordField1.setForeground(new java.awt.Color(219, 126, 138));
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPasswordField1.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPasswordField1KeyPressed(evt);
             }
         });
-        jPanelLogin.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 250, 35));
+        jPanelLogin.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 230, 35));
 
-        botonIniciar1.setBackground(new java.awt.Color(243, 206, 211));
-        botonIniciar1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        botonIniciar1.setForeground(new java.awt.Color(219, 126, 138));
-        botonIniciar1.setText("Iniciar sin contraseña");
-        botonIniciar1.setToolTipText("");
-        botonIniciar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        botonIniciar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonIniciar1ActionPerformed(evt);
-            }
-        });
-        jPanelLogin.add(botonIniciar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 340, 35));
+        jComboBox1.setFont(R.fuenteRoboto
 
+            (16, R.PLAIN, R.LIGHT)
+        );
         jComboBox1.setForeground(new java.awt.Color(219, 126, 138));
         jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelLogin.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 250, 35));
+        jPanelLogin.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 230, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,7 +184,7 @@ public class Login_SPLASH extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -205,13 +200,6 @@ public class Login_SPLASH extends javax.swing.JFrame {
         acceso.cerrar();
         System.exit(0);        
     }//GEN-LAST:event_botonSalirActionPerformed
-
-    private void botonIniciar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciar1ActionPerformed
-        acceso.cerrar();
-        R.setEmpleadoLogado(R.SUPERVISOR);
-        new Menu_MAIN().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_botonIniciar1ActionPerformed
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
         if (evt.VK_ENTER==evt.getKeyCode()) {
@@ -266,7 +254,6 @@ public class Login_SPLASH extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciar;
-    private javax.swing.JButton botonIniciar1;
     private javax.swing.JButton botonSalir;
     private javax.swing.JLabel etqContrasena;
     private javax.swing.JLabel etqInicioSesion;

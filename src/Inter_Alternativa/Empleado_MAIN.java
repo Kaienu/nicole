@@ -226,6 +226,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             }
         });
         jTable1.setRowHeight(30);
+        jTable1.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -240,6 +241,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         jTextFieldDni.setNextFocusableComponent(jTextFieldNombre);
+        jTextFieldDni.setSelectionColor(new java.awt.Color(255, 204, 204));
         jTextFieldDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDniActionPerformed(evt);
@@ -257,6 +259,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         jTextFieldNombre.setNextFocusableComponent(jTextFieldApellidos);
+        jTextFieldNombre.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 230, 35));
 
         jTextFieldApellidos.setFont(clases.R.fuenteRoboto
@@ -264,6 +267,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         jTextFieldApellidos.setNextFocusableComponent(jTextFieldTelefono);
+        jTextFieldApellidos.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextFieldApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 230, 35));
 
         jTextFieldTelefono.setFont(clases.R.fuenteRoboto
@@ -271,6 +275,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         jTextFieldTelefono.setNextFocusableComponent(jTextFieldCorreo);
+        jTextFieldTelefono.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, 35));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
@@ -297,6 +302,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
+        jTextFieldCorreo.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 470, 35));
 
         jButtonEditar.setBackground(new java.awt.Color(225, 225, 225));
@@ -332,6 +338,7 @@ public class Empleado_MAIN extends javax.swing.JFrame {
 
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
+        jTextFieldAlta.setSelectionColor(new java.awt.Color(255, 204, 204));
         jTextFieldAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldAltaActionPerformed(evt);

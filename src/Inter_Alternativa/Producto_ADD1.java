@@ -83,6 +83,7 @@ public class Producto_ADD1 extends javax.swing.JFrame {
         campoObservaciones.setRows(5);
         campoObservaciones.setToolTipText("");
         campoObservaciones.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        campoObservaciones.setSelectionColor(new java.awt.Color(255, 204, 204));
         jScrollPane1.setViewportView(campoObservaciones);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 340, 140));
@@ -114,6 +115,7 @@ public class Producto_ADD1 extends javax.swing.JFrame {
         campoPrecio.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoPrecio.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 260, 35));
 
         comboTipo.setFont(R.fuenteRoboto
@@ -128,11 +130,13 @@ public class Producto_ADD1 extends javax.swing.JFrame {
         campoModelo.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoModelo.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 260, 35));
 
         campoMarca.setFont(R.fuenteRoboto
 
             (18, R.PLAIN, R.LIGHT));
+        campoMarca.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(campoMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 260, 35));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N

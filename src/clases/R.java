@@ -127,5 +127,6 @@ public class R {
     
     public static final Color FUCSIA = new Color(219,126,138);
     public static final Color PANELFONDO = new Color(248,241,242);
+    public static final Color SELECTEDTEXT = new Color(255,204,204);
     
 }

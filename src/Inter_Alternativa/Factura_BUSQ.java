@@ -164,6 +164,7 @@ public class Factura_BUSQ extends javax.swing.JFrame {
             (18, clases.R.PLAIN, clases.R.LIGHT)
 
         );
+        jTextField_Busqueda.setSelectionColor(new java.awt.Color(255, 204, 204));
         jTextField_Busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_BusquedaActionPerformed(evt);

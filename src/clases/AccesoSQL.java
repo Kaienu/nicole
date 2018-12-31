@@ -136,6 +136,29 @@ public class AccesoSQL {
         }
     }
     
+    public ArrayList<Object> listadoClienteSinCorreo(String filtro) throws SQLException{
+        ArrayList<Object> lista = new ArrayList<>();
+        PreparedStatement ps = con.prepareStatement("select * from Cliente where"
+                + " nombre LIKE '%" + filtro + "%' OR apellidos LIKE '%"+filtro
+                + "%' OR telefono LIKE '%" + filtro + "%'");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Cliente cliente = new Cliente();
+            cliente.setIdCliente(rs.getString(1));
+            cliente.setNombre(rs.getString(2));
+            cliente.setApellidos(rs.getString(3));
+            cliente.setCorreo(rs.getString(4));
+            cliente.setTelefono(rs.getInt(5));
+            cliente.setObservaciones(rs.getString(6));
+            cliente.setFechaAlta(rs.getTimestamp(7));
+            //System.out.println(cliente); // Comando de prueba en consola
+            lista.add(cliente);
+        }
+        rs.close();
+        ps.close(); 
+        return lista;
+    }
+    
     /**
     * Devuelve un ArrayList de "Objects" referente a la consulta lanzada. 
     * El primer argumento indica la tabla en la que está haciendo la consulta,

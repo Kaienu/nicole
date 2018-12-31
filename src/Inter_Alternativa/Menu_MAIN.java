@@ -145,9 +145,9 @@ public class Menu_MAIN extends JFrame implements Permisos {
         botonBusquedas2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonBusquedas2.setForeground(new java.awt.Color(219, 126, 138));
         botonBusquedas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cerrado.png"))); // NOI18N
-        botonBusquedas2.setText("Salir");
+        botonBusquedas2.setText("Cerrar");
         botonBusquedas2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonBusquedas2.setIconTextGap(90);
+        botonBusquedas2.setIconTextGap(70);
         botonBusquedas2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botonBusquedas2MouseEntered(evt);
@@ -232,7 +232,8 @@ public class Menu_MAIN extends JFrame implements Permisos {
     }//GEN-LAST:event_botonBusquedas1ActionPerformed
 
     private void botonBusquedas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedas2ActionPerformed
-        System.exit(0);
+        new Login_SPLASH().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
 
     private void botonTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTicketActionPerformed

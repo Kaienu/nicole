@@ -183,6 +183,7 @@ public class Producto_BUSQ extends JFrame implements Permisos {
 
             (18,clases.R.PLAIN,clases.R.LIGHT)
         );
+        jTextField_Busqueda.setSelectionColor(new java.awt.Color(255, 204, 204));
         jTextField_Busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_BusquedaKeyPressed(evt);

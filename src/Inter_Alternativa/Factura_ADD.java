@@ -249,6 +249,7 @@ public class Factura_ADD extends javax.swing.JFrame {
             }
         });
         jTable1.setRowHeight(50);
+        jTable1.setSelectionBackground(new java.awt.Color(255, 204, 204));
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -481,7 +482,9 @@ public class Factura_ADD extends javax.swing.JFrame {
     private void campoBuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarClienteMouseClicked
         Factura_ADD_BUSC modal = new Factura_ADD_BUSC(this, true, acceso);
         modal.setVisible(true);
-        refrescarCliente(modal.getCliente());
+        if (modal.getCambios()) {
+            refrescarCliente(modal.getCliente());
+        }
     }//GEN-LAST:event_campoBuscarClienteMouseClicked
 
     private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none

@@ -258,6 +258,7 @@ public class Cliente_EDIT extends JFrame implements Permisos{
         );
         campoObservaciones.setRows(5);
         campoObservaciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        campoObservaciones.setSelectionColor(new java.awt.Color(255, 204, 204));
         jScrollPane2.setViewportView(campoObservaciones);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 480, 120));
@@ -292,6 +293,7 @@ public class Cliente_EDIT extends JFrame implements Permisos{
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textIdCliente.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        textIdCliente.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(textIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 100, 35));
 
         textNombre.setEditable(false);
@@ -300,6 +302,7 @@ public class Cliente_EDIT extends JFrame implements Permisos{
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textNombre.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        textNombre.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 100, 35));
 
         textApellidos.setEditable(false);
@@ -308,6 +311,7 @@ public class Cliente_EDIT extends JFrame implements Permisos{
             (18, clases.R.PLAIN, clases.R.LIGHT)
         );
         textApellidos.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        textApellidos.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(textApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 180, 35));
 
         textTelf.setEditable(false);
@@ -317,6 +321,7 @@ public class Cliente_EDIT extends JFrame implements Permisos{
 
         );
         textTelf.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        textTelf.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(textTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 180, 35));
 
         textCorreo.setEditable(false);
@@ -325,6 +330,7 @@ public class Cliente_EDIT extends JFrame implements Permisos{
             (18, clases.R.PLAIN, clases.R.LIGHT)
 
         );
+        textCorreo.setSelectionColor(new java.awt.Color(255, 204, 204));
         jPanel1.add(textCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 390, 35));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N

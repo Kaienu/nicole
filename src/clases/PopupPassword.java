@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
@@ -88,6 +87,7 @@ public class PopupPassword extends JDialog {
         passwdField = new JPasswordField();
         passwdField.setBounds(30, 80, 340, 40);
         passwdField.setForeground(R.FUCSIA);
+        passwdField.setSelectionColor(R.SELECTEDTEXT);
         passwdField.setFont(R.fuenteRoboto(20, R.PLAIN, R.LIGHT));
         contentPanel.add(passwdField);
     }

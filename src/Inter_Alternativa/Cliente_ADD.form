@@ -197,7 +197,7 @@
               <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Color blue="cc" green="cc" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -212,7 +212,7 @@
               <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Color blue="cc" green="cc" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -227,7 +227,7 @@
               <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Color blue="cc" green="cc" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -242,7 +242,7 @@
               <Connection code="clases.R.fuenteRoboto&#xd;&#xa;&#xd;&#xa;(18, clases.R.PLAIN, clases.R.LIGHT)" type="code"/>
             </Property>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="7e" red="db" type="rgb"/>
+              <Color blue="cc" green="cc" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -302,7 +302,7 @@
                   <Insets value="[10, 10, 10, 10]"/>
                 </Property>
                 <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8a" green="7e" red="db" type="rgb"/>
+                  <Color blue="cc" green="cc" red="ff" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
