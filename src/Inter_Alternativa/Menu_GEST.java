@@ -1,11 +1,25 @@
 package Inter_Alternativa;
 
 import clases.R;
+import interfaces.Permisos;
 
-public class Menu_GEST extends javax.swing.JFrame {
+public class Menu_GEST extends javax.swing.JFrame implements Permisos{
     
     public Menu_GEST() {
         initComponents();
+        comprobacionPermisos();
+    }
+    
+    
+    @Override
+    public void comprobacionPermisos() {
+        switch (R.getEmpleadoLogado().getPermisos()) {
+            case 1:
+                break;
+            case 0:
+                botonBusquedas.setEnabled(true);
+                break;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -199,7 +213,8 @@ public class Menu_GEST extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBusquedas2ActionPerformed
 
     private void botonBusquedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedasActionPerformed
-        
+        new NewJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonBusquedasActionPerformed
 
     private void botonBusquedas2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBusquedas2MouseEntered

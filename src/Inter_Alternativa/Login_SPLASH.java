@@ -1,6 +1,7 @@
 package Inter_Alternativa;
 
 import clases.AccesoSQL;
+import clases.DatabaseConfig;
 import clases.Empleado;
 import clases.R;
 import java.sql.SQLException;
@@ -11,8 +12,20 @@ public class Login_SPLASH extends javax.swing.JFrame {
     
     AccesoSQL acceso;
     ArrayList<Object> lista;
+    DatabaseConfig dbconfig = null;
     
     public Login_SPLASH() {
+        /*if (R.comprobacionFichero()) {
+            R.cargarArchivo();
+        } else {
+            if (JOptionPane.showConfirmDialog(null, "Base de datos no configurada. ¿Desea configurarla ahora?", "ERROR 001", JOptionPane.OK_CANCEL_OPTION)==0) {
+                new NewJFrame().setVisible(true);
+                this.dispose();
+                return;
+            } else {
+                System.exit(0);
+            }
+        }*/
         acceso = new AccesoSQL();
         initComponents();
         initCombo();        

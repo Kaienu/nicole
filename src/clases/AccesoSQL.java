@@ -13,19 +13,31 @@ public class AccesoSQL {
     private int autonum;
     private static boolean intentos = false;
     
+    private static final String SURL = "jdbc:mysql://localhost/nicole";
+    private static final String USU = "usuario";
+    private static final String PASS = "password";
+    
+    
+    /*private static final String SURL = "jdbc:mysql://192.168.1.35/nicole";
+    private static final String EXTURL = "jdbc:mysql://79.148.58.130/nicole";
+    private static final String USU = "pedro";
+    private static final String PASS = "oxgnub";*/
     /**
      *  CONSTRUCTOR
      */
     
     public AccesoSQL(){
         
-        con = Conexion.getConnection();
+        //con = Conexion.getConnection();
         
-        if (con==null) {
-            System.err.println("No se pudo establecer la conexion!");
-        } else {
-            System.out.println("Conexion adquirida");
-        }
+        try {
+            con = DriverManager.getConnection(SURL, USU, PASS);
+            if (con.isClosed()) System.out.println("Error en la conexión local");
+            else System.out.println("Conexión exitosa");		
+	} catch (SQLException e) {
+            System.out.println(e.getMessage());
+	}
+        
     }
     
     /**

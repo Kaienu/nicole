@@ -4,6 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -128,5 +134,46 @@ public class R {
     public static final Color FUCSIA = new Color(219,126,138);
     public static final Color PANELFONDO = new Color(248,241,242);
     public static final Color SELECTEDTEXT = new Color(255,204,204);
+    
+    /***************************************************************************
+     * Herramientas de archivos
+     **************************************************************************/
+    
+    private static final File DDBB = new File("ddbb.dat");
+    public static DatabaseConfig dbconfig = null;
+    
+    public static boolean guardarArchivo(DatabaseConfig dbconfig) {
+        try {
+            FileOutputStream output = new FileOutputStream(DDBB);
+            ObjectOutputStream buffer = new ObjectOutputStream(output);
+            buffer.writeObject(R.dbconfig);
+            buffer.close();
+            output.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            System.err.println("Hemos encontrado un problema al guardar sus datos.");
+            return false;
+        }
+    }
+    
+    public static boolean cargarArchivo() {
+        try {
+            FileInputStream input = new FileInputStream(DDBB);
+            ObjectInputStream buffer = new ObjectInputStream(input);
+            R.dbconfig = (DatabaseConfig) buffer.readObject();
+            buffer.close();
+            input.close();
+            return true;
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.err.println("Hemos encontrado un problema al cargar sus datos.");
+            return false;
+        }
+    }
+    
+    public static boolean comprobacionFichero() {
+        return DDBB.exists();
+    }
     
 }

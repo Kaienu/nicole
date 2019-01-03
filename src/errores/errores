@@ -1,3 +1,4 @@
+001 - <Login_SPLASH.java>           Error al leer el fichero de configuración
 005 - <AccesoSQL.java>              Error SQL updateSql()
 052 - <Empleado_MAIN.java>          Error en INSERT jButtonNuevoActionPerformed()
 053 - <AccesoSQL.java>              Error en INSERT insertSql()

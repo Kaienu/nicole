@@ -1,8 +1,10 @@
-CREATE TABLE Cliente
-(
-idCliente MEDIUMINT ZEROFILL PRIMARY KEY AUTO_INCREMENT,
-nombre VARCHAR (25) NOT NULL,
-apellidos VARCHAR (40) NOT NULL,
-correo VARCHAR (100),
-telefono INTEGER (9) NOT NULL
+CREATE TABLE `Cliente` (
+  `idCliente` mediumint(8) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(25) NOT NULL,
+  `apellidos` varchar(40) NOT NULL,
+  `correo` varchar(100) DEFAULT NULL,
+  `telefono` int(9) NOT NULL,
+  `observaciones` varchar(500) DEFAULT NULL,
+  `fechaAlta` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idCliente`)
 );

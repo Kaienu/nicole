@@ -1,6 +1,6 @@
-CREATE TABLE Promocion
-(
-idPromocion MEDIUMINT ZEROFILL PRIMARY KEY AUTO_INCREMENT,
-porcenProm TINYINT NOT NULL CHECK (porcenProm<=100 AND porcenProm>=0),
-denominacion VARCHAR (100) NOT NULL
+CREATE TABLE `Promocion` (
+  `idPromocion` mediumint(8) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `porcenProm` tinyint(4) NOT NULL,
+  `denominacion` varchar(100) NOT NULL,
+  PRIMARY KEY (`idPromocion`)
 );

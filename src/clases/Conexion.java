@@ -12,6 +12,9 @@ public class Conexion extends Thread {
     private static final String EXTURL = "jdbc:mysql://79.148.58.130/nicole";
     private static final String USU = "pedro";
     private static final String PASS = "oxgnub";
+    //private static final String SURL = "jdbc:mysql://localhost/nicole";
+    //private static final String USU = "usuario";
+    ///private static final String PASS = "password";
     
     @Override
     public void run(){
